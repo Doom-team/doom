@@ -1,0 +1,55 @@
+
+CHANGES IN Eureka 0.81 (r186)
+=============================
+
+(Changes since 0.74 version)
+
+
++  support a proper unix-style installation
+  
++  made a proper web-site (using PmWiki)
+  
++  command to build nodes (via glBSP) and quit
+
++  texture browser can be resized by dragging the edge
+
+-  log file is only created when --log is used
+-  the --quiet option (-q) suppresses output to stdout
+-  new --debug option (-d) enables debug messages
+-  allow long options to begin with '-' or '--'
+  
+-  handle a pwad filename given without -file
+-  more lax finding of patch lumps for textures
+-  when no level is given, find first one in PWAD or IWAD
+-  support plain numbers with -warp
+  
+-  look for iwads in the ~/.eureka/iwads directory
+-  when searching for iwads, look for more names (e.g. "doom.wad")
+-  if -iwad parameter is a bare name, look in iwad search path
+-  if -iwad parameter has no extension, add ".wad"
+  
+-  using SPACE on a single selected vertex will unselect it
+-  closing a simple vertex loop always makes a new sector inside it
+-  can now split a line when one of its vertices is selected
+
++  new 'm' command for merging sectors
++  new 'c' command to copy sector/thing/line properties
+
+-  added 'same_mode_clears_selection' config var (emulates Yadex behavior)
+
+-  3D view: support strafing with ALT or META key
+ 
+-  initial support for Odamex
+  
+-  DOOM: fixed line types 33 and 34 (red and yellow locked doors)
+-  DOOM: restored the 'Computer Map' pickup
+-  DOOM: fixed "SW2xxx" textures not having the right category
+  
+-  EDGE: added slope line types
+-  EDGE: added some missing things (jetpack, green keys, dog, stealth mons)
+-  EDGE: fleshed out sector types
+-  EDGE: fleshed out line types (hub exits, sliding doors, RTS)
+
+-  TNT: assigned the new textures into categories (e.g. "Crates")
+-  PLUTONIA: assigned the new textures into categories
+

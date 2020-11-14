@@ -1,0 +1,14 @@
+#------------------------------------------------------------------------
+#  VANILLA  (plain DOOM.EXE or HERETIC.EXE etc...)
+#------------------------------------------------------------------------
+
+#
+# NOTE:
+#      Vanilla means the engine (EXE) which came with the game.
+#
+#      Hence it is not a real port, but a fake port which supports
+#      all games, and is handled specially in the Eureka code.
+#
+#      Don't add anything to this file!
+#
+

@@ -1,0 +1,73 @@
+
+CHANGES IN Eureka 1.00 (r1416)
+==============================
+
+(Changes since 0.95 version, r922)
+
+
++  extensive map-checking functions
+
++  validate map data when loading a level
+
++  texture alignment commands for 3D view
+
++  splitting void islands now works as expected
+
++  improved grid, with configurable colors
+
++  scroll-bars for the map view (optional)
+
+-  one sided linedefs show texture in the "Lower" spot
+
+-  automatically unpack sidedefs when loading a map
+
+-  support multiple filenames: new 'File/Given Files' menu
+-  commands to visit the next or previous file
+-  commands to open the next/previous map ('N' and 'P' keys)
+-  changed 'File/Recent Files' to be a sub-menu
+-  option to automatically open the most recent file
+
+-  improved About dialog with Jason R. Johnston's logo
+-  improved Log viewer, ability to save the logs to a file
+-  improved dialog boxes
+
+-  support Eureka config (.ugh) files as resource files
+-  support $DOOMWADPATH for finding IWADs
+
+-  implemented SEC_Light() binding command
+-  commands for setting tags on linedefs/sectors
+-  Edit / Move objects: implemented Z value for sectors
+
+-  the ';' key waits for next key and makes it META
+
+-  better drawing of selected sectors
+-  better drawing of highlighted things and linedefs
+-  better drawing of things (in THING mode)
+
+-  show unknown/missing textures in the LineDef panel
+-  show unknown/missing textures in the 3D preview
+
+-  display the lengths of the last few linedefs
+-  can modify the length of a line in the LineDef panel
+-  improved behavior of vertices when grid-snap is on
+
+-  option to limit grid toggle to a single kind
+-  option to show grid in SNAP mode, hide it in FREE mode
+-  option to set the default editing mode
+-  option to set the default port
+
+-  3D View: option to set the aspect ratio
+-  3D View: option to prevent up/down moves when gravity is on
+
+-  remember the browser width for a saved map
+-  remember the 3D mode (the lack of it) for a map
+
+-  fixed crash bug when loading or saving a map containing linedefs
+   which have no right sidedef
+
+-  fixed rare map saving problem (header lump in wrong position)
+-  fixed possible crash not clearing selection after loading a map
+-  fixed wrong linedef (etc) totals after loading another map
+-  fixed key binding dialog: unable to remove a parameter
+-  fixed the selection after a sector merge 
+
