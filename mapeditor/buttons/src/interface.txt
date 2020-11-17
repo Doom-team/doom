@@ -1,0 +1,4 @@
+panel		0 0		200
+b_blocks	20 20	25 40
+b_texture	70 20	25 40
+b_objects	105 20	20 40
