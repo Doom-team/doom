@@ -24,8 +24,8 @@
 # define APPLEGREY (t_color){125, 125, 125}
 # define WHITE (t_color){255, 255, 255}
 
-# define WIDTH 2024
-# define HEIGHT 1020
+# define WIDTH 1024
+# define HEIGHT 820
 
 # define BWIDTH 60
 #define BHIE 25
@@ -76,7 +76,11 @@ typedef struct	s_win
 
 typedef struct	s_interface
 {
-	t_btn b[6];
+	t_btn				b[6];
+	SDL_Surface			*b_img;
+	unsigned char		*s;
+	unsigned char		pixb;
+	int					strb;
 }				t_interface;
 
 typedef struct	s_strc
@@ -87,10 +91,15 @@ typedef struct	s_strc
 	unsigned char		*s;
 	unsigned char		pixb;
 	int					strb;
-	t_btn b[6];
 	t_interface			interface;
 	t_plr plr;
 	int nb;
+
+
+	SDL_Surface			*b_img;
+	unsigned char		*b_s;
+	unsigned char		b_pixb;
+	int					b_strb;
 
 }				t_strc;
 
@@ -98,7 +107,21 @@ typedef struct	s_strc
 
 
 void	init_interface(t_strc *strc);
-void		oneline(t_strc *strc, char *line);
+// void		oneline(t_strc *strc, char *line);
+int		init_all(t_strc *strc);
+void	init_buttons(t_strc *strc);
+int init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int *strb);
 
+
+void	draw_color(t_strc *strc, int pixel, t_color color);
+void draw_button(t_btn b, t_strc *strc);
+void draw_pl(t_strc *strc);
+void draw(t_strc *strc);
+
+
+
+void turn_btn(t_btn *b);
+int		press_b(t_btn b, int key, int x, int y);
+int		mkey(int key, int x, int y, t_strc *strc);
 
 #endif

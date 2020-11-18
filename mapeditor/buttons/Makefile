@@ -24,7 +24,7 @@ HEAD = $(HEAD_DIR)map.h
 INCLUDES = $(LIBFT_H) $(RTV1_H)
 
 SRC_DIR = src/
-SRC_FILES =		main.c interface.c
+SRC_FILES =		main.c interface.c draw.c hooks.c interface_init.c
 
 OBJ_DIR = obj/
 OBJ_FILE =	$(SRC_FILES:.c=.o)
