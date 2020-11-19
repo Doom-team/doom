@@ -24,7 +24,7 @@
 # define APPLEGREY (t_color){125, 125, 125}
 # define WHITE (t_color){255, 255, 255}
 
-# define WIDTH 1024
+# define WIDTH 1524
 # define HEIGHT 820
 
 # define BWIDTH 60
@@ -74,54 +74,55 @@ typedef struct	s_win
 	int w;
 }				t_win;
 
+
+typedef struct	s_image
+{
+SDL_Surface			*img;
+unsigned char		*s;
+unsigned char		pixb;
+int					strb;
+}					t_image;
+
+
 typedef struct	s_interface
 {
 	t_btn				b[6];
-	SDL_Surface			*b_img;
-	unsigned char		*s;
-	unsigned char		pixb;
-	int					strb;
+	t_image			*inter_tex[6];
+	// // SDL_Surface			*b_img;
+	// unsigned char		*s;
+	// unsigned char		pixb;
+	// int					strb;
 }				t_interface;
 
-typedef struct	s_strc
+typedef struct	s_map
 {
 	SDL_Window			*win;
 
-	SDL_Surface			*img;
-	unsigned char		*s;
-	unsigned char		pixb;
-	int					strb;
-	t_interface			interface;
-	t_plr plr;
-	int nb;
+	// t_interface			*interface;
+	t_image				*inter_tex[6];
+	// t_plr				plr;
+	// int					nb;
 
-
-	SDL_Surface			*b_img;
-	unsigned char		*b_s;
-	unsigned char		b_pixb;
-	int					b_strb;
-
-}				t_strc;
+}				t_map;
 
 
 
 
-void	init_interface(t_strc *strc);
-// void		oneline(t_strc *strc, char *line);
-int		init_all(t_strc *strc);
-void	init_buttons(t_strc *strc);
-int init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int *strb);
+void	init_interface(t_map *map);
+int		init_all(t_map *map);
+void	init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int *strb);
+void	get_textures(t_map *map);
 
 
-void	draw_color(t_strc *strc, int pixel, t_color color);
-void draw_button(t_btn b, t_strc *strc);
-void draw_pl(t_strc *strc);
-void draw(t_strc *strc);
+// void	draw_color(t_map *map, int pixel, t_color color);
+void	draw_img(t_map *map, int inx, int x, int y, int wdth, int hth);
+// void	draw_button(t_btn b, t_map *map);
+void	draw(t_map *map);
 
 
 
-void turn_btn(t_btn *b);
-int		press_b(t_btn b, int key, int x, int y);
-int		mkey(int key, int x, int y, t_strc *strc);
+// void turn_btn(t_btn *b);
+// int		press_b(t_btn b, int key, int x, int y);
+// int		mkey(int key, int x, int y, t_map *map);
 
 #endif
