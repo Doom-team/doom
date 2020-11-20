@@ -24,13 +24,14 @@
 # define APPLEGREY (t_color){125, 125, 125}
 # define WHITE (t_color){255, 255, 255}
 
-# define WIDTH 1524
+# define WIDTH 1224
 # define HEIGHT 820
+# define SCALE 50
 
-# define BWIDTH 60
-#define BHIE 25
-# define HUD 7
-# define MAP 10
+// # define BWIDTH 60
+// #define BHIE 25
+// # define HUD 7
+// # define MAP 10
 
 enum				e_lighttypes
 {
@@ -99,9 +100,13 @@ typedef struct	s_map
 	SDL_Window			*win;
 
 	// t_interface			*interface;
-	t_image				*inter_tex[6];
+	t_image				*inter_tex[9];
+	// t_image				*tools_tex[4];
 	// t_plr				plr;
 	// int					nb;
+
+	int					z_x;
+	int					z_y;
 
 }				t_map;
 
@@ -111,7 +116,7 @@ typedef struct	s_map
 void	init_interface(t_map *map);
 int		init_all(t_map *map);
 void	init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int *strb);
-void	get_textures(t_map *map);
+void	get_inter_textures(t_map *map);
 
 
 // void	draw_color(t_map *map, int pixel, t_color color);

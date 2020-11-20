@@ -1,81 +1,39 @@
 #include "../include/map.h"
 
-// int init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int *strb)
-// {
-// 	*s = (unsigned char*)(tex->pixels);
-// 	*pixb = (tex->format->BytesPerPixel);
-// 	*strb = (tex->pitch);
-// 	return (0);
-// }
-
-// void draw_pixel(t_map *mp, int x, int y, unsigned char c)
+// void draw_gr(t_map *map, int x, int y, unsigned char c)
 // {
 // 	int pixel;
 
 // 	if (x < WIDTH && y < HEIGHT)
 // 	{
-// 		pixel = (x * mp->pixb) + (y * mp->strb);
-// 		draw_floor(mp, pixel, c);
+// 		pixel = (x * map->pixb) + (y * map->strb);
+// 		map->s[pixel] = 0;
+// 		map->s[++pixel] = c;
+// 		map->s[++pixel] = 0;
 // 	}
 // }
 
-// void draw_point(t_map *mp, int x, int y, unsigned char c)
-// {
-// 	int i;
-// 	int j;
-// 	int pixel;
-
-// 	i = -1;
-// 	while (i < 1)
-// 	{
-// 		j = -1;
-// 		while (j < 1)
-// 		{
-// 			if (x + i >= 0 && y + j >= 0 && x + i < WIDTH && y + j < HEIGHT)
-// 			{
-// 				pixel = ((x + i) * mp->pixb) + ((y + j) * mp->strb);
-// 				draw_floor(mp, pixel, c);
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
-// void draw_gr(t_map *mp, int x, int y, unsigned char c)
+// void draw_pr(t_map *map, int x, int y, unsigned char c)
 // {
 // 	int pixel;
 
 // 	if (x < WIDTH && y < HEIGHT)
 // 	{
-// 		pixel = (x * mp->pixb) + (y * mp->strb);
-// 		mp->s[pixel] = 0;
-// 		mp->s[++pixel] = c;
-// 		mp->s[++pixel] = 0;
+// 		pixel = (x * map->pixb) + (y * map->strb);
+// 		map->s[pixel] = c;
+// 		map->s[++pixel] = 0;
+// 		map->s[++pixel] = c;
 // 	}
 // }
 
-// void draw_pr(t_map *mp, int x, int y, unsigned char c)
+// void draw_node(t_map *map, t_nod *n)
 // {
-// 	int pixel;
-
-// 	if (x < WIDTH && y < HEIGHT)
-// 	{
-// 		pixel = (x * mp->pixb) + (y * mp->strb);
-// 		mp->s[pixel] = c;
-// 		mp->s[++pixel] = 0;
-// 		mp->s[++pixel] = c;
-// 	}
-// }
-
-// void draw_node(t_map *mp, t_nod *n)
-// {
-// 	int x1 = n->x1 + mp->z_x;
-// 	int x2 = n->x2 + mp->z_x;
+// 	int x1 = n->x1 + map->z_x;
+// 	int x2 = n->x2 + map->z_x;
 // 	if (x1 < 0 && x2 < 0)
 // 		return;
-// 	int y1 = n->y1 + mp->z_y;
-// 	int y2 = n->y2 + mp->z_y;
+// 	int y1 = n->y1 + map->z_y;
+// 	int y2 = n->y2 + map->z_y;
 // 	int dx = abs(x1 - x2);
 // 	int dy = abs(y1 - y2);
 // 	int er = 0;
@@ -98,7 +56,7 @@
 		
 // 		while (i != x2)
 // 		{
-// 			draw_gr(mp, i, j, 80);
+// 			draw_gr(map, i, j, 80);
 // 			er += de;
 // 			if (er >= dx + 1)
 // 			{
@@ -122,7 +80,7 @@
 		
 // 		while (i != y2)
 // 		{
-// 			draw_gr(mp, j, i, 80);
+// 			draw_gr(map, j, i, 80);
 // 			er += de;
 // 			if (er >= dy + 1)
 // 			{
@@ -132,30 +90,25 @@
 // 			i += di;
 // 		}
 // 	}
-// 	draw_pixel(mp, x1, y1, 250);
-// 	draw_pixel(mp, x2, y2, 250);
+// 	draw_pixel(map, x1, y1, 250);
+// 	draw_pixel(map, x2, y2, 250);
 // }
 
-// void draw_nodes(t_map *mp)
+// void draw_nodes(t_map *map)
 // {
 // 	t_nod *n;
 
-// 	n = mp->nod;
+// 	n = map->nod;
 // 	if (n == NULL)
 // 		return;
 // 	while (n)
 // 	{
-// 		draw_node(mp, n);
+// 		draw_node(map, n);
 // 		n = n->nxt;
 // 	}
 // }
 
-// void	draw_color(t_map *map, int pixel, t_color color) // unsigned char c
-// {
-// 	map->s[pixel] = color.b;
-// 	map->s[++pixel] = color.g;
-// 	map->s[++pixel] = color.r;
-// }
+
 
 // void draw_img(t_map *map, int x, int y, int wdth, int hth)
 // {
@@ -171,11 +124,11 @@
 // 		while (j < WIDTH && j < x + wdth)
 // 		{
 // 			map->interface->inter_tex[0]->strb
-// 			pixel1 = i * mp->strb + j * mp->pixb;
-// 			pixel2 = (int)((double)(i-y)/hth *mp->img1->h) * mp->strb1 + (int)((double)(j - x)/wdth*mp->img1->w) * mp->pixb1;
-// 			mp->s[pixel1] = mp->s1[pixel2];
-// 			mp->s[++pixel1] = mp->s1[++pixel2];
-// 			mp->s[++pixel1] = mp->s1[++pixel2];
+// 			pixel1 = i * map->strb + j * map->pixb;
+// 			pixel2 = (int)((double)(i-y)/hth *map->img1->h) * map->strb1 + (int)((double)(j - x)/wdth*map->img1->w) * map->pixb1;
+// 			map->s[pixel1] = map->s1[pixel2];
+// 			map->s[++pixel1] = map->s1[++pixel2];
+// 			map->s[++pixel1] = map->s1[++pixel2];
 // 			j++;
 // 		}
 // 		i++;
@@ -259,16 +212,101 @@ void draw_img(t_map *map, int inx, int x, int y, int wdth, int hth)
 // 	map->s[++pixel1] = map->b_s[++pixel2];
 // 	map->s[++pixel1] = map->b_s[++pixel2];
 // }
+void	draw_color(t_map *map, int pixel, t_color color)
+{
+	map->inter_tex[0]->s[pixel] = color.b;
+	map->inter_tex[0]->s[++pixel] = color.g;
+	map->inter_tex[0]->s[++pixel] = color.r;
+}
+
+
+void draw_pixel(t_map *map, int x, int y, t_color color)
+{
+	int pixel;
+
+	if (x < WIDTH && y < HEIGHT)
+	{
+		pixel = (x * map->inter_tex[0]->pixb) + (y * map->inter_tex[0]->strb);
+		draw_color(map, pixel, color);
+	}
+}
+
+// void	draw_floor(t_map *dm, int pixel, char c)
+// {
+// 	dm->inter_tex[0]->s[pixel] = c;
+// 	dm->inter_tex[0]->s[++pixel] = c;
+// 	dm->inter_tex[0]->s[++pixel] = c;
+// }
+
+
+void draw_point(t_map *map, int x, int y, t_color color)
+{
+	int i;
+	int j;
+	int pixel;
+
+	i = -1;
+	while (i < 1)
+	{
+		j = -1;
+		while (j < 1)
+		{
+			if (x + i >= 0 && y + j >= 0 && x + i < WIDTH && y + j < HEIGHT)
+			{
+				pixel = ((x + i) * map->inter_tex[0]->pixb) + ((y + j) * map->inter_tex[0]->strb);
+				draw_color(map, pixel, color);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void draw_grid(t_map *map)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < HEIGHT)
+	{
+		j = 0;
+		while (j < WIDTH)
+		{
+			if ((i - map->z_y) % SCALE == 0 && (j - map->z_x) % SCALE == 0)
+				draw_point(map, j, i, (t_color){0, 50, 100});
+			else if ((i - map->z_y) % SCALE == 0 || (j - map->z_x) % SCALE == 0)
+				draw_pixel(map, j, i, (t_color){50, 50, 0});
+			else
+				draw_pixel(map, j, i, (t_color){0, 0, 0});
+			j++;
+		}
+	}
+	// draw_point(map, map->z_x, map->z_y, 255);
+	// draw_nodes(map);
+	// if (map->click)
+	// 	draw_pr(map, map->x_clck, map->y_clck, 150);
+	// draw_panel(map);
+	// SDL_UpdateWindowSurface(map->win);
+}
+
 
 void draw(t_map *map)
 {
 	SDL_FillRect(map->inter_tex[0]->img, NULL, 0);
-	draw_img(map, 1, 0, 0, 300, HEIGHT);
-	draw_img(map, 2, 10, 130, 280, HEIGHT - 150);
+	draw_grid(map);
+	draw_img(map, 1, 0, 0, 300, 800);
+	draw_img(map, 2, 10, 110, 280, 680);
+
+
+
 	draw_img(map, 3, 20, 20, 70, 30);
 	draw_img(map, 4, 110, 20, 70, 30);
 	draw_img(map, 5, 200, 20, 70, 30);
 
+	draw_img(map, 6, 80, 60, 30, 30);
+	draw_img(map, 7, 130, 60, 30, 30);
+	draw_img(map, 8, 180, 60, 30, 30);
 
 	// draw_pl(map);
 	SDL_UpdateWindowSurface(map->win);

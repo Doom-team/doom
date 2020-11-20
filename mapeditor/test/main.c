@@ -7,10 +7,12 @@ void	draw_floor(t_map *dm, int pixel, char c)
 	dm->s[++pixel] = c;
 }
 
-int init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int *strb)
+int init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int *strb, unsigned int *amask)
 {
 	*s = (unsigned char*)(tex->pixels);
 	*pixb = (tex->format->BytesPerPixel);
+	if (tex->format->Amask)
+		*amask = (tex->format->Amask);
 	*strb = (tex->pitch);
 	return (0);
 }
@@ -109,10 +111,10 @@ void draw_grid(t_map *mp)
 			j++;
 		}
 	}
-	draw_point(mp, mp->z_x, mp->z_y, 255);
+	// draw_point(mp, mp->z_x, mp->z_y, 255);
 	draw_nodes(mp);
-	if (mp->click)
-		draw_pr(mp, mp->x_clck, mp->y_clck, 150);
+	// if (mp->click)
+	// 	draw_pr(mp, mp->x_clck, mp->y_clck, 150);
 	// draw_panel(mp);
 	SDL_UpdateWindowSurface(mp->win);
 }
@@ -213,10 +215,12 @@ int init(t_map *mp, char **av)
 		return (1);
 	if (!(mp->img = SDL_GetWindowSurface(mp->win)))
 		return (1);
-	init_texture(mp->img, &(mp->s), &(mp->pixb), &(mp->strb));
-	mp->img1 = IMG_Load("the_God.jpg");
+	init_texture(mp->img, &(mp->s), &(mp->pixb), &(mp->strb), &(mp->amask));
+	printf("AMASK %u\n", mp->amask);
+	mp->img1 = IMG_Load("inpanel2.png");
 	mp->img1 = SDL_ConvertSurfaceFormat(mp->img1, SDL_PIXELFORMAT_BGRA32, 0);
-	init_texture(mp->img1, &(mp->s1), &(mp->pixb1), &(mp->strb1));
+	init_texture(mp->img1, &(mp->s1), &(mp->pixb1), &(mp->strb1), &(mp->amask1));
+	printf("AMASK1 %u\n", mp->amask1);
 	mp->z_x = WIDTH / 2;
 	mp->z_y = HEIGHT / 2;
 	mp->click = 0;

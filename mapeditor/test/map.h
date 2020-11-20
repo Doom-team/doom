@@ -30,11 +30,13 @@ typedef struct	s_map
 	unsigned char		*s;
 	unsigned char		pixb;
 	int					strb;
+	unsigned int		amask;
 
 	SDL_Surface			*img1;
 	unsigned char		*s1;
 	unsigned char		pixb1;
 	int					strb1;
+	unsigned int 		amask1;
 
 	t_nod *nod;
 
