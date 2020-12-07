@@ -139,6 +139,7 @@ typedef struct	s_monster
 	int			count_monster;
 	t_sprite_calc		data[4];
 	t_float2	monster_pos[4];
+	float		monster_upscale[4];
 	int			sort_arr[4];
 	int			penetration_flag;
 	int			score_coin;

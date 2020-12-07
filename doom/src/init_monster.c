@@ -18,6 +18,10 @@ void    init_monster(t_wolf *wolf)
     wolf->monster->monster_pos[2].x = 6.5 * CUBE;
     wolf->monster->monster_pos[2].y = 4.5 * CUBE;
     wolf->monster->count_monster = 4;
+    wolf->monster->monster_upscale[0] = 2;
+    wolf->monster->monster_upscale[1] = 2;
+    wolf->monster->monster_upscale[2] = 2;
+    wolf->monster->monster_upscale[3] = 1;
     // wolf->monster->data[0].dist = 1;
     // wolf->monster->data[1].dist = 2;
     // wolf->monster->data[2].dist = 3;
