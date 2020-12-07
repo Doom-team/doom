@@ -1,40 +1,57 @@
 #include "../includes/wolf3d.h"
 
-// int		score_monster(t_wolf *wolf, t_coin *coin)
-// {
-// 	float	x;
-// 	float	y;
-// 	int		flag;
+static int	check_free_position(t_wolf *wolf, int i, int x, int y)
+{
+	int j;
 
-// 	flag = 0;
-// 	if (coin->dist < 20 || wolf->bon->penetration_flag == 1)
-// 	{
-// 		Mix_Volume(0, 32);
-// 		Mix_PlayChannel(2, wolf->bon->music_coin, 0);
-// 		Mix_VolumeMusic(5);
-// 		wolf->bon->score_coin++;
-// 		wolf->bon->penetration_flag = 0;
-// 		while (flag != 1)
-// 		{
-// 			y = rand() % wolf->map->h;
-// 			x = rand() % wolf->map->w;
-// 			if (wolf->map->map[(int)(y * wolf->map->w + x)] == TEX_FLOOR)
-// 			{
-// 				wolf->bon->monster_pos.x = (x + 0.5) * CUBE;
-// 				wolf->bon->monster_pos.y = (y + 0.5) * CUBE;
-// 				flag = 1;
-// 			}
-// 		}
-// 	}
-// 	return (0);
-// }
+	j = 0;
+	while (j < wolf->monster->count_monster)
+	{
+		if (i != j)
+		{
+			if (wolf->monster->monster_pos[j].x == x &&
+				wolf->monster->monster_pos[j].y == y)
+			{
+				return (0);
+			}
+		}
+		j++;
+	}
+	return (1);
+}
 
-static int		search_angle_monster(t_wolf *wolf, int i)
+static void	score_monster(t_wolf *wolf, int i)
+{
+	float	x;
+	float	y;
+	int		flag;
+
+	flag = 0;
+	if (wolf->monster->data[i].dist < 20 || wolf->monster->penetration_flag == 1)
+	{
+		Mix_Volume(0, 32);
+		Mix_PlayChannel(2, wolf->bon->music_coin, 0);
+		Mix_VolumeMusic(5);
+		wolf->monster->score_coin++;
+		wolf->monster->penetration_flag = 0;
+		while (flag != 1)
+		{
+			y = rand() % wolf->map->h;
+			x = rand() % wolf->map->w;
+			if (wolf->map->map[(int)(y * wolf->map->w + x)] == TEX_FLOOR && check_free_position(wolf, i, (x + 0.5) * CUBE, (y + 0.5) * CUBE))
+			{
+				wolf->monster->monster_pos[i].x = (x + 0.5) * CUBE;
+				wolf->monster->monster_pos[i].y = (y + 0.5) * CUBE;
+				flag = 1;
+			}
+		}
+	}
+}
+
+static void		search_angle_monster(t_wolf *wolf, int i)
 {
 	wolf->monster->data[i].dist = sqrtf(powf((wolf->monster->monster_pos[i].x - wolf->player->x), 2)
 		+ powf((wolf->monster->monster_pos[i].y - wolf->player->y), 2));
-	// if (score_monster(wolf, coin))
-	// 	return (1);
 	if (wolf->monster->monster_pos[i].x - wolf->player->x > 0
 		&& wolf->monster->monster_pos[i].y - wolf->player->y < 0)
 		wolf->monster->data[i].angle = asin((wolf->player->y - wolf->monster->monster_pos[i].y)
@@ -51,7 +68,6 @@ static int		search_angle_monster(t_wolf *wolf, int i)
 		&& wolf->monster->monster_pos[i].y - wolf->player->y > 0)
 		wolf->monster->data[i].angle = asin((wolf->player->y - wolf->monster->monster_pos[i].y)
 			/ wolf->monster->data[i].dist) + RAD_360;
-	return (0);
 }
 
 static void    wall_check_monster(t_wolf *wolf, int i)
@@ -149,8 +165,7 @@ void    render_monster(t_wolf *wolf, SDL_Surface *surface)
 	while (i < wolf->monster->count_monster)
 	{
 		ft_bzero(&(wolf->monster->data[wolf->monster->sort_arr[i]]), sizeof(t_sprite_calc));
-		if (search_angle_monster(wolf, wolf->monster->sort_arr[i]))
-			return ;
+		search_angle_monster(wolf, wolf->monster->sort_arr[i]);
 		through_zero_monster(wolf, wolf->monster->sort_arr[i]);
 		wall_check_monster(wolf, wolf->monster->sort_arr[i]);
 		wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.w = (int)((wolf->monster->data[wolf->monster->sort_arr[i]].flag_2 - wolf->monster->data[wolf->monster->sort_arr[i]].flag_1)
@@ -165,8 +180,10 @@ void    render_monster(t_wolf *wolf, SDL_Surface *surface)
 		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.x = wolf->monster->data[wolf->monster->sort_arr[i]].flag_i;
 		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.y = (H / 2) - ((W / 32)
 			* (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)) / 2 - wolf->player->dir_y; //сюда динамическое изменение высоты постановки прикрутить
-		SDL_BlitScaled(wolf->monster->image_monster[wolf->monster->sort_arr[i]], &(wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img),
+		SDL_BlitScaled(wolf->monster->image_monster[wolf->monster->sort_arr[i]], &(wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img), 
 			surface, &(wolf->monster->data[wolf->monster->sort_arr[i]].img_location));
+		penetration_check(wolf, wolf->monster->data[wolf->monster->sort_arr[i]].img_location);
+		score_monster(wolf, wolf->monster->sort_arr[i]);
 		i++;
 	}
 }
