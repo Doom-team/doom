@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:29:09 by clala             #+#    #+#             */
-/*   Updated: 2020/10/24 21:44:59 by clala            ###   ########.fr       */
+/*   Updated: 2020/12/08 18:39:32 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,26 @@ static t_wolf	*t_wolf_new(void)
 		error(new, ERR_MALLOC);
 	if (!(new->monster = (t_monster *)malloc(sizeof(t_monster))))
 		error(new, ERR_MALLOC);
+	new->walls[0].x1=6*CUBE;
+	new->walls[0].y1=2*CUBE;
+	new->walls[0].x2=13*CUBE;
+	new->walls[0].y2=1*CUBE;
+
+	new->walls[1].x1=13*CUBE;
+	new->walls[1].y1=1*CUBE;
+	new->walls[1].x2=17*CUBE;
+	new->walls[1].y2=4*CUBE;
+
+	new->walls[2].x1=17*CUBE;
+	new->walls[2].y1=4*CUBE;
+	new->walls[2].x2=7*CUBE;
+	new->walls[2].y2=5*CUBE;
+
+	new->walls[3].x1=7*CUBE;
+	new->walls[3].y1=5*CUBE;
+	new->walls[3].x2=6*CUBE;
+	new->walls[3].y2=2*CUBE;
+
 	return (new);
 }
 

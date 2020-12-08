@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2020/10/24 22:09:35 by clala            ###   ########.fr       */
+/*   Updated: 2020/12/08 17:56:25 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 # include "const.h"
 # include "colors.h"
 # include "errors.h"
+
+typedef struct	s_wall
+{
+	int x1;
+	int y1;
+	int x2;
+	int y2;
+}				t_wall;
 
 typedef struct	s_map
 {
@@ -154,6 +162,7 @@ typedef struct	s_wolf
 	SDL_Surface	*surface;
 	t_bonus		*bon;
 	t_monster	*monster;
+	t_wall walls[4];
 }				t_wolf;
 
 /*

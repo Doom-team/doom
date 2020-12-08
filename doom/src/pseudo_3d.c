@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pseudo_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2020/10/24 21:56:30 by clala            ###   ########.fr       */
+/*   Updated: 2020/12/08 18:23:22 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,8 +186,7 @@ void	pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
 	{
 		if (player->distance[count_distance]->dist != 0)
 		{
-			point.y = ceilf((CUBE * player->dist_to_canvas)
-				/ player->distance[count_distance]->dist);
+			point.y = ceilf((CUBE * player->dist_to_canvas) / player->distance[count_distance]->dist);
 			point.y = (H - point.y) / 2; // сколько отступ сверху и снизу
 			draw_column(wolf, point,
 				player->distance[count_distance], H - point.y);
