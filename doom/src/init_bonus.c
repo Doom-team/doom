@@ -14,6 +14,7 @@
 
 void	init_bonus_load(t_wolf *wolf)
 {
+	
 	wolf->bon->image_1 = IMG_Load("textures/guns-1.bmp");
 	wolf->bon->image_2 = IMG_Load("textures/guns-2.bmp");
 	wolf->bon->image_3 = IMG_Load("textures/guns-3.bmp");

@@ -3,16 +3,13 @@
 
 void draw_texture(t_sdl *sdl, t_button *button, t_position *pos)
 {
+	// printf("%d\n", sdl->pitch);
 	if (button->bytes_texture[pos->x2 * 4 + 3 + pos->y2 * button->texture->pitch] != 0)
 	{
-		sdl->bytes[pos->x1 * 4 + 0 + pos->y1 * sdl->pitch] =
-			button->bytes_texture[pos->x2 * 4 + 0 + pos->y2 * button->texture->pitch];
-		sdl->bytes[pos->x1 * 4 + 1 + pos->y1 * sdl->pitch] =
-			button->bytes_texture[pos->x2 * 4 + 1 + pos->y2 * button->texture->pitch];
-		sdl->bytes[pos->x1 * 4 + 2 + pos->y1 * sdl->pitch] =
-			button->bytes_texture[pos->x2 * 4 + 2 + pos->y2 * button->texture->pitch];
-		sdl->bytes[pos->x1 * 4 + 3 + pos->y1 * sdl->pitch] =
-			button->bytes_texture[pos->x2 * 4 + 3 + pos->y2 * button->texture->pitch];
+		sdl->bytes[pos->x1 * 4 + 0 + pos->y1 * sdl->pitch] =button->bytes_texture[pos->x2 * 4 + 0 + pos->y2 * button->texture->pitch];
+		sdl->bytes[pos->x1 * 4 + 1 + pos->y1 * sdl->pitch] =button->bytes_texture[pos->x2 * 4 + 1 + pos->y2 * button->texture->pitch];
+		sdl->bytes[pos->x1 * 4 + 2 + pos->y1 * sdl->pitch] =button->bytes_texture[pos->x2 * 4 + 2 + pos->y2 * button->texture->pitch];
+		sdl->bytes[pos->x1 * 4 + 3 + pos->y1 * sdl->pitch] =button->bytes_texture[pos->x2 * 4 + 3 + pos->y2 * button->texture->pitch];
 	}
 }
 
@@ -35,6 +32,7 @@ void draw_button(t_sdl *sdl, t_button *button)
 
 void print_menu(t_sdl *sdl, t_menu *menu)
 {
+	// printf("%d\n", sdl->pitch);
 	draw_button(sdl, (t_button *)&menu->background);
 	draw_button(sdl, &menu->logo);
 	draw_button(sdl, &menu->start);

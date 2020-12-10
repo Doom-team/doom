@@ -19,6 +19,7 @@
 # include "../frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h"
 # include <stdbool.h>
 # include <fcntl.h>
+# include <stdio.h>
 # include "../libft/includes/ft_printf.h"
 # include <math.h>
 # include "const.h"
@@ -127,18 +128,24 @@ typedef struct	s_bonus
 
 typedef struct	s_sdl
 {
-	SDL_Surface	*scrs;
-	SDL_Surface	*textures;
-	SDL_Surface	*sky;
-	SDL_Surface	*icon;
-	SDL_Window	*win;
-	int			tex_arr[0xff];
-	const Uint8	*state;
-	int			skybox_offset;
-	int			run;
-	int			sides_mode;
-	int			menu;
-	int			interlaced_rendering;
+	// SDL_Surface	*scrs; //menu** scrs
+	SDL_Surface		*textures;
+	SDL_Surface		*sky;
+	SDL_Surface		*icon;
+	SDL_Window		*win; //menu** window
+	int				tex_arr[0xff];
+	const Uint8		*state;
+	int				skybox_offset;
+	int				run;
+	int				sides_mode;
+	int				menu;
+	int				interlaced_rendering;
+	SDL_Renderer	*render;
+	SDL_Texture		*window_texture;
+	SDL_Event		e;
+	unsigned char	*bytes;
+	int				pitch;
+	bool			run_menu;
 }				t_sdl;
 
 typedef struct	s_monster
@@ -153,6 +160,41 @@ typedef struct	s_monster
 	int			score_coin;
 }				t_monster;
 
+typedef struct		s_position
+{
+	int x1;
+	int x2;
+	int y1;
+	int y2;
+}					t_position;
+
+typedef struct		s_background
+{
+	SDL_Surface		*srcs;
+	SDL_Surface		*texture;
+	t_position		pos;
+	unsigned char	*bytes_texture;
+}					t_background;
+
+typedef struct		s_button
+{
+	SDL_Surface		*srcs;
+	SDL_Surface		*texture;
+	t_position		pos;
+	unsigned char	*bytes_texture;
+	double			coefficient_x;
+	double			coefficient_y;
+}					t_button;
+
+typedef struct		s_menu
+{
+	t_background background;
+	t_button logo;
+	t_button start;
+	t_button map;
+	t_button settings;
+	t_button exit;
+}					t_menu;
 
 typedef struct	s_wolf
 {
@@ -162,7 +204,8 @@ typedef struct	s_wolf
 	SDL_Surface	*surface;
 	t_bonus		*bon;
 	t_monster	*monster;
-	t_wall walls[4];
+	t_menu		*menu;
+	t_wall 		walls[4];
 }				t_wolf;
 
 /*
@@ -180,6 +223,22 @@ void			draw_rectangle(SDL_Surface *surface, t_point start,
 ** sdl.c
 */
 void			wolf_loop(t_wolf *wolf);
+
+/*
+** menu.c
+*/
+void			menu_loop(t_wolf *wolf);
+void			hooks(t_sdl *sdl, t_menu *menu);
+void			check_pos_button(t_sdl *sdl, t_button *button, int k);
+void			quit(t_sdl *sdl);
+
+/*
+** print_menu.c
+*/
+void			print_menu(t_wolf *wolf);
+void			draw_button(t_sdl *sdl, t_button *button);
+void			draw_texture(t_sdl *sdl, t_button *button, t_position *pos);
+
 
 /*
 ** main.c
@@ -238,6 +297,15 @@ void			init_bonus_load(t_wolf *wolf);
 ** init_monster.c
 */
 void			init_monster(t_wolf *wolf);
+
+
+/*
+** init_menu.c
+*/
+void			init_menu(t_menu *menu);
+void			create_background(t_background *background);
+void			create_button(t_button *button, char *file, int k);
+void			create_pos_button(t_button *button, int k);
 
 /*
 ** aux.c

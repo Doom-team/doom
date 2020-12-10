@@ -24,4 +24,4 @@ FRAMEWORKS  = -F../doom/frameworks \
 OBJ_NAME = menu
 
 all : $(OBJS)
-	$(CC) $(OBJS) -o $(OBJ_NAME) $(SDL_INCS) $(FRAMEWORKS)
+	$(CC) -g $(OBJS) -o $(OBJ_NAME) $(SDL_INCS) $(FRAMEWORKS)

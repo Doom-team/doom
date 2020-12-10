@@ -26,4 +26,6 @@
 # define TEXT_FOREGROUND_COLOR 0
 # define TEXT_BACKGROUND_COLOR 1
 
+//# define RGB(r, g, b) r + (g << 8) + (b << 16)
+
 #endif

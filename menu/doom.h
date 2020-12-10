@@ -18,8 +18,8 @@
 //# include "../doom/frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h"
 # include <stdbool.h>
 # include <stdio.h>
-# define W_W 1280
-# define W_H 720
+# define W_W 800
+# define W_H 600
 # define RGB(r, g, b) r + (g << 8) + (b << 16)
 
 typedef struct		s_sdl

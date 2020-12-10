@@ -72,7 +72,12 @@ int main(int arg, char **argv)
 	while (sdl.run)
 	{
 		hooks(&sdl, &menu);
+		// printf("%d\n", sdl.window_texture);
+		// printf("%p\n", &sdl.window_texture);
 		SDL_LockTexture(sdl.window_texture, NULL, (void**)&sdl.bytes, &sdl.pitch);
+		// printf("%d\n", sdl.window_texture);
+		// printf("%p\n", &sdl.window_texture);
+		// exit(0);
 		print_menu(&sdl, &menu);
 		SDL_UnlockTexture(sdl.window_texture);
 		SDL_RenderCopy(sdl.render, sdl.window_texture, NULL, NULL);

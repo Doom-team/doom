@@ -92,7 +92,6 @@ void			wolf_loop(t_wolf *wolf)
 {
 	SDL_Event	event;
 
-	init_sdl(wolf);
 	while (wolf->sdl->run)
 	{
 		handle_event(wolf, &event);

@@ -19,7 +19,9 @@ void init_sdl(t_sdl *sdl)
 	sdl->render = SDL_CreateRenderer(sdl->window, -1, SDL_RENDERER_ACCELERATED);
 	sdl->window_texture = SDL_CreateTexture(sdl->render,
 											SDL_PIXELFORMAT_ABGR8888, SDL_TEXTUREACCESS_STREAMING, W_W, W_H);
-	sdl->scrs = SDL_GetWindowSurface(sdl->window);
+	// printf ("%p\n", &sdl->render);
+	// printf ("%d\n", sdl->render);
+	// sdl->scrs = SDL_GetWindowSurface(sdl->window);
 	sdl->run = true;
 }
 

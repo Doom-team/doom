@@ -40,25 +40,27 @@ static t_wolf	*t_wolf_new(void)
 		error(new, ERR_MALLOC);
 	if (!(new->monster = (t_monster *)malloc(sizeof(t_monster))))
 		error(new, ERR_MALLOC);
-	new->walls[0].x1=6*CUBE;
-	new->walls[0].y1=2*CUBE;
-	new->walls[0].x2=13*CUBE;
-	new->walls[0].y2=1*CUBE;
+	if (!(new->menu = (t_menu *)malloc(sizeof(t_menu))))
+		error(new, ERR_MALLOC);
+	new->walls[0].x1=0*CUBE;
+	new->walls[0].y1=0*CUBE;
+	new->walls[0].x2=5*CUBE;
+	new->walls[0].y2=0*CUBE;
 
-	new->walls[1].x1=13*CUBE;
-	new->walls[1].y1=1*CUBE;
-	new->walls[1].x2=17*CUBE;
-	new->walls[1].y2=4*CUBE;
+	new->walls[1].x1=5*CUBE;
+	new->walls[1].y1=0*CUBE;
+	new->walls[1].x2=5*CUBE;
+	new->walls[1].y2=5*CUBE;
 
-	new->walls[2].x1=17*CUBE;
-	new->walls[2].y1=4*CUBE;
-	new->walls[2].x2=7*CUBE;
+	new->walls[2].x1=5*CUBE;
+	new->walls[2].y1=5*CUBE;
+	new->walls[2].x2=0*CUBE;
 	new->walls[2].y2=5*CUBE;
 
-	new->walls[3].x1=7*CUBE;
+	new->walls[3].x1=0*CUBE;
 	new->walls[3].y1=5*CUBE;
-	new->walls[3].x2=6*CUBE;
-	new->walls[3].y2=2*CUBE;
+	new->walls[3].x2=0*CUBE;
+	new->walls[3].y2=0*CUBE;
 
 	return (new);
 }
@@ -87,6 +89,15 @@ int				main(int a, char **b)
 	init_monster(wolf);
 	music(wolf->bon);
 	init_tex_arr(wolf);
+	init_sdl(wolf);
+	init_menu(wolf->menu);
+	menu_loop(wolf);
+	//
+	// SDL_DestroyWindow(wolf->sdl->win);
+	// wolf->sdl->win = NULL;
+	wolf->sdl->win = SDL_CreateWindow("Doom", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, W, H, SDL_WINDOW_SHOWN);
+	wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);
+	SDL_SetRelativeMouseMode(SDL_TRUE);
 	wolf_loop(wolf);
 	return (0);
 }

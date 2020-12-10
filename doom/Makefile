@@ -31,7 +31,10 @@ ALL_C = main.c \
 		set_sdl.c \
 		render_aim.c \
 		render_monster.c \
-		init_monster.c
+		init_monster.c \
+		init_menu.c \
+		menu.c \
+		print_menu.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
@@ -50,7 +53,7 @@ LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
-FLAGS = -g -Ofast -mprefer-vector-width=512
+FLAGS = -g #-Ofast -mprefer-vector-width=512
 #-Wall -Wextra -Werror
 
 SDL_INCS =	-F./frameworks \

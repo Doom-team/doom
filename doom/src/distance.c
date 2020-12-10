@@ -124,53 +124,63 @@ float angle, int count_distance)
 	h = wolf->player->distance_horiz[count_distance];
 	t_distance_clear(v);
 	t_distance_clear(h);
-	find_vertical_intersection(wolf, angle, v);
-	find_horizontal_intersection(wolf, angle, h);
+	// find_vertical_intersection(wolf, angle, v);
+	// find_horizontal_intersection(wolf, angle, h);
 	t_wall player;
 	player.x1 = wolf->player->x;
 	player.y1 = wolf->player->y;
 	float k = tanf(angle);
 	float b = player.y1 - k + player.x1;
-	float dist = 100000;
-	float tmp = 100000;
+	float dist = 10000;
+	float tmp = 10000;
 	if (angle < RAD_90 || angle > RAD_270)
 	{
-		player.x2 = player.x1 + 10000;
+		player.x2 = player.x1 + 100;
 		player.y2 = player.x2 * k + b;
 	}
 	else if (angle == RAD_90 || angle == RAD_270)
 	{
 		player.x2 = player.x1;
-		player.y2 = player.y1 + 10000;
+		player.y2 = player.y1 + 100;
 	}
 	else
 	{
-		player.x2 = player.x1 - 10000;
+		player.x2 = player.x1 - 100;
 		player.y2 = player.x2 * k + b;
 	}
 	int i = 0;
 	while (i < 4)
 	{
 		tmp = calc_dist(player, wolf->walls[i]);
+		
 		if (tmp != -1. && tmp < dist)
+		{
+			// printf("%f\n", tmp);
 			dist = tmp;
+			// dist = tmp * cosf(angle);
+
+		}
 		i++;
 	}
 	// printf("%f\n", dist);
 	// dist *= CUBE;
-	printf("%d %d\n", player.x1, player.y1);
-	if (v->dist > h->dist)
-	{
-		h->side = 0;
-		if (dist > 0 && dist < 100000)
-			h->dist = dist;
-		return (h);
-	}
-	else
-	{
-		v->side = 1;
-		if (dist > 0 && dist < 100000)
+	// printf("%d %d\n", player.x1, player.y1);
+	v->side = 1;
+	if (dist > 0 && dist < 10000)
 			v->dist = dist;
 		return (v);
-	}
+	// if (v->dist > h->dist)
+	// {
+	// 	h->side = 0;
+	// 	if (dist > 0 && dist < 100000)
+	// 		h->dist = dist;
+	// 	return (h);
+	// }
+	// else
+	// {
+	// 	v->side = 1;
+	// 	if (dist > 0 && dist < 100000)
+	// 		v->dist = dist;
+	// 	return (v);
+	// }
 }

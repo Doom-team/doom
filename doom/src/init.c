@@ -27,7 +27,7 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 	p->y = CUBE * (map->player_start / map->w) + p->size;
 	p->speed = 10.0;
 	p->fov = RAD_60;
-	p->dir = RAD_0;
+	p->dir = RAD_90;
 	p->dir_y = 0;
 	p->size = 10;
 	p->dist_to_canvas = (W / 2) / tan(p->fov / 2);
@@ -74,8 +74,16 @@ void	init_mm(t_map *map)
 
 void	init_sdl(t_wolf *wolf)
 {
-	wolf->sdl->win = SDL_CreateWindow("Wolf3d", 100,
-		100, W, H, SDL_WINDOW_SHOWN);
+	wolf->sdl->win = SDL_CreateWindow("Doom", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, W, H, SDL_WINDOW_SHOWN);
+	// printf("%p\n", &wolf->sdl->win);
+	// printf("%d\n", wolf->sdl->win);
+	wolf->sdl->render = SDL_CreateRenderer(wolf->sdl->win, -1, SDL_RENDERER_ACCELERATED);
+	wolf->sdl->window_texture = SDL_CreateTexture(wolf->sdl->render,
+											SDL_PIXELFORMAT_ABGR8888, SDL_TEXTUREACCESS_STREAMING, W, H);
+	// wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);
+	// printf("%p\n", &wolf->sdl->win);
+	// printf("%d\n", wolf->sdl->win);
+	// exit (0);
 	!wolf->sdl->win ? error(wolf, SDL_GetError()) : 0;
 	if (!(wolf->sdl->icon = SDL_LoadBMP(ICON_PATH)))
 		error(wolf, SDL_GetError());
@@ -85,11 +93,14 @@ void	init_sdl(t_wolf *wolf)
 		error(wolf, SDL_GetError());
 	SDL_SetWindowIcon(wolf->sdl->win, wolf->sdl->icon);
 	wolf->sdl->sides_mode = 1;
-	wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);
+	// wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);
 	wolf->sdl->skybox_offset = 0;
-	SDL_SetRelativeMouseMode(SDL_TRUE);
+	// SDL_SetRelativeMouseMode(SDL_TRUE);
 	wolf->sdl->run = 1;
 	wolf->sdl->menu = 0;
+	// wolf->sdl->pitch = 0;
 	wolf->sdl->state = SDL_GetKeyboardState(NULL);
 	wolf->sdl->interlaced_rendering = 0;
+	wolf->sdl->run_menu = true;
+	// wolf->sdl->scrs = SDL_GetWindowSurface(wolf->sdl->win);
 }
