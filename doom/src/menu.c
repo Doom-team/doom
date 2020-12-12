@@ -6,9 +6,11 @@ void quit(t_sdl *sdl)
 	sdl->render = NULL;
 	SDL_DestroyTexture(sdl->window_texture);
 	sdl->window_texture = NULL;
-	// SDL_DestroyWindow(sdl->win);
-	// sdl->win = NULL;
-	// SDL_Quit();
+	SDL_DestroyWindow(sdl->win);
+	sdl->win = NULL;
+	TTF_Quit();
+	SDL_Quit();
+	exit(EXIT_SUCCESS);
 }
 
 void check_pos_button(t_sdl *sdl, t_button *button, int k)
@@ -19,7 +21,15 @@ void check_pos_button(t_sdl *sdl, t_button *button, int k)
 		button->coefficient_x = 3.4;
 		button->coefficient_y = 7.4;
 		create_pos_button(button, k);
+		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 4)
+			sdl->button_flag = 4;
+		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 5)
+			sdl->button_flag = 5;
+		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 6)
+			sdl->button_flag = 6;
 		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 7)
+			sdl->button_flag = 7;
+		if (sdl->e.button.button == SDL_BUTTON_LEFT && k >= 4 && k <= 7)
 			sdl->run_menu = false;
 	}
 	else
@@ -51,6 +61,15 @@ void hooks(t_sdl *sdl, t_menu *menu)
 	}
 }
 
+static void		reinit_sdl(t_wolf *wolf)
+{
+	SDL_DestroyWindow(wolf->sdl->win);
+	wolf->sdl->win = NULL;
+	wolf->sdl->win = SDL_CreateWindow("Doom", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, W, H, SDL_WINDOW_SHOWN);
+	wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);
+	SDL_SetRelativeMouseMode(SDL_TRUE);
+}
+
 void    menu_loop(t_wolf *wolf)
 {
     while (wolf->sdl->run_menu)
@@ -62,5 +81,14 @@ void    menu_loop(t_wolf *wolf)
 		SDL_RenderCopy(wolf->sdl->render, wolf->sdl->window_texture, NULL, NULL);
 		SDL_RenderPresent(wolf->sdl->render);
     }
-    quit(wolf->sdl);
+	if (wolf->sdl->button_flag == 4) //start
+	{
+		reinit_sdl(wolf);
+		wolf_loop(wolf);
+	}
+	if (wolf->sdl->button_flag == 5) // map
+		system("/Users/skaren/Desktop/doom/doom/a.out"); // пример вызоба другого процесса
+	// if (wolf->sdl->button_flag == 6) // setting
+	// if (wolf->sdl->button_flag == 7) // не нужен
+	quit(wolf->sdl);
 }

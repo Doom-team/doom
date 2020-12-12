@@ -108,8 +108,8 @@ void			wolf_loop(t_wolf *wolf)
 		wolf->sdl->menu ? draw_menu(wolf) : 0;
 		SDL_UpdateWindowSurface(wolf->sdl->win);
 	}
-	SDL_DestroyWindow(wolf->sdl->win);
-	TTF_Quit();
-	SDL_Quit();
-	exit(EXIT_SUCCESS);
+	// SDL_DestroyWindow(wolf->sdl->win);
+	// TTF_Quit();
+	// SDL_Quit();
+	// exit(EXIT_SUCCESS);
 }

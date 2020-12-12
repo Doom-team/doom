@@ -92,12 +92,5 @@ int				main(int a, char **b)
 	init_sdl(wolf);
 	init_menu(wolf->menu);
 	menu_loop(wolf);
-	//
-	// SDL_DestroyWindow(wolf->sdl->win);
-	// wolf->sdl->win = NULL;
-	wolf->sdl->win = SDL_CreateWindow("Doom", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, W, H, SDL_WINDOW_SHOWN);
-	wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);
-	SDL_SetRelativeMouseMode(SDL_TRUE);
-	wolf_loop(wolf);
 	return (0);
 }

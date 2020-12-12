@@ -146,6 +146,7 @@ typedef struct	s_sdl
 	unsigned char	*bytes;
 	int				pitch;
 	bool			run_menu;
+	int				button_flag;
 }				t_sdl;
 
 typedef struct	s_monster

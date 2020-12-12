@@ -191,8 +191,8 @@ void	pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
 			draw_column(wolf, point,
 				player->distance[count_distance], H - point.y);
 			draw_sky(wolf, point.x, point.y - wolf->player->dir_y);
-			floorcast(wolf, player->distance[count_distance], point.x, H - (point.y) + 1);
-			// draw_floor(surface, point.x, H - (point.y + wolf->player->dir_y));
+			// floorcast(wolf, player->distance[count_distance], point.x, H - (point.y) + 1);
+			draw_floor(surface, point.x, H - (point.y + wolf->player->dir_y));
 		}
 		count_distance -= 2;
 		point.x += 2;
