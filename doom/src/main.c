@@ -46,21 +46,25 @@ static t_wolf	*t_wolf_new(void)
 	new->walls[0].y1=3*CUBE;
 	new->walls[0].x2=14*CUBE;
 	new->walls[0].y2=2*CUBE;
+	new->walls[0].length = sqrt(pow(new->walls[0].x2 - new->walls[0].x1, 2) + pow(new->walls[0].y2 - new->walls[0].y1, 2));
 
 	new->walls[1].x1=14*CUBE;
 	new->walls[1].y1=2*CUBE;
 	new->walls[1].x2=17*CUBE;
 	new->walls[1].y2=5*CUBE;
+	new->walls[1].length = sqrt(pow(new->walls[1].x2 - new->walls[1].x1, 2) + pow(new->walls[1].y2 - new->walls[1].y1, 2));
 
 	new->walls[2].x1=17*CUBE;
 	new->walls[2].y1=5*CUBE;
 	new->walls[2].x2=8*CUBE;
 	new->walls[2].y2=6*CUBE;
+	new->walls[2].length = sqrt(pow(new->walls[2].x2 - new->walls[2].x1, 2) + pow(new->walls[2].y2 - new->walls[2].y1, 2));
 
 	new->walls[3].x1=8*CUBE;
 	new->walls[3].y1=6*CUBE;
 	new->walls[3].x2=7*CUBE;
 	new->walls[3].y2=3*CUBE;
+	new->walls[3].length = sqrt(pow(new->walls[3].x2 - new->walls[3].x1, 2) + pow(new->walls[3].y2 - new->walls[3].y1, 2));
 
 
 	// new->walls[4].x1=0*CUBE;

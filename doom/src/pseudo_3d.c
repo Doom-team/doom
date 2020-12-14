@@ -26,8 +26,10 @@ t_point point, t_distance *dist, int size)
 	// size -= wolf->player->dir_y;
 	while (point.y < size)
 	{
-		color = get_pixel(wolf->sdl->textures, dist->offsetx + \
-		wolf->sdl->tex_arr[(int)dist->tex], i * CUBE / height);
+		// printf("%f\n", dist->offsetx);
+		// SDL_Surface *txt = IMG_Load("textures/text.jpg");
+		color = get_pixel(wolf->bon->image_6, dist->offsetx * wolf->bon->image_6->w/* + \
+		wolf->sdl->tex_arr[1]*/, i * wolf->bon->image_6->h / height);
 		if (point.y - wolf->player->dir_y > 0 && point.y - wolf->player->dir_y < H)
 			set_pixel(wolf->surface, point.x, point.y - wolf->player->dir_y, color);
 		point.y++;

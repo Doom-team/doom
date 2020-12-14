@@ -28,10 +28,11 @@
 
 typedef struct	s_wall
 {
-	int x1;
-	int y1;
-	int x2;
-	int y2;
+	int		x1;
+	int		y1;
+	int		x2;
+	int		y2;
+	float	length;
 }				t_wall;
 
 typedef struct	s_map
@@ -62,7 +63,7 @@ typedef struct	s_distance
 {
 	float		dist;
 	char		tex;
-	int			offsetx;
+	float			offsetx;
 	int			side;
 	t_float2	coords;
 	int			y;
@@ -118,6 +119,7 @@ typedef struct	s_bonus
 	SDL_Surface	*image_3;
 	SDL_Surface	*image_4;
 	SDL_Surface	*image_5;
+	SDL_Surface	*image_6;
 	// SDL_Surface	*image_coin;
 	SDL_Surface *image_aim;
 	SDL_Rect	img_location;
