@@ -42,25 +42,46 @@ static t_wolf	*t_wolf_new(void)
 		error(new, ERR_MALLOC);
 	if (!(new->menu = (t_menu *)malloc(sizeof(t_menu))))
 		error(new, ERR_MALLOC);
-	new->walls[0].x1=0*CUBE;
-	new->walls[0].y1=0*CUBE;
-	new->walls[0].x2=5*CUBE;
-	new->walls[0].y2=0*CUBE;
+	new->walls[0].x1=7*CUBE;
+	new->walls[0].y1=3*CUBE;
+	new->walls[0].x2=14*CUBE;
+	new->walls[0].y2=2*CUBE;
 
-	new->walls[1].x1=5*CUBE;
-	new->walls[1].y1=0*CUBE;
-	new->walls[1].x2=5*CUBE;
+	new->walls[1].x1=14*CUBE;
+	new->walls[1].y1=2*CUBE;
+	new->walls[1].x2=17*CUBE;
 	new->walls[1].y2=5*CUBE;
 
-	new->walls[2].x1=5*CUBE;
+	new->walls[2].x1=17*CUBE;
 	new->walls[2].y1=5*CUBE;
-	new->walls[2].x2=0*CUBE;
-	new->walls[2].y2=5*CUBE;
+	new->walls[2].x2=8*CUBE;
+	new->walls[2].y2=6*CUBE;
 
-	new->walls[3].x1=0*CUBE;
-	new->walls[3].y1=5*CUBE;
-	new->walls[3].x2=0*CUBE;
-	new->walls[3].y2=0*CUBE;
+	new->walls[3].x1=8*CUBE;
+	new->walls[3].y1=6*CUBE;
+	new->walls[3].x2=7*CUBE;
+	new->walls[3].y2=3*CUBE;
+
+
+	// new->walls[4].x1=0*CUBE;
+	// new->walls[4].y1=0*CUBE;
+	// new->walls[4].x2=20*CUBE;
+	// new->walls[4].y2=0*CUBE;
+
+	// new->walls[5].x1=20*CUBE;
+	// new->walls[5].y1=0*CUBE;
+	// new->walls[5].x2=19*CUBE;
+	// new->walls[5].y2=20*CUBE;
+
+	// new->walls[6].x1=19*CUBE;
+	// new->walls[6].y1=20*CUBE;
+	// new->walls[6].x2=0*CUBE;
+	// new->walls[6].y2=20*CUBE;
+
+	// new->walls[7].x1=0*CUBE;
+	// new->walls[7].y1=20*CUBE;
+	// new->walls[7].x2=0*CUBE;
+	// new->walls[7].y2=0*CUBE;
 
 	return (new);
 }
