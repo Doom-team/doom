@@ -62,8 +62,9 @@ typedef struct	s_float2
 typedef struct	s_distance
 {
 	float		dist;
+	int			number_wall; //номер стены для того чтобы узнать ее длину при отрисовке текстур для колличества репликаций текстуры на стене
 	char		tex;
-	float			offsetx;
+	float		offsetx;
 	int			side;
 	t_float2	coords;
 	int			y;
@@ -119,7 +120,7 @@ typedef struct	s_bonus
 	SDL_Surface	*image_3;
 	SDL_Surface	*image_4;
 	SDL_Surface	*image_5;
-	SDL_Surface	*image_6;
+	SDL_Surface	*image_6; //text.jpg
 	// SDL_Surface	*image_coin;
 	SDL_Surface *image_aim;
 	SDL_Rect	img_location;

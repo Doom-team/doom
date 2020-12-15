@@ -24,12 +24,25 @@ t_point point, t_distance *dist, int size)
 	// поинт y начало отрисовки стены сайз конец
 	// point.y -= wolf->player->dir_y;
 	// size -= wolf->player->dir_y;
+	double	fractpart, intpart;
+	float	koof;
+	int		count;
+	float	tex_1;
+	float	pos;
+
+	if (dist->number_wall >= 0 && dist->number_wall <= 3)
+	{
+		count = (int)(round(wolf->walls[dist->number_wall].length / CUBE));
+		koof = (wolf->walls[dist->number_wall].length / CUBE) / count;
+		tex_1 = (wolf->walls[dist->number_wall].length / count) * koof;
+		pos = dist->offsetx * wolf->walls[dist->number_wall].length;
+		fractpart = modf((pos / tex_1), &intpart);
+	}
+	else
+		return ;
 	while (point.y < size)
 	{
-		// printf("%f\n", dist->offsetx);
-		// SDL_Surface *txt = IMG_Load("textures/text.jpg");
-		color = get_pixel(wolf->bon->image_6, dist->offsetx * wolf->bon->image_6->w/* + \
-		wolf->sdl->tex_arr[1]*/, i * wolf->bon->image_6->h / height);
+		color = get_pixel(wolf->bon->image_6, wolf->bon->image_6->w * fractpart, i * wolf->bon->image_6->w / height); //где раунд коофицен колличества стен
 		if (point.y - wolf->player->dir_y > 0 && point.y - wolf->player->dir_y < H)
 			set_pixel(wolf->surface, point.x, point.y - wolf->player->dir_y, color);
 		point.y++;
