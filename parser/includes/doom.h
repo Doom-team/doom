@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 #ifndef DOOM_H
-#define DOOM_H
+# define DOOM_H
 
-#include <stdio.h>
-#include <fcntl.h>
-#include <io.h>
+# include "../../doom/frameworks/SDL2.framework/Headers/SDL.h"
+# include <stdio.h>
+# include <fcntl.h>
 
 typedef struct s_buff
 {
