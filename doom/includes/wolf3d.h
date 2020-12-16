@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2020/12/08 17:56:25 by wendell          ###   ########.fr       */
+/*   Updated: 2020/12/16 18:19:46 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_wall
 	int		x2;
 	int		y2;
 	float	length;
+	int vert;
 }				t_wall;
 
 typedef struct	s_map
@@ -208,7 +209,7 @@ typedef struct	s_wolf
 	t_bonus		*bon;
 	t_monster	*monster;
 	t_menu		*menu;
-	t_wall 		walls[4];
+	t_wall 		walls[8];
 }				t_wolf;
 
 /*
