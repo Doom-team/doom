@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2020/12/16 18:19:46 by wendell          ###   ########.fr       */
+/*   Updated: 2020/12/16 21:51:22 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct	s_wall
 	int		y2;
 	float	length;
 	int vert;
+	char *texture1;
+	char *texture2;
 }				t_wall;
 
 typedef struct	s_map
@@ -86,6 +88,10 @@ typedef struct	s_player
 	t_distance	*distance[W];
 	t_distance	*distance_horiz[W];
 	t_distance	*distance_vert[W];
+	float up_d;
+	float down_d;
+	float rght_d;
+	float left_d;
 }				t_player;
 
 typedef	struct	s_sprite_calc
@@ -210,12 +216,30 @@ typedef struct	s_wolf
 	t_bonus		*bon;
 	t_monster	*monster;
 	t_menu		*menu;
-	t_wall 		walls[8];
+	t_wall 		*walls;
+	int count_walls;
 }				t_wolf;
 
 /*
 ** draw.c
 */
+
+typedef struct s_buff
+{
+	int w;
+	int f;
+} t_buff;
+
+typedef struct s_parser
+{
+	t_wall *walls;
+	t_buff buff;
+	int count_walls;
+	int count_floor;
+} t_parser;
+
+void	parser(t_parser *parser, t_wolf *wolf);
+
 void			draw_background(SDL_Surface *surface);
 int				draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
 void			draw_ray(t_wolf *wolf, float player, int x, int y);
@@ -229,6 +253,8 @@ void			draw_rectangle(SDL_Surface *surface, t_point start,
 */
 void			wolf_loop(t_wolf *wolf);
 
+
+void recalc(t_wolf *wolf);
 /*
 ** menu.c
 */
@@ -254,7 +280,7 @@ int				max(int a, int b);
 /*
 ** move.c
 */
-void			calc_move(t_map *map, t_player *p, float dy, float dx);
+void			calc_move(t_wolf *wolf, float dy, float dx);
 void			rotate(t_wolf *wolf, SDL_Event *event);
 void			add_skybox_offset(t_sdl *sdl, int to_add);
 

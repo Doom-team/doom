@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:19:22 by clala             #+#    #+#             */
-/*   Updated: 2020/12/16 18:25:17 by wendell          ###   ########.fr       */
+/*   Updated: 2020/12/16 22:11:59 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,54 @@ float			calc_dist(t_wall player, float angle, t_wall wall, t_distance *v)
 	return (vector_len(player.x1, player.y1, px, py));
 }
 
+float			calc_dist_without_v(t_wall player, float angle, t_wall wall)
+{
+	if (!crossing(player, angle, wall))
+		return (-1.);
+	// printf("%f\n", angle / RAD_1);
+	float px;
+	float py = 0;
+	px = calc_x(player, angle, wall, &py);
+	if (angle < RAD_90 || angle > RAD_270)
+	{
+		if (px < player.x1)
+			return (-1.);
+	}
+	else
+	{
+		if (px > player.x1)
+			return (-1.);
+	}
+	return (vector_len(player.x1, player.y1, px, py));
+}
+
+void calculate_distance(t_wolf *wolf, float angle, float *d)
+{
+	t_wall player;
+	player.x1 = round(wolf->player->x);
+	player.y1 = round(wolf->player->y);
+	float dist = 20000;
+	float tmp = -1;
+	int i = 0;
+	while (i < wolf->count_walls)
+	{
+		tmp = calc_dist_without_v(player, angle, wolf->walls[i]);
+		if (tmp != -1. && tmp < dist)
+			dist = tmp;
+		i++;
+	}
+	*d = dist;
+}
+
+void recalc(t_wolf *wolf)
+{
+	calculate_distance(wolf, RAD_1, &(wolf->player->rght_d));
+	calculate_distance(wolf, RAD_90, &(wolf->player->up_d));
+	calculate_distance(wolf, RAD_180 + RAD_1, &(wolf->player->left_d));
+	calculate_distance(wolf, RAD_270 + RAD_1, &(wolf->player->down_d));
+	// printf("%f %f %f %f\n", wolf->player->up_d, wolf->player->down_d, wolf->player->left_d, wolf->player->rght_d);
+}
+
 t_distance		*dist_to_wall(t_wolf *wolf,
 float angle, int count_distance)
 {
@@ -197,7 +245,7 @@ float angle, int count_distance)
 	float tmp = -1;
 
 	int i = 0;
-	while (i < 8)
+	while (i < wolf->count_walls)
 	{
 		tmp = calc_dist(player, angle, wolf->walls[i], v);
 		// v->tex = 1;

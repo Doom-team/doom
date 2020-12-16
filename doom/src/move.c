@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2020/10/18 19:44:38 by clala            ###   ########.fr       */
+/*   Updated: 2020/12/16 22:04:42 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,22 @@ void	rotate(t_wolf *wolf, SDL_Event *event)
 		wolf->player->dir_y	= -H / 4 * 3;
 }
 
-void	calc_move(t_map *map, t_player *p, float dy, float dx)
+void	calc_move(t_wolf *wolf, float dy, float dx)
 {
 	int		player_box;
 
-	player_box = dx > 0 ? p->size : -p->size;
-	if (is_texture(map, p->x + dx + player_box, p->y, TEX_FLOOR)
-	|| is_texture(map, p->x + dx + player_box, p->y, TEX_COIN))
-	{
-		p->x += dx;
-	}
-	player_box = dy > 0 ? p->size : -p->size;
-	if (is_texture(map, p->x, p->y + dy + player_box, TEX_FLOOR) ||
-	is_texture(map, p->x, p->y + dy + player_box, TEX_COIN))
-	{
-		p->y += dy;
-	}
+	// player_box = dx > 0 ? p->size : -p->size;
+	// if (is_texture(map, p->x + dx + player_box, p->y, TEX_FLOOR)
+	// || is_texture(map, p->x + dx + player_box, p->y, TEX_COIN))
+	// {
+	if ((dx > 0 && wolf->player->rght_d > 20.) || (dx < 0 && wolf->player->left_d > 20.))
+		wolf->player->x += dx;
+	// }
+	// player_box = dy > 0 ? p->size : -p->size;
+	// if (is_texture(map, p->x, p->y + dy + player_box, TEX_FLOOR) ||
+	// is_texture(map, p->x, p->y + dy + player_box, TEX_COIN))
+	// {
+	if ((dy > 0 && wolf->player->up_d > 20.) || (dy < 0 && wolf->player->down_d > 20.))
+		wolf->player->y += dy;
+	// }
 }

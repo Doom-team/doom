@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2020/12/08 18:23:22 by wendell          ###   ########.fr       */
+/*   Updated: 2020/12/16 21:05:32 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_point point, t_distance *dist, int size)
 	float	tex_1;
 	float	pos;
 
-	if (dist->number_wall >= 0 && dist->number_wall <= 3)
+	if (dist->number_wall >= 0 && dist->number_wall <= wolf->count_walls - 1)
 	{
 		count = (int)(round(wolf->walls[dist->number_wall].length / CUBE));
 		koof = (wolf->walls[dist->number_wall].length / CUBE) / count;

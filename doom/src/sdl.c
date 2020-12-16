@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sdl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2020/10/24 21:38:14 by clala            ###   ########.fr       */
+/*   Updated: 2020/12/16 21:58:06 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,18 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 	if (event->key.keysym.sym == SDLK_ESCAPE)
 		wolf->sdl->run = false;
 	if (s[SDL_SCANCODE_D])
-		calc_move(wolf->map, p, p->speed * sinf(p->dir + RAD_90),
+	{
+		calc_move(wolf, p->speed * sinf(p->dir + RAD_90),
 		-(p->speed * cosf(p->dir + RAD_90)));
+		// printf("%f\n", wolf->player->rght_d);
+	}
 	if (s[SDL_SCANCODE_A])
-		calc_move(map, p, p->speed * sinf(p->dir - RAD_90),
+		calc_move(wolf, p->speed * sinf(p->dir - RAD_90),
 		-(p->speed * cosf(p->dir - RAD_90)));
 	if (s[SDL_SCANCODE_DOWN] || s[SDL_SCANCODE_S])
-		calc_move(map, p, p->speed * sinf(p->dir), -(p->speed * cosf(p->dir)));
+		calc_move(wolf, p->speed * sinf(p->dir), -(p->speed * cosf(p->dir)));
 	if (s[SDL_SCANCODE_W] || s[SDL_SCANCODE_UP])
-		calc_move(map, p, -(p->speed * sinf(p->dir)), p->speed * cosf(p->dir));
+		calc_move(wolf, -(p->speed * sinf(p->dir)), p->speed * cosf(p->dir));
 	if ((s[SDL_SCANCODE_RIGHT] || s[SDL_SCANCODE_E])
 	&& add_arc(&p->dir, -RAD_30))
 		add_skybox_offset(wolf->sdl, 52);
@@ -94,6 +97,7 @@ void			wolf_loop(t_wolf *wolf)
 
 	while (wolf->sdl->run)
 	{
+		recalc(wolf);
 		handle_event(wolf, &event);
 		// draw_background(wolf->surface);
 		all_get_distance(wolf);
