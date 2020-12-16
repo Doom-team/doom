@@ -200,11 +200,12 @@ float angle, int count_distance)
 	while (i < 8)
 	{
 		tmp = calc_dist(player, angle, wolf->walls[i], v);
-		v->tex = 1;
+		// v->tex = 1;
 		// printf("%f\n", tmp);
 		if (tmp != -1. && tmp < dist)
 		{
-			v->offsetx = sqrt(pow(v->coords.x - wolf->walls[i].x1, 2) + pow(v->coords.y - wolf->walls[i].y1, 2)) / wolf->walls[i].length;
+			v->number_wall = i;
+			v->offsetx = sqrtf(powf(v->coords.x - wolf->walls[i].x1, 2) + powf(v->coords.y - wolf->walls[i].y1, 2)) / wolf->walls[i].length;
 			dist = tmp;
 		}
 		i++;

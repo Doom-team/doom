@@ -45,6 +45,5 @@ void init_menu(t_menu *menu)
 	create_button((&menu->logo), "textures/doom_logo.bmp", 0);
 	create_button((&menu->start), "textures/start_button.bmp", 4);
 	create_button((&menu->map), "textures/map_button.bmp", 5);
-	create_button((&menu->settings), "textures/settings_button.bmp", 6);
-	create_button((&menu->exit), "textures/exit_button.bmp", 7);
+	create_button((&menu->exit), "textures/exit_button.bmp", 6);
 }

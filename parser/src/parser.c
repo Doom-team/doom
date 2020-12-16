@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
-#include "get_next_line.h"
+#include "../includes/doom.h"
+#include "../../doom/libft/includes/get_next_line.h"
 
 void init_size(t_parser *parser, char *l)
 {
@@ -45,8 +45,8 @@ void parsing(t_parser *parser, char *l)
 	if (arr[0][0] == 'w')
 	{
 		parser->walls[--parser->buff.w].x1 = ft_atoi(arr[1]);
-		parser->walls[parser->buff.w].x2 = ft_atoi(arr[2]);
-		parser->walls[parser->buff.w].y1 = ft_atoi(arr[3]);
+		parser->walls[parser->buff.w].y1 = ft_atoi(arr[2]);
+		parser->walls[parser->buff.w].x2 = ft_atoi(arr[3]);
 		parser->walls[parser->buff.w].y2 = ft_atoi(arr[4]);
 		if (arr[5] != 0)
 		{
