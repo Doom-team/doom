@@ -1,0 +1,9 @@
+w 8
+w 0 0 100 0 "textures/text.jpg" 5
+w 100 0 100 100 "textures/osa.png" 5
+w 100 100 0 100 "textures/zoloto_256.jpg" 5
+w 0 100 0 0 "textures/text.jpg" 5
+w 10 10 11 10 "textures/zoloto_256.jpg" 1
+w 11 10 11 11 "textures/zoloto_256.jpg" 1
+w 11 11 10 11 "textures/zoloto_256.jpg" 1
+w 10 11 10 10 "textures/zoloto_256.jpg" 1

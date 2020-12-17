@@ -70,7 +70,7 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 
 static void		handle_event(t_wolf *wolf, SDL_Event *event)
 {
-	if (SDL_PollEvent(event))
+	while (SDL_PollEvent(event))
 	{
 		if (event->type == SDL_QUIT)
 			wolf->sdl->run = false;

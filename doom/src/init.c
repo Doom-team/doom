@@ -25,7 +25,7 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 	p->size = 10;
 	p->x = CUBE * (map->player_start % map->w) + p->size;
 	p->y = CUBE * (map->player_start / map->w) + p->size;
-	p->speed = 10.0;
+	p->speed = 30.0;
 	p->fov = RAD_60;
 	p->dir = RAD_90;
 	p->dir_y = 0;

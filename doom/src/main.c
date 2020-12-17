@@ -29,7 +29,7 @@ int				max(int a, int b)
 static t_wolf	*t_wolf_new(void)
 {
 	t_wolf		*new;
-	t_parser p;
+	t_parser	p;
 
 	!(new = (t_wolf *)malloc(sizeof(t_wolf))) ? error(new, ERR_MALLOC) : 0;
 	!(new->map = (t_map *)malloc(sizeof(t_map))) ? error(new, ERR_MALLOC) : 0;
@@ -48,21 +48,12 @@ static t_wolf	*t_wolf_new(void)
 	return (new);
 }
 
-static void		validate_const(t_wolf *wolf)
-{
-	H > W ? error(wolf, ERR_INV_H) : 0;
-	H < 300 || W < 384 ? error(wolf, ERR_INV_RES) : 0;
-	H > H_MAX ? error_inv_n(wolf, ERR_H_MAX, H_MAX) : 0;
-	W > W_MAX ? error_inv_n(wolf, ERR_W_MAX, W_MAX) : 0;
-}
-
 int				main(int a, char **b)
 {
 	t_wolf		*wolf;
 
 	wolf = NULL;
-	validate_const(wolf);
-	a != 2 ? error(wolf, ERR_USAGE) : 0;
+	// a != 2 ? error(wolf, ERR_USAGE) : 0;
 	SDL_Init(SDL_INIT_EVERYTHING) != 0 ? error(wolf, SDL_GetError()) : 0;
 	TTF_Init() != 0 ? error(wolf, SDL_GetError()) : 0;
 	wolf = t_wolf_new();

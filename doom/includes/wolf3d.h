@@ -28,14 +28,14 @@
 
 typedef struct	s_wall
 {
-	int		x1;
-	int		y1;
-	int		x2;
-	int		y2;
-	float	length;
-	int vert;
-	char *texture1;
-	char *texture2;
+	int			x1;
+	int			y1;
+	int			x2;
+	int			y2;
+	float		length;
+	int 		vert;
+	int			h;
+	SDL_Surface	*texture1;
 }				t_wall;
 
 typedef struct	s_map
@@ -66,11 +66,11 @@ typedef struct	s_distance
 {
 	float		dist;
 	int			number_wall; //номер стены для того чтобы узнать ее длину при отрисовке текстур для колличества репликаций текстуры на стене
-	char		tex;
 	float		offsetx;
-	int			side;
 	t_float2	coords;
 	int			y;
+	// char		tex;
+	// int			side;
 }				t_distance;
 
 typedef struct	s_player
@@ -88,10 +88,10 @@ typedef struct	s_player
 	t_distance	*distance[W];
 	t_distance	*distance_horiz[W];
 	t_distance	*distance_vert[W];
-	float up_d;
-	float down_d;
-	float rght_d;
-	float left_d;
+	float		up_d;
+	float		down_d;
+	float		rght_d;
+	float		left_d;
 }				t_player;
 
 typedef	struct	s_sprite_calc
@@ -127,7 +127,7 @@ typedef struct	s_bonus
 	SDL_Surface	*image_3;
 	SDL_Surface	*image_4;
 	SDL_Surface	*image_5;
-	SDL_Surface	*image_6; //text.jpg
+	// SDL_Surface	*image_6; //text.jpg
 	// SDL_Surface	*image_coin;
 	SDL_Surface *image_aim;
 	SDL_Rect	img_location;
@@ -199,12 +199,12 @@ typedef struct		s_button
 
 typedef struct		s_menu
 {
-	t_background background;
-	t_button logo;
-	t_button start;
-	t_button map;
-	t_button settings;
-	t_button exit;
+	t_background	background;
+	t_button		logo;
+	t_button		start;
+	t_button		map;
+	t_button		settings;
+	t_button		exit;
 }					t_menu;
 
 typedef struct	s_wolf
@@ -217,28 +217,28 @@ typedef struct	s_wolf
 	t_monster	*monster;
 	t_menu		*menu;
 	t_wall 		*walls;
-	int count_walls;
+	int			count_walls;
 }				t_wolf;
 
 /*
 ** draw.c
 */
 
-typedef struct s_buff
+typedef struct	s_buff
 {
-	int w;
-	int f;
-} t_buff;
+	int			w;
+	int			f;
+}				t_buff;
 
-typedef struct s_parser
+typedef struct	s_parser
 {
-	t_wall *walls;
-	t_buff buff;
-	int count_walls;
-	int count_floor;
-} t_parser;
+	t_wall		*walls;
+	t_buff 		buff;
+	int			count_walls;
+	int			count_floor;
+} 				t_parser;
 
-void	parser(t_parser *parser, t_wolf *wolf);
+void			parser(t_parser *parser, t_wolf *wolf);
 
 void			draw_background(SDL_Surface *surface);
 int				draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
@@ -254,7 +254,7 @@ void			draw_rectangle(SDL_Surface *surface, t_point start,
 void			wolf_loop(t_wolf *wolf);
 
 
-void recalc(t_wolf *wolf);
+void 			recalc(t_wolf *wolf);
 /*
 ** menu.c
 */
@@ -290,12 +290,6 @@ void			add_skybox_offset(t_sdl *sdl, int to_add);
 void			set_pixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
 Uint32			get_pixel(SDL_Surface *surface, int x, int y);
 int				is_texture(t_map *map, int x, int y, char texture);
-
-/*
-** debug_print.c
-*/
-void			debug_map(t_map *map);
-void			debug_player(t_player *p);
 
 /*
 ** map.c
@@ -372,15 +366,6 @@ void			free_dist_arr(t_wolf *wolf);
 void			render_monster(t_wolf *wolf, SDL_Surface *surface);
 
 /*
-** render_coin.c
-*/
-// void			render_coin(t_wolf *wolf, SDL_Surface *surface);
-// int				score_coin(t_wolf *wolf, t_sprite_calc *coin);
-// int				search_angle(t_wolf *wolf, t_sprite_calc *coin);
-// void			through_zero(t_wolf *wolf, t_sprite_calc *coin);
-// void			wall_check_coin(t_wolf *wolf, t_sprite_calc *coin);
-
-/*
 ** render_aim.c
 */
 void			render_aim(t_wolf *wolf);
@@ -400,18 +385,6 @@ void			draw_sky(t_wolf *wolf, int x, int y);
 void			draw_floor(SDL_Surface *surface, int x, int y);
 void			draw_column(t_wolf *wolf, t_point point,
 t_distance *dist, int size);
-
-/*
-** distance_horiz.c
-*/
-t_distance		*find_horizontal_intersection(t_wolf *wolf,
-float angle, t_distance *dist);
-
-/*
-** distance_vert.c
-*/
-t_distance		*find_vertical_intersection(t_wolf *wolf,
-float angle, t_distance *dist);
 
 /*
 ** guns_shot.c

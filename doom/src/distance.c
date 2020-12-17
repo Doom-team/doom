@@ -36,7 +36,7 @@ void			t_distance_clear(t_distance *dist)
 {
 	dist->dist = 99999.f;
 	dist->offsetx = 0;
-	dist->tex = TEX_INF;
+	// dist->tex = TEX_INF;
 	dist->coords.x = -1;
 	dist->coords.y = -1;
 }
@@ -60,8 +60,7 @@ void			all_get_distance(t_wolf *wolf)
 		if (temp_i < RAD_0)
 			temp_i += RAD_360;
 		temp_i = RAD_360 - temp_i;
-		wolf->player->distance[count_distance] = dist_to_wall(wolf, temp_i,
-			count_distance);
+		wolf->player->distance[count_distance] = dist_to_wall(wolf, temp_i,	count_distance);
 		wolf->player->distance[count_distance]->dist *= cosf(cos_agle);
 		// if (count_distance == W / 2)
 		// 	printf("dist - %f\n", wolf->player->distance[count_distance]->dist);
@@ -261,7 +260,7 @@ float angle, int count_distance)
 	// printf("%f\n", dist);
 	// dist *= CUBE;
 	// printf("%d %d\n", player.x1, player.y1);
-	v->side = 0;
+	// v->side = 0;
 	if (dist > 0 && dist < 20000)
 		v->dist = dist;
 	return(v);

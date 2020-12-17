@@ -20,7 +20,7 @@ void	init_bonus_load(t_wolf *wolf)
 	wolf->bon->image_3 = IMG_Load("textures/guns-3.bmp");
 	wolf->bon->image_4 = IMG_Load("textures/guns-4.bmp");
 	wolf->bon->image_5 = IMG_Load("textures/guns-5.bmp");
-	wolf->bon->image_6 = IMG_Load("textures/text.jpg");
+	// wolf->bon->image_6 = IMG_Load("textures/text.jpg");
 	// wolf->bon->image_coin = IMG_Load("textures/coin.png");
 	wolf->bon->image_aim = IMG_Load("textures/aim.png");
 	wolf->bon->my_font = TTF_OpenFont("ttf/19888.ttf", (int)(H / 28));

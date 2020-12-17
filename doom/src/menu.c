@@ -27,7 +27,7 @@ void check_pos_button(t_sdl *sdl, t_button *button, int k)
 			sdl->button_flag = 5;
 		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 6)
 			sdl->button_flag = 6;
-		if (sdl->e.button.button == SDL_BUTTON_LEFT && (k == 4 || k == 6))
+		if (sdl->e.button.button == SDL_BUTTON_LEFT && k >= 4 && k <= 6)
 			sdl->run_menu = false;
 	}
 	else
@@ -77,16 +77,16 @@ void    menu_loop(t_wolf *wolf)
 		SDL_UnlockTexture(wolf->sdl->window_texture);
 		SDL_RenderCopy(wolf->sdl->render, wolf->sdl->window_texture, NULL, NULL);
 		SDL_RenderPresent(wolf->sdl->render);
-		if (wolf->sdl->button_flag == 5) //map
-		{
-			wolf->sdl->button_flag = 0;
-			system("./wolf3d maps/map.txt");
-		}
     }
 	if (wolf->sdl->button_flag == 4) //start
 	{
 		reinit_sdl(wolf);
 		wolf_loop(wolf);
+	}
+	if (wolf->sdl->button_flag == 5) //map
+	{
+		wolf->sdl->button_flag = 0;
+		system("./a.out"); // ТУТ НЕ ТРОГАТЬ БУДЕТ ЗАПУСК МАП ЕДИТОРА ОТТУДА ВЫЗОВ ВУЛЬФА ОБРАТНО!!!!
 	}
 	quit(wolf->sdl);
 }

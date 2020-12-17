@@ -15,7 +15,6 @@ ALL_C = main.c \
 		error.c \
 		sdl.c \
 		init.c \
-		debug_print.c \
 		aux.c \
 		load_textures.c \
 		distance.c \
@@ -24,8 +23,6 @@ ALL_C = main.c \
 		music.c \
 		render_text.c \
 		guns_shot.c \
-		distance_horiz.c \
-		distance_vert.c \
 		move.c \
 		init_bonus.c \
 		set_sdl.c \
@@ -34,7 +31,8 @@ ALL_C = main.c \
 		init_monster.c \
 		init_menu.c \
 		menu.c \
-		print_menu.c
+		print_menu.c \
+		parser.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
