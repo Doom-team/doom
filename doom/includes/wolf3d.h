@@ -146,7 +146,8 @@ typedef struct	s_sdl
 	SDL_Window		*win; //menu** window
 	int				tex_arr[0xff];
 	const Uint8		*state;
-	int				skybox_offset;
+	float				skybox_offset;
+	float				skybox_offset_y;
 	int				run;
 	int				sides_mode;
 	int				menu;
@@ -283,7 +284,7 @@ int				max(int a, int b);
 */
 void			calc_move(t_wolf *wolf, float dy, float dx);
 void			rotate(t_wolf *wolf, SDL_Event *event);
-void			add_skybox_offset(t_sdl *sdl, int to_add);
+void			add_skybox_offset(t_sdl *sdl, float to_add);
 
 /*
 ** load_textures.c

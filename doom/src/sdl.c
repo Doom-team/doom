@@ -57,10 +57,10 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 	if (s[SDL_SCANCODE_W] || s[SDL_SCANCODE_UP])
 		calc_move(wolf, -(p->speed * sinf(p->dir)), p->speed * cosf(p->dir));
 	if ((s[SDL_SCANCODE_RIGHT] || s[SDL_SCANCODE_E])
-	&& add_arc(&p->dir, -RAD_30))
-		add_skybox_offset(wolf->sdl, 52);
-	if ((s[SDL_SCANCODE_LEFT] || s[SDL_SCANCODE_Q]) && add_arc(&p->dir, RAD_30))
-		add_skybox_offset(wolf->sdl, -52);
+	&& add_arc(&p->dir, -0.05))
+		add_skybox_offset(wolf->sdl, W / (float)wolf->sdl->sky->w * 60.0);
+	if ((s[SDL_SCANCODE_LEFT] || s[SDL_SCANCODE_Q]) && add_arc(&p->dir, 0.05))
+		add_skybox_offset(wolf->sdl, W / (float)wolf->sdl->sky->w * -60.0);
 	if (s[SDL_SCANCODE_P])
 		wolf->sdl->sides_mode = wolf->sdl->sides_mode == 1 ? 0 : 1;
 	if (s[SDL_SCANCODE_M])
@@ -99,7 +99,7 @@ void			wolf_loop(t_wolf *wolf)
 	{
 		// recalc(wolf);
 		handle_event(wolf, &event);
-		// draw_background(wolf->surface);
+		// draw_background(wolf->surface); // для отладки
 		all_get_distance(wolf);
 		pseudo_3d(wolf, wolf->player, wolf->surface);
 		// render_coin(wolf, wolf->surface);

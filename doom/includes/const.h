@@ -44,8 +44,8 @@
 # define TEX_EYES '4'
 # define TEX_ISLE '5'
 
-# define W 2800
-# define H 1400
+# define W 800
+# define H 600
 // # define W_MAX 1920
 // # define H_MAX 1080
 # define CUBE 64
@@ -65,5 +65,6 @@
 # define TEXTURE_PATH "textures/tex.bmp"
 # define ICON_PATH "textures/icon.bmp"
 # define SKY_PATH "textures/sky.bmp"
+# define SKY_PATH_2 "textures/cosmo.jpg"
 
 #endif

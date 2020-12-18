@@ -39,7 +39,7 @@ t_point point, t_distance *dist, int count_distance)
 		temp_y = ceilf((CUBE * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]);
 		temp_y = (H - temp_y) / 2;
 		size = H - temp_y;
-		temp_y = size - ceilf((CUBE * wolf->walls[dist->number_wall[j]].h / 5 * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]); // отвечает за высоту ступеньки
+		temp_y = size - ceilf((CUBE * wolf->walls[dist->number_wall[j]].h / 5.0f * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]); // отвечает за высоту ступеньки
 		i = 0;
 		height = H - temp_y * 2;
 		if (dist->number_wall[j] >= 0 && dist->number_wall[j] <= wolf->count_walls - 1)
@@ -52,11 +52,20 @@ t_point point, t_distance *dist, int count_distance)
 		}
 		else
 			return ;
+		float	offsety;
+		int		begin_y = temp_y;
+		int		len = size - begin_y;
+		float	tex_2 = len / (wolf->walls[dist->number_wall[j]].h / 5.0f);
+		float	pos_y;
+		double	fractpart_2, intpart_2;
 		while (temp_y < size)
 		{
+			offsety = (float)(temp_y - begin_y) / (size - begin_y);
+			pos_y = len * offsety;
+			fractpart_2 = modf(pos_y / tex_2, &intpart_2);
 			if (temp_y - wolf->player->dir_y > 0 && temp_y - wolf->player->dir_y < H)
 			{
-				color = get_pixel1(wolf->walls[dist->number_wall[j]].texture1, wolf->walls[dist->number_wall[j]].texture1->w * fractpart, i * wolf->walls[dist->number_wall[j]].texture1->w / height); //где раунд коофицен колличества стен
+				color = get_pixel1(wolf->walls[dist->number_wall[j]].texture1, wolf->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->walls[dist->number_wall[j]].texture1->w); //где раунд коофицен колличества стен
 				set_pixel1(wolf->surface, wolf->walls[dist->number_wall[j]].texture1, point.x, temp_y - wolf->player->dir_y, color);
 			}
 			temp_y++;
@@ -80,6 +89,7 @@ void	draw_sky(t_wolf *wolf, int x, int y)
 {
 	int		i;
 	int		to_draw;
+	int		to_draw_x;
 
 	i = -1;
 	if (y < 0)
@@ -88,9 +98,14 @@ void	draw_sky(t_wolf *wolf, int x, int y)
 		y = H;
 	while (++i < y)
 	{
-		to_draw = i < wolf->sdl->sky->h - 1 ? i : wolf->sdl->sky->h / 2;
+		to_draw = i;
+		to_draw_x = x;
+		while (to_draw + (int)wolf->sdl->skybox_offset_y > wolf->sdl->sky->h - 1)
+			to_draw -= wolf->sdl->sky->h;
+		while (to_draw_x + (int)wolf->sdl->skybox_offset > wolf->sdl->sky->w)
+			to_draw_x -= wolf->sdl->sky->w;
 		set_pixel(wolf->surface, x, i, get_pixel(wolf->sdl->sky,
-			x + wolf->sdl->skybox_offset, to_draw));
+			to_draw_x + (int)wolf->sdl->skybox_offset, to_draw + (int)wolf->sdl->skybox_offset_y));
 	}
 }
 
@@ -153,6 +168,7 @@ void	pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
 		{
 			point.y = ceilf((CUBE * player->dist_to_canvas) / player->distance[count_distance]->dist[0]);
 			point.y = (H - point.y) / 2; // сколько отступ сверху и снизу
+			// point.y	= 200;
 			draw_sky(wolf, point.x, point.y - wolf->player->dir_y);
 			// floorcast(wolf, player->distance[count_distance], point.x, H - (point.y) + 1);
 			draw_floor(surface, point.x, H - (point.y + wolf->player->dir_y));

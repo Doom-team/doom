@@ -87,7 +87,7 @@ void	init_sdl(t_wolf *wolf)
 	!wolf->sdl->win ? error(wolf, SDL_GetError()) : 0;
 	if (!(wolf->sdl->icon = SDL_LoadBMP(ICON_PATH)))
 		error(wolf, SDL_GetError());
-	if (!(wolf->sdl->sky = SDL_LoadBMP(SKY_PATH)))
+	if (!(wolf->sdl->sky = IMG_Load(SKY_PATH_2)))
 		error(wolf, SDL_GetError());
 	if (!(wolf->sdl->textures = SDL_LoadBMP(TEXTURE_PATH)))
 		error(wolf, SDL_GetError());
@@ -95,6 +95,7 @@ void	init_sdl(t_wolf *wolf)
 	wolf->sdl->sides_mode = 1;
 	// wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);
 	wolf->sdl->skybox_offset = 0;
+	wolf->sdl->skybox_offset_y = 0;
 	// SDL_SetRelativeMouseMode(SDL_TRUE);
 	wolf->sdl->run = 1;
 	wolf->sdl->menu = 0;
