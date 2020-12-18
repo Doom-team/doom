@@ -30,6 +30,29 @@ Uint32		get_pixel(SDL_Surface *surface, int x, int y)
 	return (*(Uint32 *)p);
 }
 
+void		set_pixel1(SDL_Surface *surface, SDL_Surface *surface1, int x, int y, int pixel)
+{
+	int				pix;
+	unsigned char	*s;
+	unsigned char	*s1;
+	s = (unsigned char *)(surface->pixels);
+	s1 = (unsigned char *)(surface1->pixels);
+
+	pix = (x * surface->format->BytesPerPixel) + (y * surface->pitch);
+	s[pix] = s1[pixel];
+	s[++pix] = s1[++pixel];
+	s[++pix] = s1[++pixel];
+}
+
+int		get_pixel1(SDL_Surface *surface, int x, int y)
+{
+	int	pixel;
+
+	pixel = ((x % surface->h) * surface->format->BytesPerPixel) +
+			((y % surface->h) * surface->pitch);
+	return(pixel);
+}
+
 int			is_texture(t_map *map, int x, int y, char texture)
 {
 	return (map->map[(y / CUBE) * map->w + (x / CUBE)] == texture);

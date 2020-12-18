@@ -97,7 +97,7 @@ void			wolf_loop(t_wolf *wolf)
 
 	while (wolf->sdl->run)
 	{
-		recalc(wolf);
+		// recalc(wolf);
 		handle_event(wolf, &event);
 		// draw_background(wolf->surface);
 		all_get_distance(wolf);
@@ -108,8 +108,8 @@ void			wolf_loop(t_wolf *wolf)
 		render_fps(wolf, wolf->bon);
 		render_aim(wolf);
 		render_shot(wolf, wolf->surface);
-		wolf->map->mm_show ? draw_minimap(wolf, wolf->map, wolf->player) : 0;
-		wolf->sdl->menu ? draw_menu(wolf) : 0;
+		// wolf->map->mm_show ? draw_minimap(wolf, wolf->map, wolf->player) : 0;
+		// wolf->sdl->menu ? draw_menu(wolf) : 0;
 		SDL_UpdateWindowSurface(wolf->sdl->win);
 	}
 	// SDL_DestroyWindow(wolf->sdl->win);

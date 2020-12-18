@@ -34,11 +34,17 @@ void			free_dist_arr(t_wolf *wolf)
 
 void			t_distance_clear(t_distance *dist)
 {
-	dist->dist = 99999.f;
-	dist->offsetx = 0;
-	// dist->tex = TEX_INF;
-	dist->coords.x = -1;
-	dist->coords.y = -1;
+	int i = 0;
+	while (i < 100)
+	{
+		dist->dist[i] = 99999.f;
+		dist->offsetx[i] = 0;
+		// dist->tex = TEX_INF;
+		dist->coords[i].x = -1;
+		dist->coords[i].y = -1;
+		i++;
+	}
+	dist->count = 0;
 }
 
 void			all_get_distance(t_wolf *wolf)
@@ -61,7 +67,9 @@ void			all_get_distance(t_wolf *wolf)
 			temp_i += RAD_360;
 		temp_i = RAD_360 - temp_i;
 		wolf->player->distance[count_distance] = dist_to_wall(wolf, temp_i,	count_distance);
-		wolf->player->distance[count_distance]->dist *= cosf(cos_agle);
+		int j = 0;
+		while (j < wolf->player->distance[count_distance]->count)
+			wolf->player->distance[count_distance]->dist[j++] *= cosf(cos_agle); //потом в цикле домножу
 		// if (count_distance == W / 2)
 		// 	printf("dist - %f\n", wolf->player->distance[count_distance]->dist);
 		cos_agle -= wolf->player->step;
@@ -151,7 +159,7 @@ float		calc_x(t_wall player, float angle, t_wall wall, float *py)
 	return (x);
 }
 
-float			calc_dist(t_wall player, float angle, t_wall wall, t_distance *v)
+float			calc_dist(t_wall player, float angle, t_wall wall, t_distance *v, int j)
 {
 	if (!crossing(player, angle, wall))
 		return (-1.);
@@ -169,8 +177,8 @@ float			calc_dist(t_wall player, float angle, t_wall wall, t_distance *v)
 		if (px > player.x1)
 			return (-1.);
 	}
-	v->coords.x = px;
-	v->coords.y = py;
+	v->coords[j].x = px;
+	v->coords[j].y = py;
 	return (vector_len(player.x1, player.y1, px, py));
 }
 
@@ -222,57 +230,71 @@ void recalc(t_wolf *wolf)
 	// printf("%f %f %f %f\n", wolf->player->up_d, wolf->player->down_d, wolf->player->left_d, wolf->player->rght_d);
 }
 
-t_distance		*dist_to_wall(t_wolf *wolf,
-float angle, int count_distance)
+static void	buble_sort(t_distance *v)
 {
-	// t_distance	*h;
-	t_distance	*v;
+	int i;
+	int j;
 
-	v = wolf->player->distance_vert[count_distance];
-	// h = wolf->player->distance_horiz[count_distance];
-	t_distance_clear(v);
-	// t_distance_clear(h);
-	// find_vertical_intersection(wolf, angle, v);
-	// find_horizontal_intersection(wolf, angle, h);
-	t_wall player;
-	player.x1 = round(wolf->player->x);
-	player.y1 = round(wolf->player->y);
-	// printf("%d\n", player.y1);
-	// float k = tanf(angle);
-	// float b = player.y1 - k + player.x1;
-	float dist = 20000;
-	float tmp = -1;
-
-	int i = 0;
-	while (i < wolf->count_walls)
+	i = 0;
+	while (i < v->count - 1)
 	{
-		tmp = calc_dist(player, angle, wolf->walls[i], v);
-		// v->tex = 1;
-		// printf("%f\n", tmp);
-		if (tmp != -1. && tmp < dist)
+		j = v->count - 1;
+		while (j > i)
 		{
-			v->number_wall = i;
-			v->offsetx = sqrtf(powf(v->coords.x - wolf->walls[i].x1, 2) + powf(v->coords.y - wolf->walls[i].y1, 2)) / wolf->walls[i].length;
-			dist = tmp;
+			if (v->dist[j - 1] < v->dist[j])
+			{
+				float		f_temp = v->dist[j - 1];
+				int			number_temp = v->number_wall[j - 1];
+				float		of_temp = v->offsetx[j - 1];
+				t_float2	cor_temp = v->coords[j - 1];
+
+				v->dist[j - 1] = v->dist[j];
+				v->number_wall[j - 1] = v->number_wall[j];
+				v->offsetx[j - 1] = v->offsetx[j];
+				v->coords[j - 1] = v->coords[j];
+				
+				v->dist[j] = f_temp;
+				v->number_wall[j] = number_temp;
+				v->offsetx[j] = of_temp;
+				v->coords[j] = cor_temp;
+
+			}
+			j--;
 		}
 		i++;
 	}
-	// printf("%f\n", dist);
-	// dist *= CUBE;
-	// printf("%d %d\n", player.x1, player.y1);
-	// v->side = 0;
-	if (dist > 0 && dist < 20000)
-		v->dist = dist;
+}
+
+t_distance		*dist_to_wall(t_wolf *wolf,
+float angle, int count_distance)
+{
+	t_distance	*v;
+	t_wall		player;
+	float		tmp;
+	int			i;
+	int			j;
+
+	tmp = -1.0f;
+	i = 0;
+	j = 0;
+	v = wolf->player->distance_vert[count_distance];
+	t_distance_clear(v);
+	player.x1 = round(wolf->player->x);
+	player.y1 = round(wolf->player->y);
+	while (i < wolf->count_walls)
+	{
+		tmp = calc_dist(player, angle, wolf->walls[i], v, j);
+		if (tmp != -1.0f)
+		{
+			v->number_wall[j] = i;
+			v->offsetx[j] = sqrtf(powf(v->coords[j].x - wolf->walls[i].x1, 2) + powf(v->coords[j].y - wolf->walls[i].y1, 2)) / wolf->walls[i].length;
+			v->dist[j] = tmp;
+			j++;
+			tmp = -1.0f;
+		}
+		i++;
+	}
+	v->count = j;
+	buble_sort(v);
 	return(v);
-	// if (v->dist > h->dist)
-	// {
-	// 	if (dist > 0 && dist < 20000)
-	// 		h->dist = dist;
-	// 	return (h);
-	// }
-	// else
-	// {
-	// 	v->side = 1;
-	// 	return (v);
-	// }
 }

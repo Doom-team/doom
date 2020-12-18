@@ -64,11 +64,12 @@ typedef struct	s_float2
 
 typedef struct	s_distance
 {
-	float		dist;
-	int			number_wall; //номер стены для того чтобы узнать ее длину при отрисовке текстур для колличества репликаций текстуры на стене
-	float		offsetx;
-	t_float2	coords;
-	int			y;
+	float		dist[100];
+	int			number_wall[100]; //номер стены для того чтобы узнать ее длину при отрисовке текстур для колличества репликаций текстуры на стене
+	float		offsetx[100];
+	t_float2	coords[100];
+	// int			y[100]; // что это ?
+	int			count;
 	// char		tex;
 	// int			side;
 }				t_distance;
@@ -289,6 +290,8 @@ void			add_skybox_offset(t_sdl *sdl, int to_add);
 */
 void			set_pixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
 Uint32			get_pixel(SDL_Surface *surface, int x, int y);
+int				get_pixel1(SDL_Surface *surface, int x, int y);
+void			set_pixel1(SDL_Surface *surface, SDL_Surface *surface1, int x, int y, int pixel);
 int				is_texture(t_map *map, int x, int y, char texture);
 
 /*
@@ -384,7 +387,7 @@ void			pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface);
 void			draw_sky(t_wolf *wolf, int x, int y);
 void			draw_floor(SDL_Surface *surface, int x, int y);
 void			draw_column(t_wolf *wolf, t_point point,
-t_distance *dist, int size);
+t_distance *dist, int count_distance);
 
 /*
 ** guns_shot.c
