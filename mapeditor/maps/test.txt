@@ -1,0 +1,12 @@
+walls: 4	floor: 2	ceiling: 1
+w -128 -167 -28 -167 "textures/wall/wall0.png" 5
+w -128 -167 -128 -67 "textures/wall/wall0.png" 5
+w -28 -167 -28 -67 "textures/wall/wall0.png" 5
+w -128 -67 -28 -67 "textures/wall/wall0.png" 5
+f -128 -167 -28 -167 -28 -67 -128 -67 -128 -167 "textures/floor/floor1.png"
+-128 -167 -28 -167 -28 -67 -128 -67 -128 -167c -128 -167 -28 -167 -28 -67 -128 -67 -128 -167 "textures/floor/floor2.png"
+ -49 -55 -49 -55 -149 "textures/floor/floor1.png"
+-115 -201 81 -201 81 -5 -115 -5 -115 -201c -115 -201 81 -201 81 -5 -115 -5 -115 -201 "textures/floor/floor2.png"
+g" 5
+f 29 -146 129 -146 129 -46 29 -46 29 -146 "textures/floor/floor1.png"
+-12 -183 154 -183 154 -17 -12 -17 -12 -183
