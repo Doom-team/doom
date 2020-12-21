@@ -46,7 +46,6 @@ INCLUDES = ./includes/wolf3d.h \
 			./includes/colors.h \
 			./includes/errors.h
 
-
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
