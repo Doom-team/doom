@@ -53,7 +53,7 @@ int				main(int a, char **b)
 	t_wolf		*wolf;
 
 	wolf = NULL;
-	// a != 2 ? error(wolf, ERR_USAGE) : 0;
+	a != 2 ? error(wolf, ERR_USAGE) : 0;
 	SDL_Init(SDL_INIT_EVERYTHING) != 0 ? error(wolf, SDL_GetError()) : 0;
 	TTF_Init() != 0 ? error(wolf, SDL_GetError()) : 0;
 	wolf = t_wolf_new();

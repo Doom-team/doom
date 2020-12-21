@@ -160,29 +160,29 @@ static void	buble_sort(t_wolf *wolf)
 
 void    render_monster(t_wolf *wolf, SDL_Surface *surface)
 {
-	// buble_sort(wolf);
-	// int i = 0;
-	// while (i < wolf->monster->count_monster)
-	// {
-	// 	ft_bzero(&(wolf->monster->data[wolf->monster->sort_arr[i]]), sizeof(t_sprite_calc));
-	// 	search_angle_monster(wolf, wolf->monster->sort_arr[i]);
-	// 	through_zero_monster(wolf, wolf->monster->sort_arr[i]);
-	// 	wall_check_monster(wolf, wolf->monster->sort_arr[i]);
-	// 	wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.w = (int)((wolf->monster->data[wolf->monster->sort_arr[i]].flag_2 - wolf->monster->data[wolf->monster->sort_arr[i]].flag_1)
-	// 		* (wolf->monster->image_monster[wolf->monster->sort_arr[i]]->w) / ((W / 32)
-	// 		* (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)));
-	// 	wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.h = (wolf->monster->image_monster[wolf->monster->sort_arr[i]]->w);
-	// 	wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.x = (int)(wolf->monster->data[wolf->monster->sort_arr[i]].flag_1 * (wolf->monster->image_monster[wolf->monster->sort_arr[i]]->w)
-	// 		/ ((W / 32) * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)));
-	// 	wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.y = 0;
-	// 	wolf->monster->data[wolf->monster->sort_arr[i]].img_location.w = (wolf->monster->data[wolf->monster->sort_arr[i]].flag_2 - wolf->monster->data[wolf->monster->sort_arr[i]].flag_1) * wolf->monster->monster_upscale[wolf->monster->sort_arr[i]];
-	// 	wolf->monster->data[wolf->monster->sort_arr[i]].img_location.h = (W / 32) * wolf->monster->monster_upscale[wolf->monster->sort_arr[i]] * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist);
-	// 	wolf->monster->data[wolf->monster->sort_arr[i]].img_location.x = wolf->monster->data[wolf->monster->sort_arr[i]].flag_i;
-	// 	wolf->monster->data[wolf->monster->sort_arr[i]].img_location.y = (H / 2) - ((W / 32) * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)) / 2 - wolf->player->dir_y; //сюда динамическое изменение высоты постановки прикрутить
-	// 	SDL_BlitScaled(wolf->monster->image_monster[wolf->monster->sort_arr[i]], &(wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img), 
-	// 		surface, &(wolf->monster->data[wolf->monster->sort_arr[i]].img_location));
-	// 	penetration_check(wolf, wolf->monster->data[wolf->monster->sort_arr[i]].img_location);
-	// 	score_monster(wolf, wolf->monster->sort_arr[i]);
-	// 	i++;
-	// }
+	buble_sort(wolf);
+	int i = 0;
+	while (i < wolf->monster->count_monster)
+	{
+		ft_bzero(&(wolf->monster->data[wolf->monster->sort_arr[i]]), sizeof(t_sprite_calc));
+		search_angle_monster(wolf, wolf->monster->sort_arr[i]);
+		through_zero_monster(wolf, wolf->monster->sort_arr[i]);
+		wall_check_monster(wolf, wolf->monster->sort_arr[i]);
+		wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.w = (int)((wolf->monster->data[wolf->monster->sort_arr[i]].flag_2 - wolf->monster->data[wolf->monster->sort_arr[i]].flag_1)
+			* (wolf->monster->image_monster[wolf->monster->sort_arr[i]]->w) / ((W / 32)
+			* (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)));
+		wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.h = (wolf->monster->image_monster[wolf->monster->sort_arr[i]]->w);
+		wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.x = (int)(wolf->monster->data[wolf->monster->sort_arr[i]].flag_1 * (wolf->monster->image_monster[wolf->monster->sort_arr[i]]->w)
+			/ ((W / 32) * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)));
+		wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.y = 0;
+		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.w = (wolf->monster->data[wolf->monster->sort_arr[i]].flag_2 - wolf->monster->data[wolf->monster->sort_arr[i]].flag_1) * wolf->monster->monster_upscale[wolf->monster->sort_arr[i]];
+		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.h = (W / 32) * wolf->monster->monster_upscale[wolf->monster->sort_arr[i]] * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist);
+		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.x = wolf->monster->data[wolf->monster->sort_arr[i]].flag_i;
+		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.y = (H / 2) - ((W / 32) * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)) / 2 - wolf->player->dir_y; //сюда динамическое изменение высоты постановки прикрутить
+		SDL_BlitScaled(wolf->monster->image_monster[wolf->monster->sort_arr[i]], &(wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img), 
+			surface, &(wolf->monster->data[wolf->monster->sort_arr[i]].img_location));
+		penetration_check(wolf, wolf->monster->data[wolf->monster->sort_arr[i]].img_location);
+		score_monster(wolf, wolf->monster->sort_arr[i]);
+		i++;
+	}
 }

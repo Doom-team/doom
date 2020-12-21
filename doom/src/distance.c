@@ -35,9 +35,9 @@ void			free_dist_arr(t_wolf *wolf)
 void			t_distance_clear(t_distance *dist)
 {
 	int i = 0;
-	while (i < 100)
+	while (i < 1000)
 	{
-		dist->dist[i] = 99999.f;
+		dist->dist[i] = MAXFLOAT;
 		dist->offsetx[i] = 0;
 		// dist->tex = TEX_INF;
 		dist->coords[i].x = -1;
@@ -208,7 +208,7 @@ void calculate_distance(t_wolf *wolf, float angle, float *d)
 	t_wall player;
 	player.x1 = round(wolf->player->x);
 	player.y1 = round(wolf->player->y);
-	float dist = 20000;
+	float dist = MAXFLOAT;
 	float tmp = -1;
 	int i = 0;
 	while (i < wolf->count_walls)
@@ -241,7 +241,7 @@ static void	buble_sort(t_distance *v)
 		j = v->count - 1;
 		while (j > i)
 		{
-			if (v->dist[j - 1] < v->dist[j])
+			if (v->dist[j - 1] > v->dist[j])
 			{
 				float		f_temp = v->dist[j - 1];
 				int			number_temp = v->number_wall[j - 1];

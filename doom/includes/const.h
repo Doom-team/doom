@@ -44,8 +44,8 @@
 # define TEX_EYES '4'
 # define TEX_ISLE '5'
 
-# define W 800
-# define H 600
+# define W 1920
+# define H 1080
 // # define W_MAX 1920
 // # define H_MAX 1080
 # define CUBE 64
