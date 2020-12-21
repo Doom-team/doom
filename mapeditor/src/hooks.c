@@ -294,10 +294,12 @@ void change_floor_click(t_map *map, int x, int y)
 
 	if ((x > WIDTH/2 + 120 && x < WIDTH/2 + 185) && (y > 60 && y < 90)) // save
 	{
+		map->floorsky_tex[0]->active = 0;
 		map->inter_tex[16]->active = 4;
 	}
 	if ((x > WIDTH/2 - 100 && x < WIDTH/2 - 35) && (y > 60 && y < 90))
 	{
+		map->floorsky_tex[0]->active = 0;
 		map->inter_tex[16]->active = 0;
 	}
 }
@@ -314,13 +316,7 @@ void floorker(t_map *map, int x, int y)
 	if (some_texture_active(map) == 2)
 	{
 		if (x1 != x || y1 != y)
-		{
-			// bigdot(map, x1, y1, HOTPINK);
 			get_floor_cordi(map, x1 - map->z_x, y1 - map->z_y);
-			
-		}
-		//draw_floor_line(map, &(t_info){map->floor_x, map->floor_y, x - map->z_x, y - map->z_y});
-		
 	}
 }
 

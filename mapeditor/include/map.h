@@ -126,6 +126,7 @@ typedef struct	s_map
 	int 				tmpfloor_y;
 	char				**floorstr;
 	char				**ceilingstr;
+	char				*temporary;
 	// int					floor_active;
 }				t_map;
 

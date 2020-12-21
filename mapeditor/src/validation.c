@@ -35,7 +35,6 @@ int check_scene(t_info *info, t_map *map) // x = max_x, y = max_y, w = min_x, h 
 					i++;
 				tmp = tmp->nxt;
 			}
-			printf("i: %d\n", i);
 			if (i == 8 || i == 12 || i == 11 || i == 10) // ????????????maybe
 			{
 				printf("that's cool map!\n");

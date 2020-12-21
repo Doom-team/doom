@@ -13,7 +13,6 @@ int change_floor_inter(t_map *map)
 		fonts_classic(map, "celing", &(t_info){WIDTH/2 + 40, 34, 0, 0}, SANBYBROWNFONT);
 	else
 		fonts_classic(map, "celing", &(t_info){WIDTH/2 + 40, 34, 0, 0}, WHITEFONT);
-	//fonts_classic(map, "celing", &(t_info){WIDTH/2 + 40, 34, 0, 0}, WHITEFONT);
 	draw_img(map, &(t_info){WIDTH/2 + 120, 60, 65, 30}, map->floorsky_tex[0]);
 	fonts_classic(map, "SAVE", &(t_info){WIDTH/2 + 130, 65, 0, 0}, WHITEFONT);
 	draw_img(map, &(t_info){WIDTH/2 - 100, 60, 65, 30}, map->floorsky_tex[0]);
@@ -54,31 +53,31 @@ void	get_floor_cordi(t_map *map, int x, int y)
 {
 	char **tmp;
 
+printf("here\n");
 	if (checknod(map, x, y))
 	{
-		if (map->floorstr[map->index_tex])
+		if (map->temporary)
 		{
-			tmp = ft_strsplit(map->floorstr[map->index_tex], ' ');
+			tmp = ft_strsplit(map->temporary, ' ');
 			if (!ft_strcmp(tmp[0], ft_itoa(x)) && !ft_strcmp(tmp[1], ft_itoa(y)))
 			{
-				// map->floorstr[map->index_tex] = ft_strjoin(" floor", ft_itoa(map->index_tex));
-				// map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], ".png ");
-				// map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], "\n");
 				map->inter_tex[16]->active = 3;
 				map->showactive = 2;
 			}
 			ft_clear(tmp);
 		}
-		if (!map->floorstr[map->index_tex])
-			map->floorstr[map->index_tex] = ft_itoa(x);
-			// map->floorstr[map->index_tex] = ft_strjoin("f ", ft_itoa(x));
+		else
+			map->temporary = malloc(sizeof(char *) * 100);
+		printf("immm\n");
+		if (!map->temporary)
+			map->temporary = ft_itoa(x);
 		else
 		{
-			map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], " ");
-			map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], ft_itoa(x));
+			map->temporary = ft_strjoin(map->temporary, " ");
+			map->temporary = ft_strjoin(map->temporary, ft_itoa(x));
 		}
-		map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], " ");
-		map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], ft_itoa(y));
+		map->temporary = ft_strjoin(map->temporary, " ");
+		map->temporary = ft_strjoin(map->temporary, ft_itoa(y));
 	}
 }
 
@@ -94,18 +93,6 @@ void	get_floor_cord(t_map *map, int x, int y)
 	{
 		map->click = 0;
 		changer(map, x - map->z_x, y - map->z_y);
-	}
-}
-void strfloor(t_map *map)
-{
-	if (map->floorstr[map->index_tex][0] != 'f')
-	{
-		map->floorstr[map->index_tex] = ft_strjoin("f ", map->floorstr[map->index_tex]);
-		map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], " \"textures/floor/floor");
-		map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], ft_itoa(map->index_tex));
-		map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], ".png\"");
-		map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], "\n");
-	printf("floor: %s\n", map->floorstr[map->index_tex]);
 	}
 }
 
@@ -124,11 +111,24 @@ char	*mapstrcpy(char *dst, const char *str)
 	return (dst);
 }
 
+void strfloor(t_map *map)
+{
+	map->floorstr[map->index_tex] = mapstrcpy(map->floorstr[map->index_tex], map->temporary);
+	free(map->temporary);
+	map->floorstr[map->index_tex] = ft_strjoin("f", map->floorstr[map->index_tex]);
+	map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], " \"textures/floor/floor");
+	map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], ft_itoa(map->index_tex));
+	map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], ".png\"");
+	map->floorstr[map->index_tex] = ft_strjoin(map->floorstr[map->index_tex], "\n");
+	printf("floor: %s\n", map->floorstr[map->index_tex]);
+}
+
 
 void strceiling(t_map *map)
 {
-	map->ceilingstr[map->index_tex] = mapstrcpy(map->ceilingstr[map->index_tex], map->floorstr[map->index_tex]);
-	map->ceilingstr[map->index_tex] = ft_strjoin("c ",map->ceilingstr[map->index_tex]);
+	map->ceilingstr[map->index_tex] = mapstrcpy(map->ceilingstr[map->index_tex], map->temporary);
+	free(map->temporary);
+	map->ceilingstr[map->index_tex] = ft_strjoin("c",map->ceilingstr[map->index_tex]);
 	map->ceilingstr[map->index_tex] = ft_strjoin(map->ceilingstr[map->index_tex], " \"textures/floor/floor");
 	map->ceilingstr[map->index_tex] = ft_strjoin(map->ceilingstr[map->index_tex], ft_itoa(map->index_tex));
 	map->ceilingstr[map->index_tex] = ft_strjoin(map->ceilingstr[map->index_tex], ".png\"");
@@ -145,10 +145,18 @@ void open_floor_win(t_map *map)
 		map->validflag = change_floor_inter(map);
 	if (map->inter_tex[16]->active == 4)
 	{
+		printf("temporary: %s\n", map->temporary);
 		if (map->validflag == 4)
+		{
 			strfloor(map);
+			map->temporary = NULL;
+		}
 		if (map->validflag == 5)
+		{
 			strceiling(map);
+			map->temporary = NULL;
+		}
+		
 		map->inter_tex[16]->active = 0;
 	}
 }
