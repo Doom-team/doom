@@ -1,0 +1,20 @@
+{
+    // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+    // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+    // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(lldb) Запустить",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/Users/skaren/Desktop/doom/doom/wolf3d",
+            "args": ["maps/map.txt"],
+            "stopAtEntry": false,
+            "cwd": "/Users/skaren/Desktop/doom/doom",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        }
+    ]
+}

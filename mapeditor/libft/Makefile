@@ -23,24 +23,28 @@ ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_selectionsort.c ft_lst_push_front.c ft_l
 ft_binarysearch.c ft_bukovkiciferki.c ft_check_borders.c ft_arrlen.c ft_to_digit.c ft_izero.c \
 ft_safe_free_arr.c ft_free_arr.c get_next_line.c
 
-FT_O = $(SRC:.c=.o)
+HEAD=includes/libft.h \
 
-INC = libft.h
+OBJ=$(SRC:.c=.o)
+INCLUDES=-I./includes
 
-.PHONY: all clean fclean re
-
+CC=gcc -g -Wall -Wextra -Werror #-ffast-math -O3
+A = $(find . -type f | wc -l)
+X = 1
 all: $(NAME)
 
-$(NAME): $(SRC) $(FT_O) $(INC)
-	@ar rc $(NAME) $(FT_O)
-	@ranlib $(NAME)
-	@echo "\033[34m\tmake \t\t libft \t\t finish\033[0m"
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)  
+	@echo =================================
+	@echo $(NAME) HAS BEEN MADE          
+	@echo =================================	
 
-$(FT_O): %.o: %.c
-	@gcc -c -Wall -Wextra -Werror $< -I $(INC)
-
+%.o:%.c $(HEAD)
+	@$(CC) $(INCLUDES) -c $< -o $@
+	@echo $<
+		
 clean:
-	@rm -rf $(FT_O)
+	/bin/rm -f $(OBJ)
 fclean: clean
-	@rm -rf $(NAME)
+	/bin/rm -f $(NAME)
 re: fclean all

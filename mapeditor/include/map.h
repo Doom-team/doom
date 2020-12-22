@@ -1,10 +1,11 @@
 #ifndef MAP_H
 # define MAP_H
 
-#include "../SDL2/include/SDL2/SDL.h"
-#include "../SDL2/include/SDL2/SDL_image.h"
-#include "../SDL2/include/SDL2/SDL_ttf.h"
-# include "libft.h"
+# include "../frameworks/SDL2.framework/Headers/SDL.h"
+# include "../frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h"
+# include "../frameworks/SDL2_image.framework/Headers/SDL_image.h"
+# include "../frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h"
+# include "../libft/includes/libft.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>

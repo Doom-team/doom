@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 walls: 8	floor: 1	ceiling: 1
 w -115 -189 -15 -189 "textures/wall/wall0.png" 5
 w -115 -189 -115 -89 "textures/wall/wall0.png" 5
@@ -9,3 +10,21 @@ w 38 -246 38 -44 "textures/wall/wall0.png" 5
 w -164 -44 38 -44 "textures/wall/wall0.png" 5
 f -115 -189 -15 -189 -15 -89 -115 -89 -115 -189 "textures/floor/floor1.png"
 c -164 -246 38 -246 38 -44 -164 -44 -164 -44 -164 -246 "textures/floor/floor2.png"
+=======
+walls: 13	floor: 1	ceiling: 1
+w -172 -83 339 -156 "textures/wall/wall0.png" 5
+w 134 132 -70 146 "textures/wall/wall0.png" 5
+w -172 -83 -70 146 "textures/wall/wall0.png" 5
+w 134 132 339 -156 "textures/wall/wall0.png" 5
+w 157 -74 156 -42 "textures/wall/wall0.png" 5
+w 217 -73 174 -85 "textures/wall/wall0.png" 5
+w 174 -85 157 -74 "textures/wall/wall0.png" 5
+w 156 -42 181 -48 "textures/wall/wall0.png" 5
+w 201 -64 181 -48 "textures/wall/wall0.png" 5
+w 201 -64 217 -73 "textures/wall/wall0.png" 5
+w 152 -8 146 5 "textures/wall/wall0.png" 5
+w 82 -28 152 -8 "textures/wall/wall0.png" 5
+w 146 5 82 -28 "textures/wall/wall0.png" 5
+146 "textures/floor/floor1.png"
+-12 -183 154 -183 154 -17 -12 -17 -12 -183
+>>>>>>> 32012fcab95f16c6bec242fa3c842b378ea627e6
