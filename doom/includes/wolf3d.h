@@ -25,6 +25,7 @@
 # include "const.h"
 # include "colors.h"
 # include "errors.h"
+# include <pthread.h>
 
 typedef struct	s_wall
 {
@@ -64,10 +65,10 @@ typedef struct	s_float2
 
 typedef struct	s_distance
 {
-	float		dist[100];
-	int			number_wall[100]; //номер стены для того чтобы узнать ее длину при отрисовке текстур для колличества репликаций текстуры на стене
-	float		offsetx[100];
-	t_float2	coords[100];
+	long double		dist[1000];
+	int			number_wall[1000]; //номер стены для того чтобы узнать ее длину при отрисовке текстур для колличества репликаций текстуры на стене
+	float		offsetx[1000];
+	t_float2	coords[1000];
 	// int			y[100]; // что это ?
 	int			count;
 	// char		tex;
@@ -220,6 +221,7 @@ typedef struct	s_wolf
 	t_menu		*menu;
 	t_wall 		*walls;
 	int			count_walls;
+	bool		z_buff[W * H];
 }				t_wolf;
 
 /*
@@ -239,6 +241,15 @@ typedef struct	s_parser
 	int			count_walls;
 	int			count_floor;
 } 				t_parser;
+
+typedef struct
+{
+	int		number;
+	t_wolf	*wolf;
+	t_point	point;
+	int		interlaced_rendering;
+	int		count_distance;
+} pthrData;
 
 void			parser(t_parser *parser, t_wolf *wolf);
 

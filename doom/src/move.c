@@ -64,7 +64,7 @@ void	rotate(t_wolf *wolf, SDL_Event *event)
 
 void	calc_move(t_wolf *wolf, float dy, float dx)
 {
-	int		player_box;
+	// int		player_box;
 
 	// player_box = dx > 0 ? p->size : -p->size;
 	// if (is_texture(map, p->x + dx + player_box, p->y, TEX_FLOOR)

@@ -17,14 +17,14 @@ t_point point, t_distance *dist, int count_distance)
 {
 	int		color;
 	int		i;
-	int		height;
+	// int		height;
 	double	fractpart, intpart;
 	float	koof;
 	int		count;
 	float	tex_1;
 	float	pos;
 	int		j;
-	int		temp_y;
+	signed long long int		temp_y; // чтоб при отдалений не тормозило но там все равно говно выше макс числа
 	int		size;
 
 	// поинт y начало отрисовки стены сайз конец
@@ -41,16 +41,10 @@ t_point point, t_distance *dist, int count_distance)
 		size = H - temp_y;
 		temp_y = size - ceilf((CUBE * wolf->walls[dist->number_wall[j]].h / 5.0f * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]); // отвечает за высоту ступеньки
 		i = 0;
-		height = H - temp_y * 2;
-		if (dist->number_wall[j] >= 0 && dist->number_wall[j] <= wolf->count_walls - 1)
-		{
-			count = (int)(round(wolf->walls[dist->number_wall[j]].length / CUBE));
-			koof = (wolf->walls[dist->number_wall[j]].length / CUBE) / count;
-			tex_1 = (wolf->walls[dist->number_wall[j]].length / count) * koof;
-			pos = dist->offsetx[j] * wolf->walls[dist->number_wall[j]].length;
-			fractpart = modf((pos / tex_1), &intpart);
-		}
-		else
+		// if (wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] == true)
+		// 	continue;
+		// height = H - temp_y * 2; // что это ??
+		if (dist->number_wall[j] < 0 && dist->number_wall[j] > wolf->count_walls - 1)
 			return ;
 		float	offsety;
 		int		begin_y = temp_y;
@@ -58,17 +52,43 @@ t_point point, t_distance *dist, int count_distance)
 		float	tex_2 = len / (wolf->walls[dist->number_wall[j]].h / 5.0f);
 		float	pos_y;
 		double	fractpart_2, intpart_2;
-		while (temp_y < size)
+		int		flag = 1;
+		temp_y--;
+		// printf("temp_y = %lld\n", temp_y);
+		while (++temp_y < size)
 		{
-			offsety = (float)(temp_y - begin_y) / (size - begin_y);
-			pos_y = len * offsety;
-			fractpart_2 = modf(pos_y / tex_2, &intpart_2);
+			if (temp_y - wolf->player->dir_y < -H - 2)
+			{
+				temp_y = -H - 1 + wolf->player->dir_y;
+				continue;
+			}
+			// if (temp_y - wolf->player->dir_y > H)
+			// {
+			// 	temp_y = H - 1;
+			// 	continue;
+			// }
+			if ((temp_y - wolf->player->dir_y >= 0 && temp_y - wolf->player->dir_y < H) && (wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] == true))
+				continue;
+			if (flag == 1)
+			{
+				count = (int)(round(wolf->walls[dist->number_wall[j]].length / CUBE));
+				koof = (wolf->walls[dist->number_wall[j]].length / CUBE) / count;
+				tex_1 = (wolf->walls[dist->number_wall[j]].length / count) * koof;
+				pos = dist->offsetx[j] * wolf->walls[dist->number_wall[j]].length;
+				fractpart = modf((pos / tex_1), &intpart);
+				flag = 0;
+			}
 			if (temp_y - wolf->player->dir_y > 0 && temp_y - wolf->player->dir_y < H)
 			{
+				offsety = (float)(temp_y - begin_y) / (size - begin_y);
+				pos_y = len * offsety;
+				fractpart_2 = modf(pos_y / tex_2, &intpart_2);
+
 				color = get_pixel1(wolf->walls[dist->number_wall[j]].texture1, wolf->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->walls[dist->number_wall[j]].texture1->w); //где раунд коофицен колличества стен
 				set_pixel1(wolf->surface, wolf->walls[dist->number_wall[j]].texture1, point.x, temp_y - wolf->player->dir_y, color);
+				wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
 			}
-			temp_y++;
+			// temp_y++;
 			i++;
 		}
 	}
@@ -148,36 +168,59 @@ void	draw_sky(t_wolf *wolf, int x, int y)
 // 	}
 // }
 
+void* threadFunc(void* thread_data){
+	//получаем структуру с данными
+	pthrData 	*data = thread_data;
+	int			end;
+ 
+	data->count_distance = W - W / THREAD * data->number - 1;
+	data->point.x = (W * data->number) / THREAD;
+	if (data->interlaced_rendering)
+		data->point.x++;
+	end = ((W * data->number) / THREAD) + (W / THREAD);
+	while (data->point.x < end)
+	{
+		if (data->wolf->player->distance[data->count_distance]->dist[0] != 0)
+		{
+			data->point.y = ceilf((CUBE * data->wolf->player->dist_to_canvas) / data->wolf->player->distance[data->count_distance]->dist[data->wolf->count_walls - 1]);
+			data->point.y = (H - data->point.y) / 2;
+			draw_sky(data->wolf, data->point.x, data->point.y - data->wolf->player->dir_y);
+			draw_floor(data->wolf->surface, data->point.x, H - (data->point.y + data->wolf->player->dir_y));
+			draw_column(data->wolf, data->point, data->wolf->player->distance[data->count_distance], data->count_distance);
+		}
+		data->count_distance -= 2;
+		data->point.x += 2;
+	}
+	return NULL;
+}
+
+
 void	pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
 {
 	t_point	point;
-	int		count_distance;
-	float	dir;
 
-	count_distance = W - 1;
-	dir = player->dir;
-	add_arc(&dir, player->fov / 2);
 	point.y = 0;
 	if (wolf->sdl->interlaced_rendering == 0)
 		point.x = 0;
 	else
 		point.x = 1;
-	while (point.x < W)
-	{
-		if (player->distance[count_distance]->dist[0] != 0)
-		{
-			point.y = ceilf((CUBE * player->dist_to_canvas) / player->distance[count_distance]->dist[0]);
-			point.y = (H - point.y) / 2; // сколько отступ сверху и снизу
-			// point.y	= 200;
-			draw_sky(wolf, point.x, point.y - wolf->player->dir_y);
-			// floorcast(wolf, player->distance[count_distance], point.x, H - (point.y) + 1);
-			draw_floor(surface, point.x, H - (point.y + wolf->player->dir_y));
-			draw_column(wolf, point, player->distance[count_distance], count_distance);
-		}
-		count_distance -= 2;
-		point.x += 2;
-		add_arc(&dir, -player->step);
+	ft_memset(&wolf->z_buff, 0, W * H * sizeof(bool));
+
+	pthread_t* threads = (pthread_t*) malloc(THREAD * sizeof(pthread_t));
+	pthrData* threadData = (pthrData*) malloc(THREAD * sizeof(pthrData));
+	for(int i = 0; i < THREAD; i++){
+		threadData[i].number = i;
+		threadData[i].wolf = wolf;
+		threadData[i].point = point;
+		threadData[i].interlaced_rendering = wolf->sdl->interlaced_rendering;
+		threadData[i].count_distance = 0;
+		pthread_create(&(threads[i]), NULL, threadFunc, &threadData[i]);
 	}
+	for(int i = 0; i < THREAD; i++)
+		pthread_join(threads[i], NULL);
+	free(threads);
+	free(threadData);
+
 	if (wolf->sdl->interlaced_rendering == 0)
 		wolf->sdl->interlaced_rendering = 1;
 	else
