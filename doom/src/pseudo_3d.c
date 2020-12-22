@@ -168,37 +168,59 @@ void	draw_sky(t_wolf *wolf, int x, int y)
 // 	}
 // }
 
+void* threadFunc(void* thread_data){
+	//получаем структуру с данными
+	pthrData 	*data = thread_data;
+	int			end;
+ 
+	data->count_distance = W - W / THREAD * data->number - 1;
+	data->point.x = (W * data->number) / THREAD;
+	if (data->interlaced_rendering)
+		data->point.x++;
+	end = ((W * data->number) / THREAD) + (W / THREAD);
+	while (data->point.x < end)
+	{
+		if (data->wolf->player->distance[data->count_distance]->dist[0] != 0)
+		{
+			data->point.y = ceilf((CUBE * data->wolf->player->dist_to_canvas) / data->wolf->player->distance[data->count_distance]->dist[data->wolf->count_walls - 1]);
+			data->point.y = (H - data->point.y) / 2;
+			draw_sky(data->wolf, data->point.x, data->point.y - data->wolf->player->dir_y);
+			draw_floor(data->wolf->surface, data->point.x, H - (data->point.y + data->wolf->player->dir_y));
+			draw_column(data->wolf, data->point, data->wolf->player->distance[data->count_distance], data->count_distance);
+		}
+		data->count_distance -= 2;
+		data->point.x += 2;
+	}
+	return NULL;
+}
+
+
 void	pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
 {
 	t_point	point;
-	int		count_distance;
-	float	dir;
 
-	count_distance = W - 1;
-	dir = player->dir;
-	add_arc(&dir, player->fov / 2);
 	point.y = 0;
 	if (wolf->sdl->interlaced_rendering == 0)
 		point.x = 0;
 	else
 		point.x = 1;
 	ft_memset(&wolf->z_buff, 0, W * H * sizeof(bool));
-	while (point.x < W)
-	{
-		if (player->distance[count_distance]->dist[0] != 0)
-		{
-			point.y = ceilf((CUBE * player->dist_to_canvas) / player->distance[count_distance]->dist[wolf->count_walls - 1]);
-			point.y = (H - point.y) / 2; // сколько отступ сверху и снизу
-			// point.y	= 200;
-			draw_sky(wolf, point.x, point.y - wolf->player->dir_y);
-			// floorcast(wolf, player->distance[count_distance], point.x, H - (point.y) + 1);
-			draw_floor(surface, point.x, H - (point.y + wolf->player->dir_y));
-			draw_column(wolf, point, player->distance[count_distance], count_distance);
-		}
-		count_distance -= 2;
-		point.x += 2;
-		add_arc(&dir, -player->step);
+
+	pthread_t* threads = (pthread_t*) malloc(THREAD * sizeof(pthread_t));
+	pthrData* threadData = (pthrData*) malloc(THREAD * sizeof(pthrData));
+	for(int i = 0; i < THREAD; i++){
+		threadData[i].number = i;
+		threadData[i].wolf = wolf;
+		threadData[i].point = point;
+		threadData[i].interlaced_rendering = wolf->sdl->interlaced_rendering;
+		threadData[i].count_distance = 0;
+		pthread_create(&(threads[i]), NULL, threadFunc, &threadData[i]);
 	}
+	for(int i = 0; i < THREAD; i++)
+		pthread_join(threads[i], NULL);
+	free(threads);
+	free(threadData);
+
 	if (wolf->sdl->interlaced_rendering == 0)
 		wolf->sdl->interlaced_rendering = 1;
 	else

@@ -25,6 +25,7 @@
 # include "const.h"
 # include "colors.h"
 # include "errors.h"
+# include <pthread.h>
 
 typedef struct	s_wall
 {
@@ -240,6 +241,15 @@ typedef struct	s_parser
 	int			count_walls;
 	int			count_floor;
 } 				t_parser;
+
+typedef struct
+{
+	int		number;
+	t_wolf	*wolf;
+	t_point	point;
+	int		interlaced_rendering;
+	int		count_distance;
+} pthrData;
 
 void			parser(t_parser *parser, t_wolf *wolf);
 
