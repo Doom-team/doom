@@ -1,58 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/22 13:37:42 by grinko            #+#    #+#             */
+/*   Updated: 2020/12/22 17:23:40 by grinko           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/map.h"
-
-void draw_img3(t_map *map, t_info *info, t_image *st)
-{
-	int i;
-	int j;
-	int pixel1;
-	int pixel2;
-
-	i = info->y;
-	while (i < HEIGHT && i < info->y + info->h)
-	{
-		j = info->x;
-		while (j < WIDTH && j < info->x + info->w)
-		{
-			pixel1 = i * map->inter_tex[0]->strb + j * map->inter_tex[0]->pixb;
-			pixel2 = (int)((double)(i - info->y)/info->h * st->img->h) * st->strb + (int)((double)(j - info->x)/info->w * st->img->w) * st->pixb;
-			if (st->s[pixel2 + 3])
-			{
-				map->inter_tex[0]->s[pixel1] = st->s[pixel2] * 2;
-				map->inter_tex[0]->s[++pixel1] = st->s[++pixel2] * 2;
-				map->inter_tex[0]->s[++pixel1] = st->s[++pixel2] * 2;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void draw_img2(t_map *map, t_info *info, t_image *st)
-{
-	int i;
-	int j;
-	int pixel1;
-	int pixel2;
-
-	i = info->y;
-	while (i < HEIGHT && i < info->y + info->h)
-	{
-		j = info->x;
-		while (j < WIDTH && j < info->x + info->w)
-		{
-			pixel1 = i * map->inter_tex[0]->strb + j * map->inter_tex[0]->pixb;
-			pixel2 = (int)((double)(i - info->y)/info->h * st->img->h) * st->strb + (int)((double)(j - info->x)/info->w * st->img->w) * st->pixb;
-			if (st->s[pixel2 + 3])
-			{
-				map->inter_tex[0]->s[pixel1] = (map->inter_tex[0]->s[pixel1] | st->s[pixel2]);
-				map->inter_tex[0]->s[++pixel1] = (map->inter_tex[0]->s[pixel1] | st->s[++pixel2]);
-				map->inter_tex[0]->s[++pixel1] = (map->inter_tex[0]->s[pixel1] | st->s[++pixel2]);
-			}
-			j++;
-		}
-		i++;
-	}
-}
 
 void draw_img(t_map *map, t_info *info, t_image *st)
 {
@@ -160,6 +118,8 @@ void whichone_tool(t_map *map)
 		texture_block(map);
 	if (map->showactive == 2)
 		open_floor_win(map);
+	if (map->inter_tex[5]->active == 1)
+		objectsblock(map);
 		//draw_img2(map, &(t_info){map->floor_x + map->z_x, map->floor_y + map->z_y, abs(map->tmpfloor_x - map->floor_x), abs(map->tmpfloor_y - map->floor_y)}, map->floorsky_tex[map->index_tex]);
 	if (map->inter_tex[6]->active == 1)
 	{

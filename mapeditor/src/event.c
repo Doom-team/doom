@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
+/*   Updated: 2020/12/22 19:40:38 by grinko           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/map.h"
 
 int		mmove(int x, int y, t_map *map, SDL_Event event)
@@ -34,7 +46,6 @@ int	events(t_map *map)
 	SDL_Event event;
 	int done = 0;
 
-	
 	while ((!done) && SDL_WaitEvent(&event))
 	{
 		if (event.type == SDL_QUIT)
@@ -45,7 +56,6 @@ int	events(t_map *map)
 		{
 			SDL_GetMouseState(&x, &y);
 			mkey(event.button.button, x, y, map);
-			//get_floor_cordi(map, x, y);
 			if (catch_click(map, x, y))
 				return (1);
 			draw(map);

@@ -1,15 +1,15 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-walls: 8	floor: 1	ceiling: 1
-w -115 -189 -15 -189 "textures/wall/wall0.png" 5
-w -115 -189 -115 -89 "textures/wall/wall0.png" 5
-w -15 -189 -15 -89 "textures/wall/wall0.png" 5
-w -115 -89 -15 -89 "textures/wall/wall0.png" 5
-w -164 -246 38 -246 "textures/wall/wall0.png" 5
-w -164 -246 -164 -44 "textures/wall/wall0.png" 5
-w 38 -246 38 -44 "textures/wall/wall0.png" 5
-w -164 -44 38 -44 "textures/wall/wall0.png" 5
-f -115 -189 -15 -189 -15 -89 -115 -89 -115 -189 "textures/floor/floor1.png"
+walls: 9	floor: 1	ceiling: 1
+w -193 -137 68 -127 "textures/wall/wall0.png" 5
+w -135 -86 183 -68 "textures/wall/wall0.png" 5
+w 111 -42 146 -34 "textures/wall/wall0.png" 5
+w -74 -29 291 23 "textures/wall/wall0.png" 5
+w -153 28 329 114 "textures/wall/wall0.png" 5
+w -206 -189 -244 181 "textures/wall/wall0.png" 5
+w -244 181 605 223 "textures/wall/wall0.png" 5
+c -164 -246 38 -246 38 -44 -164 -44 -164 -44 -164 -246 "textures/floor/floor2.png"
+w 605 223 288 -138 "textures/wall/wall0.png" 5
+w 288 -138 -206 -189 "textures/wall/wall0.png" 5
+89 -15 -89 -115 -89 -115 -189 "textures/floor/floor1.png"
 c -164 -246 38 -246 38 -44 -164 -44 -164 -44 -164 -246 "textures/floor/floor2.png"
 =======
 walls: 13	floor: 1	ceiling: 1

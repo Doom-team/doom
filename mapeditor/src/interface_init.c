@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   interface_init.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
+/*   Updated: 2020/12/22 16:29:54 by grinko           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/map.h"
 
 void init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int *strb)
@@ -53,4 +65,8 @@ void	init_interface(t_map *map)
 	malloc_wall_texture(map);
 	malloc_floorsky_texture(map);
 	malloc_liquid_texture(map);
+	malloc_player_texture(map);
+	malloc_enemy_texture(map);
+	malloc_gun_texture(map);
+	malloc_door_texture(map);
 }

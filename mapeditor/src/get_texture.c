@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_texture.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/22 13:39:08 by grinko            #+#    #+#             */
+/*   Updated: 2020/12/22 16:30:56 by grinko           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/map.h"
 
 void	get_inter_textures(t_map *map)
@@ -84,4 +96,44 @@ void	get_liquid_textures(t_map *map)
 	map->liquid_tex[1]->img = IMG_Load("/textures/liquids/lava.png");
 	map->liquid_tex[2]->img = IMG_Load("/textures/liquids/water.png");
 	map->liquid_tex[3]->img = IMG_Load("/textures/liquids/nukage.png");
+}
+
+void	get_enemy_textures(t_map *map)
+{
+	map->enemy_tex[0]->img = IMG_Load("/textures/enemy/beam.png");
+	map->enemy_tex[1]->img = IMG_Load("/textures/enemy/abbadon.png");
+	map->enemy_tex[2]->img = IMG_Load("/textures/enemy/arachnophyte.png");
+	map->enemy_tex[3]->img = IMG_Load("/textures/enemy/annihilator.png");
+	map->enemy_tex[4]->img = IMG_Load("/textures/enemy/hierophant.png");
+}
+
+void	get_player_textures(t_map *map)
+{
+	map->player_tex[0]->img = IMG_Load("/textures/player/player.png");
+	map->player_tex[1]->img = IMG_Load("/textures/player/health.png");
+	map->player_tex[2]->img = IMG_Load("/textures/player/armor.png");
+}
+
+void	get_gun_textures(t_map *map)
+{
+	map->gun_tex[0]->img = IMG_Load("/textures/guns/pistol.png");
+	map->gun_tex[1]->img = IMG_Load("/textures/guns/pistol_b.png");
+	map->gun_tex[2]->img = IMG_Load("/textures/guns/shotgun.png");
+	map->gun_tex[3]->img = IMG_Load("/textures/guns/shotgun_b.png");
+	map->gun_tex[4]->img = IMG_Load("/textures/guns/ak.png");
+	map->gun_tex[5]->img = IMG_Load("/textures/guns/ak_b.png");
+}
+
+void	get_door_textures(t_map *map)
+{
+	map->door_tex[0]->img = IMG_Load("/textures/doors/defdoor.png");
+	map->door_tex[1]->img = IMG_Load("/textures/doors/bluedoor.png");
+	map->door_tex[2]->img = IMG_Load("/textures/doors/yellowdoor.png");
+	map->door_tex[3]->img = IMG_Load("/textures/doors/reddoor.png");
+	map->door_tex[4]->img = IMG_Load("/textures/doors/switch.png");
+	map->door_tex[5]->img = IMG_Load("/textures/doors/bluekey.png");
+	map->door_tex[6]->img = IMG_Load("/textures/doors/yellowkey.png");
+	map->door_tex[7]->img = IMG_Load("/textures/doors/redkey.png");
+	map->door_tex[8]->img = IMG_Load("/textures/doors/light.png");
+	map->door_tex[9]->img = IMG_Load("/textures/doors/exit.png");
 }

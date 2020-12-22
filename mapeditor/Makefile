@@ -1,6 +1,6 @@
 ALL_C =	main.c draw.c draw2.c hooks.c interface_init.c nodes.c event.c key.c tools.c cursor.c blocks.c font.c \
 		textureblock.c malloc_texture.c get_texture.c draw3.c validation.c writemap.c showtexture.c floor_text.c \
-		draw4.c wall_text.c ceiling_text.c
+		draw4.c wall_text.c ceiling_text.c objects_block.c draw5.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
@@ -35,13 +35,15 @@ FRAMEWORKS  = -F./frameworks \
 all: $(LIBFT) $(OBJDIR) $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -L $(LIBFT_DIR) -lft -o $@ $(SDL_INCS) $(FRAMEWORKS)
+	@$(CC) $(FLAGS) $(OBJS) -L $(LIBFT_DIR) -lft -o $@ $(SDL_INCS) $(FRAMEWORKS)
+	@echo "\033[32m \tcompiled \t map \t\t finish \033[0m"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES) | $(OBJDIR)
-	$(CC) $(FLAGS) -I./includes -I.$(LIBFT_DIR)/ $(SDL_INCS)  -c $< -o $@ 
+	@$(CC) $(FLAGS) -I./includes -I.$(LIBFT_DIR)/ $(SDL_INCS) -c $< -o $@
 
 $(OBJDIR):
-	/bin/mkdir -p $(OBJDIR)
+	@/bin/mkdir -p $(OBJDIR)
+	@echo "\033[36m \tmkdir \t\t objects \t finish \033[0m"
 
 $(LIBFT): lib
 
@@ -51,11 +53,29 @@ lib:
 clean:
 	@/bin/rm -rf $(OBJDIR)
 	@$(COMP_LIB) clean
+	@echo "\033[35m \tclean \t\t\t\t finish \033[0m"
+	#   ,-.       _,---._ __  / \"
+	#  /  )    .-'       `./ /   \"
+	# (  (   ,'            `/    /|
+	#  \  `-"             \'\   / |
+	#   `.              ,  \ \ /  |
+	#    /`.          ,'-`----Y   |
+	#   (            ;        |   '
+	#   |  ,-.    ,-'         |  /
+	#   |  | (   |            | /
+	#   )  |  \  `.___________|/
+	#   `--'   `--'
 
 fclean: clean
 	@/bin/rm -rf $(NAME)
 	@$(COMP_LIB) fclean
+	@echo "\033[35m \tfclean \t\t\t\t finish \033[0m"
 
 re: fclean all
+	@echo "\033[35m \tfclean \t\t all \t\t finish \033[0m"
+
+go:
+	$(MAKE)
+	./map
 
 .PHONY: lib clean fclean all re

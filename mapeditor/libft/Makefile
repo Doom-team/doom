@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gordey <gordey@student.42.fr>              +#+  +:+       +#+         #
+#    By: grinko <grinko@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/07 17:20:11 by grinko            #+#    #+#              #
-#    Updated: 2020/11/27 15:08:29 by gordey           ###   ########.fr        #
+#    Updated: 2020/12/22 13:33:01 by grinko           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,17 +34,14 @@ X = 1
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)  
-	@echo =================================
-	@echo $(NAME) HAS BEEN MADE          
-	@echo =================================	
+	@ar rcs $(NAME) $(OBJ)
+	@echo "\033[34m\tmake \t\t libft \t\t finish\033[0m"
 
 %.o:%.c $(HEAD)
 	@$(CC) $(INCLUDES) -c $< -o $@
-	@echo $<
 		
 clean:
-	/bin/rm -f $(OBJ)
+	@/bin/rm -f $(OBJ)
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 re: fclean all

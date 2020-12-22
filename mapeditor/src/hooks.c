@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
+/*   Updated: 2020/12/22 19:10:49 by grinko           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/map.h"
 
 int interface_click(t_map *map, int x, int y)
@@ -320,18 +332,98 @@ void floorker(t_map *map, int x, int y)
 	}
 }
 
+void zerroothero(t_map *map)
+{
+	int i;
+
+	i = -1;
+	while (++i < 3)
+		map->player_tex[i]->active = 0;
+	i = -1;
+	while (++i < 6)
+		map->gun_tex[i]->active = 0;
+	i = -1;
+	while (++i < 5)
+		map->enemy_tex[i]->active = 0;
+	i = -1;
+	while (++i < 10)
+		map->door_tex[i]->active = 0;
+}
+
+void	edit_object(t_map *map, t_image **name, int n, int index)
+{
+	int i;
+
+	i = -1;
+	if (map->inter_tex[5]->active == 1)
+		zerroothero(map);
+	while (++i < n)
+	{
+		if (i == index)
+			name[i]->active = 1;
+		else
+			name[i]->active = 0;
+	}
+}
+
+void	objects_click(t_map *map, int x, int y)
+{
+	if ((x > 30 && x < 70) && (y > 130 && y < 170))
+		edit_object(map, map->player_tex, 3, 0);
+	if ((x > 130 && x < 170) && (y > 150 && y < 170))
+		edit_object(map, map->player_tex, 3, 1);
+	if ((x > 230 && x < 270) && (y > 150 && y < 170))
+		edit_object(map, map->player_tex, 3, 2);
+	if ((x > 30 && x < 80) && (y > 250 && y < 270))
+		edit_object(map, map->gun_tex, 6, 0);
+	if ((x > 130 && x < 180) && (y > 250 && y < 270))
+		edit_object(map, map->gun_tex, 6, 2);
+	if ((x > 230 && x < 280) && (y > 250 && y < 270))
+		edit_object(map, map->gun_tex, 6, 4);
+	if ((x > 30 && x < 50) && (y > 280 && y < 300))
+		edit_object(map, map->gun_tex, 6, 1);
+	if ((x > 130 && x < 160) && (y > 280 && y < 300))
+		edit_object(map, map->gun_tex, 6, 3);
+	if ((x > 230 && x < 260) && (y > 280 && y < 300))
+		edit_object(map, map->gun_tex, 6, 5);
+	if ((x > 30 && x < 70) && (y > 350 && y < 390))
+		edit_object(map, map->enemy_tex, 5, 0);
+	if ((x > 130 && x < 170) && (y > 350 && y < 390))
+		edit_object(map, map->enemy_tex, 5, 1);
+	if ((x > 230 && x < 280) && (y > 350 && y < 390))
+		edit_object(map, map->enemy_tex, 5, 2);
+	if ((x > 60 && x < 100) && (y > 430 && y < 470))
+		edit_object(map, map->enemy_tex, 5, 3);
+	if ((x > 160 && x < 200) && (y > 430 && y < 470))
+		edit_object(map, map->enemy_tex, 5, 4);
+	if ((x > 115 && x < 155) && (y > 500 && y < 540))
+		edit_object(map, map->door_tex, 10, 0);
+	if ((x > 115 && x < 155) && (y > 600 && y < 640))
+		edit_object(map, map->door_tex, 10, 8);
+	if ((x > 130 && x < 150) && (y > 700 && y < 740))
+		edit_object(map, map->door_tex, 10, 9);
+}
+
 int catch_click(t_map *map, int x, int y)
 {
 	section_click(map, x, y); // клик по секциям
 	tools_click(map, x, y); // клик по инструментам
-	// if (!map->inter_tex[7]->active && !map->inter_tex[8]->active)
+	if (map->inter_tex[3]->active && !map->inter_tex[4]->active && !map->inter_tex[5]->active)
+	{
 		blockterxture_click(map, x, y); // клик готовым блокам раздела блоки
-	if (!widget_click(map, x, y))// клик по виждету размера раздела блоки
-		remove_blocks(map);
-	hwidget_click(map, x, y);
-	floorker(map, x, y);
+		if (!widget_click(map, x, y))// клик по виждету размера раздела блоки
+			remove_blocks(map);
+		hwidget_click(map, x, y);
+	}
 	if (map->inter_tex[4]->active == 1)
+	{
 		terxtures_click(map, x, y); // клики в разделе тексты
+		floorker(map, x, y);
+	}
+	if (map->inter_tex[5]->active == 1 && !map->inter_tex[4]->active && !map->inter_tex[3]->active)
+	{
+		objects_click(map, x, y);
+	}
 	if (map->inter_tex[16]->active == 1)
 		change_texture_click(map, x, y); // клики по текстурам если блок текстуры активны
 	if (map->inter_tex[16]->active == 3)

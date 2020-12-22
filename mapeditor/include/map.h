@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
+/*   Updated: 2020/12/22 19:42:31 by grinko           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MAP_H
 # define MAP_H
 
@@ -98,6 +110,10 @@ typedef struct	s_map
 	t_image				*wall_tex[20];
 	t_image				*floorsky_tex[13];
 	t_image				*liquid_tex[4];
+	t_image				*enemy_tex[5];
+	t_image				*player_tex[3];
+	t_image				*gun_tex[6];
+	t_image				*door_tex[10];
 	t_image				*curosr_img;// структура изобр курсора
 	t_image				*font; // шрифт
 	SDL_Cursor			*cursor;// крусор
@@ -249,9 +265,24 @@ int		change_floor_inter(t_map *map);
 void	flooor(t_map *map);
 void	findfloornod(t_map *map);
 void	findceilingnod(t_map *map);
-void	draw_img2(t_map *map, t_info *info, t_image *st);
-void	draw_img3(t_map *map, t_info *info, t_image *st);
 void	writedown_floor(t_map *map);
+
+void objectsblock(t_map *map);
+
+void	edit_object(t_map *map, t_image **name, int n, int index);
+
+void	malloc_enemy_texture(t_map *map);
+void	get_enemy_textures(t_map *map);
+void	malloc_player_texture(t_map *map);
+void	get_player_textures(t_map *map);
+void	malloc_gun_texture(t_map *map);
+void	get_gun_textures(t_map *map);
+void	malloc_door_texture(t_map *map);
+void	get_door_textures(t_map *map);
+void	draw_player(t_map *map);
+void	draw_guns(t_map *map);
+void	draw_enemy(t_map *map);
+void	draw_door_light_exit(t_map *map);
 
 
 int		check_scene(t_info *info, t_map *map);

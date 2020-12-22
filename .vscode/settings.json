@@ -33,6 +33,7 @@
         "chrono": "cpp",
         "cmath": "cpp",
         "mutex": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "typeinfo": "c"
     }
 }
