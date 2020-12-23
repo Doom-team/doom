@@ -84,7 +84,7 @@ t_point point, t_distance *dist, int count_distance)
 				pos_y = len * offsety;
 				fractpart_2 = modf(pos_y / tex_2, &intpart_2);
 
-				color = get_pixel1(wolf->walls[dist->number_wall[j]].texture1, wolf->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->walls[dist->number_wall[j]].texture1->w); //где раунд коофицен колличества стен
+				color = get_pixel1(wolf->walls[dist->number_wall[j]].texture1, wolf->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->walls[dist->number_wall[j]].texture1->h); //где раунд коофицен колличества стен
 				set_pixel1(wolf->surface, wolf->walls[dist->number_wall[j]].texture1, point.x, temp_y - wolf->player->dir_y, color);
 				wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
 			}
@@ -94,13 +94,90 @@ t_point point, t_distance *dist, int count_distance)
 	}
 }
 
-void	draw_floor(SDL_Surface *surface, int x, int y)
+void	draw_floor(SDL_Surface *surface, int x, int y, int count_distance, t_wolf *wolf, int number)
 {
 	if (y < 0)
 		y = 0;
+	float	sub_len_y;
+	float	sub_len_x;
+	float	len_y;
+	float	len_x;
+	float	offsety;
+	float	offsetx;
+	float	cof_1;
+	float	cof_2;
+	int		begin_y;
+	int		begin_x;
+	float	tex_1;
+	float	tex_2;
+	float	pos_y;
+	float	pos_x;
+	double	fractpart, intpart;
+	double	fractpart_2, intpart_2;
+	int		color;
+	int		delta_y;
+	int		delta_x;
+	float	delta_cof_y;
+	float	delta_cof_x;
+
+
+	begin_y = y;
+	sub_len_y = (wolf->player->distance[count_distance]->coords[wolf->player->distance[count_distance]->count - 1].y - wolf->player->y);
+	sub_len_x = (wolf->player->distance[count_distance]->coords[wolf->player->distance[count_distance]->count - 1].x - wolf->player->x);
+	cof_1 = sub_len_y / (H - begin_y); // шаг приращение основных координат относительно y
+	cof_2 = sub_len_x / (H - begin_y); // шаг приращение основных координат относительно x
 	while (y < H)
 	{
-		set_pixel(surface, x, y, COLOR_GREY_LIGHT);
+		pos_y = (wolf->player->distance[count_distance]->coords[wolf->player->distance[count_distance]->count - 1].y - (cof_1 * (y - begin_y)));
+		pos_x = (wolf->player->distance[count_distance]->coords[wolf->player->distance[count_distance]->count - 1].x + (cof_2 * (y - begin_y)));
+		fractpart = modf((pos_y / CUBE), &intpart);
+		fractpart_2 = modf((pos_x / CUBE), &intpart_2);
+		color = get_pixel(wolf->sdl->textures, fractpart_2 * wolf->sdl->textures->w , fractpart * wolf->sdl->textures->h);
+		set_pixel(surface, x, y, color);
+		y++;
+	}
+}
+
+static void	floorcast(t_wolf *wolf, t_distance *dist, int x, int y, int count_distance)
+{
+	float curr_dist;
+	float weight;
+	float currFloorX;
+	float currFloorY;
+	int textx;
+	int texty;
+	int color;
+
+	int temp_y;
+
+	temp_y = y - wolf->player->dir_y;
+
+	while (temp_y < H)
+	{
+		curr_dist = (float)H / (float)(2 * y - H);
+		
+		weight = curr_dist / (float)(dist->dist[wolf->player->distance[count_distance]->count - 1]);
+		
+		currFloorX = weight * dist->coords[wolf->player->distance[count_distance]->count - 1].x + (1.0 - weight) * wolf->player->x;
+		currFloorY = weight * dist->coords[wolf->player->distance[count_distance]->count - 1].y + (1.0 - weight) * wolf->player->y;
+		
+		// if (count_distance == H / 2 - 1)
+		// 	printf("%f ------ %f\n", currFloorX, currFloorY);
+		textx = (int)(currFloorX * wolf->sdl->textures->w) % wolf->sdl->textures->w;
+		texty = (int)(currFloorY * wolf->sdl->textures->h) % wolf->sdl->textures->h;
+		// if (count_distance == H / 2 - 1)
+		// 	printf("%d ------ %d\n", textx, texty);
+
+
+		if (textx < 0)
+			textx = 0;
+		if (texty < 0)
+			texty = 0;
+		color = get_pixel(wolf->sdl->textures, textx, texty);
+		set_pixel(wolf->surface, x, temp_y, color);
+		// color = get_pixel(wolf->sdl->textures, textx + CUBE * 5, texty);
+		// set_pixel(wolf->surface, x, H - y, color);
+		temp_y++;
 		y++;
 	}
 }
@@ -129,45 +206,6 @@ void	draw_sky(t_wolf *wolf, int x, int y)
 	}
 }
 
-// static void	floorcast(t_wolf *wolf, t_distance *dist, int x, int y)
-// {
-// 	float curr_dist;
-// 	float weight;
-// 	float currFloorX;
-// 	float currFloorY;
-// 	int textx;
-// 	int texty;
-// 	int color;
-
-// 	int temp_y;
-
-// 	temp_y = y - wolf->player->dir_y;
-// 	while (temp_y < H)
-// 	{
-// 		curr_dist = (float)H / (float)(2 * y - H);
-		
-// 		weight = curr_dist / (dist->dist);
-		
-// 		currFloorX = weight * dist->coords.x + (1.f - weight) * wolf->player->x;
-// 		currFloorY = weight * dist->coords.y + (1.f - weight) * wolf->player->y;
-		
-// 		textx = (int)(currFloorX * CUBE) % CUBE;
-// 		texty = (int)(currFloorY * CUBE) % CUBE;
-		
-// 		if (textx < 0)
-// 			textx = 0;
-// 		if (texty < 0)
-// 			texty = 0;
-		
-// 		color = get_pixel(wolf->sdl->textures, textx, texty);
-// 		set_pixel(wolf->surface, x, temp_y, color);
-// 		// color = get_pixel(wolf->sdl->textures, textx + CUBE * 5, texty);
-// 		// set_pixel(wolf->surface, x, H - y, color);
-// 		temp_y++;
-// 		y++;
-// 	}
-// }
-
 void* threadFunc(void* thread_data){
 	//получаем структуру с данными
 	pthrData 	*data = thread_data;
@@ -185,7 +223,8 @@ void* threadFunc(void* thread_data){
 			data->point.y = ceilf((CUBE * data->wolf->player->dist_to_canvas) / data->wolf->player->distance[data->count_distance]->dist[data->wolf->count_walls - 1]);
 			data->point.y = (H - data->point.y) / 2;
 			draw_sky(data->wolf, data->point.x, data->point.y - data->wolf->player->dir_y);
-			draw_floor(data->wolf->surface, data->point.x, H - (data->point.y + data->wolf->player->dir_y));
+			// draw_floor(data->wolf->surface, data->point.x, H - (data->point.y + data->wolf->player->dir_y), data->count_distance, data->wolf, data->number);
+			floorcast(data->wolf, data->wolf->player->distance[data->count_distance], data->point.x, H - (data->point.y/* + data->wolf->player->dir_y*/), data->count_distance);
 			draw_column(data->wolf, data->point, data->wolf->player->distance[data->count_distance], data->count_distance);
 		}
 		data->count_distance -= 2;
@@ -193,7 +232,6 @@ void* threadFunc(void* thread_data){
 	}
 	return NULL;
 }
-
 
 void	pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
 {

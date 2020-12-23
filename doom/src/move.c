@@ -70,14 +70,21 @@ void	calc_move(t_wolf *wolf, float dy, float dx)
 	// if (is_texture(map, p->x + dx + player_box, p->y, TEX_FLOOR)
 	// || is_texture(map, p->x + dx + player_box, p->y, TEX_COIN))
 	// {
-	if ((dx > 0 && wolf->player->rght_d > 20.) || (dx < 0 && wolf->player->left_d > 20.))
+	if ((dx > 0/* && wolf->player->rght_d > 20.*/) || (dx < 0/* && wolf->player->left_d > 20.*/))
+	{
 		wolf->player->x += dx;
+		// wolf->player->x_new += dx / CUBE;
+	}
 	// }
 	// player_box = dy > 0 ? p->size : -p->size;
 	// if (is_texture(map, p->x, p->y + dy + player_box, TEX_FLOOR) ||
 	// is_texture(map, p->x, p->y + dy + player_box, TEX_COIN))
 	// {
-	if ((dy > 0 && wolf->player->up_d > 20.) || (dy < 0 && wolf->player->down_d > 20.))
+	if ((dy > 0/* && wolf->player->up_d > 20.*/) || (dy < 0/* && wolf->player->down_d > 20.*/))
+	{
 		wolf->player->y += dy;
+		// wolf->player->y_new += dy / CUBE;
+	}
 	// }
+	// printf("%f --- %f\n", wolf->player->x, wolf->player->y);
 }

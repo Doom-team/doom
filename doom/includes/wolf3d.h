@@ -244,11 +244,11 @@ typedef struct	s_parser
 
 typedef struct
 {
-	int		number;
-	t_wolf	*wolf;
-	t_point	point;
-	int		interlaced_rendering;
-	int		count_distance;
+	int			number;
+	t_wolf		*wolf;
+	t_point		point;
+	int			interlaced_rendering;
+	int			count_distance;
 } pthrData;
 
 void			parser(t_parser *parser, t_wolf *wolf);
@@ -397,7 +397,6 @@ SDL_Rect		set_rect_sdl(int x, int y, int w, int h);
 */
 void			pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface);
 void			draw_sky(t_wolf *wolf, int x, int y);
-void			draw_floor(SDL_Surface *surface, int x, int y);
 void			draw_column(t_wolf *wolf, t_point point,
 t_distance *dist, int count_distance);
 
