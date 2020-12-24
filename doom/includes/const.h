@@ -52,7 +52,7 @@
 // # define H_MAX 1080
 # define CUBE 64
 
-# define PLAYER_MM_SIZE 5
+# define PLAYER_MM_SIZE 4
 # define KLUDGE 0.0001
 # define RAD_360 6.28319f
 # define RAD_1 0.0174533f
