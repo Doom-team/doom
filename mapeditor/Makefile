@@ -16,7 +16,7 @@ LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
-FLAGS = 
+FLAGS = -Ofast -mprefer-vector-width=512
 #-Wall -Wextra -Werror
 
 SDL_INCS =	-F./frameworks \

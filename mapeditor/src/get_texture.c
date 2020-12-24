@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:08 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 16:30:56 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/24 14:11:07 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,4 +136,5 @@ void	get_door_textures(t_map *map)
 	map->door_tex[7]->img = IMG_Load("/textures/doors/redkey.png");
 	map->door_tex[8]->img = IMG_Load("/textures/doors/light.png");
 	map->door_tex[9]->img = IMG_Load("/textures/doors/exit.png");
+	map->door_tex[10]->img = IMG_Load("/textures/doors/defdoor.png");
 }

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 19:42:31 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/24 18:01:41 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define SANBYBROWNFONT (SDL_Color){244, 164, 96}
 
 
-# define WIDTH 1224
-# define HEIGHT 820
+# define WIDTH 1424
+# define HEIGHT 1020
 # define SCALE 30
 
 typedef struct		s_color
@@ -101,6 +101,20 @@ typedef struct	s_removeinfo
 	int *y;
 }				t_removeinfo;
 
+typedef struct	s_object
+{
+	char	*player;
+	char	*items[5];
+	char	**guns[3];
+	char	**enem[5];
+	char	*light;
+	char	**sdoors;
+	char	**bdoors;
+	char	**ydoors;
+	char	**rdoors;
+	char	*exit;
+}				t_object;
+
 
 typedef struct	s_map
 {
@@ -113,13 +127,13 @@ typedef struct	s_map
 	t_image				*enemy_tex[5];
 	t_image				*player_tex[3];
 	t_image				*gun_tex[6];
-	t_image				*door_tex[10];
+	t_image				*door_tex[11];
 	t_image				*curosr_img;// структура изобр курсора
 	t_image				*font; // шрифт
 	SDL_Cursor			*cursor;// крусор
 	t_nod				*nod; // все узлы на карте
 	t_removeinfo		*remove; // tmp труктура для функции удаления готовых блоков
-
+	t_object			*obj;
 	int					wclick; // коэф + - виджета размера
 	int					whclick; // коэф + - виджета высоты
 	int					z_x; // половина окна по x
@@ -283,6 +297,8 @@ void	draw_player(t_map *map);
 void	draw_guns(t_map *map);
 void	draw_enemy(t_map *map);
 void	draw_door_light_exit(t_map *map);
+
+int xyround(t_map *map, int x, int y);
 
 
 int		check_scene(t_info *info, t_map *map);

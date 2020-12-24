@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 16:29:54 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/24 13:59:46 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int 
 	*s = (unsigned char*)(tex->pixels);
 	*pixb = (tex->format->BytesPerPixel);
 	*strb = (tex->pitch);
+}
+
+void	init_objects(t_map *map)
+{
+	
 }
 
 int		init_all(t_map *map)
