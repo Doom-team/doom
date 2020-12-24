@@ -66,6 +66,8 @@ void			all_get_distance(t_wolf *wolf)
 		if (temp_i < RAD_0)
 			temp_i += RAD_360;
 		temp_i = RAD_360 - temp_i;
+		// if (count_distance > W / 2)
+		// 	printf("%f --- %f\n", wolf->player->distance[W / 2]->coords->x, wolf->player->distance[W / 2]->coords->y);
 		wolf->player->distance[count_distance] = dist_to_wall(wolf, temp_i,	count_distance);
 		int j = 0;
 		while (j < wolf->player->distance[count_distance]->count)

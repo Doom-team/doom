@@ -52,6 +52,7 @@ COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
 FLAGS = -Ofast -mprefer-vector-width=512
 # FLAGS = -fmudflap -g
+# FLAGS =
 #-Wall -Wextra -Werror
 
 SDL_INCS =	-F./frameworks \
@@ -94,4 +95,8 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: lib clean fclean all re
+go:
+	$(MAKE) -j
+	./wolf3d maps/map.txt
+
+.PHONY: lib clean fclean all re go

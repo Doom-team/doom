@@ -45,8 +45,8 @@
 # define TEX_ISLE '5'
 
 
-# define W 1920
-# define H 1080
+# define W 1024
+# define H 720
 # define THREAD 4
 // # define W_MAX 1920
 // # define H_MAX 1080
