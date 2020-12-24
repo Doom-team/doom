@@ -36,6 +36,8 @@ typedef struct	s_wall
 	float		length;
 	int 		vert;
 	int			h;
+	int			type_flag;
+	int			squad_stage;
 	SDL_Surface	*texture1;
 }				t_wall;
 
@@ -69,6 +71,8 @@ typedef struct	s_distance
 	int			number_wall[1000]; //номер стены для того чтобы узнать ее длину при отрисовке текстур для колличества репликаций текстуры на стене
 	float		offsetx[1000];
 	t_float2	coords[1000];
+	// int			type_flag[1000]; // 0 стена, 1 ступенька, 2 двер?
+	// int			squad_stage[1000]; // номер блока ступеньки состоит из 3 и более стен
 	// int			y[100]; // что это ?
 	int			count;
 	// char		tex;
@@ -209,6 +213,15 @@ typedef struct		s_menu
 	t_button		settings;
 	t_button		exit;
 }					t_menu;
+
+typedef struct		s_floor_up
+{
+	int				y1[1000];
+	int				y2[1000];
+	float			dist[1000];
+	int				count; // храним номер 
+}					t_floot_up;
+
 
 typedef struct	s_wolf
 {
@@ -396,6 +409,7 @@ SDL_Rect		set_rect_sdl(int x, int y, int w, int h);
 ** pseudo_3d.c
 */
 void			pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface);
+void	floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j);
 void			draw_sky(t_wolf *wolf, int x, int y);
 void			draw_column(t_wolf *wolf, t_point point,
 t_distance *dist, int count_distance);

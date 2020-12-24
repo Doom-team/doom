@@ -88,7 +88,7 @@ void	init_sdl(t_wolf *wolf)
 		error(wolf, SDL_GetError());
 	if (!(wolf->sdl->sky = IMG_Load(SKY_PATH_2)))
 		error(wolf, SDL_GetError());
-	if (!(wolf->sdl->textures = IMG_Load("textures/zoloto_64.jpg")))
+	if (!(wolf->sdl->textures = IMG_Load("textures/zeml.jpg")))
 		error(wolf, SDL_GetError());
 	SDL_SetWindowIcon(wolf->sdl->win, wolf->sdl->icon);
 	wolf->sdl->sides_mode = 1;

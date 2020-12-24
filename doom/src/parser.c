@@ -82,8 +82,16 @@ static void parsing(t_parser *parser, char *l)
 			parser->walls[parser->buff.w].texture1 = NULL;
 			// parser->walls[parser->buff.w].texture2 = NULL;
 		}
-		if (arr[6] != 0)
+		if (arr[6])
 			parser->walls[parser->buff.w].h = ft_atoi(arr[6]);
+		if (arr[7])
+		{
+			parser->walls[parser->buff.w].type_flag = ft_atoi(arr[7]);
+		}
+		if (arr[8])
+		{
+			parser->walls[parser->buff.w].squad_stage = ft_atoi(arr[8]);
+		}
 		parser->walls[parser->buff.w].vert = !(parser->walls[parser->buff.w].x2 - parser->walls[parser->buff.w].x1);
 		parser->walls[parser->buff.w].length = sqrt(pow(parser->walls[parser->buff.w].x2 - parser->walls[parser->buff.w].x1, 2) + pow(parser->walls[parser->buff.w].y2 - parser->walls[parser->buff.w].y1, 2));
 	}
