@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 19:41:37 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 19:41:42 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/24 14:11:49 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void draw_enemy(t_map *map)
 void draw_door_light_exit(t_map *map)
 {
 	fonts_classic(map, "door", &(t_info){120, 480, 0, 0}, REDFONT);
-	if (map->door_tex[0]->active == 1)
+	if (map->door_tex[10]->active == 1)
 		draw_img(map, &(t_info){100, 490, 70, 60}, map->inter_tex[15]);
 	draw_img(map, &(t_info){115, 500, 40, 40}, map->door_tex[0]);
 	fonts_classic(map, "light", &(t_info){120, 580, 0, 0}, REDFONT);

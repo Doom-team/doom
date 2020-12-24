@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 19:10:49 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/24 16:50:35 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,7 +346,7 @@ void zerroothero(t_map *map)
 	while (++i < 5)
 		map->enemy_tex[i]->active = 0;
 	i = -1;
-	while (++i < 10)
+	while (++i < 11)
 		map->door_tex[i]->active = 0;
 }
 
@@ -397,12 +397,39 @@ void	objects_click(t_map *map, int x, int y)
 	if ((x > 160 && x < 200) && (y > 430 && y < 470))
 		edit_object(map, map->enemy_tex, 5, 4);
 	if ((x > 115 && x < 155) && (y > 500 && y < 540))
-		edit_object(map, map->door_tex, 10, 0);
+		edit_object(map, map->door_tex, 11, 10);
 	if ((x > 115 && x < 155) && (y > 600 && y < 640))
-		edit_object(map, map->door_tex, 10, 8);
+		edit_object(map, map->door_tex, 11, 8);
 	if ((x > 130 && x < 150) && (y > 700 && y < 740))
-		edit_object(map, map->door_tex, 10, 9);
+		edit_object(map, map->door_tex, 11, 9);
 }
+
+void	get_door(t_map *map, int x, int y)
+{
+	if ((x > WIDTH/2 - 140 && x < WIDTH/2 - 100) && (y > 10 && y < 50))
+	{
+		map->door_tex[0]->active = 1;
+		map->door_tex[1]->active = 0;
+		map->door_tex[2]->active = 0;
+		map->door_tex[3]->active = 0;
+		// edit_object(map, map->door_tex, 1, 0);
+	}
+	if ((x > WIDTH/2 - 60 && x < WIDTH/2 - 20) && (y > 10 && y < 50))
+	{
+		map->door_tex[0]->active = 0;
+		map->door_tex[1]->active = 1;
+		map->door_tex[2]->active = 0;
+		map->door_tex[3]->active = 0;
+	}
+	if ((x > WIDTH/2 + 20 && x < WIDTH/2 + 60) && (y > 10 && y < 50))
+	{
+		map->door_tex[0]->active = 0;
+		map->door_tex[1]->active = 0;
+		map->door_tex[2]->active = 1;
+		map->door_tex[3]->active = 0;
+	}
+}
+
 
 int catch_click(t_map *map, int x, int y)
 {
@@ -423,6 +450,9 @@ int catch_click(t_map *map, int x, int y)
 	if (map->inter_tex[5]->active == 1 && !map->inter_tex[4]->active && !map->inter_tex[3]->active)
 	{
 		objects_click(map, x, y);
+		if (map->door_tex[10]->active == 1 && map->inter_tex[16]->active == 1)
+			get_door(map, x, y);
+
 	}
 	if (map->inter_tex[16]->active == 1)
 		change_texture_click(map, x, y); // клики по текстурам если блок текстуры активны

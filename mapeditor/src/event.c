@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 19:40:38 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/24 20:12:54 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 		//draw_floor_line(map, &(t_info){map->floor_x, map->floor_y, x - map->z_x, y - map->z_y});
 		
 	}
+	// if (some_texture_active(map) == 4) ////////////////////////////////////
+	// {
+	// 	drawillwall(map, x, y);
+	// }
 	if (map->inter_tex[6]->active && interface_click(map, x, y))
 	{
 		if (x1 != x || y1 != y)

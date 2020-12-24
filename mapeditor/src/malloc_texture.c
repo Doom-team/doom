@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:21 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 16:28:59 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/24 14:10:43 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,11 +158,11 @@ void	malloc_door_texture(t_map *map)
 	int i;
 
 	i = -1;
-	while (++i < 10)
+	while (++i < 11)
 		map->door_tex[i] = (t_image *)malloc(sizeof(t_image));
 	get_door_textures(map);
 	i = -1;
-	while (++i < 10)
+	while (++i < 11)
 	{
 		map->door_tex[i]->img = SDL_ConvertSurfaceFormat(map->door_tex[i]->img, SDL_PIXELFORMAT_BGRA32, 0);
 		init_texture(map->door_tex[i]->img, &(map->door_tex[i]->s), &(map->door_tex[i]->pixb), &(map->door_tex[i]->strb));
