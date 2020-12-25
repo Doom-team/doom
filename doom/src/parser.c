@@ -17,6 +17,7 @@ static void init_size(t_parser *parser, char *l)
 {
 	char	**arr;
 	int		i;
+	int		j;
 
 	i = 0;
 	arr = ft_strsplit(l, ' ');
@@ -36,6 +37,7 @@ static void init_size(t_parser *parser, char *l)
 		}
 		i += 2;
 	}
+	free(arr);
 }
 
 static void slice(char s[100], char *a,  int from, int to)
@@ -54,6 +56,8 @@ static void parsing(t_parser *parser, char *l)
 {
 	char	**arr;
 	char	sub_arr[100];
+	int		i;
+	int		j;
 	// char	sub_arr_2[100];
 
 	arr = ft_strsplit(l, ' ');
@@ -95,6 +99,7 @@ static void parsing(t_parser *parser, char *l)
 		parser->walls[parser->buff.w].vert = !(parser->walls[parser->buff.w].x2 - parser->walls[parser->buff.w].x1);
 		parser->walls[parser->buff.w].length = sqrt(pow(parser->walls[parser->buff.w].x2 - parser->walls[parser->buff.w].x1, 2) + pow(parser->walls[parser->buff.w].y2 - parser->walls[parser->buff.w].y1, 2));
 	}
+	free(arr);
 }
 
 void parser(t_parser *parser, t_wolf *wolf)
@@ -117,6 +122,7 @@ void parser(t_parser *parser, t_wolf *wolf)
 	// 	printf("%d %d %d %d %s %s\n", parser->walls[i].x1, parser->walls[i].x2, parser->walls[i].y1, parser->walls[i].y2,
 	// 			parser->walls[i].texture1, parser->walls[i].texture2);
 	close(fd);
+	free(line);
 	wolf->walls = parser->walls;
 	wolf->count_walls = parser->count_walls;
 }

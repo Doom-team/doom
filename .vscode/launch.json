@@ -8,10 +8,10 @@
             "name": "(lldb) Запустить",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/Users/live/Desktop/doom_floor/doom/doom/wolf3d",
+            "program": "/Users/skaren/Desktop/doom/doom/doom/wolf3d",
             "args": ["maps/map.txt"],
             "stopAtEntry": false,
-            "cwd": "/Users/live/Desktop/doom_floor/doom/doom",
+            "cwd": "/Users/skaren/Desktop/doom/doom/doom",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb"

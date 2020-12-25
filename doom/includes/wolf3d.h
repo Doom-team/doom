@@ -67,7 +67,7 @@ typedef struct	s_float2
 
 typedef struct	s_distance
 {
-	long double		dist[1000];
+	float		dist[1000];
 	int			number_wall[1000]; //номер стены для того чтобы узнать ее длину при отрисовке текстур для колличества репликаций текстуры на стене
 	float		offsetx[1000];
 	t_float2	coords[1000];
@@ -235,6 +235,7 @@ typedef struct	s_wolf
 	t_wall 		*walls;
 	int			count_walls;
 	bool		z_buff[W * H];
+	bool		z_buff_2[W * H];
 }				t_wolf;
 
 /*
@@ -409,7 +410,7 @@ SDL_Rect		set_rect_sdl(int x, int y, int w, int h);
 ** pseudo_3d.c
 */
 void			pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface);
-void	floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j);
+void			floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j);
 void			draw_sky(t_wolf *wolf, int x, int y);
 void			draw_column(t_wolf *wolf, t_point point,
 t_distance *dist, int count_distance);

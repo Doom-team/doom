@@ -25,7 +25,7 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 	p->size = 10;
 	p->x = CUBE * 10;
 	p->y = CUBE * 9;
-	p->speed = 15.0f;
+	p->speed = 8.0f;
 	p->fov = RAD_60;
 	p->dir = RAD_270;
 	p->dir_y = 0;
@@ -88,7 +88,7 @@ void	init_sdl(t_wolf *wolf)
 		error(wolf, SDL_GetError());
 	if (!(wolf->sdl->sky = IMG_Load(SKY_PATH_2)))
 		error(wolf, SDL_GetError());
-	if (!(wolf->sdl->textures = IMG_Load("textures/zeml.jpg")))
+	if (!(wolf->sdl->textures = IMG_Load("textures/plitka.jpg")))
 		error(wolf, SDL_GetError());
 	SDL_SetWindowIcon(wolf->sdl->win, wolf->sdl->icon);
 	wolf->sdl->sides_mode = 1;
