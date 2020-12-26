@@ -44,7 +44,7 @@ void		set_pixel1(SDL_Surface *surface, SDL_Surface *surface1, int x, int y, int 
 	s[++pix] = s1[++pixel];
 }
 
-int		get_pixel1(SDL_Surface *surface, int x, int y)
+int			get_pixel1(SDL_Surface *surface, int x, int y)
 {
 	int	pixel;
 
