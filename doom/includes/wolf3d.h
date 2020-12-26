@@ -88,6 +88,7 @@ typedef struct	s_player
 	float		fov;
 	float		dir;
 	int			dir_y;
+	int			fly;
 	float		dist_to_canvas;
 	float		step;
 	int			floor_offset;
@@ -219,6 +220,7 @@ typedef struct		s_floor_up
 	int				y1[1000];
 	int				y2[1000];
 	float			dist[1000];
+	int				h[1000];
 	int				count; // храним номер 
 }					t_floot_up;
 

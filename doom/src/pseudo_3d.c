@@ -44,12 +44,15 @@ t_point point, t_distance *dist, int count_distance)
 			if (stage.y2[wolf->walls[dist->number_wall[j]].squad_stage - 1] < temp_y)
 			{
 				stage.y2[wolf->walls[dist->number_wall[j]].squad_stage - 1] = temp_y;
-				stage.y1[wolf->walls[dist->number_wall[j]].squad_stage - 1] = -1;
+				stage.y1[wolf->walls[dist->number_wall[j]].squad_stage - 1] = -1; // и тут по вертикальным полосам
 			}
 			else if (stage.y1[wolf->walls[dist->number_wall[j]].squad_stage - 1] < temp_y)
 				stage.y1[wolf->walls[dist->number_wall[j]].squad_stage - 1] = temp_y;
 			if (stage.y2[wolf->walls[dist->number_wall[j]].squad_stage - 1] != 0/* && stage.y2[wolf->walls[dist->number_wall[j]].squad_stage - 1] != 0*/)
+			{
+				stage.h[wolf->walls[dist->number_wall[j]].squad_stage - 1] = wolf->walls[dist->number_wall[j]].h;
 				stage.count++;
+			}
 		}
 		if (dist->number_wall[j] < 0 && dist->number_wall[j] > wolf->count_walls - 1)
 			return ;
@@ -159,13 +162,15 @@ void	floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_f
 	int		y;
 	int		tmp;
 	float	cof = 0.8654409 * pow((W * 1.0f / H), 1.0118661);
+	float	cof_h = -0.4 * stage.h[j] + 1;
 
+	// printf("%d\n", wolf->walls[dist->number_wall[j]].h);
 	// printf("%d ----%d\n", stage.y1[j], stage.y2[j]);
 	if ((stage.y1[j] == 0 && stage.y2[j] == 0)/* || (dist->dist[0] < stage.dist[j])*/)
 		return ;
 	if (stage.y1[j] == 0 && stage.y2[j] != 0)
 	{
-		// stage.y1[j] = stage.y2[j];
+		// stage.y1[j] = stage.y2[j]; // если будут лаги с вертикальынми полосами то тут
 		tmp = stage.y2[j];
 		stage.y2[j] = H;
 		stage.y1[j] = tmp;
@@ -189,21 +194,21 @@ void	floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_f
 	// temp_y_2 = y + wolf->player->dir_y;
 	while (temp_y < stage.y2[j])
 	{
-		curr_dist = H / (2.0 * y * 1.05 - H); // 1.05 для искажения угла и придания большей реалистичности
+		curr_dist = H / (2.0 * y - H); // 1.05 для искажения угла и придания большей реалистичности
 		// printf("%f\n", curr_dist);
-		weight = curr_dist / (dist->dist[wolf->player->distance[count_distance]->count - 1] / (CUBE * cof));
+		weight = curr_dist / (dist->dist[wolf->player->distance[count_distance]->count - 1] / (CUBE * cof * cof_h));
 		
-		currFloorX = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (CUBE * cof)) + (1.0 - weight) * (wolf->player->x / (CUBE * cof));
-		currFloorY = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (CUBE * cof)) + (1.0 - weight) * (wolf->player->y / (CUBE * cof));
+		currFloorX = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (CUBE * cof * cof_h)) + (1.0 - weight) * (wolf->player->x / (CUBE * cof * cof_h));
+		currFloorY = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (CUBE * cof * cof_h)) + (1.0 - weight) * (wolf->player->y / (CUBE * cof * cof_h));
 		
-		textx = (int)(currFloorX * wolf->sdl->textures->w * cof) % wolf->sdl->textures->w;
-		texty = (int)(currFloorY * wolf->sdl->textures->h * cof) % wolf->sdl->textures->h;
+		textx = (int)(currFloorX * wolf->sdl->textures->w * cof * cof_h) % wolf->sdl->textures->w;
+		texty = (int)(currFloorY * wolf->sdl->textures->h * cof * cof_h) % wolf->sdl->textures->h;
 
 		if (textx < 0)
 			textx = 0;
 		if (texty < 0)
 			texty = 0;
-		color = get_pixel(wolf->sdl->textures, 0, 0);
+		color = get_pixel(wolf->sdl->textures, textx, texty);
 		if (temp_y >= 0 && temp_y <= H)
 		{
 			wolf->z_buff_2[x + (temp_y) * W] = true;
@@ -349,7 +354,6 @@ void	pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
 {
 	t_point	point;
 
-	point.y = 0;
 	if (wolf->sdl->interlaced_rendering == 0)
 		point.x = 0;
 	else
