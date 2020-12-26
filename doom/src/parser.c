@@ -13,7 +13,7 @@
 #include "../includes/wolf3d.h"
 #include "../../doom/libft/includes/get_next_line.h"
 
-static void init_size(t_parser *parser, char *l)
+static void		init_size(t_parser *parser, char *l)
 {
 	char	**arr;
 	int		i;
@@ -40,9 +40,9 @@ static void init_size(t_parser *parser, char *l)
 	free(arr);
 }
 
-static void slice(char s[100], char *a,  int from, int to)
+static void		slice(char s[100], char *a, int from, int to)
 {
-    int i;
+	int i;
 	int j;
 
 	i = 0;
@@ -52,7 +52,7 @@ static void slice(char s[100], char *a,  int from, int to)
 	s[i] = '\0';
 }
 
-static void parsing(t_parser *parser, char *l)
+static void		parsing(t_parser *parser, char *l)
 {
 	char	**arr;
 	char	sub_arr[100];
@@ -102,20 +102,21 @@ static void parsing(t_parser *parser, char *l)
 	free(arr);
 }
 
-void parser(t_parser *parser, t_wolf *wolf)
+void			parser(t_wolf *wolf)
 {
-	char	*line;
-	int		ch;
-	int		fd;
+	char		*line;
+	int			ch;
+	int			fd;
+	t_parser	parser;
 
 	ch = 0;
 	fd = open("map.txt", O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (ch++ == 0)
-			init_size(parser, line);
+			init_size(&parser, line);
 		else
-			parsing(parser, line);
+			parsing(&parser, line);
 	}
 	//Проверка
 	// for (int i = 0; i < parser->count_walls; i++)
@@ -123,6 +124,6 @@ void parser(t_parser *parser, t_wolf *wolf)
 	// 			parser->walls[i].texture1, parser->walls[i].texture2);
 	close(fd);
 	free(line);
-	wolf->walls = parser->walls;
-	wolf->count_walls = parser->count_walls;
+	wolf->walls = parser.walls;
+	wolf->count_walls = parser.count_walls;
 }

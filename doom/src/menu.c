@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   menu.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahusk <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/26 20:31:26 by ahusk             #+#    #+#             */
+/*   Updated: 2020/12/26 20:31:27 by ahusk            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/wolf3d.h"
 
-void quit(t_sdl *sdl)
+void			quit(t_sdl *sdl)
 {
 	SDL_DestroyRenderer(sdl->render);
 	sdl->render = NULL;
@@ -13,7 +25,7 @@ void quit(t_sdl *sdl)
 	exit(EXIT_SUCCESS);
 }
 
-void check_pos_button(t_sdl *sdl, t_button *button, int k)
+void			check_pos_button(t_sdl *sdl, t_button *button, int k)
 {
 	if (sdl->e.motion.x > button->pos.x1 && sdl->e.motion.x < button->pos.x2 &&
 		sdl->e.motion.y > button->pos.y1 && sdl->e.motion.y < button->pos.y2)
@@ -23,7 +35,8 @@ void check_pos_button(t_sdl *sdl, t_button *button, int k)
 		create_pos_button(button, k);
 		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 4)
 			sdl->button_flag = 4;
-		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 5 && sdl->button_flag != 5)
+		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 5
+				&& sdl->button_flag != 5)
 			sdl->button_flag = 5;
 		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 6)
 			sdl->button_flag = 6;
@@ -38,7 +51,7 @@ void check_pos_button(t_sdl *sdl, t_button *button, int k)
 	}
 }
 
-void hooks(t_sdl *sdl, t_menu *menu)
+void			hooks(t_sdl *sdl, t_menu *menu)
 {
 	while (SDL_PollEvent(&sdl->e) != 0)
 	{
@@ -49,7 +62,8 @@ void hooks(t_sdl *sdl, t_menu *menu)
 			if (sdl->e.key.keysym.sym == SDLK_ESCAPE)
 				sdl->run_menu = false;
 		}
-		if (sdl->e.type == SDL_MOUSEMOTION || sdl->e.type == SDL_MOUSEBUTTONDOWN)
+		if (sdl->e.type == SDL_MOUSEMOTION ||
+			sdl->e.type == SDL_MOUSEBUTTONDOWN)
 		{
 			check_pos_button(sdl, &menu->start, 4);
 			check_pos_button(sdl, &menu->map, 5);
@@ -62,31 +76,34 @@ static void		reinit_sdl(t_wolf *wolf)
 {
 	SDL_DestroyWindow(wolf->sdl->win);
 	wolf->sdl->win = NULL;
-	wolf->sdl->win = SDL_CreateWindow("Doom", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, W, H, SDL_WINDOW_SHOWN);
+	wolf->sdl->win = SDL_CreateWindow("Doom", SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED, W, H, SDL_WINDOW_SHOWN);
 	wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 }
 
-void    menu_loop(t_wolf *wolf)
+void			menu_loop(t_wolf *wolf)
 {
-    while (wolf->sdl->run_menu)
-    {
-        hooks(wolf->sdl, wolf->menu);
-		SDL_LockTexture(wolf->sdl->window_texture, NULL, (void**) &wolf->sdl->bytes, &wolf->sdl->pitch);
+	while (wolf->sdl->run_menu)
+	{
+		hooks(wolf->sdl, wolf->menu);
+		SDL_LockTexture(wolf->sdl->window_texture, NULL,
+			(void**)&wolf->sdl->bytes, &wolf->sdl->pitch);
 		print_menu(wolf);
 		SDL_UnlockTexture(wolf->sdl->window_texture);
-		SDL_RenderCopy(wolf->sdl->render, wolf->sdl->window_texture, NULL, NULL);
+		SDL_RenderCopy(wolf->sdl->render,
+			wolf->sdl->window_texture, NULL, NULL);
 		SDL_RenderPresent(wolf->sdl->render);
-    }
-	if (wolf->sdl->button_flag == 4) //start
+	}
+	if (wolf->sdl->button_flag == 4)//start
 	{
 		reinit_sdl(wolf);
 		wolf_loop(wolf);
 	}
-	if (wolf->sdl->button_flag == 5) //map
+	if (wolf->sdl->button_flag == 5)//map
 	{
 		wolf->sdl->button_flag = 0;
-		system("./a.out"); // ТУТ НЕ ТРОГАТЬ БУДЕТ ЗАПУСК МАП ЕДИТОРА ОТТУДА ВЫЗОВ ВУЛЬФА ОБРАТНО!!!!
+		system("./a.out");// ТУТ НЕ ТРОГАТЬ БУДЕТ ЗАПУСК МАП ЕДИТОРА ОТТУДА ВЫЗОВ ВУЛЬФА ОБРАТНО!!!!
 	}
 	quit(wolf->sdl);
 }

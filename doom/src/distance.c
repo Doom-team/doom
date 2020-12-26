@@ -34,7 +34,9 @@ void			free_dist_arr(t_wolf *wolf)
 
 void			t_distance_clear(t_distance *dist)
 {
-	int i = 0;
+	int			i;
+
+	i = 0;
 	while (i < 1000)
 	{
 		dist->dist[i] = MAXFLOAT;
@@ -53,6 +55,7 @@ void			all_get_distance(t_wolf *wolf)
 	int			count_distance;
 	float		cos_agle;
 	float		temp_i;
+	int			j;
 
 	i = wolf->player->dir;
 	i = wolf->player->dir - (wolf->player->fov / 2);
@@ -68,8 +71,8 @@ void			all_get_distance(t_wolf *wolf)
 		temp_i = RAD_360 - temp_i;
 		// if (count_distance > W / 2)
 		// 	printf("%f --- %f\n", wolf->player->distance[W / 2]->coords->x, wolf->player->distance[W / 2]->coords->y);
-		wolf->player->distance[count_distance] = dist_to_wall(wolf, temp_i,	count_distance);
-		int j = 0;
+		wolf->player->distance[count_distance] = dist_to_wall(wolf, temp_i, count_distance);
+		j = 0;
 		while (j < wolf->player->distance[count_distance]->count)
 			wolf->player->distance[count_distance]->dist[j++] *= cosf(cos_agle); //потом в цикле домножу
 		// if (count_distance == W / 2)
@@ -80,20 +83,22 @@ void			all_get_distance(t_wolf *wolf)
 	}
 }
 
-float vector_len(int x1, int y1, int x2, int y2)
+float			vector_len(int x1, int y1, int x2, int y2)
 {
-	return (sqrt((float)((x2-x1)* (x2-x1) + (y2-y1) * (y2-y1))));
+	return (sqrt((float)((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))));
 }
 
-int crossing(t_wall player, float angle, t_wall wall)
+int				crossing(t_wall player, float angle, t_wall wall)
 {
-	float k = tanf(angle);
-	float b = player.y1 - k * player.x1;
-	if (!((wall.y1 - k*wall.x1 - b) * (wall.y2 - k*wall.x2 - b) < 0))
+	float k;
+	float b;
+
+	k = tanf(angle);
+	b = player.y1 - k * player.x1;
+	if (!((wall.y1 - k * wall.x1 - b) * (wall.y2 - k * wall.x2 - b) < 0))
 		return (0);
 	// k = -(1/k);
 	// b = player.y1 - k * player.x1;
-
 	if (angle < RAD_180)
 	{
 		if (wall.y1 < player.y1 && wall.y2 < player.y1)
@@ -130,7 +135,6 @@ int crossing(t_wall player, float angle, t_wall wall)
 	{
 		if ((wall.y1 - b) / k > wall.x1 && (wall.y2 - b) / k > wall.x2)
 			return (0);
-		
 	}
 	else
 	{
@@ -140,13 +144,16 @@ int crossing(t_wall player, float angle, t_wall wall)
 	return (1);
 }
 
-float		calc_x(t_wall player, float angle, t_wall wall, float *py)
+float			calc_x(t_wall player, float angle, t_wall wall, float *py)
 {
-	float k1 = tanf(angle);
-	float b1 = player.y1 - k1 * player.x1;
+	float k1;
+	float b1;
 	float x;
 	float k2;
 	float b2;
+
+	k1 = tanf(angle);
+	b1 = player.y1 - k1 * player.x1;
 	if (wall.vert)
 	{
 		x = wall.x1;
@@ -163,11 +170,13 @@ float		calc_x(t_wall player, float angle, t_wall wall, float *py)
 
 float			calc_dist(t_wall player, float angle, t_wall wall, t_distance *v, int j)
 {
+	float px;
+	float py;
+
 	if (!crossing(player, angle, wall))
 		return (-1.);
 	// printf("%f\n", angle / RAD_1);
-	float px;
-	float py = 0;
+	py = 0;
 	px = calc_x(player, angle, wall, &py);
 	if (angle < RAD_90 || angle > RAD_270)
 	{
@@ -186,11 +195,13 @@ float			calc_dist(t_wall player, float angle, t_wall wall, t_distance *v, int j)
 
 float			calc_dist_without_v(t_wall player, float angle, t_wall wall)
 {
+	float px;
+	float py;
+
 	if (!crossing(player, angle, wall))
 		return (-1.);
 	// printf("%f\n", angle / RAD_1);
-	float px;
-	float py = 0;
+	py = 0;
 	px = calc_x(player, angle, wall, &py);
 	if (angle < RAD_90 || angle > RAD_270)
 	{
@@ -205,14 +216,18 @@ float			calc_dist_without_v(t_wall player, float angle, t_wall wall)
 	return (vector_len(player.x1, player.y1, px, py));
 }
 
-void calculate_distance(t_wolf *wolf, float angle, float *d)
+void			calculate_distance(t_wolf *wolf, float angle, float *d)
 {
-	t_wall player;
+	t_wall	player;
+	float	dist;
+	float	tmp;
+	int		i;
+
 	player.x1 = round(wolf->player->x);
 	player.y1 = round(wolf->player->y);
-	float dist = MAXFLOAT;
-	float tmp = -1;
-	int i = 0;
+	dist = MAXFLOAT;
+	tmp = -1;
+	i = 0;
 	while (i < wolf->count_walls)
 	{
 		tmp = calc_dist_without_v(player, angle, wolf->walls[i]);
@@ -223,7 +238,7 @@ void calculate_distance(t_wolf *wolf, float angle, float *d)
 	*d = dist;
 }
 
-void recalc(t_wolf *wolf)
+void			recalc(t_wolf *wolf)
 {
 	calculate_distance(wolf, RAD_1, &(wolf->player->rght_d));
 	calculate_distance(wolf, RAD_90, &(wolf->player->up_d));
@@ -232,38 +247,37 @@ void recalc(t_wolf *wolf)
 	// printf("%f %f %f %f\n", wolf->player->up_d, wolf->player->down_d, wolf->player->left_d, wolf->player->rght_d);
 }
 
-static void	buble_sort(t_distance *v)
+static void		buble_sort(t_distance *v)
 {
-	int i;
-	int j;
+	int			i;
+	int			j;
+	float		f_temp;
+	int			number_temp;
+	float		of_temp;
+	t_float2	cor_temp;
 
-	i = 0;
-	while (i < v->count - 1)
+	i = -1;
+	while (++i < v->count - 1)
 	{
-		j = v->count - 1;
-		while (j > i)
+		j = v->count;
+		while (--j > i)
 		{
 			if (v->dist[j - 1] > v->dist[j])
 			{
-				float		f_temp = v->dist[j - 1];
-				int			number_temp = v->number_wall[j - 1];
-				float		of_temp = v->offsetx[j - 1];
-				t_float2	cor_temp = v->coords[j - 1];
-
+				f_temp = v->dist[j - 1];
+				number_temp = v->number_wall[j - 1];
+				of_temp = v->offsetx[j - 1];
+				cor_temp = v->coords[j - 1];
 				v->dist[j - 1] = v->dist[j];
 				v->number_wall[j - 1] = v->number_wall[j];
 				v->offsetx[j - 1] = v->offsetx[j];
 				v->coords[j - 1] = v->coords[j];
-				
 				v->dist[j] = f_temp;
 				v->number_wall[j] = number_temp;
 				v->offsetx[j] = of_temp;
 				v->coords[j] = cor_temp;
-
 			}
-			j--;
 		}
-		i++;
 	}
 }
 
@@ -298,5 +312,5 @@ float angle, int count_distance)
 	}
 	v->count = j;
 	buble_sort(v);
-	return(v);
+	return (v);
 }

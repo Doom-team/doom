@@ -29,7 +29,6 @@ int				max(int a, int b)
 static t_wolf	*t_wolf_new(void)
 {
 	t_wolf		*new;
-	t_parser	p;
 
 	!(new = (t_wolf *)malloc(sizeof(t_wolf))) ? error(new, ERR_MALLOC) : 0;
 	!(new->map = (t_map *)malloc(sizeof(t_map))) ? error(new, ERR_MALLOC) : 0;
@@ -43,7 +42,7 @@ static t_wolf	*t_wolf_new(void)
 		error(new, ERR_MALLOC);
 	if (!(new->menu = (t_menu *)malloc(sizeof(t_menu))))
 		error(new, ERR_MALLOC);
-	parser(&p, new);
+	parser(new);
 	recalc(new);
 	return (new);
 }

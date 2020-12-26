@@ -267,7 +267,7 @@ typedef struct
 	int			count_distance;
 } pthrData;
 
-void			parser(t_parser *parser, t_wolf *wolf);
+void			parser(t_wolf *wolf);
 
 void			draw_background(SDL_Surface *surface);
 int				draw_minimap(t_wolf *wolf, t_map *map, t_player *p);

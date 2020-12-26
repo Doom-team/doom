@@ -55,10 +55,10 @@ void	rotate(t_wolf *wolf, SDL_Event *event)
 	wolf->player->dir_y += (int)(H / 200.0 * event->motion.yrel / 5.0);
 	if (wolf->player->dir_y > H / 4 * 3)
 		wolf->player->dir_y = H / 4 * 3;
-	if (wolf->player->dir_y	< -H / 4 * 3)
-		wolf->player->dir_y	= -H / 4 * 3;
+	if (wolf->player->dir_y < -H / 4 * 3)
+		wolf->player->dir_y = -H / 4 * 3;
 	// printf("%f\n", wolf->sdl->skybox_offset_y);
-	if (wolf->player->dir_y	!= -H / 4 * 3 && wolf->player->dir_y != H / 4 * 3)
+	if (wolf->player->dir_y != -H / 4 * 3 && wolf->player->dir_y != H / 4 * 3)
 		add_skybox_offset_y(wolf->sdl, (int)(H / 200.0 * event->motion.yrel / 5.0));
 }
 

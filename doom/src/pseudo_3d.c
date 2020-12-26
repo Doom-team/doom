@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pseudo_3d.c                                        :+:      :+:    :+:   */
@@ -12,17 +12,17 @@
 
 #include "../includes/wolf3d.h"
 
-void	draw_column(t_wolf *wolf,
-t_point point, t_distance *dist, int count_distance)
+void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_distance)
 {
 	int						color;
-	double					fractpart, intpart;
+	double					fractpart;
+	double					intpart;
 	float					koof;
 	int						count;
 	float					tex_1;
 	float					pos;
 	int						j;
-	signed long long int	temp_y; // чтоб при отдалений не тормозило но там все равно говно выше макс числа
+	signed long long int	temp_y;//чтоб при отдалений не тормозило но там все равно говно выше макс числа
 	int						size;
 	t_floot_up				stage;
 
@@ -34,7 +34,7 @@ t_point point, t_distance *dist, int count_distance)
 		temp_y = (H - temp_y) / 2;
 		size = H - temp_y;
 		temp_y = size - ceilf((CUBE * wolf->walls[dist->number_wall[j]].h / 5.0f * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]); // отвечает за высоту ступеньки
-		
+
 		if (wolf->walls[dist->number_wall[j]].type_flag == 1)
 		{
 			if (stage.dist[wolf->walls[dist->number_wall[j]].squad_stage - 1] == 0)
@@ -61,7 +61,8 @@ t_point point, t_distance *dist, int count_distance)
 		int		len = size - begin_y;
 		float	tex_2 = len / (wolf->walls[dist->number_wall[j]].h / 5.0f);
 		float	pos_y;
-		double	fractpart_2, intpart_2;
+		double	fractpart_2;
+		double	intpart_2;
 		int		flag = 1;
 
 		temp_y--;
@@ -97,15 +98,15 @@ t_point point, t_distance *dist, int count_distance)
 	j = -1;
 	stage.count++;
 	// printf("%d\n", stage.count);
-	while(++j < stage.count)
+	while (++j < stage.count)
 		floorcast_up(wolf, wolf->player->distance[count_distance], point.x, count_distance, stage, j);
-	
+
 	j = 0;
 	temp_y = ceilf((CUBE * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]);
 	temp_y = (H - temp_y) / 2;
 	size = H - temp_y;
 	temp_y = size - ceilf((CUBE * wolf->walls[dist->number_wall[j]].h / 5.0f * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]); // отвечает за высоту ступеньки
-	
+
 	if (dist->number_wall[j] < 0 && dist->number_wall[j] > wolf->count_walls - 1)
 		return ;
 	float	offsety;
@@ -149,7 +150,7 @@ t_point point, t_distance *dist, int count_distance)
 	}
 }
 
-void	floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j)
+void			floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j)
 {
 	float	curr_dist;
 	float	weight;
@@ -219,7 +220,7 @@ void	floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_f
 	}
 }
 
-static void	floorcast(t_wolf *wolf, t_distance *dist, int x, int y, int count_distance)
+static void		floorcast(t_wolf *wolf, t_distance *dist, int x, int y, int count_distance)
 {
 	float curr_dist;
 	float weight;
@@ -265,7 +266,7 @@ static void	floorcast(t_wolf *wolf, t_distance *dist, int x, int y, int count_di
 	}
 }
 
-void	draw_sky(t_wolf *wolf, int x, int y)
+void			draw_sky(t_wolf *wolf, int x, int y)
 {
 	int		i;
 	int		to_draw;
@@ -289,7 +290,8 @@ void	draw_sky(t_wolf *wolf, int x, int y)
 	}
 }
 
-void* threadFunc(void* thread_data){
+void*			threadFunc(void* thread_data)
+{
 	//получаем структуру с данными
 	pthrData 	*data = thread_data;
 	int			end;
@@ -350,20 +352,24 @@ void* threadFunc(void* thread_data){
 // 		wolf->sdl->interlaced_rendering = 0;
 // }
 
-void	pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
+void			pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
 {
-	t_point	point;
+	t_point		point;
+	pthread_t	*threads;
+	pthrData	*threadData;
+	int			i;
 
+	i = -1;
 	if (wolf->sdl->interlaced_rendering == 0)
 		point.x = 0;
 	else
 		point.x = 1;
 	ft_memset(&wolf->z_buff, 0, W * H * sizeof(bool));
 	ft_memset(&wolf->z_buff_2, 0, W * H * sizeof(bool));
-
-	pthread_t* threads = (pthread_t*) malloc(THREAD * sizeof(pthread_t));
-	pthrData* threadData = (pthrData*) malloc(THREAD * sizeof(pthrData));
-	for(int i = 0; i < THREAD; i++){
+	threads = (pthread_t*)malloc(THREAD * sizeof(pthread_t));
+	threadData = (pthrData*)malloc(THREAD * sizeof(pthrData));
+	while (++i < THREAD)
+	{
 		threadData[i].number = i;
 		threadData[i].wolf = wolf;
 		threadData[i].point = point;
@@ -371,11 +377,11 @@ void	pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
 		threadData[i].count_distance = 0;
 		pthread_create(&(threads[i]), NULL, threadFunc, &threadData[i]);
 	}
-	for(int i = 0; i < THREAD; i++)
+	i = -1;
+	while (++i < THREAD)
 		pthread_join(threads[i], NULL);
 	free(threads);
 	free(threadData);
-
 	if (wolf->sdl->interlaced_rendering == 0)
 		wolf->sdl->interlaced_rendering = 1;
 	else
