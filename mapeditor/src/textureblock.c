@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:30 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/24 20:25:26 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/26 13:23:41 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,15 @@ void	changer(t_map *map, int x, int y)
 			map->inter_tex[16]->active = 1;
 		}
 	}
-	if (map->door_tex[0]->active == 1 || map->door_tex[1]->active == 1 || map->door_tex[2]->active == 1 || map->door_tex[3]->active == 1)
+	else if (some_texture_active(map) == 4)
 	{
-		printf("zdec vse idet nahuy!!\n");
+		tmp = find_nod(map, x, y);
+		if (tmp > 0)
+		{
+			map->index_wall = tmp;
+			map->validflag = 6;
+		}
 	}
-	// else if (some_texture_active(map) == 2)
-	// {
-	// 	map->tmpfloor_x = x;
-	// 	map->tmpfloor_y = y;
-	// 	// map->showactive = 2;
-	// 	map->inter_tex[16]->active = 3;
-	// }
 }
 
 void	change_texture(t_map *map, int x, int y)
@@ -83,7 +81,7 @@ void	change_texture(t_map *map, int x, int y)
 	wichone = some_texture_active(map);
 	if (wichone == 1)
 		get_wall_cord(map, x, y);
-	if (map->door_tex[0]->active == 1 || map->door_tex[1]->active == 1 || map->door_tex[2]->active == 1 || map->door_tex[3]->active == 1)
+	if (wichone == 4)
 		get_wall_cord(map, x, y);
 }
 

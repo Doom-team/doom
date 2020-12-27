@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/24 18:01:41 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/26 16:14:41 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct			s_nod
 	short				x2;
 	short				y2;
 	int					wallh;
+	int					type;
+	int					grnum;
 	int					index;
 	t_texinfo			*texture;
 	struct s_nod		*nxt;
@@ -155,8 +157,8 @@ typedef struct	s_map
 	int 				floor_y;
 	int 				tmpfloor_x;
 	int 				tmpfloor_y;
-	char				**floorstr;
-	char				**ceilingstr;
+	char				*floorstr;
+	char				*ceilingstr;
 	char				*temporary;
 	// int					floor_active;
 }				t_map;
@@ -281,7 +283,7 @@ void	findfloornod(t_map *map);
 void	findceilingnod(t_map *map);
 void	writedown_floor(t_map *map);
 
-void objectsblock(t_map *map);
+void	objectsblock(t_map *map);
 
 void	edit_object(t_map *map, t_image **name, int n, int index);
 

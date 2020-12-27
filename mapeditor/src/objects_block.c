@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:48:27 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/24 20:21:55 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/26 13:24:18 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,17 @@ void objectsblock(t_map *map)
 	draw_obj_block(map);
 	if (map->door_tex[10]->active == 1)
 	{
+		
 		doorshit(map);
 		// if (map->door_tex[0]->active == 0 && map->door_tex[1]->active == 0 || map->door_tex[2]->active == 1 ||
 		// map->door_tex[3]->active == 1 || map->door_tex[4]->active == 1 || map->door_tex[5]->active == 1)
 			// draw_door_win(map);
+	}
+	if (map->validflag == 6)
+	{
+		save_texture(map, map->index_tex, 1);
+		// map->inter_tex[17]->active = 0;
+		// map->inter_tex[19]->active = 0;
+		// map->inter_tex[16]->active = 0;
 	}
 }

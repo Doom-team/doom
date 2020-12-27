@@ -1,0 +1,5 @@
+walls: 4	floor: 1	ceiling: 0
+w -116 -308 -16 -308 "textures/wall/wall0.png" 5 0 0
+w -116 -308 -116 -208 "textures/wall/wall0.png" 5 0 0
+w -16 -308 -16 -208 "textures/wall/wall0.png" 5 0 0
+w -116 -208 -16 -208 "textures/wall/wall0.png" 5 0 0

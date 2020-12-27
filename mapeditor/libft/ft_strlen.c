@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 18:31:10 by grinko            #+#    #+#             */
-/*   Updated: 2019/09/06 19:06:23 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/26 16:38:59 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *str)
 	size_t i;
 
 	i = 0;
+	if (str == NULL)
+		return (0);
 	while (str[i])
 		i++;
 	return (i);

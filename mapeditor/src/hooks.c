@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/24 16:50:35 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/26 15:47:11 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,12 +306,12 @@ void change_floor_click(t_map *map, int x, int y)
 
 	if ((x > WIDTH/2 + 120 && x < WIDTH/2 + 185) && (y > 60 && y < 90)) // save
 	{
-		map->floorsky_tex[0]->active = 0;
+		zerroother(map);
 		map->inter_tex[16]->active = 4;
 	}
 	if ((x > WIDTH/2 - 100 && x < WIDTH/2 - 35) && (y > 60 && y < 90))
 	{
-		map->floorsky_tex[0]->active = 0;
+		zerroother(map);
 		map->inter_tex[16]->active = 0;
 	}
 }
@@ -321,14 +321,16 @@ void floorker(t_map *map, int x, int y)
 	int x1;
 	int y1;
 
-	x1 = x;
-	y1 = y;
-	find_coord(map, &x1, &y1);
+	//x1 = x;
+	//y1 = y;
+	//find_coord(map, &x1, &y1);
 	draw(map);
 	if (some_texture_active(map) == 2)
 	{
-		if (x1 != x || y1 != y)
-			get_floor_cordi(map, x1 - map->z_x, y1 - map->z_y);
+		open_floor_win(map);
+
+		// if (x1 != x || y1 != y)
+		// 	get_floor_cordi(map, x1 - map->z_x, y1 - map->z_y);
 	}
 }
 
@@ -435,8 +437,9 @@ int catch_click(t_map *map, int x, int y)
 {
 	section_click(map, x, y); // клик по секциям
 	tools_click(map, x, y); // клик по инструментам
-	if (map->inter_tex[3]->active && !map->inter_tex[4]->active && !map->inter_tex[5]->active)
+	if (map->inter_tex[3]->active == 1)
 	{
+		map->inter_tex[6]->active = 1;
 		blockterxture_click(map, x, y); // клик готовым блокам раздела блоки
 		if (!widget_click(map, x, y))// клик по виждету размера раздела блоки
 			remove_blocks(map);
@@ -456,7 +459,7 @@ int catch_click(t_map *map, int x, int y)
 	}
 	if (map->inter_tex[16]->active == 1)
 		change_texture_click(map, x, y); // клики по текстурам если блок текстуры активны
-	if (map->inter_tex[16]->active == 3)
+	if (some_texture_active(map) == 2)
 		change_floor_click(map, x, y); // клики по текстурам если блок пола потолка активны
 	if (map->inter_tex[21]->active == 1)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 13:39:26 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/26 13:09:48 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ t_nod	*n_cr(short x1, short y1, short x2, short y2)
 	a->y1 = y1;
 	a->x2 = x2;
 	a->y2 = y2;
+	a->type = 0;
+	a->grnum = 0;
 	a->nxt = NULL;
 	return (a);
 }
