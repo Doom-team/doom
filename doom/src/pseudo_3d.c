@@ -233,11 +233,12 @@ static void		floorcast(t_wolf *wolf, t_distance *dist, int x, int y, int count_d
 	// int temp_y_2;
 	float	cof = 0.8654409 * pow((W * 1.0f / H), 1.0118661);
 
-	temp_y = y - wolf->player->dir_y;
+	temp_y = y - (wolf->player->dir_y /* + diry_correction_from_fly(wolf->player->fly)*/);
 	// temp_y_2 = y + wolf->player->dir_y;
+	// printf("temp_y = %d, y = %d\n", temp_y, y);
 	while (temp_y < H)
 	{
-		curr_dist = H / (2.0 * y - H);
+		curr_dist = (H - wolf->player->fly) / (2.0 * (y + wolf->player->fly) - (H - wolf->player->fly));
 		// printf("%f\n", curr_dist);
 		weight = curr_dist / (dist->dist[wolf->player->distance[count_distance]->count - 1] / (CUBE * cof));
 		
@@ -247,16 +248,20 @@ static void		floorcast(t_wolf *wolf, t_distance *dist, int x, int y, int count_d
 		textx = (int)(currFloorX * wolf->sdl->textures->w * cof) % wolf->sdl->textures->w;
 		texty = (int)(currFloorY * wolf->sdl->textures->h * cof) % wolf->sdl->textures->h;
 
-		if (textx < 0)
-			textx = 0;
-		if (texty < 0)
-			texty = 0;
+		// if (textx < 0)
+		// 	continue;
+		// if (texty < 0)
+		// 	continue;
 		// color = get_pixel1(wolf->sdl->textures, textx, texty);
 		// set_pixel1(wolf->surface, wolf->sdl->textures, x, temp_y, color);
-
-		color = get_pixel(wolf->sdl->textures, textx, texty);
-		if (temp_y >= 0 && temp_y <= H)
-			set_pixel(wolf->surface, x, temp_y, color);
+		if (textx > 0 && texty > 0)
+		{
+			if (temp_y >= 0 && temp_y < H)
+			{
+				color = get_pixel(wolf->sdl->textures, textx, texty);
+				set_pixel(wolf->surface, x, temp_y, color);
+			}
+		}
 		// color = get_pixel(wolf->sdl->textures, textx, texty);
 		// if (temp_y_2 >= 0)
 		// 	set_pixel(wolf->surface, x, H - temp_y_2, color);
@@ -264,6 +269,7 @@ static void		floorcast(t_wolf *wolf, t_distance *dist, int x, int y, int count_d
 		// temp_y_2++;
 		y++;
 	}
+	// printf("temp_y = %d, y = %d\n", temp_y, y);
 }
 
 void			draw_sky(t_wolf *wolf, int x, int y)
@@ -277,7 +283,7 @@ void			draw_sky(t_wolf *wolf, int x, int y)
 		y = 0;
 	if (y > H)
 		y = H;
-	while (++i < y)
+	while (++i < H)//y
 	{
 		to_draw = i;
 		to_draw_x = x;
@@ -288,6 +294,15 @@ void			draw_sky(t_wolf *wolf, int x, int y)
 		set_pixel(wolf->surface, x, i, get_pixel(wolf->sdl->sky,
 			to_draw_x + (int)wolf->sdl->skybox_offset, to_draw + (int)wolf->sdl->skybox_offset_y));
 	}
+}
+
+int				diry_correction_from_fly(int fly)
+{
+	// return (roundf(-0.5725921 * fly + 53.424221));
+	// return (roundf(-0.6358073 * fly + 59.9166667));
+	return 0;
+	// return (roundf(-0.5622013 * fly + 43.9338034));
+	// return (roundf(0.0631079 * fly + 41.5548913));
 }
 
 void*			threadFunc(void* thread_data)
@@ -309,7 +324,7 @@ void*			threadFunc(void* thread_data)
 			data->point.y = (H - data->point.y) / 2;
 			draw_sky(data->wolf, data->point.x, data->point.y - data->wolf->player->dir_y);
 			floorcast(data->wolf, data->wolf->player->distance[data->count_distance], data->point.x, H - data->point.y, data->count_distance);
-			draw_column(data->wolf, data->point, data->wolf->player->distance[data->count_distance], data->count_distance);
+			// draw_column(data->wolf, data->point, data->wolf->player->distance[data->count_distance], data->count_distance);
 		}
 		data->count_distance -= 2;
 		data->point.x += 2;
