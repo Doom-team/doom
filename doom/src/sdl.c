@@ -25,9 +25,9 @@ static void		handle_other_keys(t_wolf *wolf)
 			wolf->player->fly += 40;
 	}
 	if (wolf->sdl->state[SDL_SCANCODE_V]) // отладка
-		wolf->player->dir_y += 10;
+		wolf->t_cof += 1;
 	if (wolf->sdl->state[SDL_SCANCODE_B]) // отладка
-		wolf->player->dir_y -= 10;
+		wolf->t_cof -= 1;
 	if (wolf->sdl->state[SDL_SCANCODE_H])
 		wolf->sdl->menu = wolf->sdl->menu ? 0 : 1;
 	if (wolf->sdl->state[SDL_SCANCODE_O])
@@ -121,7 +121,7 @@ void			wolf_loop(t_wolf *wolf)
 		// wolf->map->mm_show ? draw_minimap(wolf, wolf->map, wolf->player) : 0;
 		// wolf->sdl->menu ? draw_menu(wolf) : 0;
 		SDL_UpdateWindowSurface(wolf->sdl->win);
-		// printf("fly = %d, dir_y = %d\n", wolf->player->fly, wolf->player->dir_y);
+		// printf("fly = %d, cof = %d\n", wolf->player->fly, wolf->t_cof);
 	}
 	// SDL_DestroyWindow(wolf->sdl->win);
 	// TTF_Quit();

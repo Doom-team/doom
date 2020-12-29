@@ -238,6 +238,7 @@ typedef struct	s_wolf
 	int			count_walls;
 	bool		z_buff[W * H];
 	bool		z_buff_2[W * H];
+	int			t_cof; // для отладки и тестов
 }				t_wolf;
 
 /*
@@ -416,6 +417,9 @@ void			floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t
 void			draw_sky(t_wolf *wolf, int x, int y);
 void			draw_column(t_wolf *wolf, t_point point,
 t_distance *dist, int count_distance);
+void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_distance);
+int				fly_correction_from_dist(t_wolf	*wolf, int	j, int count_distance);
+int				diry_correction_from_fly(int fly);
 
 /*
 ** guns_shot.c
