@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:18 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 13:39:20 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/30 16:10:49 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,24 @@ void i_error()
 {
 	printf("error");
 	exit(1);
+}
+void	music(Mix_Music *music)
+{
+	Mix_Volume(0, 32);
+	Mix_PlayMusic(music, -1);
+	Mix_VolumeMusic(5);
+}
+
+void	wichonemusic(t_map *map)
+{
+	if (map->musicflag == 1)
+		music(map->music[0]);
+	else if (map->musicflag == 2)
+		music(map->music[1]);
+	else if (map->musicflag == 3)
+		music(map->music[2]);
+	else if (map->musicflag == 4)
+		music(map->music[3]);
 }
 
 int main(int ac, char **av)
@@ -30,9 +48,9 @@ int main(int ac, char **av)
 		i_error();
 	draw(map);
 	SDL_UpdateWindowSurface(map->win);
-
 	if (events(map) == 1)
 	{
+		
 		if (valid_map(map))
 			writedown_map(map);
 	}

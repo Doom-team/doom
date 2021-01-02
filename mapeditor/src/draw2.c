@@ -3,14 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:45 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 13:38:54 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/30 16:36:00 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
+
+void draw_music(t_map *map)
+{
+	fonts_classic(map, "MISIC", &(t_info){122, 640, 0, 0}, BLACKFONT);
+	draw_img(map, &(t_info){20, 670, 50, 50}, map->block_tex[4]);
+	draw_img(map, &(t_info){90, 670, 50, 50}, map->block_tex[4]);
+	draw_img(map, &(t_info){160, 670, 50, 50}, map->block_tex[4]);
+	draw_img(map, &(t_info){230, 670, 50, 50}, map->block_tex[4]);
+}
+
+void draw_tests(t_map *map)
+{
+	fonts_doom(map, "test of endurance", &(t_info){75, 540, 0, 0}, REDFONT);
+	draw_img(map, &(t_info){35, 560, 60, 60}, map->block_tex[6]);
+	draw_img(map, &(t_info){120, 560, 60, 60}, map->block_tex[7]);
+	draw_img(map, &(t_info){200, 560, 60, 60}, map->block_tex[8]);
+}
+
+void draw_stairs(t_map *map)
+{
+	draw_img(map, &(t_info){40, 400, 220, 50}, map->inter_tex[9]);
+	draw_img(map, &(t_info){70, 410, 25, 25}, map->inter_tex[11]);
+	draw_img(map, &(t_info){195, 410, 25, 25}, map->inter_tex[10]);
+	draw_line(map, &(t_info){95, 422, 100, 0}, (t_color){255,255,255});
+	draw_line(map, &(t_info){95, 423, 100, 0}, (t_color){255,255,255});
+	draw_line(map, &(t_info){95, 424, 100, 0}, (t_color){255,255,255});
+	fonts_classic(map, "stairs height", &(t_info){102, 402, 0, 0}, WHITEFONT);
+	fonts_classic(map, ft_itoa(map->whclick), &(t_info){130, 432, 0, 0}, WHITEFONT);
+	draw_img(map, &(t_info){120, 470, 60, 60}, map->block_tex[5]);
+}
 
 void draw_slider(t_map *map)
 {
@@ -38,7 +68,6 @@ void draw_hlider(t_map *map)
 		draw_line(map, &(t_info){95, 192, 100, 0}, (t_color){255,255,255});
 		draw_line(map, &(t_info){95, 193, 100, 0}, (t_color){255,255,255});
 		draw_line(map, &(t_info){95, 194, 100, 0}, (t_color){255,255,255});
-		// bigdot(map, 182 + (map->whclick), 193, RED);
 		fonts_classic(map, "wall height", &(t_info){102, 172, 0, 0}, WHITEFONT);
 		fonts_classic(map, ft_itoa(map->whclick), &(t_info){130, 202, 0, 0}, WHITEFONT);
 	}

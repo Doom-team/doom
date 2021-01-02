@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:21 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/24 14:10:43 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/30 16:35:27 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	malloc_block_texture(t_map *map)
 	map->remove = malloc(sizeof(t_removeinfo*)); ///
 	map->remove->x = malloc(sizeof(int *) * 10); /// 
 	map->remove->y = malloc(sizeof(int *) * 10); ////
-	while (++i < 4)
+	while (++i < 9)
 		map->block_tex[i] = (t_image *)malloc(sizeof(t_image));
 	get_block_textures(map);
 	i = -1;
-	while (++i < 4)
+	while (++i < 9)
 	{
 		map->block_tex[i]->img = SDL_ConvertSurfaceFormat(map->block_tex[i]->img, SDL_PIXELFORMAT_BGRA32, 0);
 		init_texture(map->block_tex[i]->img, &(map->block_tex[i]->s), &(map->block_tex[i]->pixb), &(map->block_tex[i]->strb));

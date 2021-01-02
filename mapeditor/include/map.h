@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/26 16:14:41 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/02 14:53:11 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define REDFONT (SDL_Color){255, 0, 0}
 # define WHITEFONT (SDL_Color){255, 255, 255}
 # define SANBYBROWNFONT (SDL_Color){244, 164, 96}
+# define BLACKFONT (SDL_Color){0, 0, 0}
 
 
 # define WIDTH 1424
@@ -122,7 +123,7 @@ typedef struct	s_map
 {
 	SDL_Window			*win;
 	t_image				*inter_tex[22]; // 0 - window, 1-5 - inblock & (block, texture, object), 6-8 - tools 9-11 widget panel & widgets
-	t_image				*block_tex[4]; // структура текстур раздела блоки
+	t_image				*block_tex[9]; // структура текстур раздела блоки
 	t_image				*wall_tex[20];
 	t_image				*floorsky_tex[13];
 	t_image				*liquid_tex[4];
@@ -133,11 +134,15 @@ typedef struct	s_map
 	t_image				*curosr_img;// структура изобр курсора
 	t_image				*font; // шрифт
 	SDL_Cursor			*cursor;// крусор
+	Mix_Music			*music[4];
+	TTF_Font			*fontclasic;
+	TTF_Font 			*fontdoom;
 	t_nod				*nod; // все узлы на карте
 	t_removeinfo		*remove; // tmp труктура для функции удаления готовых блоков
 	t_object			*obj;
 	int					wclick; // коэф + - виджета размера
 	int					whclick; // коэф + - виджета высоты
+	id_t				sclick;
 	int					z_x; // половина окна по x
 	int					z_y; // половина окна по y
 	int					click; // клик первый раз
@@ -145,7 +150,7 @@ typedef struct	s_map
 	int					x_c; // x первого клика
 	int					y_c; // y первого клика
 	int					showactive; // флаг активности панели 1- walls 2 flor & sky 3 - liquids
-	
+	int					musicflag;
 
 	int					change_x;
 	int					change_y;
@@ -153,13 +158,14 @@ typedef struct	s_map
 	int					validflag;
 	int					index_wall;
 
-	int 				floor_x;
-	int 				floor_y;
-	int 				tmpfloor_x;
-	int 				tmpfloor_y;
+	int 				floor_x; /// мб не нужно 
+	int 				floor_y; /// мб не нужно 
+	int 				tmpfloor_x; /// мб не нужно  
+	int 				tmpfloor_y;/// мб не нужно 
 	char				*floorstr;
 	char				*ceilingstr;
-	char				*temporary;
+	char				*objects;
+	char				*temporary;/// мб не нужно 
 	// int					floor_active;
 }				t_map;
 
@@ -173,7 +179,7 @@ void	get_block_textures(t_map *map);
 void	get_liquid_textures(t_map *map);
 void	get_wall_textures(t_map *map);
 void	get_floorsky_textures(t_map *map);
-
+void	wichonemusic(t_map *map);
 
 void	malloc_block_texture(t_map *map);
 void	malloc_interface(t_map *map);
@@ -201,6 +207,9 @@ void	draw_floor_textures(t_map *map);
 void	draw_liquid_textures(t_map *map);
 void	draw_sky_textures(t_map *map);
 void	draw_hlider(t_map *map);
+void	draw_stairs(t_map *map);
+void	draw_tests(t_map *map);
+void	draw_music(t_map *map);
 
 
 void	bigdot(t_map *map, int x, int y, t_color color);
@@ -286,6 +295,7 @@ void	writedown_floor(t_map *map);
 void	objectsblock(t_map *map);
 
 void	edit_object(t_map *map, t_image **name, int n, int index);
+void	stairs_editor(t_map *map, int x, int y);
 
 void	malloc_enemy_texture(t_map *map);
 void	get_enemy_textures(t_map *map);
@@ -300,7 +310,8 @@ void	draw_guns(t_map *map);
 void	draw_enemy(t_map *map);
 void	draw_door_light_exit(t_map *map);
 
-int xyround(t_map *map, int x, int y);
+int xyround(t_map *map, int x, int y); //
+void	doorshit(t_map *map);
 
 
 int		check_scene(t_info *info, t_map *map);

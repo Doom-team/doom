@@ -1,5 +1,23 @@
 walls: 4	floor: 1	ceiling: 0
-w -116 -308 -16 -308 "textures/wall/wall0.png" 5 0 0
-w -116 -308 -116 -208 "textures/wall/wall0.png" 5 0 0
-w -16 -308 -16 -208 "textures/wall/wall0.png" 5 0 0
-w -116 -208 -16 -208 "textures/wall/wall0.png" 5 0 0
+w -236 -417 -136 -417 "textures/wall/wall0.png" 5 0 0
+w -236 -417 -236 -317 "textures/wall/wall0.png" 5 0 0
+w -136 -417 -136 -317 "textures/wall/wall0.png" 5 0 0
+w -236 -317 -136 -317 "textures/wall/wall0.png" 5 0 0
+f "textures/floor/floor1.png"
+s "textures/floor/sky1.png"
+p 488 107
+h 512 109
+a 545 108
+g 1 499 143
+g 2 519 137
+g 3 559 134
+b 1 503 158
+b 2 517 159
+b 3 544 164
+e 1 505 128
+e 2 510 113
+e 3 525 148
+e 4 521 153
+e 5 530 175
+l 530 175
+b 530 175

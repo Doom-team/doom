@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/24 20:12:54 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/02 15:44:46 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
+
+void	draw_mapstairs(t_map *map, int x, int y)
+{
+	//printf("line\n");
+	draw_floor_line(map, &(t_info){map->x_c - map->z_x, map->y_c - map->z_y - 20, x - map->z_x, y - map->z_y -20,});
+	draw_floor_line(map, &(t_info){map->x_c - map->z_x, map->y_c - map->z_y + 20, x - map->z_x, y - map->z_y + 20,});
+}
 
 int		mmove(int x, int y, t_map *map, SDL_Event event)
 {
@@ -25,9 +32,13 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 		//draw_floor_line(map, &(t_info){map->floor_x, map->floor_y, x - map->z_x, y - map->z_y});
 		
 	}
+	if (map->block_tex[5]->active == 1)
+	{
+		draw_mapstairs(map, x, y);
+	}
 	// if (some_texture_active(map) == 4) ////////////////////////////////////
 	// {
-	// 	drawillwall(map, x, y);
+		// drawillwall(map, x, y);
 	// }
 	if (map->inter_tex[6]->active && interface_click(map, x, y))
 	{
@@ -58,6 +69,7 @@ int	events(t_map *map)
 			pkey((unsigned char)event.key.keysym.sym, map);
 		if (event.type == SDL_MOUSEBUTTONDOWN)
 		{
+			wichonemusic(map);
 			SDL_GetMouseState(&x, &y);
 			mkey(event.button.button, x, y, map);
 			if (catch_click(map, x, y))

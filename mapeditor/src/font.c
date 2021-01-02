@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   font.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:05 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 13:39:07 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/30 20:16:25 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ void fonts_classic(t_map *map, char *str, t_info *info, SDL_Color color)
 
 	map->font = (t_image *)malloc(sizeof(t_image));
 	strlen = ft_strlen(str);
-	TTF_Init();
-	font = TTF_OpenFont("/textures/fonts/classic.ttf", 32);
-	map->font->img = TTF_RenderText_Solid(font, str, color);
+	map->font->img = TTF_RenderText_Solid(map->fontclasic, str, color);
 	map->font->img = SDL_ConvertSurfaceFormat(map->font->img, SDL_PIXELFORMAT_BGRA32, 0);
 		init_texture(map->font->img,&(map->font->s), &(map->font->pixb), &(map->font->strb));
 	if (struppercase(str))
@@ -51,9 +49,7 @@ void fonts_doom(t_map *map, char *str, t_info *info, SDL_Color color)
 
 	map->font = (t_image *)malloc(sizeof(t_image));
 	strlen = ft_strlen(str);
-	TTF_Init();
-	font = TTF_OpenFont("/textures/fonts/doom.ttf", 32);
-	map->font->img = TTF_RenderText_Solid(font, str, color);
+	map->font->img = TTF_RenderText_Solid(map->fontdoom, str, color);
 	map->font->img = SDL_ConvertSurfaceFormat(map->font->img, SDL_PIXELFORMAT_BGRA32, 0);
 		init_texture(map->font->img,&(map->font->s), &(map->font->pixb), &(map->font->strb));
 	if (struppercase(str))

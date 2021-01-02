@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:42 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 17:23:40 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/29 19:32:53 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ void whichone_tool(t_map *map)
 	{
 		draw_block_textures(map);
 		draw_slider(map);
+		draw_stairs(map);
+		draw_tests(map);
+		draw_music(map);
 	}
 	// (map->inter_tex[3]->active == 1) ? (draw_slider(map), fonts_classic(map, "radius", 122, 135)) : printf("qwe\n");
 	if (map->inter_tex[4]->active == 1)

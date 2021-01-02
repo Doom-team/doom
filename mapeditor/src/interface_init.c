@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/26 16:02:24 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/30 20:15:17 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,13 @@ void init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int 
 	*strb = (tex->pitch);
 }
 
-void	init_objects(t_map *map)
-{
-	
-}
-
 int		init_all(t_map *map)
 {
 	int i;
 
 	i = -1;
 	SDL_Init(SDL_INIT_EVERYTHING);
+	TTF_Init();
 	IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG);
 	if (!(map->win = SDL_CreateWindow("Mapeditor", 200, 200, WIDTH, HEIGHT, SDL_WINDOW_SHOWN)))
 		return (0);
@@ -55,13 +51,19 @@ int		init_all(t_map *map)
 	map->tmpfloor_y = -1;
 	map->floorstr = malloc(sizeof(char *) * 10);
 	map->ceilingstr = malloc(sizeof(char *) * 10);
+	map->objects = malloc(sizeof(char *) * 10);
 	map->floorstr = NULL;
 	map->ceilingstr = NULL;
-	// while (++i < 9)
-	// {
-	// 	map->floorstr[i] = NULL;
-	// 	map->ceilingstr[i] = NULL;
-	// }
+	map->objects = NULL;
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+	map->musicflag = 0;
+	map->music[0] = Mix_LoadMUS("/textures/music/m1.mp3");
+	map->music[1] = Mix_LoadMUS("/textures/music/music1.mp3");
+	map->music[2] = Mix_LoadMUS("/textures/music/m1.mp3");
+	map->music[3] = Mix_LoadMUS("/textures/music/music1.mp3");
+	map->fontclasic = TTF_OpenFont("/textures/fonts/classic.ttf", 32);
+	map->fontdoom = TTF_OpenFont("/textures/fonts/doom.ttf", 32);;
+
 	return (1);
 }
 

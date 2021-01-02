@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:08 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/24 14:11:07 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/30 16:35:12 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	get_block_textures(t_map *map)
 	map->block_tex[1]->img = IMG_Load("/textures/texture/pentagon.png");
 	map->block_tex[2]->img = IMG_Load("/textures/texture/hexagon.png");
 	map->block_tex[3]->img = IMG_Load("/textures/texture/octagon.png");
+	map->block_tex[4]->img = IMG_Load("/textures/texture/music.png");
+	map->block_tex[5]->img = IMG_Load("/textures/texture/stairs.png");
+	map->block_tex[6]->img = IMG_Load("/textures/texture/watertest.png");
+	map->block_tex[7]->img = IMG_Load("/textures/texture/nuketest.png");
+	map->block_tex[8]->img = IMG_Load("/textures/texture/lavatest.png");
 }
 
 void	get_floorsky_textures(t_map *map)

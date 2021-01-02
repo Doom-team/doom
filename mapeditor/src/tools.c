@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:33 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/26 12:49:01 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/02 15:52:39 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,30 @@ void	edit_blocktexture(t_map *map, int index)
 	int i;
 
 	i = -1;
-	while (++i < 4)
+	while (++i < 6)
 	{
 		if (i == index)
 			map->block_tex[i]->active = 1;
 		else
 			map->block_tex[i]->active = 0;
+	}
+}
+
+void	stairs_editor(t_map *map, int x, int y)
+{
+	if (map->click == 0 && interface_click(map, x, y))
+	{
+		map->click = 1;
+		map->x_c = x;
+		map->y_c = y;
+		// find_coord(map, &(map->x_c), &(map->y_c));
+	}
+	else if (interface_click(map, x, y))
+	{
+		map->click = 0;
+		// find_coord(map, &x, &y);
+		// add_node(map, x, y);
+		// map->nod->index = nod_len(map->nod);
 	}
 }
 

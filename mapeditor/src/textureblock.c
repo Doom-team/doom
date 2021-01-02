@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textureblock.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:30 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/26 13:23:41 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/29 14:42:52 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int some_texture_active(t_map *map)
 		if (map->liquid_tex[i]->active == 1)
 			return (3);
 	i = -1;
-	while (++i < 3)
+	while (++i < 4)
 		if (map->door_tex[i]->active == 1)
 			return (4);
 	return (0);
@@ -70,6 +70,12 @@ void	changer(t_map *map, int x, int y)
 		{
 			map->index_wall = tmp;
 			map->validflag = 6;
+			if (map->door_tex[1]->active == 1) // обнуление предыдущих
+				map->door_tex[5]->active = 1;
+			if (map->door_tex[2]->active == 1)
+				map->door_tex[6]->active = 1;
+			if (map->door_tex[3]->active == 1)
+				map->door_tex[7]->active = 1;
 		}
 	}
 }

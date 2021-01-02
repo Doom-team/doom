@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   writemap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/26 18:27:04 by grinko           ###   ########.fr       */
+/*   Updated: 2020/12/29 15:20:47 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ void write_ceiling(t_map *map, int fd)
 			printf("error\n");
 				free(buffer);
 	}
+	else
+	{
+		maxlen = ft_strlen("s \"textures/floor/sky1.png\"\n");
+		if (write(fd, "s \"textures/floor/sky1.png\"\n", maxlen) != maxlen)
+			printf("error\n");
+	}
 }
 
 void write_floor(t_map *map, int fd)
@@ -93,6 +99,28 @@ void write_floor(t_map *map, int fd)
 		maxlen = ft_strlen(map->floorstr);
 		buffer = malloc(sizeof(char *) * maxlen);
 		buffer = map->floorstr;
+		if (write(fd, buffer, maxlen) != maxlen)
+			printf("error\n");
+		free(buffer);
+	}
+	else
+	{
+		maxlen = ft_strlen("f \"textures/floor/floor1.png\"\n");
+		if (write(fd, "f \"textures/floor/floor1.png\"\n", maxlen) != maxlen)
+			printf("error\n");
+	}
+}
+
+void write_objects(t_map *map, int fd)
+{
+	int maxlen;
+	char *buffer;
+
+	if (map->objects)
+	{
+		maxlen = ft_strlen(map->objects);
+		buffer = malloc(sizeof(char *) * maxlen);
+		buffer = map->objects;
 		if (write(fd, buffer, maxlen) != maxlen)
 			printf("error\n");
 		free(buffer);
@@ -149,6 +177,8 @@ char *write_wall_text(t_nod *n)
 	int maxlen;
 
 	maxlen = 0;
+	if (n->type == 2)
+		return (n->texture->texture_name[1]);
 	if (n->texture->texture_name[0] != NULL)
 		maxlen = ft_strlen(n->texture->texture_name[0]);
 	else
@@ -194,15 +224,10 @@ void write_walls(t_map *map, int fd)
 	while (n)
 	{
 		maxlen = ft_strlen(n->texture->type_name) + ft_strlen(write_wall_xy(n)) + ft_strlen(ft_itoa(n->wallh)) + ft_strlen(write_wall_text(n)) + 6;
-		if (n->type == 2)
-			maxlen += ft_strlen(n->texture->texture_name[1]);
 		buffer = malloc(sizeof(char *) * (maxlen));
 		buffer = n->texture->type_name;
 		buffer = ft_strjoin(buffer, write_wall_xy(n));
-		if (n->type == 2)
-			buffer = ft_strjoin(buffer, n->texture->texture_name[1]);
-		else
-			buffer = ft_strjoin(buffer, write_wall_text(n));
+		buffer = ft_strjoin(buffer, write_wall_text(n));
 		buffer = ft_strjoin(buffer, " ");
 		buffer = ft_strjoin(buffer, ft_itoa(n->wallh));
 		buffer = ft_strjoin(buffer, " ");
@@ -231,6 +256,7 @@ int writedown_map(t_map *map)
 	write_walls(map, fd);
 	write_floor(map, fd);
 	write_ceiling(map, fd);
+	write_objects(map, fd);
 	close(fd);
 	return (0);
 }

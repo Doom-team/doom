@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/26 15:47:11 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/02 14:51:27 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,19 @@ void blockterxture_click(t_map *map, int x, int y)
 		edit_blocktexture(map, 2);
 	else if ((x > 165 && x < 215) && y > 250 && y < 370)
 		edit_blocktexture(map, 3);
+	else if ((x > 120 && x < 180) && y > 470 && y < 530)
+	{
+		map->click = 0;
+		edit_blocktexture(map, 5);
+	}
+	if ((x > 20 && x < 70) && y > 670 && y < 720)
+		map->musicflag = 1;
+	if ((x > 90 && x < 140) && y > 670 && y < 720)
+		map->musicflag = 2;
+	if ((x > 160 && x < 210) && y > 670 && y < 720)
+		map->musicflag = 3;
+	if ((x > 230 && x < 280) && y > 670 && y < 720)
+		map->musicflag = 4;
 }
 
 void showup_lick(t_map *map, int x, int y)
@@ -430,8 +443,174 @@ void	get_door(t_map *map, int x, int y)
 		map->door_tex[2]->active = 1;
 		map->door_tex[3]->active = 0;
 	}
+	if ((x > WIDTH/2 + 90 && x < WIDTH/2 + 130) && (y > 10 && y < 50))
+	{
+		map->door_tex[0]->active = 0;
+		map->door_tex[1]->active = 0;
+		map->door_tex[2]->active = 0;
+		map->door_tex[3]->active = 1;
+	}
+	if ((x > WIDTH/2 - 130 && x < WIDTH/2 - 110) && (y > 60 && y < 80))
+	{
+		//map->validflag = -1;
+		map->door_tex[0]->active = 0;
+		map->door_tex[4]->active = 1;
+	}
+	if ((x > WIDTH/2 + 80 && x < WIDTH/2 + 145) && (y > 100 && y < 130)) // save
+	{
+		//zerroothero(map); /////////////// хз зачем может надо
+		printf("9\n");
+		map->validflag = 9;
+	}
+	if ((x > WIDTH/2 - 145 && x < WIDTH/2 - 80) && (y > 100 && y < 130))
+	{
+		zerroothero(map);
+	}
 }
 
+int	searchelem(char *str1, char *str2)
+{
+	char *istr;
+
+	//Поиск строки
+	istr = ft_strstr(str1,str2);
+
+	//Вывод результата поиска на консоль
+	if (istr == NULL)
+		return (0);
+	else
+	{
+		//printf ("Искомая строка начинается с символа %d\n",istr-str1+1);
+		return (istr-str1+1);
+	}
+
+}
+
+void rewrite(t_map *map, int inx, int x, int y)
+{
+	int i;
+	char *str;
+	char *tmp;
+
+	i = 0;
+	tmp = malloc(sizeof(char *));
+	if (map->player_tex[0]->active == 1 || map->door_tex[9]->active == 1)
+	{
+		if (map->objects)
+		{
+			tmp = ft_strncpy(tmp, map->objects, inx);
+			tmp[inx] = '\0';
+		}
+		while (map->objects[inx] && map->objects[inx] != '\n')
+			inx++;
+		inx++;
+		if (map->player_tex[0]->active == 1)
+			str = ft_strjoin("p ", ft_itoa(x));
+		else if (map->door_tex[9]->active == 1)
+			str = ft_strjoin("b ", ft_itoa(x));
+		str = ft_strjoin(str, " ");
+		str = ft_strjoin(str, ft_itoa(y));
+		str = ft_strjoin(str, "\n");
+		if (tmp)
+		{
+			tmp = ft_strjoin(tmp, str);
+			map->objects = ft_strjoin(tmp, &map->objects[inx]);
+		}
+		else
+			map->objects = ft_strjoin(str, &map->objects[inx]);
+	}
+	free (tmp);
+}
+
+void cordinator(t_map *map, char *c, int x, int y)
+{
+	if (ft_strlen(map->objects) != 0)
+	{
+		if (map->player_tex[0]->active == 1 && searchelem(map->objects, "p "))
+		{
+			rewrite(map, searchelem(map->objects, "p ") - 1, x, y);
+			return ;
+		}
+		if (map->door_tex[9]->active == 1 && searchelem(map->objects, "b "))
+		{
+			rewrite(map, searchelem(map->objects, "b ") - 1, x, y);
+			return ;
+		}
+		map->objects = ft_strjoin(map->objects, c);
+		map->objects = ft_strjoin(map->objects, ft_itoa(x));
+		map->objects = ft_strjoin(map->objects, " ");
+		map->objects = ft_strjoin(map->objects, ft_itoa(y));
+		map->objects = ft_strjoin(map->objects, "\n");
+	}
+	else
+	{
+		map->objects = ft_strjoin(c, ft_itoa(x));
+		map->objects = ft_strjoin(map->objects, " ");
+		map->objects = ft_strjoin(map->objects, ft_itoa(y));
+		map->objects = ft_strjoin(map->objects, "\n");
+	}
+	
+}
+
+void	save_objcord(t_map *map, int x, int y)
+{
+	if (interface_click(map, x, y))
+	{
+		if (map->player_tex[0]->active == 1)
+			cordinator(map, "p ", x, y);
+		if (map->player_tex[1]->active == 1)
+			cordinator(map, "h ", x, y);
+		if (map->player_tex[2]->active == 1)
+			cordinator(map, "a ", x, y);
+		if (map->gun_tex[0]->active == 1)
+			cordinator(map, "g 1 ", x, y);
+		if (map->gun_tex[1]->active == 1)
+			cordinator(map, "b 1 ", x, y);
+		if (map->gun_tex[2]->active == 1)
+			cordinator(map, "g 2 ", x, y);
+		if (map->gun_tex[3]->active == 1)
+			cordinator(map, "b 2 ", x, y);
+		if (map->gun_tex[4]->active == 1)
+			cordinator(map, "g 3 ", x, y);
+		if (map->gun_tex[5]->active == 1)
+			cordinator(map, "b 3 ", x, y);
+		if (map->enemy_tex[0]->active == 1)
+			cordinator(map, "e 1 ", x, y);
+		if (map->enemy_tex[1]->active == 1)
+			cordinator(map, "e 2 ", x, y);
+		if (map->enemy_tex[2]->active == 1)
+			cordinator(map, "e 3 ", x, y);
+		if (map->enemy_tex[3]->active == 1)
+			cordinator(map, "e 4 ", x, y);
+		if (map->enemy_tex[4]->active == 1)
+			cordinator(map, "e 5 ", x, y);
+		if (map->door_tex[8]->active == 1)
+			cordinator(map, "l ", x, y);
+		if (map->door_tex[9]->active == 1)
+			cordinator(map, "b ", x, y);
+		printf("new: %s\n", map->objects);
+		if (map->door_tex[4]->active == 1 && range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
+		{
+			map->validflag = 8;
+			cordinator(map, "k 1 ", x, y);//map->door_tex[5]->active = 1;
+		}
+		if (map->door_tex[5]->active == 1 && range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
+		{
+			map->validflag = 8;
+			cordinator(map, "k 2 ", x, y);
+		}
+		if (map->door_tex[6]->active == 1 && range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
+		{
+			map->validflag = 8;
+			cordinator(map, "k 3 ", x, y);
+		}
+		if (map->door_tex[7]->active == 1 && range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
+		{
+			map->validflag = 8;
+			cordinator(map, "k 4 ", x, y);
+		}
+	}
+}
 
 int catch_click(t_map *map, int x, int y)
 {
@@ -455,7 +634,8 @@ int catch_click(t_map *map, int x, int y)
 		objects_click(map, x, y);
 		if (map->door_tex[10]->active == 1 && map->inter_tex[16]->active == 1)
 			get_door(map, x, y);
-
+		save_objcord(map, x, y);
+		//printf("obj string : |%s|\n", map->objects);
 	}
 	if (map->inter_tex[16]->active == 1)
 		change_texture_click(map, x, y); // клики по текстурам если блок текстуры активны
