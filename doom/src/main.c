@@ -44,6 +44,7 @@ static t_wolf	*t_wolf_new(void)
 		error(new, ERR_MALLOC);
 	parser(new);
 	recalc(new);
+	new->t_cof = 0;
 	return (new);
 }
 

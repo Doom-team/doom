@@ -17,10 +17,17 @@ static void		handle_other_keys(t_wolf *wolf)
 	if (wolf->sdl->state[SDL_SCANCODE_I])
 		wolf->bon->fps = wolf->bon->fps == 0 ? 1 : 0;
 	if (wolf->sdl->state[SDL_SCANCODE_SPACE])
-		wolf->player->fly -= 10;
+		wolf->player->fly -= 40;
 		// wolf->bon->guns_fire = 1;
 	if (wolf->sdl->state[SDL_SCANCODE_TAB])
-		wolf->player->fly += 10;
+	{
+		if (wolf->player->fly + 40 <= 0)
+			wolf->player->fly += 40;
+	}
+	if (wolf->sdl->state[SDL_SCANCODE_V]) // отладка
+		wolf->t_cof += 1;
+	if (wolf->sdl->state[SDL_SCANCODE_B]) // отладка
+		wolf->t_cof -= 1;
 	if (wolf->sdl->state[SDL_SCANCODE_H])
 		wolf->sdl->menu = wolf->sdl->menu ? 0 : 1;
 	if (wolf->sdl->state[SDL_SCANCODE_O])
@@ -114,7 +121,7 @@ void			wolf_loop(t_wolf *wolf)
 		// wolf->map->mm_show ? draw_minimap(wolf, wolf->map, wolf->player) : 0;
 		// wolf->sdl->menu ? draw_menu(wolf) : 0;
 		SDL_UpdateWindowSurface(wolf->sdl->win);
-		// printf("%d\n", wolf->player->fly);
+		// printf("fly = %d, cof = %d\n", wolf->player->fly, wolf->t_cof);
 	}
 	// SDL_DestroyWindow(wolf->sdl->win);
 	// TTF_Quit();

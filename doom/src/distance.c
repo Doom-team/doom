@@ -247,6 +247,40 @@ void			recalc(t_wolf *wolf)
 	// printf("%f %f %f %f\n", wolf->player->up_d, wolf->player->down_d, wolf->player->left_d, wolf->player->rght_d);
 }
 
+static void		buble_sort_fly(t_distance *v)
+{
+	int			i;
+	int			j;
+	float		f_temp;
+	int			number_temp;
+	float		of_temp;
+	t_float2	cor_temp;
+
+	i = -1;
+	while (++i < v->count - 1)
+	{
+		j = v->count;
+		while (--j > i)
+		{
+			if (v->dist[j - 1] < v->dist[j])
+			{
+				f_temp = v->dist[j - 1];
+				number_temp = v->number_wall[j - 1];
+				of_temp = v->offsetx[j - 1];
+				cor_temp = v->coords[j - 1];
+				v->dist[j - 1] = v->dist[j];
+				v->number_wall[j - 1] = v->number_wall[j];
+				v->offsetx[j - 1] = v->offsetx[j];
+				v->coords[j - 1] = v->coords[j];
+				v->dist[j] = f_temp;
+				v->number_wall[j] = number_temp;
+				v->offsetx[j] = of_temp;
+				v->coords[j] = cor_temp;
+			}
+		}
+	}
+}
+
 static void		buble_sort(t_distance *v)
 {
 	int			i;
@@ -311,6 +345,9 @@ float angle, int count_distance)
 		i++;
 	}
 	v->count = j;
-	buble_sort(v);
+	if (wolf->player->fly < 0)
+		buble_sort_fly(v);
+	else
+		buble_sort(v);
 	return (v);
 }
