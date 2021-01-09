@@ -12,19 +12,21 @@
 
 #include "../include/map.h"
 
-int check_scene(t_info *info, t_map *map) // x = max_x, y = max_y, w = min_x, h = min_y
+int		check_scene(t_info *info, t_map *map) // x = max_x, y = max_y, w = min_x, h = min_y
 {
-	t_nod *n;
-	t_nod *tmp;
-	int i;
-	
+	t_nod	*n;
+	t_nod	*tmp;
+	int		i;
+
 	n = map->nod;
 	tmp = map->nod;
 	i = 0;
 	while (n)
 	{
-		if (n->x1 == info->x || n->x2 == info->x || n->x1 == info->w || n->x2 == info->w ||
-		n->y1 == info->y || n->y2 == info->y || n->y1 == info->h || n->y2 == info->h)
+		if (n->x1 == info->x || n->x2 == info->x ||
+			n->x1 == info->w || n->x2 == info->w ||
+			n->y1 == info->y || n->y2 == info->y ||
+			n->y1 == info->h || n->y2 == info->h)
 		{
 			tmp = n;
 			while (tmp)
@@ -47,10 +49,10 @@ int check_scene(t_info *info, t_map *map) // x = max_x, y = max_y, w = min_x, h 
 					i++;
 				tmp = tmp->nxt;
 			}
-			if (i == 8 || i == 12 || i == 11 || i == 10) // ????????????maybe
+			if (i == 8 || i == 12 || i == 11 || i == 10)
 			{
 				printf("that's cool map!\n");
-				return(1);
+				return (1);
 			}
 			else
 			{
@@ -65,14 +67,14 @@ int check_scene(t_info *info, t_map *map) // x = max_x, y = max_y, w = min_x, h 
 	return (0);
 }
 
-int valid_map(t_map *map)
+int		valid_map(t_map *map)
 {
-	t_nod *n;
-	int max_x;
-	int max_y;
-	int min_x;
-	int min_y;
-	
+	t_nod	*n;
+	int		max_x;
+	int		max_y;
+	int		min_x;
+	int		min_y;
+
 	n = map->nod;
 	max_x = -WIDTH;
 	max_y = -HEIGHT;

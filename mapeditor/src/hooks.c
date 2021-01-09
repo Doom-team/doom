@@ -12,30 +12,32 @@
 
 #include "../include/map.h"
 
-int interface_click(t_map *map, int x, int y)
+int		interface_click(t_map *map, int x, int y)
 {
-	if ((x > 0 &&  x < 300) && y > 0 && y < 800)
-		return(0);
-	return(1);
-}
-int range_click(t_info *info, int w, int h)
-{
-	if ((info->x > info->w && info->x < info->w + w) && info->y > info->h && info->y < info->h + h)
-		return(0);
-	return(1);
+	if ((x > 0 && x < 300) && y > 0 && y < 800)
+		return (0);
+	return (1);
 }
 
-void tools_click(t_map *map, int x, int y)
+int		range_click(t_info *info, int w, int h)
 {
-	if ((x > 80 &&  x < 110) && y > 60 && y < 90)
+	if ((info->x > info->w && info->x < info->w + w) &&
+		info->y > info->h && info->y < info->h + h)
+		return (0);
+	return (1);
+}
+
+void	tools_click(t_map *map, int x, int y)
+{
+	if ((x > 80 && x < 110) && y > 60 && y < 90)
 		edit_tool(map, 6);
-	else if ((x > 130 &&  x < 160) && y > 60 && y < 90)
+	else if ((x > 130 && x < 160) && y > 60 && y < 90)
 		edit_tool(map, 7);
-	else if ((x > 180 &&  x < 210) && y > 60 && y < 90)
+	else if ((x > 180 && x < 210) && y > 60 && y < 90)
 		edit_tool(map, 8);
 }
 
-void hwidget_click(t_map *map, int x, int y)
+void	hwidget_click(t_map *map, int x, int y)
 {
 	if ((x > 70 && x < 95) && (y > 180 && y < 205) && map->whclick > 1)
 		map->whclick -= 1;
@@ -43,7 +45,7 @@ void hwidget_click(t_map *map, int x, int y)
 		map->whclick += 1;
 }
 
-int widget_click(t_map *map, int x, int y)
+int		widget_click(t_map *map, int x, int y)
 {
 	int tmp;
 
@@ -63,19 +65,19 @@ int widget_click(t_map *map, int x, int y)
 	return (1);
 }
 
-void section_click(t_map *map, int x, int y)
+void	section_click(t_map *map, int x, int y)
 {
-	if ((x > 20 &&  x < 90) && y > 20 && y < 50)
+	if ((x > 20 && x < 90) && y > 20 && y < 50)
 		edit_tool(map, 3);
-	else if ((x > 110 &&  x < 180) && y > 20 && y < 50)
+	else if ((x > 110 && x < 180) && y > 20 && y < 50)
 		edit_tool(map, 4);
-	else if ((x > 200 &&  x < 270) && y > 20 && y < 50)
+	else if ((x > 200 && x < 270) && y > 20 && y < 50)
 		edit_tool(map, 5);
 	else if ((x > 120 && x < 180) && y > 758 && y < 788)
 		map->inter_tex[21]->active = 1;
 }
 
-void blockterxture_click(t_map *map, int x, int y)
+void	blockterxture_click(t_map *map, int x, int y)
 {
 	if ((x > 65 && x < 115) && y > 250 && y < 300)
 		edit_blocktexture(map, 0);
@@ -100,9 +102,8 @@ void blockterxture_click(t_map *map, int x, int y)
 		map->musicflag = 4;
 }
 
-void showup_lick(t_map *map, int x, int y)
+void	showup_lick(t_map *map, int x, int y)
 {
-
 	if ((x > 260 && x < 290) && y > 205 && y < 255)
 	{
 		map->showactive = 1;
@@ -121,7 +122,7 @@ void showup_lick(t_map *map, int x, int y)
 	// }
 }
 
-void zerroother(t_map *map)
+void	zerroother(t_map *map)
 {
 	int i;
 
@@ -181,7 +182,7 @@ void	edit_liquidtexture(t_map *map, int index)
 	}
 }
 
-void walltx_click(t_map *map, int x, int y)
+void	walltx_click(t_map *map, int x, int y)
 {
 	int i;
 	int x_c;
@@ -214,7 +215,7 @@ void walltx_click(t_map *map, int x, int y)
 	}
 }
 
-void floortx_click(t_map *map, int x, int y)
+void	floortx_click(t_map *map, int x, int y)
 {
 	int i;
 	int x_c;
@@ -236,7 +237,7 @@ void floortx_click(t_map *map, int x, int y)
 	}
 }
 
-void skytx_click(t_map *map, int x, int y)
+void	skytx_click(t_map *map, int x, int y)
 {
 	int i;
 	int x_c;
@@ -258,7 +259,7 @@ void skytx_click(t_map *map, int x, int y)
 	}
 }
 
-void liquidtx_click(t_map *map, int x, int y)
+void	liquidtx_click(t_map *map, int x, int y)
 {
 	int i;
 	int x_c;
@@ -275,7 +276,7 @@ void liquidtx_click(t_map *map, int x, int y)
 	}
 }
 
-void terxtures_click(t_map *map, int x, int y)
+void	terxtures_click(t_map *map, int x, int y)
 {
 	edit_blocktexture(map, -1);
 	showup_lick(map, x, y);
@@ -285,51 +286,49 @@ void terxtures_click(t_map *map, int x, int y)
 	liquidtx_click(map, x, y);
 }
 
-void change_texture_click(t_map *map, int x, int y)
+void	change_texture_click(t_map *map, int x, int y)
 {
-	if ((x > WIDTH/2 - 10 && x < WIDTH/2 + 20) && (y > 3 && y < 38))
+	if ((x > WIDTH / 2 - 10 && x < WIDTH / 2 + 20) && (y > 3 && y < 38))
 	{
 		map->inter_tex[17]->active = 1;
 		map->inter_tex[19]->active = 0;
 	}
-	if ((x > WIDTH/2 - 10 && x < WIDTH/2 + 20) && (y > 83 && y < 118))
+	if ((x > WIDTH / 2 - 10 && x < WIDTH / 2 + 20) && (y > 83 && y < 118))
 	{
 		map->inter_tex[17]->active = 0;
 		map->inter_tex[19]->active = 1;
 	}
-
-	if ((x > WIDTH/2 - 145 && x < WIDTH/2 - 80) && (y > 100 && y < 130)) // cancel
+	if ((x > WIDTH / 2 - 145 && x < WIDTH / 2 - 80) && (y > 100 && y < 130))
 	{
 		map->inter_tex[16]->active = 0;
 		map->inter_tex[17]->active = 0;
 		map->inter_tex[19]->active = 0;
 	}
-	if ((x > WIDTH/2 + 80 && x < WIDTH/2 + 145) && (y > 100 && y < 130))
+	if ((x > WIDTH / 2 + 80 && x < WIDTH / 2 + 145) && (y > 100 && y < 130))
 	{
 		map->inter_tex[16]->active = 2;
 	}
 }
 
-void change_floor_click(t_map *map, int x, int y)
+void	change_floor_click(t_map *map, int x, int y)
 {
-	if ((x > WIDTH/2 + 20 && x < WIDTH/2 + 90) && (y > 10 && y < 30))
+	if ((x > WIDTH / 2 + 20 && x < WIDTH / 2 + 90) && (y > 10 && y < 30))
 		map->floorsky_tex[0]->active = 1;
-	if ((x > WIDTH/2 + 20 && x < WIDTH/2 + 90) && (y > 30 && y < 50))
+	if ((x > WIDTH / 2 + 20 && x < WIDTH / 2 + 90) && (y > 30 && y < 50))
 		map->floorsky_tex[0]->active = 2;
-
-	if ((x > WIDTH/2 + 120 && x < WIDTH/2 + 185) && (y > 60 && y < 90)) // save
+	if ((x > WIDTH / 2 + 120 && x < WIDTH / 2 + 185) && (y > 60 && y < 90))
 	{
 		zerroother(map);
 		map->inter_tex[16]->active = 4;
 	}
-	if ((x > WIDTH/2 - 100 && x < WIDTH/2 - 35) && (y > 60 && y < 90))
+	if ((x > WIDTH / 2 - 100 && x < WIDTH / 2 - 35) && (y > 60 && y < 90))
 	{
 		zerroother(map);
 		map->inter_tex[16]->active = 0;
 	}
 }
 
-void floorker(t_map *map, int x, int y)
+void	floorker(t_map *map, int x, int y)
 {
 	int x1;
 	int y1;
@@ -341,13 +340,12 @@ void floorker(t_map *map, int x, int y)
 	if (some_texture_active(map) == 2)
 	{
 		open_floor_win(map);
-
 		// if (x1 != x || y1 != y)
 		// 	get_floor_cordi(map, x1 - map->z_x, y1 - map->z_y);
 	}
 }
 
-void zerroothero(t_map *map)
+void	zerroothero(t_map *map)
 {
 	int i;
 
@@ -421,7 +419,7 @@ void	objects_click(t_map *map, int x, int y)
 
 void	get_door(t_map *map, int x, int y)
 {
-	if ((x > WIDTH/2 - 140 && x < WIDTH/2 - 100) && (y > 10 && y < 50))
+	if ((x > WIDTH / 2 - 140 && x < WIDTH / 2 - 100) && (y > 10 && y < 50))
 	{
 		map->door_tex[0]->active = 1;
 		map->door_tex[1]->active = 0;
@@ -429,68 +427,65 @@ void	get_door(t_map *map, int x, int y)
 		map->door_tex[3]->active = 0;
 		// edit_object(map, map->door_tex, 1, 0);
 	}
-	if ((x > WIDTH/2 - 60 && x < WIDTH/2 - 20) && (y > 10 && y < 50))
+	if ((x > WIDTH / 2 - 60 && x < WIDTH / 2 - 20) && (y > 10 && y < 50))
 	{
 		map->door_tex[0]->active = 0;
 		map->door_tex[1]->active = 1;
 		map->door_tex[2]->active = 0;
 		map->door_tex[3]->active = 0;
 	}
-	if ((x > WIDTH/2 + 20 && x < WIDTH/2 + 60) && (y > 10 && y < 50))
+	if ((x > WIDTH / 2 + 20 && x < WIDTH / 2 + 60) && (y > 10 && y < 50))
 	{
 		map->door_tex[0]->active = 0;
 		map->door_tex[1]->active = 0;
 		map->door_tex[2]->active = 1;
 		map->door_tex[3]->active = 0;
 	}
-	if ((x > WIDTH/2 + 90 && x < WIDTH/2 + 130) && (y > 10 && y < 50))
+	if ((x > WIDTH / 2 + 90 && x < WIDTH / 2 + 130) && (y > 10 && y < 50))
 	{
 		map->door_tex[0]->active = 0;
 		map->door_tex[1]->active = 0;
 		map->door_tex[2]->active = 0;
 		map->door_tex[3]->active = 1;
 	}
-	if ((x > WIDTH/2 - 130 && x < WIDTH/2 - 110) && (y > 60 && y < 80))
+	if ((x > WIDTH / 2 - 130 && x < WIDTH / 2 - 110) && (y > 60 && y < 80))
 	{
 		//map->validflag = -1;
 		map->door_tex[0]->active = 0;
 		map->door_tex[4]->active = 1;
 	}
-	if ((x > WIDTH/2 + 80 && x < WIDTH/2 + 145) && (y > 100 && y < 130)) // save
+	if ((x > WIDTH / 2 + 80 && x < WIDTH / 2 + 145) && (y > 100 && y < 130))
 	{
-		//zerroothero(map); /////////////// хз зачем может надо
 		printf("9\n");
 		map->validflag = 9;
 	}
-	if ((x > WIDTH/2 - 145 && x < WIDTH/2 - 80) && (y > 100 && y < 130))
+	if ((x > WIDTH / 2 - 145 && x < WIDTH / 2 - 80) && (y > 100 && y < 130))
 	{
 		zerroothero(map);
 	}
 }
 
-int	searchelem(char *str1, char *str2)
+int		searchelem(char *str1, char *str2)
 {
 	char *istr;
 
 	//Поиск строки
-	istr = ft_strstr(str1,str2);
-
+	istr = ft_strstr(str1, str2);
 	//Вывод результата поиска на консоль
 	if (istr == NULL)
 		return (0);
 	else
 	{
 		//printf ("Искомая строка начинается с символа %d\n",istr-str1+1);
-		return (istr-str1+1);
+		return (istr - str1 + 1);
 	}
-
 }
 
-void rewrite(t_map *map, int inx, int x, int y)
+void	rewrite(t_map *map, int inx, int x, int y)
 {
-	int i;
-	char *str;
-	char *tmp;
+	int		i;
+	char	*str;
+	char	*tmp;
 
 	i = 0;
 	tmp = malloc(sizeof(char *));
@@ -519,10 +514,10 @@ void rewrite(t_map *map, int inx, int x, int y)
 		else
 			map->objects = ft_strjoin(str, &map->objects[inx]);
 	}
-	free (tmp);
+	free(tmp);
 }
 
-void cordinator(t_map *map, char *c, int x, int y)
+void	cordinator(t_map *map, char *c, int x, int y)
 {
 	if (ft_strlen(map->objects) != 0)
 	{
@@ -549,7 +544,6 @@ void cordinator(t_map *map, char *c, int x, int y)
 		map->objects = ft_strjoin(map->objects, ft_itoa(y));
 		map->objects = ft_strjoin(map->objects, "\n");
 	}
-	
 }
 
 void	save_objcord(t_map *map, int x, int y)
@@ -589,22 +583,26 @@ void	save_objcord(t_map *map, int x, int y)
 		if (map->door_tex[9]->active == 1)
 			cordinator(map, "b ", x, y);
 		printf("new: %s\n", map->objects);
-		if (map->door_tex[4]->active == 1 && range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
+		if (map->door_tex[4]->active == 1 && range_click(&(t_info){x, y,
+			WIDTH / 2 - 165, 5}, 330, 150))
 		{
 			map->validflag = 8;
 			cordinator(map, "k 1 ", x, y);//map->door_tex[5]->active = 1;
 		}
-		if (map->door_tex[5]->active == 1 && range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
+		if (map->door_tex[5]->active == 1 && range_click(&(t_info){x, y,
+			WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 		{
 			map->validflag = 8;
 			cordinator(map, "k 2 ", x, y);
 		}
-		if (map->door_tex[6]->active == 1 && range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
+		if (map->door_tex[6]->active == 1 && range_click(&(t_info){x, y,
+			WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 		{
 			map->validflag = 8;
 			cordinator(map, "k 3 ", x, y);
 		}
-		if (map->door_tex[7]->active == 1 && range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
+		if (map->door_tex[7]->active == 1 && range_click(&(t_info){x, y,
+			WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 		{
 			map->validflag = 8;
 			cordinator(map, "k 4 ", x, y);
@@ -612,7 +610,7 @@ void	save_objcord(t_map *map, int x, int y)
 	}
 }
 
-int catch_click(t_map *map, int x, int y)
+int		catch_click(t_map *map, int x, int y)
 {
 	section_click(map, x, y); // клик по секциям
 	tools_click(map, x, y); // клик по инструментам
@@ -645,5 +643,4 @@ int catch_click(t_map *map, int x, int y)
 		return (1);
 	else
 		return (0);
-	
 }

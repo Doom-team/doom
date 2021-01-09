@@ -12,7 +12,7 @@
 
 #include "../include/map.h"
 
-void draw_player(t_map *map)
+void	draw_player(t_map *map)
 {
 	fonts_classic(map, "player & items", &(t_info){100, 110, 0, 0}, REDFONT);
 	if (map->player_tex[0]->active == 1)
@@ -26,7 +26,7 @@ void draw_player(t_map *map)
 	draw_img(map, &(t_info){230, 150, 40, 20}, map->player_tex[2]);
 }
 
-void draw_guns(t_map *map)
+void	draw_guns(t_map *map)
 {
 	fonts_classic(map, "guns & bullets", &(t_info){100, 210, 0, 0}, REDFONT);
 	if (map->gun_tex[0]->active == 1)
@@ -49,7 +49,7 @@ void draw_guns(t_map *map)
 	draw_img(map, &(t_info){230, 280, 30, 20}, map->gun_tex[5]);
 }
 
-void draw_enemy(t_map *map)
+void	draw_enemy(t_map *map)
 {
 	fonts_classic(map, "enemys", &(t_info){120, 310, 0, 0}, REDFONT);
 	if (map->enemy_tex[0]->active == 1)
@@ -69,7 +69,7 @@ void draw_enemy(t_map *map)
 	draw_img(map, &(t_info){160, 430, 40, 40}, map->enemy_tex[4]);
 }
 
-void draw_door_light_exit(t_map *map)
+void	draw_door_light_exit(t_map *map)
 {
 	fonts_classic(map, "door", &(t_info){120, 480, 0, 0}, REDFONT);
 	if (map->door_tex[10]->active == 1)

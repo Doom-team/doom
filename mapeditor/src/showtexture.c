@@ -22,7 +22,8 @@ void	showtexture(t_map *map)
 	while (++i < 19)
 	{
 		if (map->wall_tex[i]->active == 1)
-			draw_img(map, &(t_info){320 - 10, y - 10, 70, 70}, map->inter_tex[15]);
+			draw_img(map, &(t_info){320 - 10, y - 10, 70, 70},
+				map->inter_tex[15]);
 		draw_img(map, &(t_info){320, y, 50, 50}, map->wall_tex[i]);
 		y += 80;
 	}
@@ -38,14 +39,14 @@ void	showfloorsky(t_map *map)
 	while (++i < 13)
 	{
 		if (map->floorsky_tex[i]->active == 1)
-			draw_img(map, &(t_info){320 - 10, y - 10, 70, 70}, map->inter_tex[15]);
+			draw_img(map, &(t_info){320 - 10, y - 10, 70, 70},
+				map->inter_tex[15]);
 		draw_img(map, &(t_info){320, y, 50, 50}, map->floorsky_tex[i]);
 		y += 80;
 	}
 }
 
-
-void showupcontent(t_map *map)
+void	showupcontent(t_map *map)
 {
 	int i;
 	int y;
@@ -59,7 +60,7 @@ void showupcontent(t_map *map)
 	}
 }
 
-void draw_showuppanel(t_map *map, int x, int y, int inx)
+void	draw_showuppanel(t_map *map, int x, int y, int inx)
 {
 	if (map->inter_tex[13]->active == 1)
 	{
@@ -68,10 +69,9 @@ void draw_showuppanel(t_map *map, int x, int y, int inx)
 	}
 	else
 		draw_img(map, &(t_info){x, y, 30, 50}, map->inter_tex[13]);
-	
 }
 
-void draw_small_panel_tex(t_map *map)
+void	draw_small_panel_tex(t_map *map)
 {
 	int i;
 
@@ -84,7 +84,8 @@ void draw_small_panel_tex(t_map *map)
 		}
 	i = 0;
 	while (++i < 13)
-		if (map->floorsky_tex[i]->active == 1 && map->inter_tex[13]->active == 0)
+		if (map->floorsky_tex[i]->active == 1 &&
+			map->inter_tex[13]->active == 0)
 		{
 			map->index_tex = i;
 			draw_img(map, &(t_info){310, 770, 25, 25}, map->floorsky_tex[i]);

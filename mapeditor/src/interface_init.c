@@ -12,7 +12,8 @@
 
 #include "../include/map.h"
 
-void init_texture(SDL_Surface *tex, unsigned char **s, unsigned char *pixb, int *strb)
+void	init_texture(SDL_Surface *tex, unsigned char **s,
+						unsigned char *pixb, int *strb)
 {
 	*s = (unsigned char*)(tex->pixels);
 	*pixb = (tex->format->BytesPerPixel);
@@ -26,8 +27,9 @@ int		init_all(t_map *map)
 	i = -1;
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
-	IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG);
-	if (!(map->win = SDL_CreateWindow("Mapeditor", 200, 200, WIDTH, HEIGHT, SDL_WINDOW_SHOWN)))
+	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+	if (!(map->win = SDL_CreateWindow("Mapeditor", 200, 200,
+		WIDTH, HEIGHT, SDL_WINDOW_SHOWN)))
 		return (0);
 	init_interface(map);
 	map->z_x = WIDTH / 2;
@@ -38,7 +40,6 @@ int		init_all(t_map *map)
 	map->whclick = 5;
 	map->tmpclick = 0;
 	map->showactive = 0;
-
 	map->change_x = 0;
 	map->change_y = 0;
 	// map->change_plus = 0;
@@ -62,8 +63,7 @@ int		init_all(t_map *map)
 	map->music[2] = Mix_LoadMUS("/textures/music/m1.mp3");
 	map->music[3] = Mix_LoadMUS("/textures/music/music1.mp3");
 	map->fontclasic = TTF_OpenFont("/textures/fonts/classic.ttf", 32);
-	map->fontdoom = TTF_OpenFont("/textures/fonts/doom.ttf", 32);;
-
+	map->fontdoom = TTF_OpenFont("/textures/fonts/doom.ttf", 32);
 	return (1);
 }
 

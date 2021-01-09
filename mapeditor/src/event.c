@@ -15,14 +15,19 @@
 void	draw_mapstairs(t_map *map, int x, int y)
 {
 	//printf("line\n");
-	draw_floor_line(map, &(t_info){map->x_c - map->z_x, map->y_c - map->z_y - 20, x - map->z_x, y - map->z_y -20,});
-	draw_floor_line(map, &(t_info){map->x_c - map->z_x, map->y_c - map->z_y + 20, x - map->z_x, y - map->z_y + 20,});
+	draw_floor_line(map, &(t_info){map->x_c - map->z_x, map->y_c -
+		map->z_y - 20, x - map->z_x, y - map->z_y - 20});
+	draw_floor_line(map, &(t_info){map->x_c - map->z_x, map->y_c -
+		map->z_y + 20, x - map->z_x, y - map->z_y + 20});
 }
 
 int		mmove(int x, int y, t_map *map, SDL_Event event)
 {
-	int x1 = x;
-	int y1 = y;
+	int x1;
+	int y1;
+
+	x1 = x;
+	y1 = y;
 	find_coord(map, &x1, &y1);
 	draw(map);
 	if (some_texture_active(map) == 2)
@@ -30,12 +35,9 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 		if (x1 != x || y1 != y)
 			bigdot(map, x1, y1, HOTPINK);
 		//draw_floor_line(map, &(t_info){map->floor_x, map->floor_y, x - map->z_x, y - map->z_y});
-		
 	}
 	if (map->block_tex[5]->active == 1)
-	{
 		draw_mapstairs(map, x, y);
-	}
 	// if (some_texture_active(map) == 4) ////////////////////////////////////
 	// {
 		// drawillwall(map, x, y);
@@ -47,20 +49,23 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 		cursor(map, "/textures/interface/editpic.png", 0, 16);
 	}
 	else if (map->inter_tex[8]->active)
-		(x1 != x || y1 != y) ? cursor(map, "/textures/interface/deletic.png", 8, 8) : SDL_FreeCursor(map->cursor);
+		(x1 != x || y1 != y) ? cursor(map, "/textures/interface/deletic.png",
+			8, 8) : SDL_FreeCursor(map->cursor);
 	else
 		SDL_FreeCursor(map->cursor);
 	return (0);
 }
 
-
-int	events(t_map *map)
+int		events(t_map *map)
 {
-	int x = 0;
-	int y = 0;
-	SDL_Event event;
-	int done = 0;
+	int			x;
+	int			y;
+	SDL_Event	event;
+	int			done;
 
+	x = 0;
+	y = 0;
+	done = 0;
 	while ((!done) && SDL_WaitEvent(&event))
 	{
 		if (event.type == SDL_QUIT)

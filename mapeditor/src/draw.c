@@ -12,7 +12,7 @@
 
 #include "../include/map.h"
 
-void draw_img(t_map *map, t_info *info, t_image *st)
+void	draw_img(t_map *map, t_info *info, t_image *st)
 {
 	int i;
 	int j;
@@ -26,7 +26,9 @@ void draw_img(t_map *map, t_info *info, t_image *st)
 		while (j < WIDTH && j < info->x + info->w)
 		{
 			pixel1 = i * map->inter_tex[0]->strb + j * map->inter_tex[0]->pixb;
-			pixel2 = (int)((double)(i - info->y)/info->h * st->img->h) * st->strb + (int)((double)(j - info->x)/info->w * st->img->w) * st->pixb;
+			pixel2 = (int)((double)(i - info->y) / info->h * st->img->h) *
+				st->strb + (int)((double)(j - info->x) / info->w *
+					st->img->w) * st->pixb;
 			if (st->s[pixel2 + 3])
 			{
 				map->inter_tex[0]->s[pixel1] = st->s[pixel2];
@@ -46,8 +48,7 @@ void	draw_color(t_map *map, int pixel, t_color color)
 	map->inter_tex[0]->s[++pixel] = color.r;
 }
 
-
-void draw_pixel(t_map *map, int x, int y, t_color color)
+void	draw_pixel(t_map *map, int x, int y, t_color color)
 {
 	int pixel;
 
@@ -58,7 +59,7 @@ void draw_pixel(t_map *map, int x, int y, t_color color)
 	}
 }
 
-void draw_point(t_map *map, int x, int y, t_color color)
+void	draw_point(t_map *map, int x, int y, t_color color)
 {
 	int i;
 	int j;
@@ -72,7 +73,8 @@ void draw_point(t_map *map, int x, int y, t_color color)
 		{
 			if (x + i >= 0 && y + j >= 0 && x + i < WIDTH && y + j < HEIGHT)
 			{
-				pixel = ((x + i) * map->inter_tex[0]->pixb) + ((y + j) * map->inter_tex[0]->strb);
+				pixel = ((x + i) * map->inter_tex[0]->pixb) + ((y + j) *
+					map->inter_tex[0]->strb);
 				draw_color(map, pixel, color);
 			}
 			j++;
@@ -80,7 +82,8 @@ void draw_point(t_map *map, int x, int y, t_color color)
 		i++;
 	}
 }
-void draw_basic_interface(t_map *map)
+
+void	draw_basic_interface(t_map *map)
 {
 	SDL_FillRect(map->inter_tex[0]->img, NULL, 0);
 	draw_grid(map);
@@ -95,20 +98,19 @@ void draw_basic_interface(t_map *map)
 	draw_img(map, &(t_info){120, 758, 60, 30}, map->inter_tex[21]);
 }
 
-void draw_block_textures(t_map *map)
+void	draw_block_textures(t_map *map)
 {
 	draw_img(map, &(t_info){65, 250, 50, 50}, map->block_tex[0]);
 	draw_img(map, &(t_info){165, 250, 50, 50}, map->block_tex[1]);
 	draw_img(map, &(t_info){65, 320, 50, 50}, map->block_tex[2]);
 	draw_img(map, &(t_info){165, 320, 50, 50}, map->block_tex[3]);
 	// draw_img(map, &(t_info){65, 400, 50, 50}, map->block_tex[0]);
-	
 }
 
-void whichone_tool(t_map *map)
+void	whichone_tool(t_map *map)
 {
-
-	if (map->inter_tex[3]->active || map->inter_tex[6]->active || map->inter_tex[7]->active || map->inter_tex[8]->active)
+	if (map->inter_tex[3]->active || map->inter_tex[6]->active ||
+		map->inter_tex[7]->active || map->inter_tex[8]->active)
 	{
 		draw_block_textures(map);
 		draw_slider(map);
@@ -134,19 +136,20 @@ void whichone_tool(t_map *map)
 	if (map->inter_tex[8]->active == 1)
 		fonts_classic(map, "remove tool", &(t_info){305, 780, 0, 0}, WHITEFONT);
 	if (map->validflag == 1)
-		fonts_classic(map, "map is not closed!", &(t_info){350, HEIGHT - 20, 0, 0}, REDFONT);
+		fonts_classic(map, "map is not closed!",
+			&(t_info){350, HEIGHT - 20, 0, 0}, REDFONT);
 }
 
-
-void draw(t_map *map)
+void	draw(t_map *map)
 {
 	draw_basic_interface(map);
 	whichone_tool(map);
 	// open_texture_win(map);
-
 	if (map->click)
 		bigdot(map, map->x_c, map->y_c, RED);
-	if ((map->click || map->tmpclick) && (map->block_tex[0]->active || map->block_tex[1]->active || map->block_tex[2]->active || map->block_tex[3]->active))
+	if ((map->click || map->tmpclick) && (map->block_tex[0]->active ||
+		map->block_tex[1]->active || map->block_tex[2]->active ||
+			map->block_tex[3]->active))
 	{
 		map->click = 0;
 		map->tmpclick = 0;

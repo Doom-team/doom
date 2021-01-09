@@ -12,47 +12,63 @@
 
 #include "../include/map.h"
 
-void set_object(t_map *map, int x, int y)
+void	set_object(t_map *map, int x, int y)
 {
 	if (map->player_tex[0])
 		return ;
 }
 
-void draw_door_win(t_map *map)
+void	draw_door_win(t_map *map)
 {
 	if (map->validflag == 7)
 	{
-		draw_img(map, &(t_info){WIDTH/2 - 165, 5, 330, 140}, map->inter_tex[16]);
-		draw_img(map, &(t_info){WIDTH/2 - 130, 60, 20, 20}, map->door_tex[4]);
-		draw_img(map, &(t_info){WIDTH/2 + 80, 100, 65, 30}, map->floorsky_tex[0]);
-		fonts_classic(map, "SAVE", &(t_info){WIDTH/2 + 90, 105, 0, 0}, WHITEFONT);
-		draw_img(map, &(t_info){WIDTH/2 - 145, 100, 65, 30}, map->floorsky_tex[0]);
-		fonts_classic(map, "CANCEL", &(t_info){WIDTH/2 - 142, 105, 0, 0}, WHITEFONT);
+		draw_img(map, &(t_info){WIDTH / 2 - 165, 5, 330, 140},
+			map->inter_tex[16]);
+		draw_img(map, &(t_info){WIDTH / 2 - 130, 60, 20, 20},
+			map->door_tex[4]);
+		draw_img(map, &(t_info){WIDTH / 2 + 80, 100, 65, 30},
+			map->floorsky_tex[0]);
+		fonts_classic(map, "SAVE", &(t_info){WIDTH / 2 + 90, 105, 0, 0},
+			WHITEFONT);
+		draw_img(map, &(t_info){WIDTH / 2 - 145, 100, 65, 30},
+			map->floorsky_tex[0]);
+		fonts_classic(map, "CANCEL", &(t_info){WIDTH / 2 - 142, 105, 0, 0},
+			WHITEFONT);
 	}
 	else if (map->validflag == 8)
 	{
 		// printf("okkkk\n");
-		draw_img(map, &(t_info){WIDTH/2 - 165, 5, 330, 140}, map->inter_tex[16]);
-		draw_img(map, &(t_info){WIDTH/2 + 80, 100, 65, 30}, map->floorsky_tex[0]);
-		fonts_classic(map, "SAVE", &(t_info){WIDTH/2 + 90, 105, 0, 0}, WHITEFONT);
-		draw_img(map, &(t_info){WIDTH/2 - 145, 100, 65, 30}, map->floorsky_tex[0]);
-		fonts_classic(map, "CANCEL", &(t_info){WIDTH/2 - 142, 105, 0, 0}, WHITEFONT);
+		draw_img(map, &(t_info){WIDTH / 2 - 165, 5, 330, 140},
+			map->inter_tex[16]);
+		draw_img(map, &(t_info){WIDTH / 2 + 80, 100, 65, 30},
+			map->floorsky_tex[0]);
+		fonts_classic(map, "SAVE", &(t_info){WIDTH / 2 + 90, 105, 0, 0},
+			WHITEFONT);
+		draw_img(map, &(t_info){WIDTH / 2 - 145, 100, 65, 30},
+			map->floorsky_tex[0]);
+		fonts_classic(map, "CANCEL", &(t_info){WIDTH / 2 - 142, 105, 0, 0},
+			WHITEFONT);
 	}
 	else
 	{
-		draw_img(map, &(t_info){WIDTH/2 - 165, 5, 330, 140}, map->inter_tex[16]);
-		draw_img(map, &(t_info){WIDTH/2 - 140, 10, 40, 40}, map->door_tex[0]);
-		draw_img(map, &(t_info){WIDTH/2 - 130, 60, 20, 20}, map->door_tex[4]);
-		draw_img(map, &(t_info){WIDTH/2 - 60, 10, 40, 40}, map->door_tex[1]);
-		draw_img(map, &(t_info){WIDTH/2 - 50, 60, 20, 20}, map->door_tex[5]);
-		draw_img(map, &(t_info){WIDTH/2 + 20, 10, 40, 40}, map->door_tex[2]);
-		draw_img(map, &(t_info){WIDTH/2 + 30, 60, 20, 20}, map->door_tex[6]);
-		draw_img(map, &(t_info){WIDTH/2 + 90, 10, 40, 40}, map->door_tex[3]);
-		draw_img(map, &(t_info){WIDTH/2 + 100, 60, 20, 20}, map->door_tex[7]);
-		draw_img(map, &(t_info){WIDTH/2 + 80, 100, 65, 30}, map->floorsky_tex[0]);
-		fonts_classic(map, "SAVE", &(t_info){WIDTH/2 + 90, 105, 0, 0}, WHITEFONT);
-		draw_img(map, &(t_info){WIDTH/2 - 145, 100, 65, 30}, map->floorsky_tex[0]);
-		fonts_classic(map, "CANCEL", &(t_info){WIDTH/2 - 142, 105, 0, 0}, WHITEFONT);
+		draw_img(map, &(t_info){WIDTH / 2 - 165, 5, 330, 140},
+			map->inter_tex[16]);
+		draw_img(map, &(t_info){WIDTH / 2 - 140, 10, 40, 40}, map->door_tex[0]);
+		draw_img(map, &(t_info){WIDTH / 2 - 130, 60, 20, 20}, map->door_tex[4]);
+		draw_img(map, &(t_info){WIDTH / 2 - 60, 10, 40, 40}, map->door_tex[1]);
+		draw_img(map, &(t_info){WIDTH / 2 - 50, 60, 20, 20}, map->door_tex[5]);
+		draw_img(map, &(t_info){WIDTH / 2 + 20, 10, 40, 40}, map->door_tex[2]);
+		draw_img(map, &(t_info){WIDTH / 2 + 30, 60, 20, 20}, map->door_tex[6]);
+		draw_img(map, &(t_info){WIDTH / 2 + 90, 10, 40, 40}, map->door_tex[3]);
+		draw_img(map, &(t_info){WIDTH / 2 + 100, 60, 20, 20}, map->door_tex[7]);
+		draw_img(map, &(t_info){WIDTH / 2 + 80, 100, 65, 30},
+			map->floorsky_tex[0]);
+		fonts_classic(map, "SAVE", &(t_info){WIDTH / 2 + 90, 105, 0, 0},
+			WHITEFONT);
+		draw_img(map, &(t_info){WIDTH / 2 - 145, 100, 65, 30},
+			map->floorsky_tex[0]);
+		fonts_classic(map, "CANCEL", &(t_info){WIDTH / 2 - 142, 105, 0, 0},
+			WHITEFONT);
 	}
 }
 
@@ -63,9 +79,12 @@ void	draw_obj_block(t_map *map)
 	draw_enemy(map);
 	draw_door_light_exit(map);
 }
+
 void	doorshit(t_map *map)
 {
-	if ((map->door_tex[0]->active == 0 && map->door_tex[1]->active == 0 && map->door_tex[2]->active == 0 && map->door_tex[3]->active == 0) || map->validflag == 6 || map->validflag == 7 || map->validflag == 8)
+	if ((map->door_tex[0]->active == 0 && map->door_tex[1]->active == 0 &&
+		map->door_tex[2]->active == 0 && map->door_tex[3]->active == 0) ||
+		map->validflag == 6 || map->validflag == 7 || map->validflag == 8)
 	{
 		map->inter_tex[16]->active = 1;
 		draw_door_win(map);
@@ -133,7 +152,6 @@ void	doorshit(t_map *map)
 // 		i++;
 // 	}
 // 	// if (map->inter_tex[0]->s[pix] == 0 && map->inter_tex[0]->s[++pix] == 255 && map->inter_tex[0]->s[++pix] == 0)
-		
 // 	return (0);
 // }
 
@@ -142,7 +160,7 @@ void	doorshit(t_map *map)
 // 	if (xyround(x, y))
 // }
 
-void objectsblock(t_map *map)
+void	objectsblock(t_map *map)
 {
 	draw_obj_block(map);
 	if (map->door_tex[10]->active == 1)

@@ -13,10 +13,10 @@
 #include "../include/map.h"
 #include <math.h>
 
-int nod_len(t_nod *nod)
+int		nod_len(t_nod *nod)
 {
-	t_nod *n;
-	int i;
+	t_nod	*n;
+	int		i;
 
 	n = nod;
 	i = 0;
@@ -25,7 +25,7 @@ int nod_len(t_nod *nod)
 		i++;
 		n = n->nxt;
 	}
-	return(i);
+	return (i);
 }
 
 t_nod	*n_cr(short x1, short y1, short x2, short y2)
@@ -54,20 +54,19 @@ t_nod	*n_cr(short x1, short y1, short x2, short y2)
 	return (a);
 }
 
-
-
-void add_node(t_map *map, int x, int y)
+void	add_node(t_map *map, int x, int y)
 {
 	t_nod *n;
 	t_nod *cur;
 
-	n = n_cr(map->x_c - map->z_x, map->y_c  - map->z_y, x - map->z_x, y - map->z_y);
+	n = n_cr(map->x_c - map->z_x, map->y_c - map->z_y,
+		x - map->z_x, y - map->z_y);
 	n->index = nod_len(map->nod);
 	n->wallh = map->whclick;
 	if (map->nod == NULL)
 	{
 		map->nod = n;
-		return;
+		return ;
 	}
 	else
 	{
@@ -80,7 +79,7 @@ void add_node(t_map *map, int x, int y)
 	}
 }
 
-void draw_gr(t_map *map, int x, int y, t_color color)
+void	draw_gr(t_map *map, int x, int y, t_color color)
 {
 	int pixel;
 
@@ -91,21 +90,18 @@ void draw_gr(t_map *map, int x, int y, t_color color)
 	}
 }
 
-void draw_node(t_map *map, t_nod *n)
+void	draw_node(t_map *map, t_nod *n)
 {
 	int x1;
 	int y1;
 	int x2;
 	int y2;
-
 	int dx;
 	int dy;
 	int er;
 	int de;
-
 	int i;
 	int j;
-
 	int diry;
 	int di;
 
@@ -114,7 +110,7 @@ void draw_node(t_map *map, t_nod *n)
 		x1 = n->x1 + map->z_x;
 		x2 = n->x2 + map->z_x;
 		if (x1 < 0 && x2 < 0)
-			return;
+			return ;
 		y1 = n->y1 + map->z_y;
 		y2 = n->y2 + map->z_y;
 		dx = abs(x1 - x2);
@@ -124,7 +120,6 @@ void draw_node(t_map *map, t_nod *n)
 		j = y1;
 		i = x1;
 		di = 0;
-		
 		if (dx > dy)
 		{
 			i = x1;
@@ -136,7 +131,6 @@ void draw_node(t_map *map, t_nod *n)
 				diry = 1;
 			if (diry < 0)
 				diry = -1;
-			
 			while (i != x2)
 			{
 				draw_gr(map, i, j, GREEN);
@@ -160,7 +154,6 @@ void draw_node(t_map *map, t_nod *n)
 				diry = 1;
 			if (diry < 0)
 				diry = -1;
-			
 			while (i != y2)
 			{
 				draw_gr(map, j, i, GREEN);
@@ -178,7 +171,7 @@ void draw_node(t_map *map, t_nod *n)
 	}
 }
 
-void draw_nodes(t_map *map)
+void	draw_nodes(t_map *map)
 {
 	t_nod *n;
 
@@ -187,7 +180,7 @@ void draw_nodes(t_map *map)
 		return ;
 	while (n)
 	{
-		 //printf("index: %d\n", n->index);
+		//printf("index: %d\n", n->index);
 		if (map->inter_tex[6]->active)
 			n->texture->type_name = "w";
 		draw_node(map, n);
@@ -195,18 +188,18 @@ void draw_nodes(t_map *map)
 	}
 }
 
-int sq(int x1, int y1, int x2, int y2)
+int		sq(int x1, int y1, int x2, int y2)
 {
 	return ((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
 void	find_coord(t_map *map, int *x, int *y)
 {
-	int x1;
-	int y1;
-	int abs1;
-	int abs2;
-	t_nod *nod;
+	int		x1;
+	int		y1;
+	int		abs1;
+	int		abs2;
+	t_nod	*nod;
 
 	nod = map->nod;
 	x1 = *x + 10;
@@ -216,7 +209,8 @@ void	find_coord(t_map *map, int *x, int *y)
 		return ;
 	while (nod)
 	{
-		if (abs((nod->x1 + map->z_x) - *x) < 10 && abs((nod->y1 + map->z_y) - *y) < 10)
+		if (abs((nod->x1 + map->z_x) - *x) < 10 &&
+			abs((nod->y1 + map->z_y) - *y) < 10)
 		{
 			abs2 = sq(*x, *y, nod->x1 + map->z_x, nod->y1 + map->z_y);
 			if (abs2 < abs1)
@@ -226,7 +220,8 @@ void	find_coord(t_map *map, int *x, int *y)
 				y1 = nod->y1 + map->z_y;
 			}
 		}
-		if (abs((nod->x2 + map->z_x) - *x) < 10 && abs((nod->y2 + map->z_y) - *y) < 10)
+		if (abs((nod->x2 + map->z_x) - *x) < 10 &&
+			abs((nod->y2 + map->z_y) - *y) < 10)
 		{
 			abs2 = sq(*x, *y, nod->x2 + map->z_x, nod->y2 + map->z_y);
 			if (abs2 < abs1)

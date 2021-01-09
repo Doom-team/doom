@@ -12,7 +12,7 @@
 
 #include "../include/map.h"
 
-int some_texture_active(t_map *map)
+int		some_texture_active(t_map *map)
 {
 	int i;
 
@@ -35,7 +35,7 @@ int some_texture_active(t_map *map)
 	return (0);
 }
 
-int	find_texture_name(char *str)
+int		find_texture_name(char *str)
 {
 	int i;
 
@@ -53,7 +53,9 @@ int	find_texture_name(char *str)
 void	changer(t_map *map, int x, int y)
 {
 	int tmp;
+	int i;
 
+	i = 0;
 	if (some_texture_active(map) == 1)
 	{
 		tmp = find_nod(map, x, y);
@@ -70,12 +72,9 @@ void	changer(t_map *map, int x, int y)
 		{
 			map->index_wall = tmp;
 			map->validflag = 6;
-			if (map->door_tex[1]->active == 1) // обнуление предыдущих
-				map->door_tex[5]->active = 1;
-			if (map->door_tex[2]->active == 1)
-				map->door_tex[6]->active = 1;
-			if (map->door_tex[3]->active == 1)
-				map->door_tex[7]->active = 1;
+			while (++i <= 3)
+				if (map->door_tex[i]->active == 1)
+					map->door_tex[i + 4]->active = 1;
 		}
 	}
 }
@@ -90,8 +89,6 @@ void	change_texture(t_map *map, int x, int y)
 	if (wichone == 4)
 		get_wall_cord(map, x, y);
 }
-
-
 
 void	texture_block(t_map *map)
 {

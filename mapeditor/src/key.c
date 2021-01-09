@@ -35,6 +35,5 @@ int		pkey(int key, t_map *map)
 {
 	if (key == 27)
 		SDL_Quit();
-
 	return (0);
 }

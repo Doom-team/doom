@@ -12,15 +12,13 @@
 
 #include "../include/map.h"
 
-char *count_floor(t_map *map, int fd);
-
 // void ceiling(t_map *map, char buf, t_nod *n)
 // {
 // 	int max_x;
 // 	int max_y;
 // 	int min_x;
 // 	int min_y;
-	
+
 // 	n = map->nod;
 // 	max_x = -WIDTH;
 // 	max_y = -HEIGHT;
@@ -54,8 +52,6 @@ char *count_floor(t_map *map, int fd);
 // 	buf = ft_strjoin(buf, " ");
 // 	buf = ft_strjoin(buf, ft_itoa(min_y));
 // 	buf = ft_strjoin(buf, "\n");
-
-
 // 	buf = ft_strjoin("c ", ft_itoa(min_x));
 // 	buf = ft_strjoin(buf, " ");
 // 	buf = ft_strjoin(buf, ft_itoa(max_y));
@@ -66,11 +62,11 @@ char *count_floor(t_map *map, int fd);
 // 	buf = ft_strjoin(buf, "\n");
 // }
 
-void write_ceiling(t_map *map, int fd)
+void	write_ceiling(t_map *map, int fd)
 {
-	int maxlen;
-	char *buffer;
-	t_nod *n;
+	int		maxlen;
+	char	*buffer;
+	t_nod	*n;
 
 	if (map->ceilingstr)
 	{
@@ -79,7 +75,7 @@ void write_ceiling(t_map *map, int fd)
 		buffer = map->ceilingstr;
 		if (write(fd, buffer, maxlen) != maxlen)
 			printf("error\n");
-				free(buffer);
+		free(buffer);
 	}
 	else
 	{
@@ -89,10 +85,10 @@ void write_ceiling(t_map *map, int fd)
 	}
 }
 
-void write_floor(t_map *map, int fd)
+void	write_floor(t_map *map, int fd)
 {
-	int maxlen;
-	char *buffer;
+	int		maxlen;
+	char	*buffer;
 
 	if (map->floorstr)
 	{
@@ -111,10 +107,10 @@ void write_floor(t_map *map, int fd)
 	}
 }
 
-void write_objects(t_map *map, int fd)
+void	write_objects(t_map *map, int fd)
 {
-	int maxlen;
-	char *buffer;
+	int		maxlen;
+	char	*buffer;
 
 	if (map->objects)
 	{
@@ -125,16 +121,14 @@ void write_objects(t_map *map, int fd)
 			printf("error\n");
 		free(buffer);
 	}
-	// else
-		
 }
 
-void count_write(t_map *map, int fd)
+void	count_write(t_map *map, int fd)
 {
-	t_nod *n;
-	int maxlen;
-	char *buffer;
-	int num_w;
+	t_nod	*n;
+	int		maxlen;
+	char	*buffer;
+	int		num_w;
 
 	num_w = 0;
 	n = map->nod;
@@ -144,7 +138,8 @@ void count_write(t_map *map, int fd)
 			num_w++;
 		n = n->nxt;
 	}
-	maxlen = ft_strlen("walls: ") + ft_strlen(ft_itoa(num_w)) + ft_strlen(count_floor(map, fd)) + 2; // ft_strlen(count_floor(map, fd))
+	maxlen = ft_strlen("walls: ") + ft_strlen(ft_itoa(num_w)) +
+		ft_strlen(count_floor(map, fd)) + 2; // ft_strlen(count_floor(map, fd))
 	buffer = malloc(sizeof(char *) * (maxlen));
 	buffer = "walls: ";
 	buffer = ft_strjoin(buffer, ft_itoa(num_w));
@@ -157,7 +152,7 @@ void count_write(t_map *map, int fd)
 	free(buffer);
 }
 
-char *count_floor(t_map *map, int fd)
+char	*count_floor(t_map *map, int fd)
 {
 	char *buffer;
 
@@ -171,10 +166,10 @@ char *count_floor(t_map *map, int fd)
 	return (buffer);
 }
 
-char *write_wall_text(t_nod *n)
+char	*write_wall_text(t_nod *n)
 {
-	char *buf;
-	int maxlen;
+	char	*buf;
+	int		maxlen;
 
 	maxlen = 0;
 	if (n->type == 2)
@@ -193,15 +188,16 @@ char *write_wall_text(t_nod *n)
 	}
 	else
 		buf = ft_strjoin(buf, "\"textures/wall/wall0.png\"");
-	return(buf);
+	return (buf);
 }
 
-char *write_wall_xy(t_nod *n)
+char	*write_wall_xy(t_nod *n)
 {
-	char *buf;
-	int maxlen;
+	char	*buf;
+	int		maxlen;
 
-	maxlen = ft_strlen(ft_itoa((int)n->x1)) + ft_strlen(ft_itoa((int)n->y1)) + ft_strlen(ft_itoa((int)n->x2)) + ft_strlen(ft_itoa((int)n->y2));
+	maxlen = ft_strlen(ft_itoa((int)n->x1)) + ft_strlen(ft_itoa((int)n->y1)) +
+		ft_strlen(ft_itoa((int)n->x2)) + ft_strlen(ft_itoa((int)n->y2));
 	buf = malloc(sizeof(char *) * (maxlen + 4));
 	buf = " ";
 	buf = ft_strjoin(buf, ft_itoa((int)n->x1));
@@ -211,19 +207,20 @@ char *write_wall_xy(t_nod *n)
 	buf = ft_strjoin(buf, ft_itoa((int)n->x2));
 	buf = ft_strjoin(buf, " ");
 	buf = ft_strjoin(buf, ft_itoa((int)n->y2));
-	return(buf);
+	return (buf);
 }
 
-void write_walls(t_map *map, int fd)
+void	write_walls(t_map *map, int fd)
 {
-	t_nod *n;
-	int maxlen;
-	char *buffer;
+	t_nod	*n;
+	int		maxlen;
+	char	*buffer;
 
 	n = map->nod;
 	while (n)
 	{
-		maxlen = ft_strlen(n->texture->type_name) + ft_strlen(write_wall_xy(n)) + ft_strlen(ft_itoa(n->wallh)) + ft_strlen(write_wall_text(n)) + 6;
+		maxlen = ft_strlen(n->texture->type_name) + ft_strlen(write_wall_xy(n))
+			+ ft_strlen(ft_itoa(n->wallh)) + ft_strlen(write_wall_text(n)) + 6;
 		buffer = malloc(sizeof(char *) * (maxlen));
 		buffer = n->texture->type_name;
 		buffer = ft_strjoin(buffer, write_wall_xy(n));
@@ -235,20 +232,20 @@ void write_walls(t_map *map, int fd)
 		buffer = ft_strjoin(buffer, " ");
 		buffer = ft_strjoin(buffer, ft_itoa(n->grnum));
 		buffer = ft_strjoin(buffer, "\n");
-		if(write(fd, buffer, maxlen) != maxlen)
+		if (write(fd, buffer, maxlen) != maxlen)
 			printf("error\n");
 		free(buffer);
 		n = n->nxt;
 	}
 }
 
-int writedown_map(t_map *map)
+int		writedown_map(t_map *map)
 {
 	int fd;
 
-	if ((fd=open("./maps/test.txt", O_WRONLY))==-1)
+	if ((fd = open("./maps/test.txt", O_WRONLY)) == -1)
 	{
-		printf ("Cannot open file.\n");
+		printf("Cannot open file.\n");
 		exit(1);
 	}
 	ft_strlen(NULL);

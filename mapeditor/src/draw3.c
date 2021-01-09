@@ -12,7 +12,7 @@
 
 #include "../include/map.h"
 
-void draw_floor_textures(t_map *map)
+void	draw_floor_textures(t_map *map)
 {
 	int i;
 	int x;
@@ -26,7 +26,8 @@ void draw_floor_textures(t_map *map)
 	while (++i < 9)
 	{
 		if (map->floorsky_tex[i]->active == 1)
-			draw_img(map, &(t_info){x - 10, y - 10, 70, 70}, map->inter_tex[15]);
+			draw_img(map, &(t_info){x - 10, y - 10, 70, 70},
+				map->inter_tex[15]);
 		draw_img(map, &(t_info){x, y, 50, 50}, map->floorsky_tex[i]);
 		x += 60;
 		if (i == 4)
@@ -37,7 +38,7 @@ void draw_floor_textures(t_map *map)
 	}
 }
 
-void draw_wall_textures(t_map *map)
+void	draw_wall_textures(t_map *map)
 {
 	int i;
 	int x;
@@ -51,7 +52,8 @@ void draw_wall_textures(t_map *map)
 	while (++i < 9)
 	{
 		if (map->wall_tex[i]->active == 1)
-			draw_img(map, &(t_info){x - 10, y - 10, 70, 70}, map->inter_tex[15]);
+			draw_img(map, &(t_info){x - 10, y - 10, 70, 70},
+				map->inter_tex[15]);
 		draw_img(map, &(t_info){x, y, 50, 50}, map->wall_tex[i]);
 		x += 60;
 		if (i == 4)
@@ -62,7 +64,7 @@ void draw_wall_textures(t_map *map)
 	}
 }
 
-void draw_sky_textures(t_map *map)
+void	draw_sky_textures(t_map *map)
 {
 	int i;
 	int x;
@@ -76,13 +78,14 @@ void draw_sky_textures(t_map *map)
 	while (++i < 13)
 	{
 		if (map->floorsky_tex[i]->active == 1)
-			draw_img(map, &(t_info){x - 10, y - 10, 70, 70}, map->inter_tex[15]);
+			draw_img(map, &(t_info){x - 10, y - 10, 70, 70},
+				map->inter_tex[15]);
 		draw_img(map, &(t_info){x, y, 50, 50}, map->floorsky_tex[i]);
 		x += 60;
 	}
 }
 
-void draw_liquid_textures(t_map *map)
+void	draw_liquid_textures(t_map *map)
 {
 	int i;
 	int x;
@@ -96,7 +99,8 @@ void draw_liquid_textures(t_map *map)
 	while (++i < 4)
 	{
 		if (map->liquid_tex[i]->active == 1)
-			draw_img(map, &(t_info){x - 10, y - 10, 70, 70}, map->inter_tex[15]);
+			draw_img(map, &(t_info){x - 10, y - 10, 70, 70},
+				map->inter_tex[15]);
 		draw_img(map, &(t_info){x, y, 50, 50}, map->liquid_tex[i]);
 		x += 90;
 	}

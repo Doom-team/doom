@@ -15,8 +15,6 @@
 // int delete_node(t_nod *del, t_nod **first);
 // // t_nod *deletelem(t_nod *lst, t_nod *root);
 
-int	lstdelone(t_nod **fd_lst, t_nod *fd);
-
 void	find_remove(t_map *map, int x, int y)
 {
 	t_nod *tmp;
@@ -25,19 +23,18 @@ void	find_remove(t_map *map, int x, int y)
 
 	tmp = map->nod;
 	first = map->nod;
-	while(tmp)
+	while (tmp)
 	{
 		if (((tmp->x1 + map->z_x) == x && (tmp->y1 + map->z_y) == y) ||
 		((tmp->x2 + map->z_x) == x && (tmp->y2 + map->z_y) == y))
 		{
 			tmp2 = tmp;
 			tmp = tmp->nxt;
-			if (lstdelone(&map->nod,tmp2))
+			if (lstdelone(&map->nod, tmp2))
 				map->nod = NULL;
 		}
 		else
 			tmp = tmp->nxt;
-		
 	}
 }
 
@@ -108,13 +105,13 @@ void	wall_editor(t_map *map, int x, int y)
 	}
 }
 
-int	lstdelone(t_nod **fd_lst, t_nod *fd)
+int		lstdelone(t_nod **fd_lst, t_nod *fd)
 {
-	t_nod *file;
-	t_nod *last;
+	t_nod	*file;
+	t_nod	*last;
+	int		flag;
 
 	last = 0;
-	int flag;
 	flag = 0;
 	if (!fd_lst || !fd)
 		return (0);
@@ -142,9 +139,11 @@ int	lstdelone(t_nod **fd_lst, t_nod *fd)
 
 void	remove_tool(t_map *map, int x, int y)
 {
-	int x1 = x;
-	int y1 = y;
+	int x1;
+	int y1;
 
+	x1 = x;
+	y1 = y;
 	find_coord(map, &x1, &y1);
 	if (x1 != x || y1 != y)
 		find_remove(map, x1, y1);

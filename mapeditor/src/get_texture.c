@@ -16,7 +16,7 @@ void	get_inter_textures(t_map *map)
 {
 	map->inter_tex[0]->img = SDL_GetWindowSurface(map->win);
 	init_texture(map->inter_tex[0]->img, &(map->inter_tex[0]->s),
-	 &(map->inter_tex[0]->pixb), &(map->inter_tex[0]->strb));
+		&(map->inter_tex[0]->pixb), &(map->inter_tex[0]->strb));
 	map->inter_tex[1]->img = IMG_Load("/textures/interface/panel.png");
 	map->inter_tex[2]->img = IMG_Load("/textures/interface/panelin.png");
 	map->inter_tex[3]->img = IMG_Load("/textures/interface/blocks.png");
@@ -68,7 +68,6 @@ void	get_floorsky_textures(t_map *map)
 	map->floorsky_tex[10]->img = IMG_Load("/textures/floor/sky2.png");
 	map->floorsky_tex[11]->img = IMG_Load("/textures/floor/sky3.png");
 	map->floorsky_tex[12]->img = IMG_Load("/textures/floor/sky4.png");
-
 }
 
 void	get_wall_textures(t_map *map)
