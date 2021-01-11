@@ -6,3 +6,10 @@ Go to the top speed ! Continuation of the Wolf3D, the Doom Nukem pushes the poss
 ## Reference Documentation
 
 * [Subject Doom-Nukem](https://cdn.intra.42.fr/pdf/pdf/6010/doom-nukem.en.pdf)
+
+## Mapeditor
+
+### How it works
+<h4> Compile and run the project : </h4>
+Compile project : <code> make </code><br/>
+Run the project : <code> ./map </code>
