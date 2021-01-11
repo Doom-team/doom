@@ -5,5 +5,4 @@ Go to the top speed ! Continuation of the Wolf3D, the Doom Nukem pushes the poss
 
 ## Reference Documentation
 
-* [Subject Camagru](https://cdn.intra.42.fr/pdf/pdf/6010/doom-nukem.en.pdf)
-sd
+* [Subject Doom-Nukem](https://cdn.intra.42.fr/pdf/pdf/6010/doom-nukem.en.pdf)
