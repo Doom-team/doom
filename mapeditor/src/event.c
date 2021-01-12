@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/02 15:44:46 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/12 16:31:49 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 void	draw_mapstairs(t_map *map, int x, int y)
 {
 	//printf("line\n");
-	draw_floor_line(map, &(t_info){map->x_c - map->z_x, map->y_c -
-		map->z_y - 20, x - map->z_x, y - map->z_y - 20});
-	draw_floor_line(map, &(t_info){map->x_c - map->z_x, map->y_c -
-		map->z_y + 20, x - map->z_x, y - map->z_y + 20});
+	int x1;
+	int y1;
+	int nx;
+	int ny;
+
+	x1 = map->x_c - map->z_x;
+	y1 = map->y_c - map->z_y;
+	nx = (y1 - y); // / sq(x1, y1, x, y)
+	ny = (x - x1); // / sq(x1, y1, x, y)
+	draw_floor_line(map, &(t_info){x1 - nx, y1 - ny - 20, x - nx, y - ny - 20});
+	draw_floor_line(map, &(t_info){x1 + nx, y1 + ny + 20, x + nx , y + ny + 20});
+	draw_floor_line(map, &(t_info){x1 - nx, y1 - ny - 20, x1 + nx, y1 + ny + 20});
+	
 }
 
 int		mmove(int x, int y, t_map *map, SDL_Event event)
@@ -37,7 +46,7 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 		//draw_floor_line(map, &(t_info){map->floor_x, map->floor_y, x - map->z_x, y - map->z_y});
 	}
 	if (map->block_tex[5]->active == 1)
-		draw_mapstairs(map, x, y);
+		draw_mapstairs(map, x - map->z_x, y - map->z_y);
 	// if (some_texture_active(map) == 4) ////////////////////////////////////
 	// {
 		// drawillwall(map, x, y);
