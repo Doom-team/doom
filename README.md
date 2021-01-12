@@ -25,7 +25,7 @@ You can choose 3 tools:
  
 There are three blocks
 - Blocks
-
+ 
 - <h5>Textures</h5>
 <img src="https://github.com/Doom-team/doom/blob/master/docs/b.png" width="20%"/>
 <h6>Here you can choose textures for different surfaces (walls, floor, ceiling)</h6>
