@@ -6,29 +6,74 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/12 16:31:49 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:56:32 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
+
+	// nx = (y1 - y) / sq(x1, y1, x, y); // / sq(x1, y1, x, y) sqrt(nx*nx - ny*ny)
+	// ny = (x - x1) / sq(x1, y1, x, y); // / sqrt(sq(x1, y1, x, y))
+	// printf("nx : %d\n", nx);
+	// printf("ny : %d\n", ny);
+	// draw_floor_line(map, &(t_info){x1 - nx * width, y1 - ny * width, x - nx * width, y - ny * width});
+	// draw_floor_line(map, &(t_info){x1 + nx * width, y1 + ny * width, x + nx * width, y + ny * width});
+	// draw_floor_line(map, &(t_info){x1 - nx * width, y1 - ny * width, x1 + nx * width, y1 + ny * width});
 
 void	draw_mapstairs(t_map *map, int x, int y)
 {
 	//printf("line\n");
 	int x1;
 	int y1;
-	int nx;
-	int ny;
+	float nx;
+	float ny;
+	float tmp;
+	int width = 15;
 
 	x1 = map->x_c - map->z_x;
 	y1 = map->y_c - map->z_y;
-	nx = (y1 - y); // / sq(x1, y1, x, y)
-	ny = (x - x1); // / sq(x1, y1, x, y)
-	draw_floor_line(map, &(t_info){x1 - nx, y1 - ny - 20, x - nx, y - ny - 20});
-	draw_floor_line(map, &(t_info){x1 + nx, y1 + ny + 20, x + nx , y + ny + 20});
-	draw_floor_line(map, &(t_info){x1 - nx, y1 - ny - 20, x1 + nx, y1 + ny + 20});
+	nx = (y1 - y);
+	ny = (x - x1);
+	nx /= sqrt(nx*nx + ny*ny);
+	ny /= sqrt(nx*nx + ny*ny);
+	// if (fabs(ny) < fabs(nx))
+	// {
+	// 	tmp = ny;
+	// 	ny = nx;
+	// 	nx = tmp;
+	// }
+	nx *= width;
+	ny *= width;
+	
+	draw_floor_line(map, &(t_info){x1 - nx, (y1 - ny) , (x - nx) , (y - ny) });
+	draw_floor_line(map, &(t_info){(x1 + nx) , (y1 + ny) , (x + nx) , (y + ny) });
+	draw_floor_line(map, &(t_info){(x1 - nx), (y1 - ny) , (x1 + nx), (y1 + ny)});
+	draw_floor_line(map, &(t_info){(x - nx) , (y - ny) , (x + nx) , (y + ny) });
 	
 }
+
+
+// void	draw_mapstairs(t_map *map, int x, int y)
+// {
+// 	//printf("line\n");
+// 	int x1;
+// 	int y1;
+// 	int nx;
+// 	int ny;
+// 	int width = 20;
+
+// 	x1 = map->x_c - map->z_x;
+// 	y1 = map->y_c - map->z_y;
+// 	nx = (y1 - y);
+// 	ny = (x - x1);
+// 	// printf("nx : %d\n", nx);
+// 	// printf("ny : %d\n", ny);
+// 	draw_floor_line(map, &(t_info){x1 - nx, (y1 - ny) , (x - nx) , (y - ny) });
+// 	draw_floor_line(map, &(t_info){(x1 + nx) , (y1 + ny) , (x + nx) , (y + ny) });
+// 	draw_floor_line(map, &(t_info){(x1 - nx), (y1 - ny) , (x1 + nx), (y1 + ny)});
+// 	draw_floor_line(map, &(t_info){(x - nx) , (y - ny) , (x + nx) , (y + ny) });
+	
+// }
 
 int		mmove(int x, int y, t_map *map, SDL_Event event)
 {

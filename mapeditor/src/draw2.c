@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/12 16:08:17 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:31:13 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ void	draw_floor_line(t_map *map, t_info *cor)
 	int j;
 	int diry;
 	int di;
+	int numiter = 0;
 
 	x1 = cor->x + map->z_x;
 	x2 = cor->w + map->z_x;
@@ -155,6 +156,8 @@ void	draw_floor_line(t_map *map, t_info *cor)
 	y2 = cor->h + map->z_y;
 	dx = abs(x1 - x2);
 	dy = abs(y1 - y2);
+	// if (dx > 20 || dy > 20)
+	// 	return ;
 	er = 0;
 	de = dy + 1;
 	j = y1;
@@ -174,6 +177,7 @@ void	draw_floor_line(t_map *map, t_info *cor)
 		while (i != x2)
 		{
 			draw_gr(map, i, j, YELLOW);
+			numiter++;
 			er += de;
 			if (er >= dx + 1)
 			{
@@ -194,9 +198,11 @@ void	draw_floor_line(t_map *map, t_info *cor)
 			diry = 1;
 		if (diry < 0)
 			diry = -1;
+		numiter = 0;
 		while (i != y2)
 		{
 			draw_gr(map, j, i, YELLOW);
+			numiter++;
 			er += de;
 			if (er >= dy + 1)
 			{
