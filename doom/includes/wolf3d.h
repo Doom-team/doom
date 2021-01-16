@@ -238,7 +238,7 @@ typedef struct	s_wolf
 	int			count_walls;
 	bool		z_buff[W * H];
 	bool		z_buff_2[W * H];
-	int			t_cof; // для отладки и тестов
+	float		t_cof; // для отладки и тестов
 }				t_wolf;
 
 /*
