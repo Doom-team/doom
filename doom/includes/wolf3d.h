@@ -414,6 +414,7 @@ SDL_Rect		set_rect_sdl(int x, int y, int w, int h);
 */
 void			pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface);
 void			floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j);
+void			floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j);
 void			draw_sky(t_wolf *wolf, int x, int y);
 void			draw_column(t_wolf *wolf, t_point point,
 t_distance *dist, int count_distance);
