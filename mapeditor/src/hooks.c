@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/02 14:51:27 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/18 17:57:01 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,15 @@ void	blockterxture_click(t_map *map, int x, int y)
 		map->click = 0;
 		edit_blocktexture(map, 5);
 	}
+	if ((x > 70 && x < 95) && y > 410 && y < 435)
+	{
+		map->stclick--;
+	}
+	if ((x > 195 && x < 220) && y > 410 && y < 435)
+	{
+		map->stclick++;
+	}
+	
 	if ((x > 20 && x < 70) && y > 670 && y < 720)
 		map->musicflag = 1;
 	if ((x > 90 && x < 140) && y > 670 && y < 720)

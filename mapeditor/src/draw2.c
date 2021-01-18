@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/13 17:31:13 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/18 17:56:48 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	draw_stairs(t_map *map)
 	draw_line(map, &(t_info){95, 423, 100, 0}, (t_color){255, 255, 255});
 	draw_line(map, &(t_info){95, 424, 100, 0}, (t_color){255, 255, 255});
 	fonts_classic(map, "stairs height", &(t_info){102, 402, 0, 0}, WHITEFONT);
-	fonts_classic(map, ft_itoa(map->whclick), &(t_info){130, 432, 0, 0},
+	fonts_classic(map, ft_itoa(map->stclick), &(t_info){130, 432, 0, 0},
 		WHITEFONT);
 	draw_img(map, &(t_info){120, 470, 60, 60}, map->block_tex[5]);
 }

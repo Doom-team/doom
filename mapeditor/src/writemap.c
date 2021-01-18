@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   writemap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/29 15:20:47 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/18 13:42:09 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	write_objects(t_map *map, int fd)
 		buffer = malloc(sizeof(char *) * maxlen);
 		buffer = map->objects;
 		if (write(fd, buffer, maxlen) != maxlen)
-			printf("error\n");
+			printf("error\n"); 
 		free(buffer);
 	}
 }
