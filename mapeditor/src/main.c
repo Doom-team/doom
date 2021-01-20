@@ -6,7 +6,7 @@
 /*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:18 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/30 16:10:49 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/20 12:40:28 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,12 @@ int		main(int ac, char **av)
 		i_error();
 	draw(map);
 	SDL_UpdateWindowSurface(map->win);
-	if (events(map) == 1 && valid_map(map))
-		writedown_map(map);
+	events(map);
+	// if (events(map) == 1 && valid_map(map))
+	// {
+	// 	writedown_map(map);
+	// 	// continue ;
+	// }
 	SDL_DestroyWindow(map->win);
 	SDL_Quit();
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/18 17:38:07 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/20 13:34:17 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		init_all(t_map *map)
 	map->showactive = 0;
 	map->change_x = 0;
 	map->change_y = 0;
+	map->errorflag = 0;
 	// map->change_plus = 0;
 	map->index_tex = -1;
 	map->validflag = 0;

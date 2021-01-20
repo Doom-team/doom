@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/18 17:57:01 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/20 14:00:43 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,11 @@ void	blockterxture_click(t_map *map, int x, int y)
 		edit_blocktexture(map, 5);
 	}
 	if ((x > 70 && x < 95) && y > 410 && y < 435)
-	{
-		map->stclick--;
-	}
+		if (map->stclick > 1)
+			map->stclick--;
 	if ((x > 195 && x < 220) && y > 410 && y < 435)
-	{
-		map->stclick++;
-	}
+		if (map->stclick < 15)
+			map->stclick++;
 	
 	if ((x > 20 && x < 70) && y > 670 && y < 720)
 		map->musicflag = 1;
@@ -649,7 +647,10 @@ int		catch_click(t_map *map, int x, int y)
 	if (some_texture_active(map) == 2)
 		change_floor_click(map, x, y); // клики по текстурам если блок пола потолка активны
 	if (map->inter_tex[21]->active == 1)
+	{
+		map->inter_tex[21]->active = 0;
 		return (1);
+	}
 	else
 		return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:36 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 13:39:37 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/20 13:35:05 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int		check_scene(t_info *info, t_map *map) // x = max_x, y = max_y, w = min_x, h
 			else
 			{
 				map->inter_tex[21]->active = 0;
-				map->validflag = 1;
+				map->errorflag = 1;
+				printf("n close\n");
 				events(map);
 			}
 			break ;

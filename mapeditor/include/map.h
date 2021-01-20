@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/18 17:37:46 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/20 13:34:02 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ typedef struct		s_map
 	int				y_c; // y первого клика
 	int				showactive; // флаг активности панели 1- walls 2 flor & sky 3 - liquids
 	int				musicflag;
-
+	int				errorflag;
 	int				change_x;
 	int				change_y;
 	id_t			index_tex;

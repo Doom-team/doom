@@ -6,7 +6,7 @@
 /*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:42 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/29 19:32:53 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/20 13:37:17 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,15 +135,21 @@ void	whichone_tool(t_map *map)
 		fonts_classic(map, "info tool", &(t_info){305, 780, 0, 0}, WHITEFONT);
 	if (map->inter_tex[8]->active == 1)
 		fonts_classic(map, "remove tool", &(t_info){305, 780, 0, 0}, WHITEFONT);
-	if (map->validflag == 1)
+	if (map->errorflag == 1)
+	{
+		printf("shiiiiit\n");
 		fonts_classic(map, "map is not closed!",
 			&(t_info){350, HEIGHT - 20, 0, 0}, REDFONT);
+	}
+
 }
 
 void	draw(t_map *map)
 {
 	draw_basic_interface(map);
+
 	whichone_tool(map);
+	
 	// open_texture_win(map);
 	if (map->click)
 		bigdot(map, map->x_c, map->y_c, RED);

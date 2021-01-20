@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/18 17:57:27 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/20 14:55:11 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	draw_mapstairs(t_map *map, int x, int y)
 	ny = (x - x1);
 	nx /= sqrt(nx*nx + ny*ny);
 	ny /= sqrt(nx*nx + ny*ny);
-	nx *= width;
-	ny *= width;
+	nx *= width * 0.7;
+	ny *= width * 0.7;
 	len = sqrt((x - x1)* (x - x1) + (y - y1) * (y - y1));
 	x = x1 + (x - x1) * 20 * map->stclick / len;
 	y = y1 + (y - y1) * 20 * map->stclick / len;
@@ -45,7 +45,17 @@ void	draw_mapstairs(t_map *map, int x, int y)
 	draw_floor_line(map, &(t_info){(x1 + nx) , (y1 + ny) , (x + nx) , (y + ny) });
 	draw_floor_line(map, &(t_info){(x1 - nx), (y1 - ny) , (x1 + nx), (y1 + ny)});
 	draw_floor_line(map, &(t_info){(x - nx) , (y - ny) , (x + nx) , (y + ny) });
-	
+	//draw_floor_line(map, &(t_info){(x/2 - nx) , (y/2 - ny), (x/2 + nx), (y/2 + ny) });
+	int i = 1;
+	int tx = x;
+	int ty = y;
+	while (i < map->stclick)
+	{
+		tx = x1 + (x - x1) * 20 * map->stclick/i / len/2;
+		ty = y1 + (y - y1) * 20 * map->stclick/i / len/2;
+		draw_floor_line(map, &(t_info){(tx - nx) , (ty - ny) , (tx + nx) , (ty + ny) });
+		i++;
+	}
 	// if (map->floor_x < 5)
 	// {
 	// 	// printf("h\n");
@@ -166,7 +176,7 @@ int		events(t_map *map)
 	while ((!done) && SDL_WaitEvent(&event))
 	{
 		if (event.type == SDL_QUIT)
-			done = 1;
+			return 0;
 		if (event.type == SDL_KEYDOWN)
 			pkey((unsigned char)event.key.keysym.sym, map);
 		if (event.type == SDL_MOUSEBUTTONDOWN)
@@ -175,7 +185,7 @@ int		events(t_map *map)
 			SDL_GetMouseState(&x, &y);
 			mkey(event.button.button, x, y, map);
 			if (catch_click(map, x, y))
-				return (1);
+				done = 1;
 			draw(map);
 		}
 		if (event.type == SDL_MOUSEMOTION)
@@ -183,6 +193,12 @@ int		events(t_map *map)
 			mmove(event.motion.x, event.motion.y, map, event);
 			SDL_UpdateWindowSurface(map->win);
 		}
+		if (done == 1)
+			if (valid_map(map))
+			{
+				writedown_map(map);
+				return (1);
+			}
 	}
 	return (0);
 }

@@ -1,12 +1,18 @@
-walls: 8	floor: 1	ceiling: 0
-w 115 -207 185 -207 "textures/wall/wall0.png" 5 0 0
-w 115 -207 115 -137 "textures/wall/wall0.png" 5 0 0
-w 185 -207 185 -137 "textures/wall/wall0.png" 5 0 0
-w 115 -137 185 -137 "textures/wall/wall0.png" 5 0 0
-w 84 -232 208 -232 "textures/wall/wall0.png" 5 0 0
-w 84 -232 84 -108 "textures/wall/wall0.png" 5 0 0
-w 208 -232 208 -108 "textures/wall/wall0.png" 5 0 0
-w 84 -108 208 -108 "textures/wall/wall0.png" 5 0 0
+walls: 5	floor: 1	ceiling: 0
+w -165 -182 -165 -182 "textures/wall/wall0.png" 5 0 0
+w -161 -298 -61 -298 "textures/wall/wall0.png" 5 0 0
+w -161 -298 -161 -198 "textures/wall/wall0.png" 5 0 0
+w -61 -298 -61 -198 "textures/wall/wall0.png" 5 0 0
+w -161 -198 -61 -198 "textures/wall/wall0.png" 5 0 0
 f "textures/floor/floor1.png"
 s "textures/floor/sky1.png"
-
+0 10 "textures/wall/wall0.png" 5 0 0
+w -250 10 46 40 "textures/wall/wall0.png" 5 0 0
+w 46 40 -93 93 "textures/wall/wall0.png" 5 0 0
+w -93 93 -372 93 "textures/wall/wall0.png" 5 0 0
+w -372 93 -250 10 "textures/wall/wall0.png" 5 0 0
+w -250 10 -373 -8 "textures/wall/wall0.png" 5 0 0
+w -373 -8 -372 93 "textures/wall/wall0.png" 5 0 0
+w -373 -8 -248 -86 "textures/wall/wall0.png" 5 0 0
+f "textures/floor/floor1.png"
+s "textures/floor/sky1.png"
