@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/20 13:34:02 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/21 11:00:23 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,6 +284,7 @@ void				objectsblock(t_map *map);
 
 void				edit_object(t_map *map, t_image **name, int n, int index);
 void				stairs_editor(t_map *map, int x, int y);
+void	draw_mapstairs(t_map *map, int x, int y, int i);
 
 void				malloc_enemy_texture(t_map *map);
 void				get_enemy_textures(t_map *map);

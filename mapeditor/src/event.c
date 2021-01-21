@@ -3,129 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/20 14:55:11 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/21 13:54:13 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
-// Вангую что искомая точка лежит на отрезке (х1, у1, х2, у2).
-// В этом случае длина исходного отрезка LL=sqrt((x2-x1)^2+(y2-y1)^2)
-// И координаты искомой точки
-// x=x1+(x2-x1)*L/LL
-// y=y1+(y2-y1)*L/LL
-
-void	draw_mapstairs(t_map *map, int x, int y)
-{
-	int x1;
-	int y1;
-	float nx;
-	float ny;
-	float tmp;
-	int width = 15;
-	float len;
-	// int t_x = x;
-	// int t_y = y;
-
-	x1 = map->x_c - map->z_x;
-	y1 = map->y_c - map->z_y;
-	
-	nx = (y1 - y);
-	ny = (x - x1);
-	nx /= sqrt(nx*nx + ny*ny);
-	ny /= sqrt(nx*nx + ny*ny);
-	nx *= width * 0.7;
-	ny *= width * 0.7;
-	len = sqrt((x - x1)* (x - x1) + (y - y1) * (y - y1));
-	x = x1 + (x - x1) * 20 * map->stclick / len;
-	y = y1 + (y - y1) * 20 * map->stclick / len;
-	draw_floor_line(map, &(t_info){x1 - nx, (y1 - ny) , (x - nx) , (y - ny) });
-	draw_floor_line(map, &(t_info){(x1 + nx) , (y1 + ny) , (x + nx) , (y + ny) });
-	draw_floor_line(map, &(t_info){(x1 - nx), (y1 - ny) , (x1 + nx), (y1 + ny)});
-	draw_floor_line(map, &(t_info){(x - nx) , (y - ny) , (x + nx) , (y + ny) });
-	//draw_floor_line(map, &(t_info){(x/2 - nx) , (y/2 - ny), (x/2 + nx), (y/2 + ny) });
-	int i = 1;
-	int tx = x;
-	int ty = y;
-	while (i < map->stclick)
-	{
-		tx = x1 + (x - x1) * 20 * map->stclick/i / len/2;
-		ty = y1 + (y - y1) * 20 * map->stclick/i / len/2;
-		draw_floor_line(map, &(t_info){(tx - nx) , (ty - ny) , (tx + nx) , (ty + ny) });
-		i++;
-	}
-	// if (map->floor_x < 5)
-	// {
-	// 	// printf("h\n");
-	// 	float x_tmp;
-	// 	float y_tmp;
-
-	// 	x_tmp = x - x1;
-	// 	y_tmp = y - y1;
-	// 	x_tmp /= sqrt(x_tmp*x_tmp + y_tmp*y_tmp);
-	// 	y_tmp /= sqrt(x_tmp*x_tmp + y_tmp*y_tmp);
-	// 	x1 = map->x_c - map->z_x + x_tmp * 20;
-	// 	y1 = map->y_c - map->z_y + y_tmp * 20;
-	// 	// map->x_c = map->x_c + x_tmp * 20;
-	// 	// map->y_c = map->y_c + y_tmp * 20;
-	// 	map->x_c = x;
-	// 	map->y_c = y;
-	// 	map->floor_x++;
-	// 	draw_mapstairs(map, t_x, t_y);
-	// }
-	// float x_tmp;
-	// float y_tmp;
-
-	// x_tmp = x - x1;
-	// y_tmp = y - y1;
-
-	// x_tmp /= sqrt(x_tmp*x_tmp + y_tmp*y_tmp);
-	// y_tmp /= sqrt(x_tmp*x_tmp + y_tmp*y_tmp);
-	// x1 = map->x_c - map->z_x + x_tmp * 20;
-	// y1 = map->y_c - map->z_y + y_tmp * 20;
-	// printf("%f %f\n",x_tmp, y_tmp);
-
-	// // nx = (y1 - y);
-	// // ny = (x - x1);
-	// // nx /= sqrt(nx*nx + ny*ny);
-	// // ny /= sqrt(nx*nx + ny*ny);
-	// // nx *= width;
-	// // ny *= width;
-	// len = sqrt((x - x1)* (x - x1) + (y - y1) * (y - y1));
-	// 	printf("%f\n",len);
-	// x = x1 + (x - x1) * 20 / len;
-	// y = y1 + (y - y1) * 20 / len;
-	// draw_floor_line(map, &(t_info){x1 - nx, (y1 - ny) , (x - nx) , (y - ny) });
-	// draw_floor_line(map, &(t_info){(x1 + nx) , (y1 + ny) , (x + nx) , (y + ny) });
-	// draw_floor_line(map, &(t_info){(x1 - nx), (y1 - ny) , (x1 + nx), (y1 + ny)});
-	// draw_floor_line(map, &(t_info){(x - nx) , (y - ny) , (x + nx) , (y + ny) });
-
-}
-
-
-// void	draw_mapstairs(t_map *map, int x, int y)
-// {
-// 	//printf("line\n");
-// 	int x1;
-// 	int y1;
-// 	int nx;
-// 	int ny;
-// 	int width = 20;
-
-// 	x1 = map->x_c - map->z_x;
-// 	y1 = map->y_c - map->z_y;
-// 	nx = (y1 - y);
-// 	ny = (x - x1);
-// 	// printf("nx : %d\n", nx);
-// 	// printf("ny : %d\n", ny);
-// 	draw_floor_line(map, &(t_info){x1 - nx, (y1 - ny) , (x - nx) , (y - ny) });
-// 	draw_floor_line(map, &(t_info){(x1 + nx) , (y1 + ny) , (x + nx) , (y + ny) });
-// 	draw_floor_line(map, &(t_info){(x1 - nx), (y1 - ny) , (x1 + nx), (y1 + ny)});
-// 	draw_floor_line(map, &(t_info){(x - nx) , (y - ny) , (x + nx) , (y + ny) });
-	
-// }
 
 int		mmove(int x, int y, t_map *map, SDL_Event event)
 {
@@ -144,7 +29,21 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 	}
 	map->floor_x = 0;
 	if (map->block_tex[5]->active == 1)
-		draw_mapstairs(map, x - map->z_x, y - map->z_y);
+	{
+		ft_izero(map->remove->x, map->stclick * 8);
+		ft_izero(map->remove->y, map->stclick * 8);
+		int i = 1;
+		while (i <= map->stclick)
+		{
+			// t_removeinfo *xyarray;
+			
+			draw_mapstairs(map, x - map->z_x, y - map->z_y, i);
+			// printf("X%d: |%d|\n", i, map->remove->x[i]);
+			// printf("Y%d: |%d|\n", i, map->remove->y[i]);
+			i++;
+		}
+
+	}
 	// if (some_texture_active(map) == 4) ////////////////////////////////////
 	// {
 		// drawillwall(map, x, y);
