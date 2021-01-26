@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/21 13:54:13 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/21 21:45:10 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,7 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 		int i = 1;
 		while (i <= map->stclick)
 		{
-			// t_removeinfo *xyarray;
-			
 			draw_mapstairs(map, x - map->z_x, y - map->z_y, i);
-			// printf("X%d: |%d|\n", i, map->remove->x[i]);
-			// printf("Y%d: |%d|\n", i, map->remove->y[i]);
 			i++;
 		}
 

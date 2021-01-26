@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/21 11:00:23 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/21 21:51:07 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,8 @@ typedef struct		s_map
 	char			*ceilingstr;
 	char			*objects;
 	char			*temporary;/// мб не нужно
+
+	char 			*stairstr;
 	// int			floor_active;
 }					t_map;
 
