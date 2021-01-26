@@ -32,7 +32,8 @@ ALL_C = main.c \
 		init_menu.c \
 		menu.c \
 		print_menu.c \
-		parser.c
+		parser.c \
+		screens.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
