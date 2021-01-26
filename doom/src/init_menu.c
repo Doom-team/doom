@@ -57,6 +57,8 @@ void	init_menu(t_menu *menu)
 {
 	create_background(&(menu->background), "textures/background.bmp");
 	create_background(&(menu->screen_start), "textures/screen_start.bmp");
+	create_background(&(menu->screen_death), "textures/screen_death.bmp");
+	create_background(&(menu->screen_win), "textures/screen_win.bmp");
 	create_button((&menu->logo), "textures/doom_logo.bmp", 0);
 	create_button((&menu->start), "textures/start_button.bmp", 4);
 	create_button((&menu->map), "textures/map_button.bmp", 5);

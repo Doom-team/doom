@@ -299,6 +299,8 @@ void				quit(t_sdl *sdl);
 ** screens.c
 */
 void				screen_start(t_wolf *wolf);
+void				screen_death(t_wolf *wolf);
+void				screen_win(t_wolf *wolf);
 
 /*
 ** print_menu.c
