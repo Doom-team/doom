@@ -17,17 +17,17 @@ static void		handle_other_keys(t_wolf *wolf)
 	if (wolf->sdl->state[SDL_SCANCODE_I])
 		wolf->bon->fps = wolf->bon->fps == 0 ? 1 : 0;
 	if (wolf->sdl->state[SDL_SCANCODE_SPACE])
-		wolf->player->fly -= 40;
+		wolf->player->fly -= 150;
 		// wolf->bon->guns_fire = 1;
 	if (wolf->sdl->state[SDL_SCANCODE_TAB])
 	{
-		if (wolf->player->fly + 40 <= 0)
-			wolf->player->fly += 40;
+		if (wolf->player->fly + 150 <= 0)
+			wolf->player->fly += 150;
 	}
 	if (wolf->sdl->state[SDL_SCANCODE_V]) // отладка
-		wolf->t_cof += 0.01;
+		wolf->t_cof += 0.001;
 	if (wolf->sdl->state[SDL_SCANCODE_B]) // отладка
-		wolf->t_cof -= 0.01;
+		wolf->t_cof -= 0.001;
 	if (wolf->sdl->state[SDL_SCANCODE_H])
 		wolf->sdl->menu = wolf->sdl->menu ? 0 : 1;
 	if (wolf->sdl->state[SDL_SCANCODE_O])
