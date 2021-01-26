@@ -97,6 +97,8 @@ void			menu_loop(t_wolf *wolf)
 	}
 	if (wolf->sdl->button_flag == 4)//start
 	{
+		while (wolf->sdl->run_screen)
+			screen_start(wolf);
 		reinit_sdl(wolf);
 		wolf_loop(wolf);
 	}
