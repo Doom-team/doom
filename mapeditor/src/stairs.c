@@ -6,7 +6,7 @@
 /*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/21 23:13:55 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/26 11:51:41 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void savestairs(t_map *map)
 	add_my_node(map, map->remove->x[1] + map->z_x, map->remove->y[1] + map->z_y, map->remove->x[map->stclick * 8 - 1] + map->z_x, map->remove->y[map->stclick * 8 - 1] + map->z_y);
 	add_my_node(map, map->remove->x[map->stclick * 8 - 2] + map->z_x, map->remove->y[map->stclick * 8 - 2] + map->z_y, map->remove->x[map->stclick * 8 - 1] + map->z_x, map->remove->y[map->stclick * 8 - 1] + map->z_y);
 
-	if (map->stairstr)            ////////////// не знаю насчет этого номера группы. Почему запускается два раза?!
-		group = ft_atoi(map->stairstr[ft_strlen(map->stairstr) - 2]) + 1;
-	else
+	// if (map->stairstr)            ////////////// не знаю насчет этого номера группы. Почему запускается два раза?!
+	// 	group = ft_atoi(map->stairstr[ft_strlen(map->stairstr) - 2]) + 1;
+	// else
 		group = 1;
 
 	while (i < map->stclick * 8)
@@ -51,12 +51,13 @@ void savestairs(t_map *map)
 		map->stairstr = ft_strjoin(map->stairstr, " ");
 		map->stairstr = ft_strjoin(map->stairstr, "2");
 		map->stairstr = ft_strjoin(map->stairstr, " ");
-		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(group));
+		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->stirsgroup));
 		map->stairstr = ft_strjoin(map->stairstr, "\n");
 		i += 2;
 		if (i % 8 == 0)
 			tmp++;
 	}
+	map->stirsgroup++;
 	// while (i < map->stclick * 8)
 	// {
 	// 	if (i == 0)
@@ -80,7 +81,7 @@ void savestairs(t_map *map)
 	// 	}
 	// 	i++;
 	// }
-	printf("str: %s\n", map->stairstr);
+	printf("%s\n", map->stairstr);
 	//add_my_node(map, map->remove->x[0] + map->z_x, map->remove->y[0] + map->z_y, map->remove->x[1] + map->z_x, map->remove->y[1] + map->z_y);
 }
 
@@ -88,6 +89,7 @@ void	stairs_editor(t_map *map, int x, int y)
 {
 	if (map->click == 0 && interface_click(map, x, y))
 	{
+		printf("here!!!!\n");
 		map->click = 1;
 		map->x_c = x;
 		map->y_c = y;
@@ -100,7 +102,6 @@ void	stairs_editor(t_map *map, int x, int y)
 		// {
 		// 	printf("%d, %d\n", map->remove->x[j], map->remove->y[j]);
 		// }
-		printf("ok\n");
 		savestairs(map);
 	}
 }

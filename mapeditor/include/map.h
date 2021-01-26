@@ -6,7 +6,7 @@
 /*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/21 21:51:07 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/26 11:33:20 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ typedef struct		s_map
 	char			*temporary;/// мб не нужно
 
 	char 			*stairstr;
+	int				stirsgroup;
 	// int			floor_active;
 }					t_map;
 

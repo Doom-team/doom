@@ -6,7 +6,7 @@
 /*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/20 13:34:17 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/26 11:34:12 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int		init_all(t_map *map)
 	map->floor_y = -1;
 	map->tmpfloor_x = -1;
 	map->tmpfloor_y = -1;
+
+	map->stirsgroup = 1;
 	map->floorstr = malloc(sizeof(char *) * 10);
 	map->ceilingstr = malloc(sizeof(char *) * 10);
 	map->objects = malloc(sizeof(char *) * 10);

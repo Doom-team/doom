@@ -103,5 +103,6 @@ void	init_sdl(t_wolf *wolf)
 	wolf->sdl->state = SDL_GetKeyboardState(NULL);
 	wolf->sdl->interlaced_rendering = 0;
 	wolf->sdl->run_menu = true;
+	wolf->sdl->run_screen = true;
 	// wolf->sdl->scrs = SDL_GetWindowSurface(wolf->sdl->win);
 }
