@@ -25,30 +25,34 @@ void			quit(t_sdl *sdl)
 	exit(EXIT_SUCCESS);
 }
 
-void			check_pos_button(t_sdl *sdl, t_button *button, int k)
+void			check_pos_button(t_sdl *sdl,
+								t_button *button, int k, t_menu *menu)
 {
 	if (sdl->e.motion.x > button->pos.x1 && sdl->e.motion.x < button->pos.x2 &&
 		sdl->e.motion.y > button->pos.y1 && sdl->e.motion.y < button->pos.y2)
 	{
 		button->coefficient_x = 3.4;
 		button->coefficient_y = 7.4;
-		create_pos_button(button, k);
-		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 4)
-			sdl->button_flag = 4;
-		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 5
-				&& sdl->button_flag != 5)
-			sdl->button_flag = 5;
-		if (sdl->e.button.button == SDL_BUTTON_LEFT && k == 6)
-			sdl->button_flag = 6;
-		if (sdl->e.button.button == SDL_BUTTON_LEFT && k >= 4 && k <= 6)
-			sdl->run_menu = false;
+		if (++button->check == 1)
+			Mix_PlayChannel(1, menu->move_button, 0);
+		if (sdl->e.button.button == SDL_BUTTON_LEFT)
+		{
+			Mix_PlayChannel(1, menu->click_button, 0);
+			if (k == 4)
+				sdl->button_flag = 4;
+			if (k == 5 && sdl->button_flag != 5)
+				sdl->button_flag = 5;
+			if (k <= 6)
+				sdl->run_menu = false;
+		}
 	}
 	else
 	{
+		button->check = 0;
 		button->coefficient_x = 3.56;
 		button->coefficient_y = 7.8;
-		create_pos_button(button, k);
 	}
+	create_pos_button(button, k);
 }
 
 void			hooks(t_sdl *sdl, t_menu *menu)
@@ -65,9 +69,9 @@ void			hooks(t_sdl *sdl, t_menu *menu)
 		if (sdl->e.type == SDL_MOUSEMOTION ||
 			sdl->e.type == SDL_MOUSEBUTTONDOWN)
 		{
-			check_pos_button(sdl, &menu->start, 4);
-			check_pos_button(sdl, &menu->map, 5);
-			check_pos_button(sdl, &menu->exit, 6);
+			check_pos_button(sdl, &menu->start, 4, menu);
+			check_pos_button(sdl, &menu->map, 5, menu);
+			check_pos_button(sdl, &menu->exit, 6, menu);
 		}
 	}
 }
@@ -84,6 +88,7 @@ static void		reinit_sdl(t_wolf *wolf)
 
 void			menu_loop(t_wolf *wolf)
 {
+	Mix_PlayMusic(wolf->menu->menu_music, -1);
 	while (wolf->sdl->run_menu)
 	{
 		hooks(wolf->sdl, wolf->menu);
@@ -97,8 +102,7 @@ void			menu_loop(t_wolf *wolf)
 	}
 	if (wolf->sdl->button_flag == 4)//start
 	{
-		while (wolf->sdl->run_screen)
-			screen_start(wolf);
+		screen_start(wolf);
 		reinit_sdl(wolf);
 		wolf_loop(wolf);
 	}
