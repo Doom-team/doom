@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:33 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/21 10:56:53 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/26 11:59:39 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	wall_editor(t_map *map, int x, int y)
 		map->y_c = y;
 		find_coord(map, &(map->x_c), &(map->y_c));
 	}
-	else if (interface_click(map, x, y))
+	else if (map->click == 1 && interface_click(map, x, y))
 	{
 		map->click = 0;
 		find_coord(map, &x, &y);

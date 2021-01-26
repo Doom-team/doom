@@ -6,7 +6,7 @@
 /*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/21 21:45:10 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/26 11:54:25 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 		//draw_floor_line(map, &(t_info){map->floor_x, map->floor_y, x - map->z_x, y - map->z_y});
 	}
 	map->floor_x = 0;
+	//printf("click1: %d\n", map->click);
 	if (map->block_tex[5]->active == 1)
 	{
 		ft_izero(map->remove->x, map->stclick * 8);
@@ -38,8 +39,8 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 			draw_mapstairs(map, x - map->z_x, y - map->z_y, i);
 			i++;
 		}
-
 	}
+	
 	// if (some_texture_active(map) == 4) ////////////////////////////////////
 	// {
 		// drawillwall(map, x, y);
