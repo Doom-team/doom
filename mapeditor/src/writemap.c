@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/18 13:42:09 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/27 21:30:00 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,24 +219,29 @@ void	write_walls(t_map *map, int fd)
 	n = map->nod;
 	while (n)
 	{
-		maxlen = ft_strlen(n->texture->type_name) + ft_strlen(write_wall_xy(n))
-			+ ft_strlen(ft_itoa(n->wallh)) + ft_strlen(write_wall_text(n)) + 6;
-		buffer = malloc(sizeof(char *) * (maxlen));
-		buffer = n->texture->type_name;
-		buffer = ft_strjoin(buffer, write_wall_xy(n));
-		buffer = ft_strjoin(buffer, write_wall_text(n));
-		buffer = ft_strjoin(buffer, " ");
-		buffer = ft_strjoin(buffer, ft_itoa(n->wallh));
-		buffer = ft_strjoin(buffer, " ");
-		buffer = ft_strjoin(buffer, ft_itoa(n->type));
-		buffer = ft_strjoin(buffer, " ");
-		buffer = ft_strjoin(buffer, ft_itoa(n->grnum));
-		buffer = ft_strjoin(buffer, "\n");
-		if (write(fd, buffer, maxlen) != maxlen)
-			printf("error\n");
-		free(buffer);
+		if (n->type != 1)
+		{
+			maxlen = ft_strlen(n->texture->type_name) + ft_strlen(write_wall_xy(n))
+				+ ft_strlen(ft_itoa(n->wallh)) + ft_strlen(write_wall_text(n)) + 6;
+			buffer = malloc(sizeof(char *) * (maxlen));
+			buffer = n->texture->type_name;
+			buffer = ft_strjoin(buffer, write_wall_xy(n));
+			buffer = ft_strjoin(buffer, write_wall_text(n));
+			buffer = ft_strjoin(buffer, " ");
+			buffer = ft_strjoin(buffer, ft_itoa(n->wallh));
+			buffer = ft_strjoin(buffer, " ");
+			buffer = ft_strjoin(buffer, ft_itoa(n->type));
+			buffer = ft_strjoin(buffer, " ");
+			buffer = ft_strjoin(buffer, ft_itoa(n->grnum));
+			buffer = ft_strjoin(buffer, "\n");
+			if (write(fd, buffer, maxlen) != maxlen)
+				printf("error\n");
+			free(buffer);
+		}
 		n = n->nxt;
 	}
+	if (write(fd, map->stairsoutput, ft_strlen(map->stairsoutput)) != ft_strlen(map->stairsoutput))
+		printf("error\n");
 }
 
 int		writedown_map(t_map *map)

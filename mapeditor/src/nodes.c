@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/13 13:22:26 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/27 18:26:17 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		nod_len(t_nod *nod)
 	return (i);
 }
 
-t_nod	*n_cr(short x1, short y1, short x2, short y2)
+t_nod	*n_cr(t_info *info, int type)
 {
 	t_nod *a;
 
@@ -44,11 +44,11 @@ t_nod	*n_cr(short x1, short y1, short x2, short y2)
 	a->texture->floor_name = NULL;
 	a->texture->ceiling_name = NULL;
 	a->texture->type_name = NULL;
-	a->x1 = x1;
-	a->y1 = y1;
-	a->x2 = x2;
-	a->y2 = y2;
-	a->type = 0;
+	a->x1 = info->x;
+	a->y1 = info->y;
+	a->x2 = info->w;
+	a->y2 = info->h;
+	a->type = type;
 	a->grnum = 0;
 	a->nxt = NULL;
 	return (a);
@@ -59,8 +59,8 @@ void	add_node(t_map *map, int x, int y)
 	t_nod *n;
 	t_nod *cur;
 
-	n = n_cr(map->x_c - map->z_x, map->y_c - map->z_y,
-		x - map->z_x, y - map->z_y);
+	n = n_cr(&(t_info){map->x_c - map->z_x, map->y_c - map->z_y,
+		x - map->z_x, y - map->z_y}, 0);
 	n->index = nod_len(map->nod);
 	n->wallh = map->whclick;
 	if (map->nod == NULL)

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 13:45:05 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/27 19:38:14 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int		init_all(t_map *map)
 	map->floorstr = NULL;
 	map->ceilingstr = NULL;
 	map->objects = NULL;
+	map->stairsoutput = NULL;
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 	map->musicflag = 0;
 	map->music[0] = Mix_LoadMUS("/textures/music/m1.mp3");
