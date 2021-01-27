@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stairs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/26 11:51:41 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/27 14:13:14 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,14 @@
 void savestairs(t_map *map)
 {
 	int i;
-	int tmp = 1;
-	int group;
+	int tmp;
 
 	i = 0;
-	//add_node()
+	tmp = 1;
 	add_my_node(map, map->remove->x[0] + map->z_x, map->remove->y[0] + map->z_y, map->remove->x[1] + map->z_x, map->remove->y[1] + map->z_y);
 	add_my_node(map, map->remove->x[0] + map->z_x, map->remove->y[0] + map->z_y, map->remove->x[map->stclick * 8 - 2] + map->z_x, map->remove->y[map->stclick * 8 - 2] + map->z_y);
 	add_my_node(map, map->remove->x[1] + map->z_x, map->remove->y[1] + map->z_y, map->remove->x[map->stclick * 8 - 1] + map->z_x, map->remove->y[map->stclick * 8 - 1] + map->z_y);
 	add_my_node(map, map->remove->x[map->stclick * 8 - 2] + map->z_x, map->remove->y[map->stclick * 8 - 2] + map->z_y, map->remove->x[map->stclick * 8 - 1] + map->z_x, map->remove->y[map->stclick * 8 - 1] + map->z_y);
-
-	// if (map->stairstr)            ////////////// не знаю насчет этого номера группы. Почему запускается два раза?!
-	// 	group = ft_atoi(map->stairstr[ft_strlen(map->stairstr) - 2]) + 1;
-	// else
-		group = 1;
 
 	while (i < map->stclick * 8)
 	{
@@ -49,15 +43,17 @@ void savestairs(t_map *map)
 		map->stairstr = ft_strjoin(map->stairstr, "\"textures/wall/wall0.png\" ");
 		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(tmp));
 		map->stairstr = ft_strjoin(map->stairstr, " ");
-		map->stairstr = ft_strjoin(map->stairstr, "2");
+		map->stairstr = ft_strjoin(map->stairstr, "1");
 		map->stairstr = ft_strjoin(map->stairstr, " ");
 		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->stirsgroup));
 		map->stairstr = ft_strjoin(map->stairstr, "\n");
 		i += 2;
 		if (i % 8 == 0)
 			tmp++;
+		if (i % 8 == 0)
+			map->stirsgroup++;
 	}
-	map->stirsgroup++;
+	
 	// while (i < map->stclick * 8)
 	// {
 	// 	if (i == 0)
@@ -89,15 +85,18 @@ void	stairs_editor(t_map *map, int x, int y)
 {
 	if (map->click == 0 && interface_click(map, x, y))
 	{
-		printf("here!!!!\n");
+		printf("click1-------------------1\n");
 		map->click = 1;
 		map->x_c = x;
 		map->y_c = y;
+		//map->block_tex[5]->active = 2;
 	}
 	else if (map->click == 1 && interface_click(map, x, y))
 	{
 
 		map->click = 0;
+		printf("click2---------------------2\n");
+
 		// for (int j = 0; j < map->stclick * 8; j++)
 		// {
 		// 	printf("%d, %d\n", map->remove->x[j], map->remove->y[j]);

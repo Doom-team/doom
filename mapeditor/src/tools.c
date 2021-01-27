@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:33 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/26 11:59:39 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/27 12:47:01 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	edit_blocktexture(t_map *map, int index)
 	int i;
 
 	i = -1;
+	map->inter_tex[6]->active = 0;
 	while (++i < 6)
 	{
 		if (i == index)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects_block.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:48:27 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/29 14:25:41 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:52:08 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,17 @@ void	doorshit(t_map *map)
 	if (map->door_tex[5]->active == 1)
 	{
 		draw_img(map, &(t_info){310, 715, 20, 20}, map->door_tex[5]);
-		cursor(map, "/textures/doors/bluekey.png", 0, 16);
+		cursor(map, 4, 0, 16);
 	}
 	if (map->door_tex[6]->active == 1)
 	{
 		draw_img(map, &(t_info){310, 715, 20, 20}, map->door_tex[6]);
-		cursor(map, "/textures/doors/yellowkey.png", 0, 16);
+		cursor(map, 5, 0, 16);
 	}
 	if (map->door_tex[7]->active == 1)
 	{
 		draw_img(map, &(t_info){310, 715, 20, 20}, map->door_tex[7]);
-		cursor(map, "/textures/doors/redkey.png", 0, 16);
+		cursor(map, 6, 0, 16);
 	}
 }
 
