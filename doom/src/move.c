@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2020/12/16 22:04:42 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/26 20:27:00 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	add_skybox_offset(t_sdl *sdl, float to_add)
 
 void	rotate(t_wolf *wolf, SDL_Event *event)
 {
-	if (-event->motion.xrel * 0.01 / 10 > 0.05 || -event->motion.xrel * 0.01 / 10 < -0.05)
+	if (-event->motion.xrel * 0.001 > 0.05 || -event->motion.xrel * 0.001 < -0.05)
 	{
 		if (-event->motion.xrel > 0)
 		{
@@ -64,27 +64,81 @@ void	rotate(t_wolf *wolf, SDL_Event *event)
 
 void	calc_move(t_wolf *wolf, float dy, float dx)
 {
-	// int		player_box;
-
-	// player_box = dx > 0 ? p->size : -p->size;
-	// if (is_texture(map, p->x + dx + player_box, p->y, TEX_FLOOR)
-	// || is_texture(map, p->x + dx + player_box, p->y, TEX_COIN))
-	// {
-	if ((dx > 0/* && wolf->player->rght_d > 20.*/) || (dx < 0/* && wolf->player->left_d > 20.*/))
+	recalc(wolf);
+	if (dx > 0) 
 	{
-		wolf->player->x += dx;
-		// wolf->player->x_new += dx / CUBE;
+		if (wolf->player->rght_d->dist > dx + 6.51)
+			wolf->player->x += dx;
+		else if(wolf->player->rght_d->wall.type_flag == 1 && UP_LENGTH * wolf->player->rght_d->wall.h + wolf->player->fly <= UP_LENGTH)
+		{
+			printf("1\n");
+			wolf->player->x += dx;
+			if (UP_LENGTH * wolf->player->rght_d->wall.h + wolf->player->fly >= 0)
+				wolf->player->fly = -UP_LENGTH * wolf->player->rght_d->wall.h;
+			// else
+			// {
+			// 	wolf->player->fly = UP_LENGTH * wolf->player->rght_d->wall.h;
+			// }
+			
+		}
 	}
-	// }
-	// player_box = dy > 0 ? p->size : -p->size;
-	// if (is_texture(map, p->x, p->y + dy + player_box, TEX_FLOOR) ||
-	// is_texture(map, p->x, p->y + dy + player_box, TEX_COIN))
-	// {
-	if ((dy > 0/* && wolf->player->up_d > 20.*/) || (dy < 0/* && wolf->player->down_d > 20.*/))
+	else if(dx < 0)
 	{
-		wolf->player->y += dy;
-		// wolf->player->y_new += dy / CUBE;
+		if (wolf->player->left_d->dist > fabs(dx) + 6.51)
+			wolf->player->x += dx;
+		else if(wolf->player->left_d->wall.type_flag == 1 && UP_LENGTH * wolf->player->left_d->wall.h + wolf->player->fly <= UP_LENGTH)
+		{
+			printf("2\n");
+			wolf->player->x += dx;
+			if (UP_LENGTH * wolf->player->left_d->wall.h + wolf->player->fly >= 0)
+				wolf->player->fly = -UP_LENGTH * wolf->player->left_d->wall.h;
+			// else
+			// {
+			// 	wolf->player->fly += UP_LENGTH * wolf->player->left_d->wall.h;
+			// }
+			
+		}
 	}
-	// }
-	// printf("%f --- %f\n", wolf->player->x, wolf->player->y);
+	if (wolf->player->fly > 0)
+		wolf->player->fly = 0;
+	recalc(wolf);
+	if (dy > 0) 
+	{
+		if (wolf->player->up_d->dist > dy + 6.51)
+			wolf->player->y += dy;
+		else if(wolf->player->up_d->wall.type_flag && UP_LENGTH * wolf->player->up_d->wall.h + wolf->player->fly <= UP_LENGTH)
+		{
+			printf("3\n");
+			wolf->player->y += dy;
+			if (UP_LENGTH * wolf->player->up_d->wall.h + wolf->player->fly >= 0)
+				wolf->player->fly = -UP_LENGTH * wolf->player->up_d->wall.h;
+			// else
+			// {
+			// 	wolf->player->fly += UP_LENGTH * wolf->player->up_d->wall.h;
+			// }
+			
+		}
+	}
+	else if(dy < 0)
+	{
+		if (wolf->player->down_d->dist > fabs(dy) + 6.51)
+			wolf->player->y += dy;
+		else if(wolf->player->down_d->wall.type_flag && UP_LENGTH * wolf->player->down_d->wall.h + wolf->player->fly <= UP_LENGTH)
+		{
+			// printf("4\n");
+			wolf->player->y += dy;
+			if (UP_LENGTH * wolf->player->down_d->wall.h + wolf->player->fly >= 0)
+				wolf->player->fly = -UP_LENGTH * wolf->player->down_d->wall.h;
+			// else
+			// {
+			// 	wolf->player->fly += UP_LENGTH * wolf->player->down_d->wall.h;
+			// }
+			
+		}
+	}
+	if (wolf->player->fly > 0)
+		wolf->player->fly = 0;
+	// printf("u:%3f d:%f r:%f l:%f\n", wolf->player->up_d->dist, wolf->player->down_d->dist, wolf->player->rght_d->dist, wolf->player->left_d->dist);
+	// printf("%d\n", wolf->player->fly);
+	recalc(wolf);
 }

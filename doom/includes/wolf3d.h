@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2020/12/16 21:51:22 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/27 15:34:27 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "errors.h"
 # include <pthread.h>
 
+
 typedef struct		s_wall
 {
 	int				x1;
@@ -40,6 +41,12 @@ typedef struct		s_wall
 	int				squad_stage;
 	SDL_Surface		*texture1;
 }					t_wall;
+
+typedef struct	s_way
+{
+	float dist;
+	t_wall wall;
+}				t_way;
 
 typedef struct		s_map
 {
@@ -95,10 +102,11 @@ typedef struct		s_player
 	t_distance		*distance[W];
 	t_distance		*distance_horiz[W];
 	t_distance		*distance_vert[W];
-	float			up_d;
-	float			down_d;
-	float			rght_d;
-	float			left_d;
+	t_way		*up_d;
+	t_way		*down_d;
+	t_way		*rght_d;
+	t_way		*left_d;
+	int			flying;
 }					t_player;
 
 typedef	struct		s_sprite_calc

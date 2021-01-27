@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:26:06 by clala             #+#    #+#             */
-/*   Updated: 2020/10/18 18:26:22 by clala            ###   ########.fr       */
+/*   Updated: 2021/01/23 19:40:15 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 	p->dist_to_canvas = (W / 2) / tan(p->fov / 2);
 	p->step = p->fov / W;
 	p->floor_offset = 0;
+	p->flying = 0;
 }
 
 void	init_tex_arr(t_wolf *wolf)

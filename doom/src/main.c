@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:29:09 by clala             #+#    #+#             */
-/*   Updated: 2020/12/16 21:52:44 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/26 15:49:04 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,17 @@ static t_wolf	*t_wolf_new(void)
 		error(new, ERR_MALLOC);
 	if (!(new->menu = (t_menu *)malloc(sizeof(t_menu))))
 		error(new, ERR_MALLOC);
+	if (!(new->player->up_d = (t_way *)malloc(sizeof(t_way))))
+		error(new, ERR_MALLOC);
+	if (!(new->player->down_d = (t_way *)malloc(sizeof(t_way))))
+		error(new, ERR_MALLOC);
+	if (!(new->player->rght_d = (t_way *)malloc(sizeof(t_way))))
+		error(new, ERR_MALLOC);
+	if (!(new->player->left_d = (t_way *)malloc(sizeof(t_way))))
+		error(new, ERR_MALLOC);
 	parser(new);
 	recalc(new);
+	printf("%d\n", new->count_walls);
 	new->t_cof = 0;
 	return (new);
 }
