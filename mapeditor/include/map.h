@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 14:02:02 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/27 19:28:52 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ typedef struct		s_map
 	char			*temporary;/// мб не нужно
 
 	char 			*stairstr;
+	char			*stairsoutput;
 	int				stirsgroup;
 	// int			floor_active;
 }					t_map;
@@ -242,7 +243,7 @@ void				add_node(t_map *mp, int x, int y);
 void				wichonemusic(t_map *map);
 
 void				bigdot(t_map *map, int x, int y, t_color color);
-t_nod				*n_cr(short x1, short y1, short x2, short y2);
+t_nod				*n_cr(t_info *info, int type);
 
 int					sq(int x1, int y1, int x2, int y2);
 int					nod_len(t_nod *nod);
@@ -269,7 +270,7 @@ void				tools_click(t_map *map, int x, int y);
 void				blockterxture_click(t_map *map, int x, int y);
 void				zerroother(t_map *map);
 
-void				add_my_node(t_map *map, int x1, int y1, int x2, int y2);
+void				add_my_node(t_map *map, t_info *info, int type);
 void				made_blocks(t_map *map, int x, int y);
 
 void				square(t_map *map, int x, int y);

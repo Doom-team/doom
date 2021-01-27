@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 13:51:45 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/27 19:29:23 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 	// 	printf("first\n");
 	if (map->block_tex[5]->active == 1) //&& (map->x_c != 0 && map->y_c != 0)
 	{
-		ft_izero(map->remove->x, map->stclick * 8);
-		ft_izero(map->remove->y, map->stclick * 8);
+		//ft_izero(map->remove->x, map->stclick * 8);
+		//ft_izero(map->remove->y, map->stclick * 8);
 		int i = 1;
 		while (i <= map->stclick)
 		{
