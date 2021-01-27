@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2020/12/16 21:58:06 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/22 19:53:09 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void			wolf_loop(t_wolf *wolf)
 
 	while (wolf->sdl->run)
 	{
-		// recalc(wolf);
+		recalc(wolf);
 		handle_event(wolf, &event);
 		// draw_background(wolf->surface); // для отладки
 		all_get_distance(wolf);

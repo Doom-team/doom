@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2020/12/16 21:05:32 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/22 19:25:04 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		floorcast_up_fly(wolf, wolf->player->distance[count_distance], point.x, count_distance, stage, j);
 
 	j = dist->count - 1;
+	if (j < 0)
+		j = 0;
 	temp_y = ceilf((CUBE * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]);
 	temp_y = (H - temp_y) / 2;
 	size = H - temp_y;

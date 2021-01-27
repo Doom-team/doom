@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:19:22 by clala             #+#    #+#             */
-/*   Updated: 2020/12/16 22:11:59 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/26 23:21:58 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ float			calc_dist(t_wall player, float angle, t_wall wall, t_distance *v, int j)
 
 	if (!crossing(player, angle, wall))
 		return (-1.);
-	// printf("%f\n", angle / RAD_1);
 	py = 0;
 	px = calc_x(player, angle, wall, &py);
 	if (angle < RAD_90 || angle > RAD_270)
@@ -216,12 +215,13 @@ float			calc_dist_without_v(t_wall player, float angle, t_wall wall)
 	return (vector_len(player.x1, player.y1, px, py));
 }
 
-void			calculate_distance(t_wolf *wolf, float angle, float *d)
+void			calculate_distance(t_wolf *wolf, float angle, t_way *d)
 {
 	t_wall	player;
 	float	dist;
 	float	tmp;
 	int		i;
+	int		j = -1;
 
 	player.x1 = round(wolf->player->x);
 	player.y1 = round(wolf->player->y);
@@ -232,18 +232,23 @@ void			calculate_distance(t_wolf *wolf, float angle, float *d)
 	{
 		tmp = calc_dist_without_v(player, angle, wolf->walls[i]);
 		if (tmp != -1. && tmp < dist)
+		{
 			dist = tmp;
+			j = i;
+		}
 		i++;
 	}
-	*d = dist;
+	d->dist = dist;
+	if (j != -1)
+		d->wall = wolf->walls[j];
 }
 
 void			recalc(t_wolf *wolf)
 {
-	calculate_distance(wolf, RAD_1, &(wolf->player->rght_d));
-	calculate_distance(wolf, RAD_90, &(wolf->player->up_d));
-	calculate_distance(wolf, RAD_180 + RAD_1, &(wolf->player->left_d));
-	calculate_distance(wolf, RAD_270 + RAD_1, &(wolf->player->down_d));
+	calculate_distance(wolf, RAD_0, wolf->player->rght_d);
+	calculate_distance(wolf, RAD_90, wolf->player->up_d);
+	calculate_distance(wolf, RAD_180, wolf->player->left_d);
+	calculate_distance(wolf, RAD_270-RAD_1, wolf->player->down_d);
 	// printf("%f %f %f %f\n", wolf->player->up_d, wolf->player->down_d, wolf->player->left_d, wolf->player->rght_d);
 }
 

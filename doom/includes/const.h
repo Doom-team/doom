@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2020/10/18 18:31:46 by clala            ###   ########.fr       */
+/*   Updated: 2021/01/26 19:01:21 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define MAP_MIN_ROW_NUM 3
 # define MAP_MIN_COL_NUM 4
 # define MAP_FILEPATH "maps/map.txt"
+# define UP_LENGTH 240
 
 # define CHARSET " *#012345S$"
 # define WALLSET "*#012345"
