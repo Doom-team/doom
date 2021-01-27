@@ -202,12 +202,16 @@ typedef struct		s_button
 	SDL_Surface		*texture;
 	t_position		pos;
 	unsigned char	*bytes_texture;
+	int				check;
 	double			coefficient_x;
 	double			coefficient_y;
 }					t_button;
 
 typedef struct		s_menu
 {
+	Mix_Music		*menu_music;
+	Mix_Chunk		*move_button;
+	Mix_Chunk		*click_button;
 	t_background	background;
 	t_background	screen_start;
 	t_background	screen_death;
@@ -292,7 +296,7 @@ void 				recalc(t_wolf *wolf);
 */
 void				menu_loop(t_wolf *wolf);
 void				hooks(t_sdl *sdl, t_menu *menu);
-void				check_pos_button(t_sdl *sdl, t_button *button, int k);
+void				check_pos_button(t_sdl *sdl, t_button *button, int k, t_menu *menu);
 void				quit(t_sdl *sdl);
 
 /*
