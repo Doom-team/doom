@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:08 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/30 16:35:12 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:49:28 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ void	get_inter_textures(t_map *map)
 	map->inter_tex[19]->img = IMG_Load("/textures/interface/up.png");
 	map->inter_tex[20]->img = IMG_Load("/textures/interface/upactive.png");
 	map->inter_tex[21]->img = IMG_Load("/textures/interface/savebtn.png");
+}
+
+void	get_cursor(t_map *map)
+{
+	map->curosr_img[0]->img = IMG_Load("/textures/interface/editpic.png");
+	map->curosr_img[1]->img = IMG_Load("/textures/interface/deletic.png");
+	map->curosr_img[2]->img = IMG_Load("/textures/interface/firstdot.png");
+	map->curosr_img[3]->img = IMG_Load("/textures/interface/seconddot.png");
+	map->curosr_img[4]->img = IMG_Load("/textures/doors/bluekey.png");
+	map->curosr_img[5]->img = IMG_Load("/textures/doors/yellowkey.png");
+	map->curosr_img[6]->img = IMG_Load("/textures/doors/redkey.png");
 }
 
 void	get_block_textures(t_map *map)

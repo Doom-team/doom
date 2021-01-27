@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:39 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/29 14:56:16 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:52:17 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	get_wall_cord(t_map *map, int x, int y)
 	if (map->click == 0 && interface_click(map, x, y) &&
 		range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
 	{
-		cursor(map, "/textures/interface/firstdot.png", 0, 16);
+		cursor(map, 2, 0, 16);
 		map->click = 1;
 		map->change_x = x;
 		map->change_y = y;
@@ -117,7 +117,7 @@ void	get_wall_cord(t_map *map, int x, int y)
 		range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
 	{
 		map->click = 0;
-		cursor(map, "/textures/interface/seconddot.png", 0, 16);
+		cursor(map, 3, 0, 16);
 		find_coord(map, &x, &y);
 		changer(map, x - map->z_x, y - map->z_y);
 	}

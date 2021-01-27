@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/21 14:59:11 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/27 14:13:14 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,69 @@
 void savestairs(t_map *map)
 {
 	int i;
+	int tmp;
 
 	i = 0;
-	//add_node()
+	tmp = 1;
 	add_my_node(map, map->remove->x[0] + map->z_x, map->remove->y[0] + map->z_y, map->remove->x[1] + map->z_x, map->remove->y[1] + map->z_y);
 	add_my_node(map, map->remove->x[0] + map->z_x, map->remove->y[0] + map->z_y, map->remove->x[map->stclick * 8 - 2] + map->z_x, map->remove->y[map->stclick * 8 - 2] + map->z_y);
 	add_my_node(map, map->remove->x[1] + map->z_x, map->remove->y[1] + map->z_y, map->remove->x[map->stclick * 8 - 1] + map->z_x, map->remove->y[map->stclick * 8 - 1] + map->z_y);
 	add_my_node(map, map->remove->x[map->stclick * 8 - 2] + map->z_x, map->remove->y[map->stclick * 8 - 2] + map->z_y, map->remove->x[map->stclick * 8 - 1] + map->z_x, map->remove->y[map->stclick * 8 - 1] + map->z_y);
 
+	while (i < map->stclick * 8)
+	{
+		if (i == 0)
+			map->stairstr = ft_strjoin("w ", ft_itoa(map->remove->x[i]));
+		else
+		{
+			map->stairstr = ft_strjoin(map->stairstr, "w ");
+			map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->x[i]));
+		}
+		map->stairstr = ft_strjoin(map->stairstr, " ");
+		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->y[i]));
+		map->stairstr = ft_strjoin(map->stairstr, " ");
+		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->x[i + 1]));
+		map->stairstr = ft_strjoin(map->stairstr, " ");
+		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->y[i + 1]));
+		map->stairstr = ft_strjoin(map->stairstr, " ");
+		map->stairstr = ft_strjoin(map->stairstr, "\"textures/wall/wall0.png\" ");
+		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(tmp));
+		map->stairstr = ft_strjoin(map->stairstr, " ");
+		map->stairstr = ft_strjoin(map->stairstr, "1");
+		map->stairstr = ft_strjoin(map->stairstr, " ");
+		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->stirsgroup));
+		map->stairstr = ft_strjoin(map->stairstr, "\n");
+		i += 2;
+		if (i % 8 == 0)
+			tmp++;
+		if (i % 8 == 0)
+			map->stirsgroup++;
+	}
+	
 	// while (i < map->stclick * 8)
 	// {
-	// 	add_my_node(map, map->remove->x[i] + map->z_x, map->remove->y[i] + map->z_y, map->remove->x[i+1] + map->z_x, map->remove->y[i+1] + map->z_y);
-	// 	i += 2;
+	// 	if (i == 0)
+	// 	{
+	// 		map->stairstr = ft_strjoin("w ", ft_itoa(map->remove->x[i]));
+	// 		map->stairstr = ft_strjoin(map->stairstr, " ");
+	// 		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->y[i]));
+	// 	}
+	// 	else
+	// 	{
+	// 		map->stairstr = ft_strjoin(map->stairstr, " ");
+	// 		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->x[i]));
+	// 		map->stairstr = ft_strjoin(map->stairstr, " ");
+	// 		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->y[i]));
+	// 	}
+	// 	//add_my_node(map, map->remove->x[i] + map->z_x, map->remove->y[i] + map->z_y, map->remove->x[i+1] + map->z_x, map->remove->y[i+1] + map->z_y);
+	// 	if (i % 2 == 1) // говно полное, че за хуйня
+	// 	{
+	// 		map->stairstr = ft_strjoin(map->stairstr, "\n");
+	// 		map->stairstr = ft_strjoin(map->stairstr, "w");
+	// 	}
+	// 	i++;
 	// }
-	
+	printf("%s\n", map->stairstr);
 	//add_my_node(map, map->remove->x[0] + map->z_x, map->remove->y[0] + map->z_y, map->remove->x[1] + map->z_x, map->remove->y[1] + map->z_y);
 }
 
@@ -36,14 +85,18 @@ void	stairs_editor(t_map *map, int x, int y)
 {
 	if (map->click == 0 && interface_click(map, x, y))
 	{
+		printf("click1-------------------1\n");
 		map->click = 1;
 		map->x_c = x;
 		map->y_c = y;
+		//map->block_tex[5]->active = 2;
 	}
-	else if (interface_click(map, x, y))
+	else if (map->click == 1 && interface_click(map, x, y))
 	{
 
 		map->click = 0;
+		printf("click2---------------------2\n");
+
 		// for (int j = 0; j < map->stclick * 8; j++)
 		// {
 		// 	printf("%d, %d\n", map->remove->x[j], map->remove->y[j]);
@@ -60,6 +113,7 @@ void	stairarr(t_map *map, t_info *cor, int i, float nx, float ny)
 		map->remove->y[i-1] = cor->y - ny;
 		map->remove->x[i] = cor->x + nx;
 		map->remove->y[i] = cor->y + ny;
+
 		map->remove->x[i+1] = cor->x - nx;
 		map->remove->y[i+1] = cor->y - ny;
 		map->remove->x[i+2] = cor->w - nx;

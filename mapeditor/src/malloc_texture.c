@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:21 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/30 16:35:27 by gordey           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:50:27 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,24 @@ void	malloc_interface(t_map *map)
 	}
 	map->inter_tex[3]->active = 1;
 	map->inter_tex[6]->active = 1;
+}
+
+void	malloc_cursor(t_map *map)
+{
+	int i;
+
+	i = -1;
+	while (++i < 7)
+		map->curosr_img[i] = (t_image *)malloc(sizeof(t_image));
+	get_cursor(map);
+	i = 0;
+	while (++i < 7)
+	{
+		map->curosr_img[i]->img = SDL_ConvertSurfaceFormat(
+			map->curosr_img[i]->img, SDL_PIXELFORMAT_BGRA32, 0);
+		init_texture(map->curosr_img[i]->img, &(map->curosr_img[i]->s),
+			&(map->curosr_img[i]->pixb), &(map->curosr_img[i]->strb));
+	}
 }
 
 void	malloc_block_texture(t_map *map)

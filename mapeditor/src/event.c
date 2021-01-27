@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/21 13:54:13 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:51:45 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,21 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 		//draw_floor_line(map, &(t_info){map->floor_x, map->floor_y, x - map->z_x, y - map->z_y});
 	}
 	map->floor_x = 0;
-	if (map->block_tex[5]->active == 1)
+	//printf("click1: %d\n", map->click);
+	// if (map->x_c == 0 && map->y_c == 0)
+	// 	printf("first\n");
+	if (map->block_tex[5]->active == 1) //&& (map->x_c != 0 && map->y_c != 0)
 	{
 		ft_izero(map->remove->x, map->stclick * 8);
 		ft_izero(map->remove->y, map->stclick * 8);
 		int i = 1;
 		while (i <= map->stclick)
 		{
-			// t_removeinfo *xyarray;
-			
 			draw_mapstairs(map, x - map->z_x, y - map->z_y, i);
-			// printf("X%d: |%d|\n", i, map->remove->x[i]);
-			// printf("Y%d: |%d|\n", i, map->remove->y[i]);
 			i++;
 		}
-
 	}
+	
 	// if (some_texture_active(map) == 4) ////////////////////////////////////
 	// {
 		// drawillwall(map, x, y);
@@ -52,10 +51,10 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 	{
 		if (x1 != x || y1 != y)
 			bigdot(map, x1, y1, HOTPINK);
-		cursor(map, "/textures/interface/editpic.png", 0, 16);
+		cursor(map, 0 , 0, 16);
 	}
 	else if (map->inter_tex[8]->active)
-		(x1 != x || y1 != y) ? cursor(map, "/textures/interface/deletic.png",
+		(x1 != x || y1 != y) ? cursor(map, 1,
 			8, 8) : SDL_FreeCursor(map->cursor);
 	else
 		SDL_FreeCursor(map->cursor);

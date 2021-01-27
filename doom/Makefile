@@ -32,7 +32,8 @@ ALL_C = main.c \
 		init_menu.c \
 		menu.c \
 		print_menu.c \
-		parser.c
+		parser.c \
+		screens.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
@@ -50,8 +51,8 @@ LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
-FLAGS = -Ofast -mprefer-vector-width=512
-# FLAGS = -fmudflap -g
+# FLAGS = -Ofast -mprefer-vector-width=512
+FLAGS = -fmudflap -g
 # FLAGS =
 #-Wall -Wextra -Werror
 
