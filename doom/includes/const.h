@@ -45,7 +45,6 @@
 # define TEX_EYES '4'
 # define TEX_ISLE '5'
 
-
 # define W 1024
 # define H 720
 # define THREAD 8

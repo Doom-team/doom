@@ -33,7 +33,12 @@ ALL_C = main.c \
 		menu.c \
 		print_menu.c \
 		parser.c \
-		screens.c
+		screens.c \
+		parsing_ceiling.c \
+		parsing_walls.c \
+		parsing_floors.c \
+		parsing_sky.c \
+		slice.c
 
 SRCDIR = ./src
 OBJDIR = ./objs

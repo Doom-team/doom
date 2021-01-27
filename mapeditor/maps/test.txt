@@ -13,8 +13,3 @@ w -22 -9 -58 6 "textures/wall/wall0.png" 5 0 0
 w -49 27 -58 6 "textures/wall/wall0.png" 5 0 0
 f "textures/floor/floor1.png"
 s "textures/floor/sky1.png"
-textures/wall/wall0.png" 5 0 0
-w 325 -24 325 76 "textures/wall/wall0.png" 5 0 0
-w 225 76 325 76 "textures/wall/wall0.png" 5 0 0
-f "textures/floor/floor1.png"
-s "textures/floor/sky1.png"

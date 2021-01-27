@@ -42,11 +42,29 @@ typedef struct		s_wall
 	SDL_Surface		*texture1;
 }					t_wall;
 
-typedef struct	s_way
+typedef struct		s_buff
 {
-	float dist;
-	t_wall wall;
-}				t_way;
+	int				w;
+	bool			f;
+	bool			s;
+	bool			c;
+}					t_buff;
+
+typedef struct		s_parser
+{
+	t_wall			*walls;
+	SDL_Surface		*floor_texture;
+	SDL_Surface		*sky_texture;
+	SDL_Surface		*ceiling_texture;
+	t_buff			buff;
+	int				count_walls;
+}					t_parser;
+
+typedef struct		s_way
+{
+	float			dist;
+	t_wall			wall;
+}					t_way;
 
 typedef struct		s_map
 {
@@ -102,11 +120,11 @@ typedef struct		s_player
 	t_distance		*distance[W];
 	t_distance		*distance_horiz[W];
 	t_distance		*distance_vert[W];
-	t_way		*up_d;
-	t_way		*down_d;
-	t_way		*rght_d;
-	t_way		*left_d;
-	int			flying;
+	t_way			*up_d;
+	t_way			*down_d;
+	t_way			*rght_d;
+	t_way			*left_d;
+	int				flying;
 }					t_player;
 
 typedef	struct		s_sprite_calc
@@ -260,20 +278,6 @@ typedef struct		s_wolf
 ** draw.c
 */
 
-typedef struct		s_buff
-{
-	int				w;
-	int				f;
-}					t_buff;
-
-typedef struct		s_parser
-{
-	t_wall			*walls;
-	t_buff			buff;
-	int				count_walls;
-	int				count_floor;
-}					t_parser;
-
 typedef struct
 {
 	int				number;
@@ -283,7 +287,15 @@ typedef struct
 	int				count_distance;
 }					pthrData;
 
+/*
+** parser.c
+*/
 void				parser(t_wolf *wolf);
+void				slice(char s[100], char *a, int from, int to);
+void				parsing_walls(t_parser *parser, char **arr);
+void				parsing_floors(t_parser *parser, char **arr);
+void				parsing_ceiling(t_parser *parser, char **arr);
+void				parsing_sky(t_parser *parser, char **arr);
 
 void				draw_background(SDL_Surface *surface);
 int					draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
@@ -298,7 +310,7 @@ void				draw_rectangle(SDL_Surface *surface, t_point start,
 */
 void				wolf_loop(t_wolf *wolf);
 
-void 				recalc(t_wolf *wolf);
+void				recalc(t_wolf *wolf);
 /*
 ** menu.c
 */
