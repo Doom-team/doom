@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_sky.c                                      :+:      :+:    :+:   */
+/*   parsing_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahusk <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/27 20:02:52 by ahusk             #+#    #+#             */
-/*   Updated: 2021/01/27 20:02:53 by ahusk            ###   ########.fr       */
+/*   Created: 2021/01/29 01:09:47 by ahusk             #+#    #+#             */
+/*   Updated: 2021/01/29 01:09:50 by ahusk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-void	parsing_sky(t_parser *parser, char **arr)
+void	parsing_player(t_param2 *obj, char **arr, int *buff)
 {
-	char	sub_arr[100];
-
-	if (parser->buff.s)
-	{
-		if (arr[1] != 0)
-		{
-			slice(sub_arr, arr[1], 1, ft_strlen(arr[1]));
-			if (!(parser->sky_texture = IMG_Load(sub_arr)))
-				error((t_wolf *)parser, SDL_GetError());
-		}
-		else
-			parser->sky_texture = NULL;
-		parser->buff.s = false;
-	}
+	if (*buff == 0)
+		return ;
+	obj->x = ft_atoi(arr[1]);
+	obj->y = ft_atoi(arr[2]);
 }

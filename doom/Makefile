@@ -34,11 +34,14 @@ ALL_C = main.c \
 		print_menu.c \
 		parser.c \
 		screens.c \
-		parsing_ceiling.c \
 		parsing_walls.c \
-		parsing_floors.c \
-		parsing_sky.c \
-		slice.c
+		slice.c \
+		init_size.c \
+		size_param.c \
+		parsing_param3.c \
+		parsing_param2.c \
+		parsing_param1.c \
+		parsing_player.c
 
 SRCDIR = ./src
 OBJDIR = ./objs

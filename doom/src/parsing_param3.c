@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_ceiling.c                                  :+:      :+:    :+:   */
+/*   parsing_param3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahusk <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/27 19:59:48 by ahusk             #+#    #+#             */
-/*   Updated: 2021/01/27 19:59:50 by ahusk            ###   ########.fr       */
+/*   Created: 2021/01/28 22:39:20 by ahusk             #+#    #+#             */
+/*   Updated: 2021/01/28 22:39:21 by ahusk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-void	parsing_ceiling(t_parser *parser, char **arr)
+void	parsing_param3(t_param3 *obj, char **arr, int *buff)
 {
-	char	sub_arr[100];
-
-	if (parser->buff.c)
-	{
-		if (arr[1] != 0)
-		{
-			slice(sub_arr, arr[1], 1, ft_strlen(arr[1]));
-			if (!(parser->ceiling_texture = IMG_Load(sub_arr)))
-				error((t_wolf *)parser, SDL_GetError());
-		}
-		else
-			parser->ceiling_texture = NULL;
-		parser->buff.c = false;
-	}
+	if (*buff == 0)
+		return ;
+	obj[--*buff].type = ft_atoi(arr[1]);
+	obj[*buff].x = ft_atoi(arr[2]);
+	obj[*buff].y = ft_atoi(arr[3]);
 }

@@ -27,7 +27,6 @@
 # include "errors.h"
 # include <pthread.h>
 
-
 typedef struct		s_wall
 {
 	int				x1;
@@ -42,9 +41,29 @@ typedef struct		s_wall
 	SDL_Surface		*texture1;
 }					t_wall;
 
+typedef struct		s_param2
+{
+	int				x;
+	int				y;
+}					t_param2;
+
+typedef struct		s_param3
+{
+	int				type;
+	int				x;
+	int				y;
+}					t_param3;
+
 typedef struct		s_buff
 {
 	int				w;
+	int				h;
+	int				a;
+	int				g;
+	int				b;
+	int				e;
+	int				l;
+	int				p;
 	bool			f;
 	bool			s;
 	bool			c;
@@ -53,11 +72,24 @@ typedef struct		s_buff
 typedef struct		s_parser
 {
 	t_wall			*walls;
+	t_param2		*armors;
+	t_param3		*guns;
+	t_param3		*bullets;
+	t_param3		*enemys;
+	t_param2		*healths;
+	t_param2		*lights;
+	t_param2		player;
 	SDL_Surface		*floor_texture;
 	SDL_Surface		*sky_texture;
 	SDL_Surface		*ceiling_texture;
 	t_buff			buff;
 	int				count_walls;
+	int				count_guns;
+	int				count_bullets;
+	int				count_enemys;
+	int				count_healths;
+	int				count_armors;
+	int				count_lights;
 }					t_parser;
 
 typedef struct		s_way
@@ -293,9 +325,14 @@ typedef struct
 void				parser(t_wolf *wolf);
 void				slice(char s[100], char *a, int from, int to);
 void				parsing_walls(t_parser *parser, char **arr);
-void				parsing_floors(t_parser *parser, char **arr);
-void				parsing_ceiling(t_parser *parser, char **arr);
-void				parsing_sky(t_parser *parser, char **arr);
+void				parsing_param1(t_parser *parser, SDL_Surface *texture, char **arr, bool *b);
+void				parsing_param2(t_param2 *obj, char **arr, int *buff);
+void				parsing_param3(t_param3 *obj, char **arr, int *buff);
+void				init_size(t_parser *parser, char *l);
+void				size_param3(int count, int *buff, t_param3 *object, t_parser *parser);
+void				size_param2(int count, int *buff, t_param2 *object, t_parser *parser);
+void				size_param1(char **arr, bool *b, int i);
+void				parsing_player(t_param2 *obj, char **arr, int *buff);
 
 void				draw_background(SDL_Surface *surface);
 int					draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
