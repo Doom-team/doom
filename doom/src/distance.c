@@ -189,7 +189,12 @@ float			calc_dist(t_wall player, float angle, t_wall wall, t_distance *v, int j)
 	}
 	v->coords[j].x = px;
 	v->coords[j].y = py;
-	return (vector_len(player.x1, player.y1, px, py));
+	px = vector_len(player.x1, player.y1, px, py);
+	if (px < 1.5)
+	{
+		return (-1.);
+	}
+	return (px);
 }
 
 float			calc_dist_without_v(t_wall player, float angle, t_wall wall)
@@ -212,7 +217,12 @@ float			calc_dist_without_v(t_wall player, float angle, t_wall wall)
 		if (px > player.x1)
 			return (-1.);
 	}
-	return (vector_len(player.x1, player.y1, px, py));
+	px = vector_len(player.x1, player.y1, px, py);
+	if (px < 1.5)
+	{
+		return (-1.);
+	}
+	return (px);
 }
 
 void			calculate_distance(t_wolf *wolf, float angle, t_way *d)

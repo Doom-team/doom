@@ -43,22 +43,31 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		temp_y = size - ceilf((CUBE * wolf->walls[dist->number_wall[j]].h / 5.0f * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]); // отвечает за высоту ступеньки
 		if (wolf->walls[dist->number_wall[j]].type_flag == 1)
 		{
+			if (point.x == W / 2) // для отладки по центру экрана
+			{
+				point.x = point.x;
+				// printf("%d\n", wolf->walls[dist->number_wall[j]].squad_stage - 1);
+				// printf("%d -- %d --- %d\n", j, dist->number_wall[j], wolf->walls[dist->number_wall[j]].squad_stage);
+			}
 			if (stage.dist[wolf->walls[dist->number_wall[j]].squad_stage - 1] == 0)
 			{
 				flagg = 0;
 				stage.dist[wolf->walls[dist->number_wall[j]].squad_stage - 1] = wolf->player->distance[count_distance]->dist[j];
 			}
-			else if (wolf->player->distance[count_distance]->dist[j] < stage.dist[wolf->walls[dist->number_wall[j]].squad_stage - 1])
-				stage.dist[wolf->walls[dist->number_wall[j]].squad_stage - 1] = wolf->player->distance[count_distance]->dist[j];
+			// if (wolf->player->distance[count_distance]->dist[j] < stage.dist[wolf->walls[dist->number_wall[j]].squad_stage - 1])
+			// 	stage.dist[wolf->walls[dist->number_wall[j]].squad_stage - 1] = wolf->player->distance[count_distance]->dist[j];
 			if (stage.y2[wolf->walls[dist->number_wall[j]].squad_stage - 1] < temp_y - (/*wolf->player->dir_y + */fly_correction_from_dist(wolf, j, count_distance) + fly_correct_fuf(wolf))
 				&& flagg != 1)
 			{
 				flagg = 1;
-				// printf("1 - %d 2 - %lld\n", stage.y2[wolf->walls[dist->number_wall[j]].squad_stage - 1], temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)));
+				// if (point.x == W / 2)
+				// 	printf("1 - %d 2 - %lld\n", stage.y2[wolf->walls[dist->number_wall[j]].squad_stage - 1], temp_y);
 				stage.y2[wolf->walls[dist->number_wall[j]].squad_stage - 1] = temp_y - (/*wolf->player->dir_y +*/ fly_correction_from_dist(wolf, j, count_distance) + fly_correct_fuf(wolf));
+				// if (point.x == W / 2)
+				// 	printf("%d\n", stage.y2[wolf->walls[dist->number_wall[j]].squad_stage - 1]);
 				stage.y1[wolf->walls[dist->number_wall[j]].squad_stage - 1] = -1; // и тут по вертикальным полосам
 			}
-			else if (stage.y1[wolf->walls[dist->number_wall[j]].squad_stage - 1] < temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)/* + wolf->t_cof*/))
+			else if (stage.y1[wolf->walls[dist->number_wall[j]].squad_stage - 1] < temp_y - (/*wolf->player->dir_y +*/ fly_correction_from_dist(wolf, j, count_distance)/* + wolf->t_cof*/))
 			{
 				// printf("d\n");
 				if (stage.y1[wolf->walls[dist->number_wall[j]].squad_stage - 1] == -1)
@@ -112,58 +121,63 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 			}
 		}
 	}
+	stage.count += 10; //затычка
 	j = -1;
-	stage.count++;
 	// printf("%d\n", stage.count);
 	while (++j < stage.count)
 		floorcast_up_fly(wolf, wolf->player->distance[count_distance], point.x, count_distance, stage, j);
 
-	j = dist->count - 1;
-	if (j == -1)
-		return ;
-	temp_y = ceilf((CUBE * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]);
-	temp_y = (H - temp_y) / 2;
-	size = H - temp_y;
-	temp_y = size - ceilf((CUBE * wolf->walls[dist->number_wall[j]].h / 5.0f * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]); // отвечает за высоту ступеньки
-
-	if (dist->number_wall[j] < 0 && dist->number_wall[j] > wolf->count_walls - 1)
-			return ;
-	float	offsety;
-	int		begin_y = temp_y;
-	int		len = size - begin_y;
-	float	tex_2 = len / (wolf->walls[dist->number_wall[j]].h / 5.0f);
-	float	pos_y;
-	double	fractpart_2;
-	double	intpart_2;
-	int		flag = 1;
-
-	temp_y--;
-	while (++temp_y < size)
+	// if (point.x == W / 2) // для отладки по центру экрана
+	// 	point.x = point.x;
+	if (stage.count % 2 == 0)
 	{
-		if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < -H - 2)
+		j = dist->count - 1;
+		if (j == -1)
+			return ;
+		temp_y = ceilf((CUBE * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]);
+		temp_y = (H - temp_y) / 2;
+		size = H - temp_y;
+		temp_y = size - ceilf((CUBE * wolf->walls[dist->number_wall[j]].h / 5.0f * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]); // отвечает за высоту ступеньки
+
+		if (dist->number_wall[j] < 0 && dist->number_wall[j] > wolf->count_walls - 1)
+				return ;
+		float	offsety;
+		int		begin_y = temp_y;
+		int		len = size - begin_y;
+		float	tex_2 = len / (wolf->walls[dist->number_wall[j]].h / 5.0f);
+		float	pos_y;
+		double	fractpart_2;
+		double	intpart_2;
+		int		flag = 1;
+
+		temp_y--;
+		while (++temp_y < size)
 		{
-			temp_y = -H - 1 + (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance));
-			continue;
-		}
-		if ((temp_y - wolf->player->dir_y >= 0 && temp_y - wolf->player->dir_y < H) && (wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] == true))
-			continue;
-		if (flag == 1)
-		{
-			count = (int)(round(wolf->walls[dist->number_wall[j]].length / CUBE));
-			koof = (wolf->walls[dist->number_wall[j]].length / CUBE) / count;
-			tex_1 = (wolf->walls[dist->number_wall[j]].length / count) * koof;
-			pos = dist->offsetx[j] * wolf->walls[dist->number_wall[j]].length;
-			fractpart = modf((pos / tex_1), &intpart);
-			flag = 0;
-		}
-		if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) > 0 && temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < H)
-		{
-			offsety = (float)(temp_y - begin_y) / (size - begin_y);
-			pos_y = len * offsety;
-			fractpart_2 = modf(pos_y / tex_2, &intpart_2);
-			color = get_pixel(wolf->walls[dist->number_wall[j]].texture1, wolf->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->walls[dist->number_wall[j]].texture1->h); //где раунд коофицен колличества стен
-			set_pixel(wolf->surface, point.x, temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)), color);
-			// wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
+			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < -H - 2)
+			{
+				temp_y = -H - 1 + (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance));
+				continue;
+			}
+			if ((temp_y - wolf->player->dir_y >= 0 && temp_y - wolf->player->dir_y < H) && (wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] == true))
+				continue;
+			if (flag == 1)
+			{
+				count = (int)(round(wolf->walls[dist->number_wall[j]].length / CUBE));
+				koof = (wolf->walls[dist->number_wall[j]].length / CUBE) / count;
+				tex_1 = (wolf->walls[dist->number_wall[j]].length / count) * koof;
+				pos = dist->offsetx[j] * wolf->walls[dist->number_wall[j]].length;
+				fractpart = modf((pos / tex_1), &intpart);
+				flag = 0;
+			}
+			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) > 0 && temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < H)
+			{
+				offsety = (float)(temp_y - begin_y) / (size - begin_y);
+				pos_y = len * offsety;
+				fractpart_2 = modf(pos_y / tex_2, &intpart_2);
+				color = get_pixel(wolf->walls[dist->number_wall[j]].texture1, wolf->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->walls[dist->number_wall[j]].texture1->h); //где раунд коофицен колличества стен
+				set_pixel(wolf->surface, point.x, temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)), color);
+				// wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
+			}
 		}
 	}
 }
@@ -251,7 +265,7 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 		}
 	}
 	j = -1;
-	stage.count++;
+	stage.count += 10; // затычка
 	// printf("%d\n", stage.count);
 	while (++j < stage.count)
 		floorcast_up(wolf, wolf->player->distance[count_distance], point.x, count_distance, stage, j);
@@ -273,6 +287,7 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 	int		flag = 1;
 
 	temp_y--;
+	// printf ("%lld---%d\n", temp_y, size);
 	while (++temp_y < size)
 	{
 		if (temp_y - wolf->player->dir_y < -H - 2)
@@ -282,8 +297,8 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 		}
 		if (temp_y - wolf->player->dir_y < 0 || temp_y - wolf->player->dir_y > H)
 			continue;
-		if (wolf->z_buff_2[point.x + (temp_y - wolf->player->dir_y) * W] == false)
-			continue;
+		// if (wolf->z_buff_2[point.x + (temp_y - wolf->player->dir_y) * W] == false)
+		// 	continue;
 		if (flag == 1)
 		{
 			count = (int)(round(wolf->walls[dist->number_wall[j]].length / CUBE));
@@ -293,7 +308,7 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 			fractpart = modf((pos / tex_1), &intpart);
 			flag = 0;
 		}
-		if ((temp_y - wolf->player->dir_y > 0 && temp_y - wolf->player->dir_y < H) && stage.count % 2 != 0)
+		if ((temp_y - wolf->player->dir_y > 0 && temp_y - wolf->player->dir_y < H)/* && stage.count % 2 != 0*/)
 		{
 			// printf("%d\n", stage.count);
 			offsety = (float)(temp_y - begin_y) / (size - begin_y);
@@ -301,6 +316,8 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 			fractpart_2 = modf(pos_y / tex_2, &intpart_2);
 			color = get_pixel(wolf->walls[dist->number_wall[j]].texture1, wolf->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->walls[dist->number_wall[j]].texture1->h); //где раунд коофицен колличества стен
 			set_pixel(wolf->surface, point.x, temp_y - wolf->player->dir_y, color);
+			// if (temp_y < 0)
+			// 	printf ("%lld---%d\n", temp_y, size);
 		}
 	}
 }
@@ -333,6 +350,8 @@ void			floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distanc
 	// float	cof_h = -0.4 * stage.h[j] + 1.0  + wolf->t_cof * stage.h[j];
 	// float	cof_h = 1 + wolf->t_cof;
 
+	// if (x == W / 2) // для отладки по центру экрана
+	// 	x = x;
 	// printf("%d\n", wolf->walls[dist->number_wall[j]].h);
 	if ((stage.y1[j] == 0 && stage.y2[j] == 0)/* || (dist->dist[0] < stage.dist[j])*/)
 		return ;
@@ -357,22 +376,34 @@ void			floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distanc
 		{
 			// printf("%d ----%d\n", stage.y1[j], stage.y2[j]);
 			tmp = stage.y2[j];
+			stage.y2[j] = 0;
+			// stage.y2[j] = H;
+			stage.y1[j] = tmp;
+			temp_y = stage.y1[j];
+		}
+		else
+		{
+			tmp = stage.y2[j];
+			// stage.y2[j] = 0;
 			stage.y2[j] = H;
 			stage.y1[j] = tmp;
 			temp_y = stage.y1[j];
 		}
+		
+		// else
+		// 	return ;
 	}
-	if (stage.y1[j] == stage.y2[j])
-		return ;
-	// printf("%d ----%d\n", stage.y1[j], stage.y2[j]);
-
 	// else // сссс
 		// stage.y2[j] -= wolf->player->dir_y; //cccc
+	// if (stage.y1[j] == stage.y2[j])
+	// 	return ;
+	temp_y = stage.y1[j] - (wolf->player->dir_y + diry_correction_from_fly(wolf->player->fly));
+	y = stage.y1[j];
+	// printf("%d ----%d\n", stage.y1[j], stage.y2[j]);
+
 	// stage.y1[j] -= wolf->t_cof;
 	// printf("stagey1 = %d\n", stage.y1[j]);
-	temp_y = stage.y1[j] - (wolf->player->dir_y + diry_correction_from_fly(wolf->player->fly));
 	// temp_y = stage.y1[j] - (wolf->player->dir_y + wolf->t_cof);
-	y = stage.y1[j];
 	// temp_y_2 = y + wolf->player->dir_y;
 	while (temp_y < stage.y2[j])
 	{
@@ -388,15 +419,14 @@ void			floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distanc
 		textx = (int)(currFloorX * wolf->sdl->textures->w * cof * cof_h) % wolf->sdl->textures->w;
 		texty = (int)(currFloorY * wolf->sdl->textures->h * cof * cof_h) % wolf->sdl->textures->h;
 
-		if (textx < 0)
-			textx = 0;
-		if (texty < 0)
-			texty = 0;
-		color = get_pixel(wolf->sdl->textures, textx, texty);
-		if (temp_y >= 0 && temp_y <= H)
+		if (textx > 0 && texty > 0)
 		{
-			// wolf->z_buff_2[x + (temp_y) * W] = true;
-			set_pixel(wolf->surface, x, temp_y, color);
+			if (temp_y >= 0 && temp_y <= H)
+			{
+				color = get_pixel(wolf->sdl->textures, textx, texty);
+				// wolf->z_buff_2[x + (temp_y) * W] = true;
+				set_pixel(wolf->surface, x, temp_y, color);
+			}
 		}
 		temp_y++;
 		y++;
@@ -419,8 +449,8 @@ void			floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t
 	float	cof_h = -0.4 * stage.h[j] + 1;
 
 	// printf("%d\n", wolf->walls[dist->number_wall[j]].h);
-	if (x == W / 2)
-		x = x;
+	// if (x == W / 2) // для отладки по центру экрана
+	// 	x = x;
 	if ((stage.y1[j] == 0 && stage.y2[j] == 0)/* || (dist->dist[0] < stage.dist[j])*/)
 		return ;
 	// printf("%d ----%d ----- %d\n", stage.y1[j], stage.y2[j], j);
@@ -464,15 +494,14 @@ void			floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t
 		textx = (int)(currFloorX * wolf->sdl->textures->w * cof * cof_h) % wolf->sdl->textures->w;
 		texty = (int)(currFloorY * wolf->sdl->textures->h * cof * cof_h) % wolf->sdl->textures->h;
 
-		if (textx < 0)
-			textx = 0;
-		if (texty < 0)
-			texty = 0;
-		color = get_pixel(wolf->sdl->textures, textx, texty);
-		if (temp_y >= 0 && temp_y <= H)
+		if (textx > 0 && texty > 0)
 		{
-			wolf->z_buff_2[x + (temp_y) * W] = true;
-			set_pixel(wolf->surface, x, temp_y, color);
+			if (temp_y >= 0 && temp_y <= H)
+			{
+				color = get_pixel(wolf->sdl->textures, textx, texty);
+				wolf->z_buff_2[x + (temp_y) * W] = true;
+				set_pixel(wolf->surface, x, temp_y, color);
+			}
 		}
 		temp_y++;
 		y++;
