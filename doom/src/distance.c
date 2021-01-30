@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:19:22 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 22:43:38 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 23:50:35 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,12 @@ int				crossing(t_float2 player, float angle, t_wall wall)
 	}
 	if (angle < RAD_180)
 	{
-		if (round(wall.x1 * k + b) > wall.y1 && round(wall.x2 * k + b) > wall.y2)
+		if (wall.x1 * k + b > wall.y1 && wall.x2 * k + b > wall.y2)
 			return (0);
 	}
 	else
 	{
-		if (round(wall.x1 * k + b) < wall.y1 && round(wall.x2 * k + b) < wall.y2)
+		if (wall.x1 * k + b < wall.y1 && wall.x2 * k + b < wall.y2)
 			return (0);
 	}
 	if (angle < RAD_90 || angle > RAD_270)

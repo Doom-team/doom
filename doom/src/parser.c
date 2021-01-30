@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 19:38:26 by ahusk             #+#    #+#             */
-/*   Updated: 2020/12/16 22:05:22 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 23:54:55 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			parser(t_wolf *wolf)
 	t_parser	parser;
 
 	ch = 0;
-	if ((fd = open("map.txt", O_RDONLY)) == -1)
+	if ((fd = open("test.txt", O_RDONLY)) == -1)
 		error((t_wolf *)&parser, ERR_FILE_OPEN);
 	while (get_next_line(fd, &line) > 0)
 	{

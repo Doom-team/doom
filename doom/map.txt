@@ -1,4 +1,4 @@
-w 44
+w 4
 w 0 0 100 0 "textures/text.jpg" 15 0 0
 w 100 0 100 100 "textures/osa.png" 5 0 0
 w 100 100 0 100 "textures/zoloto_256.jpg" 5 0 0

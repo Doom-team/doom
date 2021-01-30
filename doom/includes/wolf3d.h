@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 23:00:48 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 23:46:30 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 
 typedef struct		s_wall
 {
-	int				x1;
-	int				y1;
-	int				x2;
-	int				y2;
+	float			x1;
+	float			y1;
+	float			x2;
+	float			y2;
 	float			length;
 	int				vert;
 	int				h;

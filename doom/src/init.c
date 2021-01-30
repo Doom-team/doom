@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:26:06 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 23:01:00 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 23:52:27 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 		p->distance_vert[i] = t_distance_new(wolf);
 	}
 	p->size = 10;
-	p->x = CUBE * 10;
-	p->y = CUBE * 9;
+	p->x = CUBE * 10 / RESIZE;
+	p->y = CUBE * 9 / RESIZE;
 	p->speed = 0.21f;
 	p->fov = RAD_60;
 	p->dir = RAD_270;
