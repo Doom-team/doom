@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:19:22 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 18:28:59 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 20:41:28 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void			all_get_distance(t_wolf *wolf)
 		// if (count_distance > W / 2)
 		// 	printf("%f --- %f\n", wolf->player->distance[W / 2]->coords->x, wolf->player->distance[W / 2]->coords->y);
 		wolf->player->distance[count_distance] = dist_to_wall(wolf, temp_i, count_distance);
+		
+		// printf("%f\n", wolf->player->distance[W/2]->dist[0]);
 		j = 0;
 		while (j < wolf->player->distance[count_distance]->count)
 			wolf->player->distance[count_distance]->dist[j++] *= cosf(cos_agle); //потом в цикле домножу
@@ -83,7 +85,7 @@ void			all_get_distance(t_wolf *wolf)
 	}
 }
 
-float			vector_len(float x1, float y1, int x2, int y2)
+float			vector_len(float x1, float y1, float x2, float y2)
 {
 	return (sqrt((float)((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))));
 }
@@ -160,7 +162,7 @@ float			calc_x(t_float2 player, float angle, t_wall wall, float *py)
 	}
 	else
 	{
-		k2 = (float)(wall.y2 - wall.y1) / (wall.x2 - wall.x1);
+		k2 = 1.f * (wall.y2 - wall.y1) / (wall.x2 - wall.x1);
 		b2 = wall.y1 - k2 * wall.x1;
 		x = (b2 - b1) / (k1 - k2);
 	}
@@ -359,7 +361,7 @@ t_distance		*dist_to_wall(t_wolf *wolf,
 float angle, int count_distance)
 {
 	t_distance	*v;
-	t_float2		player;
+	t_float2	player;
 	float		tmp;
 	int			i;
 	int			j;

@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 18:35:35 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 19:56:38 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void			wolf_loop(t_wolf *wolf)
 		handle_event(wolf, &event);
 		// draw_background(wolf->surface); // для отладки
 		all_get_distance(wolf);
+		// printf("%f\n", wolf->player->distance[W/2]->dist[0]);
 		pseudo_3d(wolf, wolf->player, wolf->surface);
 		// render_coin(wolf, wolf->surface);
 		// render_monster(wolf, wolf->surface);
