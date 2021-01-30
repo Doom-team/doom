@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:26:06 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 19:53:13 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 23:01:00 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 	p->size = 10;
 	p->x = CUBE * 10;
 	p->y = CUBE * 9;
-	p->speed = 8.01f;
+	p->speed = 0.21f;
 	p->fov = RAD_60;
 	p->dir = RAD_270;
 	p->dir_y = 0;
@@ -35,6 +35,7 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 	p->floor_offset = 0;
 	p->flying = 0;
 	p->inside_step = 0;
+	p->in_jump = 0;
 }
 
 void	init_tex_arr(t_wolf *wolf)

@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 15:21:49 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 23:00:48 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ typedef struct		s_player
 	t_way			*left_d;
 	int				flying;
 	int				inside_step;
+	int				in_jump;
 }					t_player;
 
 typedef	struct		s_sprite_calc
@@ -347,7 +348,7 @@ void				draw_rectangle(SDL_Surface *surface, t_point start,
 ** sdl.c
 */
 void				wolf_loop(t_wolf *wolf);
-
+void				handle_event(t_wolf *wolf, SDL_Event *event);
 void				recalc(t_wolf *wolf);
 /*
 ** menu.c
@@ -383,6 +384,7 @@ int					max(int a, int b);
 void				calc_move(t_wolf *wolf, float dy, float dx);
 void				rotate(t_wolf *wolf, SDL_Event *event);
 void				add_skybox_offset(t_sdl *sdl, float to_add);
+void				jump(t_wolf *wolf);
 
 /*
 ** load_textures.c

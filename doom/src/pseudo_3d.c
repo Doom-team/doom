@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 20:33:48 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 20:44:10 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,7 +324,7 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 
 int			fly_correction_from_dist(t_wolf	*wolf, int	j, int count_distance)
 {
-	return ((int)roundf(wolf->player->fly / wolf->player->distance[count_distance]->dist[j] * (28.9357956 * (W * 1.0 / H) - 1.1785647)));
+	return ((int)roundf(wolf->player->fly / wolf->player->distance[count_distance]->dist[j] * (28.9357956 * (W * 1.0 / H) - 1.1785647))) / 64;
 }
 
 double				correct_cof_h(t_wolf *wolf)
