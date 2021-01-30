@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/01/26 20:27:00 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 18:46:47 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,81 +64,71 @@ void	rotate(t_wolf *wolf, SDL_Event *event)
 
 void	calc_move(t_wolf *wolf, float dy, float dx)
 {
-	recalc(wolf);
-	if (dx > 0) 
+	if (wolf->player->flying)
 	{
-		if (wolf->player->rght_d->dist > dx + 6.51)
-			wolf->player->x += dx;
-		else if(wolf->player->rght_d->wall.type_flag == 1 && UP_LENGTH * wolf->player->rght_d->wall.h + wolf->player->fly <= UP_LENGTH)
+		wolf->player->x += dx * 0.979;
+		wolf->player->y += dy * 0.979;
+	}
+	else
+	{
+		recalc(wolf);
+		if (dx > 0) 
 		{
-			printf("1\n");
-			wolf->player->x += dx;
-			if (UP_LENGTH * wolf->player->rght_d->wall.h + wolf->player->fly >= 0)
-				wolf->player->fly = -UP_LENGTH * wolf->player->rght_d->wall.h;
-			// else
-			// {
-			// 	wolf->player->fly = UP_LENGTH * wolf->player->rght_d->wall.h;
-			// }
-			
+			if (wolf->player->rght_d->dist > dx + 8.51)
+				wolf->player->x += dx * 0.979;
+			else if(wolf->player->rght_d->wall.type_flag == 1 && UP_LENGTH * wolf->player->rght_d->wall.h + wolf->player->fly <= UP_LENGTH)
+				wolf->player->x += dx * 0.979;
+		}
+		else if(dx < 0)
+		{
+			if (wolf->player->left_d->dist > fabs(dx) + 8.51)
+				wolf->player->x += dx * 0.979;
+			else if(wolf->player->left_d->wall.type_flag == 1 && UP_LENGTH * wolf->player->left_d->wall.h + wolf->player->fly <= UP_LENGTH)
+				wolf->player->x += dx * 0.979;
+		}
+		recalc(wolf);
+		if (dy > 0) 
+		{
+			if (wolf->player->up_d->dist > dy + 8.51)
+				wolf->player->y += dy * 0.979;
+			else if(wolf->player->up_d->wall.type_flag && UP_LENGTH * wolf->player->up_d->wall.h + wolf->player->fly <= UP_LENGTH)
+				wolf->player->y += dy * 0.979;
+		}
+		else if(dy < 0)
+		{
+			if (wolf->player->down_d->dist > fabs(dy) + 8.51)
+				wolf->player->y += dy * 0.979;
+			else if(wolf->player->down_d->wall.type_flag && UP_LENGTH * wolf->player->down_d->wall.h + wolf->player->fly <= UP_LENGTH)
+				wolf->player->y += dy * 0.979;
+		}
+		recalc(wolf);
+		if (wolf->player->inside_step > abs(wolf->player->fly))
+		{
+			while (abs(wolf->player->fly) != wolf->player->inside_step)
+			{
+				wolf->player->fly -= UP_LENGTH;
+				all_get_distance(wolf);
+				pseudo_3d(wolf, wolf->player, wolf->surface);
+				render_score_coin(wolf);
+				render_fps(wolf, wolf->bon);
+				render_aim(wolf);
+				render_shot(wolf, wolf->surface);
+				SDL_UpdateWindowSurface(wolf->sdl->win);
+			}
+		}
+		else if (wolf->player->inside_step < abs(wolf->player->fly))
+		{
+			while (abs(wolf->player->fly) != wolf->player->inside_step)
+			{
+				wolf->player->fly += UP_LENGTH;
+				all_get_distance(wolf);
+				pseudo_3d(wolf, wolf->player, wolf->surface);
+				render_score_coin(wolf);
+				render_fps(wolf, wolf->bon);
+				render_aim(wolf);
+				render_shot(wolf, wolf->surface);
+				SDL_UpdateWindowSurface(wolf->sdl->win);
+			}
 		}
 	}
-	else if(dx < 0)
-	{
-		if (wolf->player->left_d->dist > fabs(dx) + 6.51)
-			wolf->player->x += dx;
-		else if(wolf->player->left_d->wall.type_flag == 1 && UP_LENGTH * wolf->player->left_d->wall.h + wolf->player->fly <= UP_LENGTH)
-		{
-			printf("2\n");
-			wolf->player->x += dx;
-			if (UP_LENGTH * wolf->player->left_d->wall.h + wolf->player->fly >= 0)
-				wolf->player->fly = -UP_LENGTH * wolf->player->left_d->wall.h;
-			// else
-			// {
-			// 	wolf->player->fly += UP_LENGTH * wolf->player->left_d->wall.h;
-			// }
-			
-		}
-	}
-	if (wolf->player->fly > 0)
-		wolf->player->fly = 0;
-	recalc(wolf);
-	if (dy > 0) 
-	{
-		if (wolf->player->up_d->dist > dy + 6.51)
-			wolf->player->y += dy;
-		else if(wolf->player->up_d->wall.type_flag && UP_LENGTH * wolf->player->up_d->wall.h + wolf->player->fly <= UP_LENGTH)
-		{
-			printf("3\n");
-			wolf->player->y += dy;
-			if (UP_LENGTH * wolf->player->up_d->wall.h + wolf->player->fly >= 0)
-				wolf->player->fly = -UP_LENGTH * wolf->player->up_d->wall.h;
-			// else
-			// {
-			// 	wolf->player->fly += UP_LENGTH * wolf->player->up_d->wall.h;
-			// }
-			
-		}
-	}
-	else if(dy < 0)
-	{
-		if (wolf->player->down_d->dist > fabs(dy) + 6.51)
-			wolf->player->y += dy;
-		else if(wolf->player->down_d->wall.type_flag && UP_LENGTH * wolf->player->down_d->wall.h + wolf->player->fly <= UP_LENGTH)
-		{
-			// printf("4\n");
-			wolf->player->y += dy;
-			if (UP_LENGTH * wolf->player->down_d->wall.h + wolf->player->fly >= 0)
-				wolf->player->fly = -UP_LENGTH * wolf->player->down_d->wall.h;
-			// else
-			// {
-			// 	wolf->player->fly += UP_LENGTH * wolf->player->down_d->wall.h;
-			// }
-			
-		}
-	}
-	if (wolf->player->fly > 0)
-		wolf->player->fly = 0;
-	// printf("u:%3f d:%f r:%f l:%f\n", wolf->player->up_d->dist, wolf->player->down_d->dist, wolf->player->rght_d->dist, wolf->player->left_d->dist);
-	// printf("%d\n", wolf->player->fly);
-	recalc(wolf);
 }

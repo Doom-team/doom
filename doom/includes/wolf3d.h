@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2021/01/27 15:34:27 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 15:21:49 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ typedef struct		s_player
 	t_way			*rght_d;
 	t_way			*left_d;
 	int				flying;
+	int				inside_step;
 }					t_player;
 
 typedef	struct		s_sprite_calc

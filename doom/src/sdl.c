@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/01/22 19:53:09 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 18:35:35 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static void		handle_other_keys(t_wolf *wolf)
 	if (wolf->sdl->state[SDL_SCANCODE_I])
 		wolf->bon->fps = wolf->bon->fps == 0 ? 1 : 0;
 	if (wolf->sdl->state[SDL_SCANCODE_SPACE])
-		wolf->player->fly -= 150;
+		wolf->player->fly -= UP_LENGTH;
 		// wolf->bon->guns_fire = 1;
 	if (wolf->sdl->state[SDL_SCANCODE_TAB])
 	{
-		if (wolf->player->fly + 150 <= 0)
-			wolf->player->fly += 150;
+		if (wolf->player->fly + UP_LENGTH <= 0)
+			wolf->player->fly += UP_LENGTH;
 	}
 	if (wolf->sdl->state[SDL_SCANCODE_V]) // отладка
 		wolf->t_cof += 0.001;
@@ -75,6 +75,8 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 		wolf->sdl->sides_mode = wolf->sdl->sides_mode == 1 ? 0 : 1;
 	if (s[SDL_SCANCODE_M])
 		map->mm_show = map->mm_show == 1 ? 0 : 1;
+	if (s[SDL_SCANCODE_H])
+		wolf->player->flying = !wolf->player->flying;
 	handle_other_keys(wolf);
 }
 

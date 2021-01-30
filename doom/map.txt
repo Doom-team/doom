@@ -1,4 +1,4 @@
-w 37
+w 44
 w 0 0 100 0 "textures/text.jpg" 15 0 0
 w 100 0 100 100 "textures/osa.png" 5 0 0
 w 100 100 0 100 "textures/zoloto_256.jpg" 5 0 0
@@ -19,6 +19,14 @@ w 10 13 11 13 "textures/zoloto_256.jpg" 4 1 4
 w 11 13 11 14 "textures/zoloto_256.jpg" 4 1 4
 w 11 14 10 14 "textures/zoloto_256.jpg" 4 1 4
 w 10 14 10 13 "textures/zoloto_256.jpg" 4 1 4
+w 10 14 11 14 "textures/zoloto_256.jpg" 5 1 8
+w 11 14 11 15 "textures/zoloto_256.jpg" 5 1 8
+w 11 15 10 15 "textures/zoloto_256.jpg" 5 1 8
+w 10 15 10 14 "textures/zoloto_256.jpg" 5 1 8
+w 10 15 11 15 "textures/zoloto_256.jpg" 6 1 9
+w 11 15 11 16 "textures/zoloto_256.jpg" 6 1 9
+w 11 16 10 16 "textures/zoloto_256.jpg" 6 1 9
+w 10 16 10 15 "textures/zoloto_256.jpg" 6 1 9
 w 5 10 6 10 "textures/zoloto_256.jpg" 4 1 7
 w 6 10 6 11 "textures/zoloto_256.jpg" 4 1 7
 w 6 11 5 11 "textures/zoloto_256.jpg" 4 1 7
@@ -35,4 +43,3 @@ w 10 6 11 6 "textures/zoloto_256.jpg" 8 1 6
 w 11 6 11 7 "textures/zoloto_256.jpg" 8 1 6
 w 11 7 10 7 "textures/zoloto_256.jpg" 8 1 6
 w 10 7 10 6 "textures/zoloto_256.jpg" 8 1 6
-w 30 15 5 15 "textures/zoloto_256.jpg" 15 0 0
