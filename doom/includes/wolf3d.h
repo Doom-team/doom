@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2021/01/27 15:34:27 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 23:46:30 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@
 # include "errors.h"
 # include <pthread.h>
 
-
 typedef struct		s_wall
 {
-	int				x1;
-	int				y1;
-	int				x2;
-	int				y2;
+	float			x1;
+	float			y1;
+	float			x2;
+	float			y2;
 	float			length;
 	int				vert;
 	int				h;
@@ -42,11 +41,62 @@ typedef struct		s_wall
 	SDL_Surface		*texture1;
 }					t_wall;
 
-typedef struct	s_way
+typedef struct		s_param2
 {
-	float dist;
-	t_wall wall;
-}				t_way;
+	int				x;
+	int				y;
+}					t_param2;
+
+typedef struct		s_param3
+{
+	int				type;
+	int				x;
+	int				y;
+}					t_param3;
+
+typedef struct		s_buff
+{
+	int				w;
+	int				h;
+	int				a;
+	int				g;
+	int				b;
+	int				e;
+	int				l;
+	int				p;
+	bool			f;
+	bool			s;
+	bool			c;
+}					t_buff;
+
+typedef struct		s_parser
+{
+	t_wall			*walls;
+	t_param2		*armors;
+	t_param3		*guns;
+	t_param3		*bullets;
+	t_param3		*enemys;
+	t_param2		*healths;
+	t_param2		*lights;
+	t_param2		player;
+	SDL_Surface		*floor_texture;
+	SDL_Surface		*sky_texture;
+	SDL_Surface		*ceiling_texture;
+	t_buff			buff;
+	int				count_walls;
+	int				count_guns;
+	int				count_bullets;
+	int				count_enemys;
+	int				count_healths;
+	int				count_armors;
+	int				count_lights;
+}					t_parser;
+
+typedef struct		s_way
+{
+	float			dist;
+	t_wall			wall;
+}					t_way;
 
 typedef struct		s_map
 {
@@ -102,11 +152,13 @@ typedef struct		s_player
 	t_distance		*distance[W];
 	t_distance		*distance_horiz[W];
 	t_distance		*distance_vert[W];
-	t_way		*up_d;
-	t_way		*down_d;
-	t_way		*rght_d;
-	t_way		*left_d;
-	int			flying;
+	t_way			*up_d;
+	t_way			*down_d;
+	t_way			*rght_d;
+	t_way			*left_d;
+	int				flying;
+	int				inside_step;
+	int				in_jump;
 }					t_player;
 
 typedef	struct		s_sprite_calc
@@ -260,20 +312,6 @@ typedef struct		s_wolf
 ** draw.c
 */
 
-typedef struct		s_buff
-{
-	int				w;
-	int				f;
-}					t_buff;
-
-typedef struct		s_parser
-{
-	t_wall			*walls;
-	t_buff			buff;
-	int				count_walls;
-	int				count_floor;
-}					t_parser;
-
 typedef struct
 {
 	int				number;
@@ -283,7 +321,20 @@ typedef struct
 	int				count_distance;
 }					pthrData;
 
+/*
+** parser.c
+*/
 void				parser(t_wolf *wolf);
+void				slice(char s[100], char *a, int from, int to);
+void				parsing_walls(t_parser *parser, char **arr);
+void				parsing_param1(t_parser *parser, SDL_Surface *texture, char **arr, bool *b);
+void				parsing_param2(t_param2 *obj, char **arr, int *buff);
+void				parsing_param3(t_param3 *obj, char **arr, int *buff);
+void				init_size(t_parser *parser, char *l);
+void				size_param3(int count, int *buff, t_param3 *object, t_parser *parser);
+void				size_param2(int count, int *buff, t_param2 *object, t_parser *parser);
+void				size_param1(char **arr, bool *b, int i);
+void				parsing_player(t_param2 *obj, char **arr, int *buff);
 
 void				draw_background(SDL_Surface *surface);
 int					draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
@@ -297,8 +348,8 @@ void				draw_rectangle(SDL_Surface *surface, t_point start,
 ** sdl.c
 */
 void				wolf_loop(t_wolf *wolf);
-
-void 				recalc(t_wolf *wolf);
+void				handle_event(t_wolf *wolf, SDL_Event *event);
+void				recalc(t_wolf *wolf);
 /*
 ** menu.c
 */
@@ -333,6 +384,7 @@ int					max(int a, int b);
 void				calc_move(t_wolf *wolf, float dy, float dx);
 void				rotate(t_wolf *wolf, SDL_Event *event);
 void				add_skybox_offset(t_sdl *sdl, float to_add);
+void				jump(t_wolf *wolf);
 
 /*
 ** load_textures.c

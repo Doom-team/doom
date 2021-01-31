@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/01/22 19:53:09 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 23:27:28 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,19 @@ static void		handle_other_keys(t_wolf *wolf)
 	if (wolf->sdl->state[SDL_SCANCODE_I])
 		wolf->bon->fps = wolf->bon->fps == 0 ? 1 : 0;
 	if (wolf->sdl->state[SDL_SCANCODE_SPACE])
-		wolf->player->fly -= 150;
+	{
+		if (wolf->player->flying)
+			wolf->player->fly -= UP_LENGTH;
+		else if (!wolf->player->in_jump)
+			jump(wolf);
+	}
 		// wolf->bon->guns_fire = 1;
 	if (wolf->sdl->state[SDL_SCANCODE_TAB])
 	{
-		if (wolf->player->fly + 150 <= 0)
-			wolf->player->fly += 150;
+		if (wolf->player->fly + UP_LENGTH < 0)
+			wolf->player->fly += UP_LENGTH;
+		if (wolf->player->fly > 0)
+			wolf->player->fly = 0;
 	}
 	if (wolf->sdl->state[SDL_SCANCODE_V]) // отладка
 		wolf->t_cof += 0.001;
@@ -75,10 +82,12 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 		wolf->sdl->sides_mode = wolf->sdl->sides_mode == 1 ? 0 : 1;
 	if (s[SDL_SCANCODE_M])
 		map->mm_show = map->mm_show == 1 ? 0 : 1;
+	if (s[SDL_SCANCODE_U])
+		wolf->player->flying = !wolf->player->flying;
 	handle_other_keys(wolf);
 }
 
-static void		handle_event(t_wolf *wolf, SDL_Event *event)
+void		handle_event(t_wolf *wolf, SDL_Event *event)
 {
 	while (SDL_PollEvent(event))
 	{
@@ -111,6 +120,7 @@ void			wolf_loop(t_wolf *wolf)
 		handle_event(wolf, &event);
 		// draw_background(wolf->surface); // для отладки
 		all_get_distance(wolf);
+		// printf("%f\n", wolf->player->distance[W/2]->dist[0]);
 		pseudo_3d(wolf, wolf->player, wolf->surface);
 		// render_coin(wolf, wolf->surface);
 		// render_monster(wolf, wolf->surface);

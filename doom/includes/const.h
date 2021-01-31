@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2021/01/26 19:01:21 by wendell          ###   ########.fr       */
+/*   Updated: 2021/01/30 23:48:04 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@
 # define TEX_EYES '4'
 # define TEX_ISLE '5'
 
-
 # define W 1024
 # define H 720
 # define THREAD 8
 // # define W_MAX 1920
 // # define H_MAX 1080
-# define CUBE 64
+# define CUBE 1
+# define RESIZE 20.f
 
 # define PLAYER_MM_SIZE 4
 # define KLUDGE 0.0001
