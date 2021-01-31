@@ -15,8 +15,8 @@
 // 	int width = 15;
 // 	float len;
 
-// 	x1 = map->x_c - map->z_x;
-// 	y1 = map->y_c - map->z_y;
+// 	x1 = map->x_c ;
+// 	y1 = map->y_c ;
 	
 // 	nx = (y1 - y);
 // 	ny = (x - x1);
@@ -43,8 +43,8 @@
 // 	int width = 15;
 // 	float len;
 
-// 	x1 = map->x_c - map->z_x;
-// 	y1 = map->y_c - map->z_y;
+// 	x1 = map->x_c ;
+// 	y1 = map->y_c ;
 	
 // 	nx = (y1 - y);
 // 	ny = (x - x1);
@@ -73,8 +73,8 @@
 		
 	// 	x_tmp /= sqrt(x_tmp*x_tmp + y_tmp*y_tmp);
 	// 	y_tmp /= sqrt(x_tmp*x_tmp + y_tmp*y_tmp);
-	// 	x1 = map->x_c - map->z_x + x_tmp * 20 * i;
-	// 	y1 = map->y_c - map->z_y + y_tmp * 20 * i;
+	// 	x1 = map->x_c  + x_tmp * 20 * i;
+	// 	y1 = map->y_c  + y_tmp * 20 * i;
 	// 	x = x1 + (x - x1) * 20 / len * i + 10;
 	// 	y = y1 + (y - y1) * 20 / len * i + 10;
 	// 	draw_floor_line(map, &(t_info){x1 - nx, (y1 - ny) , (x - nx) , (y - ny) });
@@ -94,8 +94,8 @@
 	// 	y_tmp = y - y1;
 	// 	x_tmp /= sqrt(x_tmp*x_tmp + y_tmp*y_tmp);
 	// 	y_tmp /= sqrt(x_tmp*x_tmp + y_tmp*y_tmp);
-	// 	x1 = map->x_c - map->z_x + x_tmp * 20;
-	// 	y1 = map->y_c - map->z_y + y_tmp * 20;
+	// 	x1 = map->x_c  + x_tmp * 20;
+	// 	y1 = map->y_c  + y_tmp * 20;
 	// 	// map->x_c = map->x_c + x_tmp * 20;
 	// 	// map->y_c = map->y_c + y_tmp * 20;
 	// 	map->x_c = x;
@@ -111,8 +111,8 @@
 
 	// x_tmp /= sqrt(x_tmp*x_tmp + y_tmp*y_tmp);
 	// y_tmp /= sqrt(x_tmp*x_tmp + y_tmp*y_tmp);
-	// x1 = map->x_c - map->z_x + x_tmp * 20;
-	// y1 = map->y_c - map->z_y + y_tmp * 20;
+	// x1 = map->x_c  + x_tmp * 20;
+	// y1 = map->y_c  + y_tmp * 20;
 	// printf("%f %f\n",x_tmp, y_tmp);
 
 	// // nx = (y1 - y);
@@ -139,8 +139,8 @@
 	// int width = 15;
 	// float len;
 
-	// x1 = map->x_c - map->z_x;
-	// y1 = map->y_c - map->z_y;
+	// x1 = map->x_c ;
+	// y1 = map->y_c ;
 	
 	// nx = (y1 - y);
 	// ny = (x - x1);
@@ -169,8 +169,8 @@
 // 	// int t_x = x;
 // 	// int t_y = y;
 
-// 	x1 = map->x_c - map->z_x;
-// 	y1 = map->y_c - map->z_y;
+// 	x1 = map->x_c ;
+// 	y1 = map->y_c ;
 	
 // 	nx = (y1 - y);
 // 	ny = (x - x1);

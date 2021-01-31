@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 21:28:49 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void savestairs(t_map *map)
 
 	i = 0;
 	tmp = 1;
-	add_my_node(map, &(t_info){map->remove->x[0] + map->z_x, map->remove->y[0] + map->z_y, map->remove->x[1] + map->z_x, map->remove->y[1] + map->z_y}, 1);
-	add_my_node(map, &(t_info){map->remove->x[0] + map->z_x, map->remove->y[0] + map->z_y, map->remove->x[map->stclick * 8 - 2] + map->z_x, map->remove->y[map->stclick * 8 - 2] + map->z_y}, 1);
-	add_my_node(map, &(t_info){map->remove->x[1] + map->z_x, map->remove->y[1] + map->z_y, map->remove->x[map->stclick * 8 - 1] + map->z_x, map->remove->y[map->stclick * 8 - 1] + map->z_y}, 1);
-	add_my_node(map, &(t_info){map->remove->x[map->stclick * 8 - 2] + map->z_x, map->remove->y[map->stclick * 8 - 2] + map->z_y, map->remove->x[map->stclick * 8 - 1] + map->z_x, map->remove->y[map->stclick * 8 - 1] + map->z_y}, 1);
+	add_my_node(map, &(t_info){map->remove->x[0] , map->remove->y[0] , map->remove->x[1] , map->remove->y[1] }, 1);
+	add_my_node(map, &(t_info){map->remove->x[0] , map->remove->y[0] , map->remove->x[map->stclick * 8 - 2] , map->remove->y[map->stclick * 8 - 2] }, 1);
+	add_my_node(map, &(t_info){map->remove->x[1] , map->remove->y[1] , map->remove->x[map->stclick * 8 - 1] , map->remove->y[map->stclick * 8 - 1] }, 1);
+	add_my_node(map, &(t_info){map->remove->x[map->stclick * 8 - 2] , map->remove->y[map->stclick * 8 - 2] , map->remove->x[map->stclick * 8 - 1] , map->remove->y[map->stclick * 8 - 1] }, 1);
 
 	while (i < map->stclick * 8)
 	{
@@ -135,8 +135,8 @@ void	draw_mapstairs(t_map *map, int x, int y, int i)
 	int width = 15;
 	float len;
 
-	x1 = map->x_c - map->z_x;
-	y1 = map->y_c - map->z_y;
+	x1 = map->x_c ;
+	y1 = map->y_c ;
 	
 	nx = (y1 - y);
 	ny = (x - x1);

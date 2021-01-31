@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/18 17:56:48 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,9 @@ void	draw_grid(t_map *map)
 		j = 0;
 		while (j < WIDTH)
 		{
-			if ((i - map->z_y) % SCALE == 0 && (j - map->z_x) % SCALE == 0)
+			if ((i ) % SCALE == 0 && (j ) % SCALE == 0)
 				draw_point(map, j, i, GREY);
-			else if ((i - map->z_y) % SCALE == 0 || (j - map->z_x) % SCALE == 0)
+			else if ((i ) % SCALE == 0 || (j ) % SCALE == 0)
 				draw_pixel(map, j, i, APPLEGREY);
 			else
 				draw_pixel(map, j, i, (t_color){0, 0, 0});
@@ -148,12 +148,12 @@ void	draw_floor_line(t_map *map, t_info *cor)
 	int di;
 	int numiter = 0;
 
-	x1 = cor->x + map->z_x;
-	x2 = cor->w + map->z_x;
+	x1 = cor->x ;
+	x2 = cor->w ;
 	if (x1 < 0 && x2 < 0)
 		return ;
-	y1 = cor->y + map->z_y;
-	y2 = cor->h + map->z_y;
+	y1 = cor->y ;
+	y2 = cor->h ;
 	dx = abs(x1 - x2);
 	dy = abs(y1 - y2);
 	// if (dx > 20 || dy > 20)

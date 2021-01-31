@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:36:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 18:42:48 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void	add_my_node(t_map *map, t_info *info, int type)
 	t_nod *n;
 	t_nod *cur;
 
-	n = n_cr(&(t_info){info->x - map->z_x, info->y - map->z_y, info->w - map->z_x, info->h - map->z_y}, type);
+	n = n_cr(&(t_info){info->x , info->y , info->w , info->h }, type);
 	n->index = nod_len(map->nod);
 	n->wallh = map->whclick;
 	if (map->nod == NULL)

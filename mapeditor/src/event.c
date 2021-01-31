@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 19:29:23 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 	{
 		if (x1 != x || y1 != y)
 			bigdot(map, x1, y1, HOTPINK);
-		//draw_floor_line(map, &(t_info){map->floor_x, map->floor_y, x - map->z_x, y - map->z_y});
+		//draw_floor_line(map, &(t_info){map->floor_x, map->floor_y, x , y });
 	}
 	map->floor_x = 0;
 	//printf("click1: %d\n", map->click);
@@ -38,7 +38,7 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 		int i = 1;
 		while (i <= map->stclick)
 		{
-			draw_mapstairs(map, x - map->z_x, y - map->z_y, i);
+			draw_mapstairs(map, x , y , i);
 			i++;
 		}
 	}

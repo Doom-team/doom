@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 13:00:49 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,7 +349,7 @@ void	floorker(t_map *map, int x, int y)
 	{
 		open_floor_win(map);
 		// if (x1 != x || y1 != y)
-		// 	get_floor_cordi(map, x1 - map->z_x, y1 - map->z_y);
+		// 	get_floor_cordi(map, x1 , y1 );
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/21 10:56:41 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:03:12 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	whichone_tool(t_map *map)
 		open_floor_win(map);
 	if (map->inter_tex[5]->active == 1)
 		objectsblock(map);
-		//draw_img2(map, &(t_info){map->floor_x + map->z_x, map->floor_y + map->z_y, abs(map->tmpfloor_x - map->floor_x), abs(map->tmpfloor_y - map->floor_y)}, map->floorsky_tex[map->index_tex]);
+		//draw_img2(map, &(t_info){map->floor_x , map->floor_y , abs(map->tmpfloor_x - map->floor_x), abs(map->tmpfloor_y - map->floor_y)}, map->floorsky_tex[map->index_tex]);
 	if (map->inter_tex[6]->active == 1)
 	{
 		fonts_classic(map, "edit tool", &(t_info){305, 780, 0, 0}, WHITEFONT);

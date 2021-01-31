@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 19:38:14 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:35:45 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int		init_all(t_map *map)
 		WIDTH, HEIGHT, SDL_WINDOW_SHOWN)))
 		return (0);
 	init_interface(map);
-	map->z_x = WIDTH / 2;
-	map->z_y = HEIGHT / 2;
 	map->click = 0;
 	map->nod = NULL;
 	map->wclick = 25;

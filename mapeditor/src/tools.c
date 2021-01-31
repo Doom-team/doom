@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:33 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 12:47:01 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:03:12 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	find_remove(t_map *map, int x, int y)
 	first = map->nod;
 	while (tmp)
 	{
-		if (((tmp->x1 + map->z_x) == x && (tmp->y1 + map->z_y) == y) ||
-		((tmp->x2 + map->z_x) == x && (tmp->y2 + map->z_y) == y))
+		if (((tmp->x1 ) == x && (tmp->y1 ) == y) ||
+		((tmp->x2 ) == x && (tmp->y2 ) == y))
 		{
 			tmp2 = tmp;
 			tmp = tmp->nxt;

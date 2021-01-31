@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:03 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/26 16:14:33 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,14 @@ void	get_floor_cord(t_map *map, int x, int y)
 		range_click(&(t_info){x, y, WIDTH / 2 - 115, 5}, 330, 100))
 	{
 		map->click = 1;
-		map->floor_x = x - map->z_x;
-		map->floor_y = y - map->z_y;
+		map->floor_x = x ;
+		map->floor_y = y ;
 	}
 	else if (interface_click(map, x, y) &&
 		range_click(&(t_info){x, y, WIDTH / 2 - 115, 5}, 330, 100))
 	{
 		map->click = 0;
-		changer(map, x - map->z_x, y - map->z_y);
+		changer(map, x , y );
 	}
 }
 
@@ -190,7 +190,7 @@ void	open_floor_win(t_map *map)
 // 			n = 0;
 // 			while (n < abs(map->tmpfloor_x - map->floor_x) - i_tmp)
 // 			{
-// 				draw_img2(map, &(t_info){map->floor_x + map->z_x + n, map->floor_y + map->z_y + o, i_tmp, j_tmp}, map->floorsky_tex[map->index_tex]);
+// 				draw_img2(map, &(t_info){map->floor_x  + n, map->floor_y  + o, i_tmp, j_tmp}, map->floorsky_tex[map->index_tex]);
 // 				n += i_tmp;
 // 			}
 // 			o += j_tmp;

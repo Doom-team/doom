@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:39 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 13:52:17 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:35:53 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,6 @@ void	get_wall_cord(t_map *map, int x, int y)
 		map->change_x = x;
 		map->change_y = y;
 		find_coord(map, &(map->change_x), &(map->change_y));
-		map->change_x -= map->z_x;
-		map->change_y -= map->z_y;
 	}
 	else if (map->click == 1 && interface_click(map, x, y) &&
 		range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
@@ -119,7 +117,7 @@ void	get_wall_cord(t_map *map, int x, int y)
 		map->click = 0;
 		cursor(map, 3, 0, 16);
 		find_coord(map, &x, &y);
-		changer(map, x - map->z_x, y - map->z_y);
+		changer(map, x , y );
 	}
 }
 

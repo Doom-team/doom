@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 18:26:17 by grinko           ###   ########.fr       */
+/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	add_node(t_map *map, int x, int y)
 	t_nod *n;
 	t_nod *cur;
 
-	n = n_cr(&(t_info){map->x_c - map->z_x, map->y_c - map->z_y,
-		x - map->z_x, y - map->z_y}, 0);
+	n = n_cr(&(t_info){map->x_c , map->y_c ,
+		x , y }, 0);
 	n->index = nod_len(map->nod);
 	n->wallh = map->whclick;
 	if (map->nod == NULL)
@@ -107,12 +107,12 @@ void	draw_node(t_map *map, t_nod *n)
 
 	if (n)
 	{
-		x1 = n->x1 + map->z_x;
-		x2 = n->x2 + map->z_x;
+		x1 = n->x1 ;
+		x2 = n->x2 ;
 		if (x1 < 0 && x2 < 0)
 			return ;
-		y1 = n->y1 + map->z_y;
-		y2 = n->y2 + map->z_y;
+		y1 = n->y1 ;
+		y2 = n->y2 ;
 		dx = abs(x1 - x2);
 		dy = abs(y1 - y2);
 		er = 0;
@@ -209,26 +209,26 @@ void	find_coord(t_map *map, int *x, int *y)
 		return ;
 	while (nod)
 	{
-		if (abs((nod->x1 + map->z_x) - *x) < 10 &&
-			abs((nod->y1 + map->z_y) - *y) < 10)
+		if (abs((nod->x1 ) - *x) < 10 &&
+			abs((nod->y1 ) - *y) < 10)
 		{
-			abs2 = sq(*x, *y, nod->x1 + map->z_x, nod->y1 + map->z_y);
+			abs2 = sq(*x, *y, nod->x1 , nod->y1 );
 			if (abs2 < abs1)
 			{
 				abs1 = abs2;
-				x1 = nod->x1 + map->z_x;
-				y1 = nod->y1 + map->z_y;
+				x1 = nod->x1 ;
+				y1 = nod->y1 ;
 			}
 		}
-		if (abs((nod->x2 + map->z_x) - *x) < 10 &&
-			abs((nod->y2 + map->z_y) - *y) < 10)
+		if (abs((nod->x2 ) - *x) < 10 &&
+			abs((nod->y2 ) - *y) < 10)
 		{
-			abs2 = sq(*x, *y, nod->x2 + map->z_x, nod->y2 + map->z_y);
+			abs2 = sq(*x, *y, nod->x2 , nod->y2 );
 			if (abs2 < abs1)
 			{
 				abs1 = abs2;
-				x1 = nod->x2 + map->z_x;
-				y1 = nod->y2 + map->z_y;
+				x1 = nod->x2 ;
+				y1 = nod->y2 ;
 			}
 		}
 		nod = nod->nxt;
