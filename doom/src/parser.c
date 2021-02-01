@@ -53,20 +53,17 @@ void			parser(t_wolf *wolf)
 	char		*line;
 	int			ch;
 	int			fd;
-	t_parser	parser;
 
 	ch = 0;
 	if ((fd = open("test.txt", O_RDONLY)) == -1)
-		error((t_wolf *)&parser, ERR_FILE_OPEN);
+		error((t_wolf *)wolf->p, ERR_FILE_OPEN);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (ch++ == 0)
-			init_size(&parser, line);
+			init_size(wolf->p, line);
 		else
-			parsing(&parser, line);
+			parsing(wolf->p, line);
 	}
 	close(fd);
 	free(line);
-	wolf->walls = parser.walls;
-	wolf->count_walls = parser.count_walls;
 }

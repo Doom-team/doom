@@ -295,14 +295,13 @@ typedef struct		s_floor_up
 typedef struct		s_wolf
 {
 	t_map			*map;
+	t_parser		*p;
 	t_player		*player;
 	t_sdl			*sdl;
 	SDL_Surface		*surface;
 	t_bonus			*bon;
 	t_monster		*monster;
 	t_menu			*menu;
-	t_wall			*walls;
-	int				count_walls;
 	bool			z_buff[W * H];
 	bool			z_buff_2[W * H];
 	float			t_cof; // для отладки и тестов

@@ -267,9 +267,9 @@ void			calculate_distance(t_wolf *wolf, float angle, t_way *d)
 	dist = MAXFLOAT;
 	tmp = -1;
 	i = 0;
-	while (i < wolf->count_walls)
+	while (i < wolf->p->count_walls)
 	{
-		tmp = calc_dist_without_v(player, angle, wolf->walls[i]);
+		tmp = calc_dist_without_v(player, angle, wolf->p->walls[i]);
 		if (tmp != -1. && tmp < dist)
 		{
 			dist = tmp;
@@ -279,7 +279,7 @@ void			calculate_distance(t_wolf *wolf, float angle, t_way *d)
 	}
 	d->dist = dist;
 	if (j != -1)
-		d->wall = wolf->walls[j];
+		d->wall = wolf->p->walls[j];
 }
 
 void			recalc(t_wolf *wolf)
@@ -388,13 +388,13 @@ float angle, int count_distance)
 	t_distance_clear(v);
 	player.x = wolf->player->x;
 	player.y = wolf->player->y;
-	while (i < wolf->count_walls)
+	while (i < wolf->p->count_walls)
 	{
-		tmp = calc_dist(player, angle, wolf->walls[i], v, j);
+		tmp = calc_dist(player, angle, wolf->p->walls[i], v, j);
 		if (tmp != -1.0f)
 		{
 			v->number_wall[j] = i;
-			v->offsetx[j] = sqrtf(powf(v->coords[j].x - wolf->walls[i].x1, 2) + powf(v->coords[j].y - wolf->walls[i].y1, 2)) / wolf->walls[i].length;
+			v->offsetx[j] = sqrtf(powf(v->coords[j].x - wolf->p->walls[i].x1, 2) + powf(v->coords[j].y - wolf->p->walls[i].y1, 2)) / wolf->p->walls[i].length;
 			v->dist[j] = tmp;
 			j++;
 			tmp = -1.0f;

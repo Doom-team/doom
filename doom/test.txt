@@ -83,4 +83,4 @@ w 146 -92 127 -95 "textures/wall/wall0.png" 4 1 16
 w 149 -113 130 -116 "textures/wall/wall0.png" 4 1 16
 w 127 -95 130 -116 "textures/wall/wall0.png" 4 1 16
 f "textures/floor/floor1.png"
-s "textures/floor/sky1.png"
+s "textures/sky.bmp"
