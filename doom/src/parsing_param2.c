@@ -16,6 +16,6 @@ void	parsing_param2(t_param2 *obj, char **arr, int *buff)
 {
 	if (*buff == 0)
 		return ;
-	obj[--*buff].x = ft_atoi(arr[1]);
-	obj[*buff].y = ft_atoi(arr[2]);
+	obj[--*buff].x = ft_atoi(arr[1]) / RESIZE;
+	obj[*buff].y = ft_atoi(arr[2]) / RESIZE;
 }

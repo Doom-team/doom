@@ -24,6 +24,7 @@ void	parsing_param1(t_parser *parser, SDL_Surface *texture,
 			slice(sub_arr, arr[1], 1, ft_strlen(arr[1]));
 			if (!(texture = IMG_Load(sub_arr)))
 				error((t_wolf *)parser, SDL_GetError());
+			texture = SDL_ConvertSurfaceFormat(texture, SDL_PIXELFORMAT_BGRA32, 0);
 		}
 		else
 			texture = NULL;
