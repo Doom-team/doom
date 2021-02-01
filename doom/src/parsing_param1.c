@@ -15,16 +15,18 @@
 void	parsing_param1(t_parser *parser, SDL_Surface *texture,
 						char **arr, bool *b)
 {
-	char	sub_arr[100];
+	char			sub_arr[100];
+	SDL_Surface		*tmp;
 
 	if (*b)
 	{
 		if (arr[1] != 0)
 		{
 			slice(sub_arr, arr[1], 1, ft_strlen(arr[1]));
-			if (!(texture = IMG_Load(sub_arr)))
+			if (!(tmp = IMG_Load(sub_arr)))
 				error((t_wolf *)parser, SDL_GetError());
-			texture = SDL_ConvertSurfaceFormat(texture, SDL_PIXELFORMAT_BGRA32, 0);
+			texture = SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_BGRA32, 0);
+			SDL_FreeSurface(tmp);
 		}
 		else
 			texture = NULL;

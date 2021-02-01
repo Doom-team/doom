@@ -1,4 +1,4 @@
-walls: 43	floor: 1	ceiling: 0
+walls: 43 floor: 1 ceiling: 1 s: 1
 w -96 8 -56 226 "textures/wall/wall0.png" 5 0 0
 w -56 226 298 132 "textures/wall/wall0.png" 5 0 0
 w 298 132 250 -223 "textures/wall/wall0.png" 5 0 0

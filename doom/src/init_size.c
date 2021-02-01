@@ -104,6 +104,8 @@ void			init_size(t_parser *parser, char *l)
 			init_param2(arr, parser, i);
 		if (arr[i][0] == 'g' || arr[i][0] == 'b' || arr[i][0] == 'e')
 			init_param3(arr, parser, i);
+		free(arr[i]);
+		free(arr[i + 1]);
 		i += 2;
 	}
 	free(arr);

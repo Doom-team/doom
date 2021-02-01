@@ -25,7 +25,8 @@ static void		init_param(t_parser *parser)
 
 void			parsing_walls(t_parser *parser, char **arr)
 {
-	char	sub_arr[100];
+	char			sub_arr[100];
+	SDL_Surface		*tmp;
 
 	if (parser->buff.w == 0)
 		return ;
@@ -36,9 +37,11 @@ void			parsing_walls(t_parser *parser, char **arr)
 	if (arr[5] != 0)
 	{
 		slice(sub_arr, arr[5], 1, ft_strlen(arr[5]));
-		if (!(parser->walls[parser->buff.w].texture1 = IMG_Load(sub_arr)))
+		if (!(tmp = IMG_Load(sub_arr)))
 			error((t_wolf *)parser, SDL_GetError());
-		parser->walls[parser->buff.w].texture1 = SDL_ConvertSurfaceFormat(parser->walls[parser->buff.w].texture1, SDL_PIXELFORMAT_BGRA32, 0);
+		parser->walls[parser->buff.w].texture1 =
+			SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_BGRA32, 0);
+		SDL_FreeSurface(tmp);
 	}
 	if (arr[6])
 		parser->walls[parser->buff.w].h = ft_atoi(arr[6]);

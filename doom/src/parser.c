@@ -13,7 +13,7 @@
 #include "../includes/wolf3d.h"
 #include "../../doom/libft/includes/get_next_line.h"
 
-static void		help_parsing(t_parser *parser, char **arr)
+void		help_parsing(t_parser *parser, char **arr)
 {
 	if (arr[0][0] == 'h')
 		parsing_param2(parser->healths, arr, &parser->buff.h);
@@ -25,7 +25,7 @@ static void		help_parsing(t_parser *parser, char **arr)
 		parsing_player(&parser->player, arr, &parser->buff.p);
 }
 
-static void		parsing(t_parser *parser, char *l)
+void		parsing(t_parser *parser, char *l)
 {
 	char	**arr;
 
@@ -45,7 +45,7 @@ static void		parsing(t_parser *parser, char *l)
 		parsing_param3(parser->bullets, arr, &parser->buff.b);
 	if (arr[0][0] == 'e')
 		parsing_param3(parser->enemys, arr, &parser->buff.e);
-	free(arr);
+	free_2dchararr_terminated(arr);
 }
 
 void			parser(t_wolf *wolf)
@@ -63,7 +63,9 @@ void			parser(t_wolf *wolf)
 			init_size(wolf->p, line);
 		else
 			parsing(wolf->p, line);
+		free(line);
 	}
+	//ft_printf("%f %f %f\n", wolf->p->walls[0].x1, wolf->p->walls[0].x2, wolf->p->walls[0].y1);
 	close(fd);
 	free(line);
 }

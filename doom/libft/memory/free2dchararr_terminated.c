@@ -14,12 +14,12 @@
 
 int		free_2dchararr_terminated(char **arr)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	while (arr[i])
+	while (arr[i] != 0)
 		free(arr[i++]);
-	free(arr[i]);
 	free(arr);
+	arr = NULL;
 	return (1);
 }
