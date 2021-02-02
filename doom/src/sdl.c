@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 23:27:28 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/02 20:47:09 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,30 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 		wolf->sdl->run = false;
 	if (s[SDL_SCANCODE_D])
 	{
-		calc_move(wolf, p->speed * sinf(p->dir + RAD_90),
-		-(p->speed * cosf(p->dir + RAD_90)));
-		// printf("%f\n", wolf->player->rght_d);
+		wolf->player->run_r = 1;
+		wolf->player->run_l = 0;
+		// calc_move(wolf, p->speed * sinf(p->dir + RAD_90),
+		// -(p->speed * cosf(p->dir + RAD_90)));
 	}
 	if (s[SDL_SCANCODE_A])
-		calc_move(wolf, p->speed * sinf(p->dir - RAD_90),
-		-(p->speed * cosf(p->dir - RAD_90)));
+	{
+		wolf->player->run_l = 1;
+		wolf->player->run_r = 0;
+		// calc_move(wolf, p->speed * sinf(p->dir - RAD_90),
+		// -(p->speed * cosf(p->dir - RAD_90)));
+	}
 	if (s[SDL_SCANCODE_DOWN] || s[SDL_SCANCODE_S])
-		calc_move(wolf, p->speed * sinf(p->dir), -(p->speed * cosf(p->dir)));
+	{
+		wolf->player->run_b = 1;
+		wolf->player->run_f = 0;
+		// calc_move(wolf, p->speed * sinf(p->dir), -(p->speed * cosf(p->dir)));
+	}
 	if (s[SDL_SCANCODE_W] || s[SDL_SCANCODE_UP])
-		calc_move(wolf, -(p->speed * sinf(p->dir)), p->speed * cosf(p->dir));
+	{
+		wolf->player->run_f = 1;
+		wolf->player->run_b = 0;
+		// calc_move(wolf, -(p->speed * sinf(p->dir)), p->speed * cosf(p->dir));
+	}
 	if ((s[SDL_SCANCODE_RIGHT] || s[SDL_SCANCODE_E])
 	&& add_arc(&p->dir, -0.05))
 		add_skybox_offset(wolf->sdl, W / (float)wolf->sdl->sky->w * 60.0);
@@ -85,6 +98,52 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 	if (s[SDL_SCANCODE_U])
 		wolf->player->flying = !wolf->player->flying;
 	handle_other_keys(wolf);
+}
+
+static void		handle_ukeys(t_wolf *wolf, int key)
+{
+	if (key == 119)
+		wolf->player->run_f = 0;
+	if (key == 115)
+		wolf->player->run_b = 0;
+	if (key == 100)
+		wolf->player->run_r = 0;
+	if (key == 97)
+		wolf->player->run_l = 0;
+	// if (s[SDL_SCANCODE_D])
+	// {
+	// 	printf("ud\n");
+	// 	wolf->player->run_r = 0;
+	// }
+	// if (s[SDL_SCANCODE_A])
+	// 	wolf->player->run_l = 0;
+	// if (s[SDL_SCANCODE_DOWN] || s[SDL_SCANCODE_S])
+	// 	wolf->player->run_b = 0;
+	// if (s[SDL_SCANCODE_W] || s[SDL_SCANCODE_UP])
+	// 	wolf->player->run_f = 0;
+}
+
+void		handle_phisics(t_wolf *wolf, t_player *p)
+{
+	if (wolf->player->run_b && wolf->player->run_r)
+		calc_move(wolf, p->speed * sinf(p->dir + RAD_45),
+		-(p->speed * cosf(p->dir + RAD_45)));
+	else if (wolf->player->run_b && wolf->player->run_l)
+		calc_move(wolf, p->speed * sinf(p->dir - RAD_45), -(p->speed * cosf(p->dir - RAD_45)));
+	else if (wolf->player->run_f && wolf->player->run_r)
+		calc_move(wolf, -(p->speed * sinf(p->dir - RAD_45)), p->speed * cosf(p->dir - RAD_45));
+	else if (wolf->player->run_f && wolf->player->run_l)
+		calc_move(wolf, -(p->speed * sinf(p->dir + RAD_45)), p->speed * cosf(p->dir + RAD_45));
+	else if (wolf->player->run_f)
+		calc_move(wolf, -(p->speed * sinf(p->dir)), p->speed * cosf(p->dir));
+	else if (wolf->player->run_b)
+		calc_move(wolf, p->speed * sinf(p->dir), -(p->speed * cosf(p->dir)));
+	else if (wolf->player->run_l)
+		calc_move(wolf, p->speed * sinf(p->dir - RAD_90),
+		-(p->speed * cosf(p->dir - RAD_90)));
+	else if (wolf->player->run_r)
+		calc_move(wolf, p->speed * sinf(p->dir + RAD_90),
+		-(p->speed * cosf(p->dir + RAD_90)));
 }
 
 void		handle_event(t_wolf *wolf, SDL_Event *event)
@@ -107,6 +166,8 @@ void		handle_event(t_wolf *wolf, SDL_Event *event)
 		}
 		if (event->type == SDL_KEYDOWN)
 			handle_keys(wolf, event, wolf->map, wolf->player);
+		if (event->type == SDL_KEYUP)
+			handle_ukeys(wolf, (unsigned char)event->key.keysym.sym);
 	}
 }
 
@@ -118,6 +179,7 @@ void			wolf_loop(t_wolf *wolf)
 	{
 		recalc(wolf);
 		handle_event(wolf, &event);
+		handle_phisics(wolf, wolf->player);
 		// draw_background(wolf->surface); // для отладки
 		all_get_distance(wolf);
 		// printf("%f\n", wolf->player->distance[W/2]->dist[0]);

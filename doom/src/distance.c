@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:19:22 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 23:50:35 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/02 20:49:19 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ float			calc_dist(t_float2 player, float angle, t_wall wall, t_distance *v, int 
 	v->coords[j].x = px;
 	v->coords[j].y = py;
 	px = vector_len(player.x, player.y, px, py);
-	if (px < 0.05)
+	if (px < 0.001)
 	{
 		return (-1.);
 	}
@@ -247,10 +247,6 @@ float			calc_dist_without_v(t_float2 player, float angle, t_wall wall)
 			return (-1.);
 	}
 	px = vector_len(player.x, player.y, px, py);
-	if (px < 0.05)
-	{
-		return (-1.);
-	}
 	return (px);
 }
 

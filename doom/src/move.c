@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 23:05:42 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/02 20:55:56 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	falling(t_wolf *wolf)
 		{
 			wolf->player->fly -= UP_LENGTH/2;
 			handle_event(wolf, &event);
+			// handle_phisics(wolf, wolf->player);
 			all_get_distance(wolf);
 			pseudo_3d(wolf, wolf->player, wolf->surface);
 			render_score_coin(wolf);
@@ -84,8 +85,9 @@ void	falling(t_wolf *wolf)
 	{
 		while (abs(wolf->player->fly) > wolf->player->inside_step)
 		{
-			wolf->player->fly += UP_LENGTH/2;
+			wolf->player->fly += UP_LENGTH/4;
 			handle_event(wolf, &event);
+			// handle_phisics(wolf, wolf->player);
 			all_get_distance(wolf);
 			pseudo_3d(wolf, wolf->player, wolf->surface);
 			render_score_coin(wolf);
@@ -103,10 +105,11 @@ void	jump(t_wolf *wolf)
 	SDL_Event	event;
 
 	wolf->player->in_jump = 1;
-	while (i < 24)
+	while (i < 12)
 	{
-		wolf->player->fly -= UP_LENGTH/12;
+		wolf->player->fly -= UP_LENGTH/6;
 		handle_event(wolf, &event);
+		handle_phisics(wolf, wolf->player);
 		all_get_distance(wolf);
 		pseudo_3d(wolf, wolf->player, wolf->surface);
 		render_score_coin(wolf);
@@ -122,42 +125,59 @@ void	jump(t_wolf *wolf)
 
 void	calc_move(t_wolf *wolf, float dy, float dx)
 {
+	int i = 0;
+		// printf("u %f d %f r %f l %f\n",wolf->player->up_d->dist, wolf->player->down_d->dist, wolf->player->rght_d->dist, wolf->player->left_d->dist);
 	if (wolf->player->flying)
 	{
-		wolf->player->x += dx * 0.979;
-		wolf->player->y += dy * 0.979;
+		wolf->player->x += dx * 0.8f;
+		wolf->player->y += dy * 0.8f;
 	}
 	else
 	{
 		recalc(wolf);
 		if (dx > 0) 
 		{
-			if (wolf->player->rght_d->dist > dx + wolf->player->speed)
-				wolf->player->x += dx * 0.979;
+			if (wolf->player->rght_d->dist > fabs(dx))
+			{
+				i++;
+				// printf("d %f dx %f p %f\n", wolf->player->rght_d->dist, fabs(dy), wolf->player->speed);
+				wolf->player->x += dx * 0.8f;
+			}
 			else if(wolf->player->rght_d->wall.type_flag == 1 && UP_LENGTH * wolf->player->rght_d->wall.h + wolf->player->fly <= UP_LENGTH)
-				wolf->player->x += dx * 0.979;
+				wolf->player->x += dx * 0.8f;
 		}
 		else if(dx < 0)
 		{
-			if (wolf->player->left_d->dist > fabs(dx) + wolf->player->speed)
-				wolf->player->x += dx * 0.979;
+			if (wolf->player->left_d->dist > fabs(dx))
+			{
+				i++;
+				// printf("d %f dx %f p %f\n", wolf->player->left_d->dist, fabs(dy), wolf->player->speed);
+				wolf->player->x += dx * 0.8f;
+			}
 			else if(wolf->player->left_d->wall.type_flag == 1 && UP_LENGTH * wolf->player->left_d->wall.h + wolf->player->fly <= UP_LENGTH)
-				wolf->player->x += dx * 0.979;
+				wolf->player->x += dx * 0.8f;
 		}
 		recalc(wolf);
 		if (dy > 0) 
 		{
-			if (wolf->player->up_d->dist > dy + wolf->player->speed)
-				wolf->player->y += dy * 0.979;
+			if (wolf->player->up_d->dist > fabs(dy))
+			{
+				i++;
+				// printf("d %f dy %f p %f\n", wolf->player->up_d->dist, fabs(dy), wolf->player->speed);
+				wolf->player->y += dy * 0.8f;
+			}
 			else if(wolf->player->up_d->wall.type_flag && UP_LENGTH * wolf->player->up_d->wall.h + wolf->player->fly <= UP_LENGTH)
-				wolf->player->y += dy * 0.979;
+				wolf->player->y += dy * 0.8f;
 		}
 		else if(dy < 0)
 		{
-			if (wolf->player->down_d->dist > fabs(dy) + wolf->player->speed)
-				wolf->player->y += dy * 0.979;
+			if (wolf->player->down_d->dist > fabs(dy))
+			{
+				i++;
+				wolf->player->y += dy * 0.8f;
+			}
 			else if(wolf->player->down_d->wall.type_flag && UP_LENGTH * wolf->player->down_d->wall.h + wolf->player->fly <= UP_LENGTH)
-				wolf->player->y += dy * 0.979;
+				wolf->player->y += dy * 0.8f;
 		}
 		recalc(wolf);
 		if (!wolf->player->in_jump)
