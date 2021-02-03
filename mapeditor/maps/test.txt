@@ -1,44 +1,30 @@
-walls: 7	floor: 1	ceiling: 0
-w -250 -331 -295 -207 "textures/wall/wall0.png" 5 0 0
-w -295 -207 67 -191 "textures/wall/wall0.png" 5 0 0
-w 67 -191 -250 -331 "textures/wall/wall0.png" 5 0 0
-w -229 -260 -236 -239 "textures/wall/wall0.png" 1 1 1
-w -229 -260 -210 -253 "textures/wall/wall0.png" 1 1 1
-w -236 -239 -217 -232 "textures/wall/wall0.png" 1 1 1
-w -210 -253 -217 -232 "textures/wall/wall0.png" 1 1 1
-w -210 -253 -217 -232 "textures/wall/wall0.png" 2 1 2
-w -210 -253 -191 -246 "textures/wall/wall0.png" 2 1 2
-w -217 -232 -198 -225 "textures/wall/wall0.png" 2 1 2
-w -191 -246 -198 -225 "textures/wall/wall0.png" 2 1 2
-f "textures/floor/floor1.png"
-s "textures/floor/sky1.png"
-es/wall/wall0.png" 2 1 3
-w -95 -128 -98 -148 "textures/wall/wall0.png" 2 1 3
-w -74 -149 -77 -169 "textures/wall/wall0.png" 2 1 3
-w -98 -148 -77 -169 "textures/wall/wall0.png" 2 1 3
-w -95 -222 -96 -201 "textures/wall/wall0.png" 1 1 4
-w -95 -222 -75 -220 "textures/wall/wall0.png" 1 1 4
-w -96 -201 -76 -199 "textures/wall/wall0.png" 1 1 4
-w -75 -220 -76 -199 "textures/wall/wall0.png" 1 1 4
-w -75 -220 -76 -199 "textures/wall/wall0.png" 2 1 5
-w -75 -220 -55 -219 "textures/wall/wall0.png" 2 1 5
-w -76 -199 -56 -198 "textures/wall/wall0.png" 2 1 5
-w -55 -219 -56 -198 "textures/wall/wall0.png" 2 1 5
-w -55 -219 -56 -198 "textures/wall/wall0.png" 3 1 6
-w -55 -219 -35 -218 "textures/wall/wall0.png" 3 1 6
-w -56 -198 -36 -197 "textures/wall/wall0.png" 3 1 6
-w -35 -218 -36 -197 "textures/wall/wall0.png" 3 1 6
-f "textures/floor/floor1.png"
-s "textures/floor/sky1.png"
-
-
-евгений сбер таланты
-мониторинг доработка мл java script графана ui graphan
-форкнуть графан интерпрайс. 10 часов. gordey.moskvichev@gmail.com
-
-
-
-
-
-
-
+walls: 27 floor: 1ceiling: 0
+w 683 415 884 480 textures/wall/wall0.png 5 0 0
+w 530 318 488 343 textures/wall/wall0.png 5 0 0
+w 430 438 611 454 textures/wall/wall0.png 5 0 0
+w 517 538 456 537 textures/wall/wall0.png 5 0 0
+w 515 359 762 299 textures/wall/wall0.png 5 0 0
+w 762 299 857 373 textures/wall/wall0.png 5 0 0
+w 857 373 986 454 textures/wall/wall0.png 5 0 0
+w 986 454 813 590 textures/wall/wall0.png 5 0 0
+w 813 590 524 570 textures/wall/wall0.png 5 0 0
+w 524 570 373 534 textures/wall/wall0.png 5 0 0
+w 373 534 406 371 textures/wall/wall0.png 5 0 0
+w 406 371 488 343 textures/wall/wall0.png 5 0 0
+w 530 318 515 359 textures/wall/wall0.png 5 0 0
+w 530 318 762 299 textures/wall/wall0.png 5 0 0
+w 768 623 1051 628 textures/wall/wall0.png 5 0 0
+w 1051 628 1061 157 textures/wall/wall0.png 5 0 0
+w 1061 157 332 222 textures/wall/wall0.png 5 0 0
+w 332 222 393 686 textures/wall/wall0.png 5 0 0
+w 393 686 768 623 textures/wall/wall0.png 5 0 0
+w 661 454 648 433 "textures/wall/wall0.png" 1 1 1
+w 661 454 646 467 "textures/wall/wall0.png" 1 1 1
+w 648 433 633 446 "textures/wall/wall0.png" 1 1 1
+w 646 467 633 446 "textures/wall/wall0.png" 1 1 1
+w 601 493 620 472 "textures/wall/wall0.png" 1 1 2
+w 601 493 592 475 "textures/wall/wall0.png" 1 1 2
+w 620 472 611 454 "textures/wall/wall0.png" 1 1 2
+w 592 475 611 454 "textures/wall/wall0.png" 1 1 2
+f textures/floor/floor1.png
+s textures/floor/sky1.png
