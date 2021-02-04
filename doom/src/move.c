@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/02/02 20:55:56 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/03 22:09:01 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void	calc_move(t_wolf *wolf, float dy, float dx)
 				wolf->player->x += dx * 0.8f;
 			}
 			else if(wolf->player->rght_d->wall.type_flag == 1 && UP_LENGTH * wolf->player->rght_d->wall.h + wolf->player->fly <= UP_LENGTH)
-				wolf->player->x += dx * 0.8f;
+				wolf->player->x += dx;
 		}
 		else if(dx < 0)
 		{
@@ -155,7 +155,7 @@ void	calc_move(t_wolf *wolf, float dy, float dx)
 				wolf->player->x += dx * 0.8f;
 			}
 			else if(wolf->player->left_d->wall.type_flag == 1 && UP_LENGTH * wolf->player->left_d->wall.h + wolf->player->fly <= UP_LENGTH)
-				wolf->player->x += dx * 0.8f;
+				wolf->player->x += dx;
 		}
 		recalc(wolf);
 		if (dy > 0) 
@@ -167,7 +167,7 @@ void	calc_move(t_wolf *wolf, float dy, float dx)
 				wolf->player->y += dy * 0.8f;
 			}
 			else if(wolf->player->up_d->wall.type_flag && UP_LENGTH * wolf->player->up_d->wall.h + wolf->player->fly <= UP_LENGTH)
-				wolf->player->y += dy * 0.8f;
+				wolf->player->y += dy;
 		}
 		else if(dy < 0)
 		{
@@ -177,7 +177,7 @@ void	calc_move(t_wolf *wolf, float dy, float dx)
 				wolf->player->y += dy * 0.8f;
 			}
 			else if(wolf->player->down_d->wall.type_flag && UP_LENGTH * wolf->player->down_d->wall.h + wolf->player->fly <= UP_LENGTH)
-				wolf->player->y += dy * 0.8f;
+				wolf->player->y += dy;
 		}
 		recalc(wolf);
 		if (!wolf->player->in_jump)

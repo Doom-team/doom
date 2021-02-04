@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:19:22 by clala             #+#    #+#             */
-/*   Updated: 2021/02/02 20:49:19 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/03 21:11:15 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,19 +284,25 @@ void			recalc(t_wolf *wolf)
 	calculate_distance(wolf, RAD_90, wolf->player->up_d);
 	calculate_distance(wolf, RAD_180, wolf->player->left_d);
 	calculate_distance(wolf, RAD_270, wolf->player->down_d);
-	if (wolf->player->rght_d->wall.squad_stage == wolf->player->left_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage != 0)
+	if (wolf->player->rght_d->wall.squad_stage == wolf->player->left_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage == wolf->player->rght_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage != 0)
 		wolf->player->inside_step = wolf->player->rght_d->wall.h * UP_LENGTH;
-	else if (wolf->player->up_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage != 0)
+	else if (wolf->player->rght_d->wall.squad_stage == wolf->player->left_d->wall.squad_stage && wolf->player->down_d->wall.squad_stage == wolf->player->rght_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage != 0)
+		wolf->player->inside_step = wolf->player->rght_d->wall.h * UP_LENGTH;
+	else if (wolf->player->up_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage == wolf->player->up_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage != 0)
 		wolf->player->inside_step = wolf->player->up_d->wall.h * UP_LENGTH;
-	else if (wolf->player->up_d->wall.squad_stage == wolf->player->left_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage != 0)
+	else if (wolf->player->up_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->left_d->wall.squad_stage == wolf->player->up_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage != 0)
 		wolf->player->inside_step = wolf->player->up_d->wall.h * UP_LENGTH;
-	else if (wolf->player->up_d->wall.squad_stage == wolf->player->rght_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage != 0)
-		wolf->player->inside_step = wolf->player->rght_d->wall.h * UP_LENGTH;
-	else if (wolf->player->left_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->left_d->wall.squad_stage != 0)
-		wolf->player->inside_step = wolf->player->left_d->wall.h * UP_LENGTH;
-	else if (wolf->player->rght_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage != 0)
-		wolf->player->inside_step = wolf->player->rght_d->wall.h * UP_LENGTH;
-	else
+	else if (wolf->player->up_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage == 0)
+		wolf->player->inside_step = 0;
+	else if (wolf->player->up_d->wall.squad_stage == wolf->player->rght_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage == 0)
+		wolf->player->inside_step = 0;
+	else if (wolf->player->up_d->wall.squad_stage == wolf->player->left_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage == 0)
+		wolf->player->inside_step = 0;
+	else if (wolf->player->rght_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage == 0)
+		wolf->player->inside_step = 0;
+	else if (wolf->player->rght_d->wall.squad_stage == wolf->player->left_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage == 0)
+		wolf->player->inside_step = 0;
+	else if (wolf->player->left_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->left_d->wall.squad_stage == 0)
 		wolf->player->inside_step = 0;
 }
 
