@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 21:30:00 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/03 16:37:26 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	write_ceiling(t_map *map, int fd)
 	}
 	else
 	{
-		maxlen = ft_strlen("s \"textures/floor/sky1.png\"\n");
-		if (write(fd, "s \"textures/floor/sky1.png\"\n", maxlen) != maxlen)
+		maxlen = ft_strlen("s textures/floor/sky1.png\n");
+		if (write(fd, "s textures/floor/sky1.png\n", maxlen) != maxlen)
 			printf("error\n");
 	}
 }
@@ -101,8 +101,8 @@ void	write_floor(t_map *map, int fd)
 	}
 	else
 	{
-		maxlen = ft_strlen("f \"textures/floor/floor1.png\"\n");
-		if (write(fd, "f \"textures/floor/floor1.png\"\n", maxlen) != maxlen)
+		maxlen = ft_strlen("f textures/floor/floor1.png\n");
+		if (write(fd, "f textures/floor/floor1.png\n", maxlen) != maxlen)
 			printf("error\n");
 	}
 }
@@ -143,7 +143,7 @@ void	count_write(t_map *map, int fd)
 	buffer = malloc(sizeof(char *) * (maxlen));
 	buffer = "walls: ";
 	buffer = ft_strjoin(buffer, ft_itoa(num_w));
-	buffer = ft_strjoin(buffer, "\t");
+	buffer = ft_strjoin(buffer, " ");
 	buffer = ft_strjoin(buffer, count_floor(map, fd));
 	buffer = ft_strjoin(buffer, "\n");
 	// printf("return: %s\n",count_floor(map, fd));
@@ -157,7 +157,7 @@ char	*count_floor(t_map *map, int fd)
 	char *buffer;
 
 	buffer = ft_strjoin("floor: ", "1");
-	buffer = ft_strjoin(buffer, "\t");
+	buffer = ft_strjoin(buffer, " ");
 	buffer = ft_strjoin(buffer, "ceiling: ");
 	if (map->ceilingstr)
 		buffer = ft_strjoin(buffer, "1");
@@ -182,12 +182,11 @@ char	*write_wall_text(t_nod *n)
 	buf = " ";
 	if (n->texture->texture_name[0] != NULL)
 	{
-		buf = ft_strjoin(buf, "\"textures/wall/");
+		buf = ft_strjoin(buf, "textures/wall/");
 		buf = ft_strjoin(buf, n->texture->texture_name[0]);
-		buf = ft_strjoin(buf, "\"");
 	}
 	else
-		buf = ft_strjoin(buf, "\"textures/wall/wall0.png\"");
+		buf = ft_strjoin(buf, "textures/wall/wall0.png");
 	return (buf);
 }
 
