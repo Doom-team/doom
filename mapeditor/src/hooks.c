@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/04 20:49:32 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	blockterxture_click(t_map *map, int x, int y)
 	else if ((x > 120 && x < 180) && y > 470 && y < 530)
 	{
 		map->click = 0;
-		printf("st\t\t\t\the\n");
 		edit_blocktexture(map, 5);
 	}
 	if ((x > 70 && x < 95) && y > 410 && y < 435) /// света 

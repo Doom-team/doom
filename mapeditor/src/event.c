@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/04 18:16:07 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ int		events(t_map *map)
 			pkey((unsigned char)event.key.keysym.sym, map);
 		if (event.type == SDL_MOUSEBUTTONDOWN)
 		{
-			wichonemusic(map);
+			if (map->musicflag > 0)
+			{
+				wichonemusic(map);
+				map->musicflag = 0;
+			}
 			SDL_GetMouseState(&x, &y);
 			mkey(event.button.button, x, y, map);
 			if (catch_click(map, x, y))

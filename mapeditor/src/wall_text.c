@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:39 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/31 19:35:53 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/04 20:48:25 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void	save_texture(t_map *map, int index, int num)
 
 void	get_wall_cord(t_map *map, int x, int y)
 {
+	if (range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
+		printf("interface!\n");
 	if (map->click == 0 && interface_click(map, x, y) &&
 		range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
 	{
