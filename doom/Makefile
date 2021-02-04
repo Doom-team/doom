@@ -6,12 +6,11 @@
 #    By: wendell <wendell@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/15 16:58:46 by clala             #+#    #+#              #
-#    Updated: 2021/02/02 21:09:53 by wendell          ###   ########.fr        #
+#    Updated: 2021/02/04 21:11:12 by wendell          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ALL_C = main.c \
-		map.c \
 		error.c \
 		sdl.c \
 		init.c \

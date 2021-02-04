@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:29:09 by clala             #+#    #+#             */
-/*   Updated: 2021/01/26 15:49:04 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/03 21:26:04 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_wolf	*t_wolf_new(void)
 	t_wolf		*new;
 
 	!(new = (t_wolf *)malloc(sizeof(t_wolf))) ? error(new, ERR_MALLOC) : 0;
-	!(new->map = (t_map *)malloc(sizeof(t_map))) ? error(new, ERR_MALLOC) : 0;
+	// !(new->map = (t_map *)malloc(sizeof(t_map))) ? error(new, ERR_MALLOC) : 0;
 	!(new->p = (t_parser *)malloc(sizeof(t_parser))) ? error(new, ERR_MALLOC) : 0;
 	if (!(new->player = (t_player *)malloc(sizeof(t_player))))
 		error(new, ERR_MALLOC);
@@ -58,16 +58,14 @@ static t_wolf	*t_wolf_new(void)
 	return (new);
 }
 
-int				main(int a, char **b)
+int				main()
 {
 	t_wolf		*wolf;
 
 	wolf = NULL;
-	a != 2 ? error(wolf, ERR_USAGE) : 0;
 	SDL_Init(SDL_INIT_EVERYTHING) != 0 ? error(wolf, SDL_GetError()) : 0;
 	TTF_Init() != 0 ? error(wolf, SDL_GetError()) : 0;
 	wolf = t_wolf_new();
-	init_map(wolf, b[1]);
 	init_player(wolf, wolf->player, wolf->map);
 	init_bonus(wolf);
 	init_monster(wolf);

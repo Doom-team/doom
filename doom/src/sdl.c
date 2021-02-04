@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/02/02 20:47:09 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/03 21:20:17 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 		add_skybox_offset(wolf->sdl, W / (float)wolf->sdl->sky->w * -60.0);
 	if (s[SDL_SCANCODE_P])
 		wolf->sdl->sides_mode = wolf->sdl->sides_mode == 1 ? 0 : 1;
-	if (s[SDL_SCANCODE_M])
-		map->mm_show = map->mm_show == 1 ? 0 : 1;
+	// if (s[SDL_SCANCODE_M])
+	// 	map->mm_show = map->mm_show == 1 ? 0 : 1;
 	if (s[SDL_SCANCODE_U])
 		wolf->player->flying = !wolf->player->flying;
 	handle_other_keys(wolf);
@@ -110,17 +110,6 @@ static void		handle_ukeys(t_wolf *wolf, int key)
 		wolf->player->run_r = 0;
 	if (key == 97)
 		wolf->player->run_l = 0;
-	// if (s[SDL_SCANCODE_D])
-	// {
-	// 	printf("ud\n");
-	// 	wolf->player->run_r = 0;
-	// }
-	// if (s[SDL_SCANCODE_A])
-	// 	wolf->player->run_l = 0;
-	// if (s[SDL_SCANCODE_DOWN] || s[SDL_SCANCODE_S])
-	// 	wolf->player->run_b = 0;
-	// if (s[SDL_SCANCODE_W] || s[SDL_SCANCODE_UP])
-	// 	wolf->player->run_f = 0;
 }
 
 void		handle_phisics(t_wolf *wolf, t_player *p)

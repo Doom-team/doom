@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:21:35 by clala             #+#    #+#             */
-/*   Updated: 2020/10/18 18:23:36 by clala            ###   ########.fr       */
+/*   Updated: 2021/02/03 21:26:31 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,28 @@ t_point width_height, int color)
 	}
 }
 
-void		draw_ray(t_wolf *wolf, float dir, int x, int y)
-{
-	int		dx0;
-	int		dy0;
-	int		dx1;
-	int		dy1;
+// void		draw_ray(t_wolf *wolf, float dir, int x, int y)
+// {
+// 	int		dx0;
+// 	int		dy0;
+// 	int		dx1;
+// 	int		dy1;
 
-	dx0 = cos(dir - wolf->player->fov / 2) * wolf->map->mm_cube * 4;
-	dy0 = sin(dir - wolf->player->fov / 2) * wolf->map->mm_cube * 4;
-	dx1 = cos(dir + wolf->player->fov / 2) * wolf->map->mm_cube * 4;
-	dy1 = sin(dir + wolf->player->fov / 2) * wolf->map->mm_cube * 4;
-	draw_line(
-		wolf->surface,
-		dot(x, y),
-		dot(x + dx0, y - dy0),
-		COLOR_WHITE);
-	draw_line(
-		wolf->surface,
-		dot(x, y),
-		dot(x + dx1, y - dy1),
-		COLOR_WHITE);
-}
+// 	dx0 = cos(dir - wolf->player->fov / 2) * wolf->map->mm_cube * 4;
+// 	dy0 = sin(dir - wolf->player->fov / 2) * wolf->map->mm_cube * 4;
+// 	dx1 = cos(dir + wolf->player->fov / 2) * wolf->map->mm_cube * 4;
+// 	dy1 = sin(dir + wolf->player->fov / 2) * wolf->map->mm_cube * 4;
+// 	draw_line(
+// 		wolf->surface,
+// 		dot(x, y),
+// 		dot(x + dx0, y - dy0),
+// 		COLOR_WHITE);
+// 	draw_line(
+// 		wolf->surface,
+// 		dot(x, y),
+// 		dot(x + dx1, y - dy1),
+// 		COLOR_WHITE);
+// }
 
 void		draw_background(SDL_Surface *surface)
 {
@@ -99,28 +99,28 @@ void		draw_background(SDL_Surface *surface)
 	}
 }
 
-int			draw_minimap(t_wolf *wolf, t_map *map, t_player *p)
-{
-	int		i;
+// int			draw_minimap(t_wolf *wolf, t_map *map, t_player *p)
+// {
+// 	int		i;
 
-	draw_rectangle(wolf->surface, map->mm_start, dot(map->mm_w, map->mm_h),
-		COLOR_GREY_LIGHT);
-	i = -1;
-	while (++i < map->h * map->w)
-	{
-		if (ft_strchr(WALLSET, map->map[i]))
-		{
-			draw_rectangle(wolf->surface, dot(
-				((i % map->w) * map->mm_cube + map->mm_start.x),
-				((i / map->w) * map->mm_cube + map->mm_start.y)),
-			dot(map->mm_cube, map->mm_cube), 0xbbbb00);
-		}
-	}
-	draw_rectangle(wolf->surface,
-		dot(p->x * map->mm_cube_coef + (map->mm_start.x - map->mm_p_size),
-			p->y * map->mm_cube_coef + (map->mm_start.y - map->mm_p_size)),
-		dot(map->mm_p_size * 2, map->mm_p_size * 2), 0xFFFFFF);
-	draw_ray(wolf, p->dir, p->x * map->mm_cube_coef + map->mm_start.x,
-		p->y * map->mm_cube_coef + map->mm_start.y);
-	return (1);
-}
+// 	draw_rectangle(wolf->surface, map->mm_start, dot(map->mm_w, map->mm_h),
+// 		COLOR_GREY_LIGHT);
+// 	i = -1;
+// 	while (++i < map->h * map->w)
+// 	{
+// 		if (ft_strchr(WALLSET, map->map[i]))
+// 		{
+// 			draw_rectangle(wolf->surface, dot(
+// 				((i % map->w) * map->mm_cube + map->mm_start.x),
+// 				((i / map->w) * map->mm_cube + map->mm_start.y)),
+// 			dot(map->mm_cube, map->mm_cube), 0xbbbb00);
+// 		}
+// 	}
+// 	draw_rectangle(wolf->surface,
+// 		dot(p->x * map->mm_cube_coef + (map->mm_start.x - map->mm_p_size),
+// 			p->y * map->mm_cube_coef + (map->mm_start.y - map->mm_p_size)),
+// 		dot(map->mm_p_size * 2, map->mm_p_size * 2), 0xFFFFFF);
+// 	draw_ray(wolf, p->dir, p->x * map->mm_cube_coef + map->mm_start.x,
+// 		p->y * map->mm_cube_coef + map->mm_start.y);
+// 	return (1);
+// }
