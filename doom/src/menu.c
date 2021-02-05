@@ -40,8 +40,6 @@ void			check_pos_button(t_sdl *sdl,
 			Mix_PlayChannel(1, menu->click_button, 0);
 			if (k == 4)
 				sdl->button_flag = 4;
-			if (k == 5 && sdl->button_flag != 5)
-				sdl->button_flag = 5;
 			if (k <= 6)
 				sdl->run_menu = false;
 		}
@@ -70,7 +68,6 @@ void			hooks(t_sdl *sdl, t_menu *menu)
 			sdl->e.type == SDL_MOUSEBUTTONDOWN)
 		{
 			check_pos_button(sdl, &menu->start, 4, menu);
-			check_pos_button(sdl, &menu->map, 5, menu);
 			check_pos_button(sdl, &menu->exit, 6, menu);
 		}
 	}
@@ -100,16 +97,11 @@ void			menu_loop(t_wolf *wolf)
 			wolf->sdl->window_texture, NULL, NULL);
 		SDL_RenderPresent(wolf->sdl->render);
 	}
-	if (wolf->sdl->button_flag == 4)//start
+	if (wolf->sdl->button_flag == 4)
 	{
 		screen_start(wolf);
 		reinit_sdl(wolf);
 		wolf_loop(wolf);
-	}
-	if (wolf->sdl->button_flag == 5)//map
-	{
-		wolf->sdl->button_flag = 0;
-		system("./a.out");// ТУТ НЕ ТРОГАТЬ БУДЕТ ЗАПУСК МАП ЕДИТОРА ОТТУДА ВЫЗОВ ВУЛЬФА ОБРАТНО!!!!
 	}
 	quit(wolf->sdl);
 }

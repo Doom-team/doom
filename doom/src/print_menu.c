@@ -56,6 +56,5 @@ void	print_menu(t_wolf *wolf)
 	draw_button(wolf->sdl, (t_button *)&wolf->menu->background);
 	draw_button(wolf->sdl, &wolf->menu->logo);
 	draw_button(wolf->sdl, &wolf->menu->start);
-	draw_button(wolf->sdl, &wolf->menu->map);
 	draw_button(wolf->sdl, &wolf->menu->exit);
 }

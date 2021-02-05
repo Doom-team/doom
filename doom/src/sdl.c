@@ -178,6 +178,7 @@ void			wolf_loop(t_wolf *wolf)
 		render_score_coin(wolf);
 		render_fps(wolf, wolf->bon);
 		render_aim(wolf);
+		render_hud(wolf);
 		render_shot(wolf, wolf->surface);
 		// wolf->map->mm_show ? draw_minimap(wolf, wolf->map, wolf->player) : 0;
 		// wolf->sdl->menu ? draw_menu(wolf) : 0;

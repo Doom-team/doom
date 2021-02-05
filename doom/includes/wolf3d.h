@@ -27,6 +27,11 @@
 # include "errors.h"
 # include <pthread.h>
 
+typedef struct		s_hud
+{
+	
+}					t_hud;
+
 typedef struct		s_wall
 {
 	float			x1;
@@ -142,6 +147,7 @@ typedef struct		s_player
 	float			y;
 	float			speed;
 	int				size;
+	float			hp;
 	float			fov;
 	float			dir;
 	int				dir_y;
@@ -283,7 +289,6 @@ typedef struct		s_menu
 	t_background	screen_win;
 	t_button		logo;
 	t_button		start;
-	t_button		map;
 	t_button		settings;
 	t_button		exit;
 }					t_menu;
@@ -324,6 +329,11 @@ typedef struct
 	int				interlaced_rendering;
 	int				count_distance;
 }					pthrData;
+
+/*
+** render_hud.c
+*/
+void				render_hud(t_wolf *wolf);
 
 /*
 ** parser.c

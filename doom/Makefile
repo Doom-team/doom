@@ -40,7 +40,8 @@ ALL_C = main.c \
 		parsing_param3.c \
 		parsing_param2.c \
 		parsing_param1.c \
-		parsing_player.c
+		parsing_player.c \
+		render_hud.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
