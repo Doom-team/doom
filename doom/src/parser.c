@@ -48,7 +48,7 @@ void		parsing(t_parser *parser, char *l)
 	free_2dchararr_terminated(arr);
 }
 
-void			parser(t_wolf *wolf)
+void		parser(t_wolf *wolf)
 {
 	char		*line;
 	int			ch;
@@ -65,7 +65,6 @@ void			parser(t_wolf *wolf)
 			parsing(wolf->p, line);
 		free(line);
 	}
-	//ft_printf("%f %f %f\n", wolf->p->walls[0].x1, wolf->p->walls[0].x2, wolf->p->walls[0].y1);
 	close(fd);
 	free(line);
 }
