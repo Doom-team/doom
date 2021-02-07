@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nodes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/07 15:20:06 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,84 +90,94 @@ void	draw_gr(t_map *map, int x, int y, t_color color)
 	}
 }
 
+void zerotem(t_map *map)
+{
+	map->tem->x1 = 0;
+	map->tem->y1 = 0;
+	map->tem->x2 = 0;
+	map->tem->y2 = 0;
+	map->tem->dx = 0;
+	map->tem->dy = 0;
+	map->tem->er = 0;
+	map->tem->de = 0;
+	map->tem->i = 0;
+	map->tem->j = 0;
+	map->tem->diry = 0;
+	map->tem->di = 0;
+}
+
+void	one_n(t_map *map, t_color color)
+{
+	map->tem->i = map->tem->x1;
+	map->tem->j = map->tem->y1;
+	map->tem->di = (map->tem->x2 - map->tem->x1) / map->tem->dx;
+	map->tem->diry = map->tem->y2 - map->tem->y1;
+	map->tem->de = map->tem->dy + 1;
+	if (map->tem->diry > 0)
+		map->tem->diry = 1;
+	if (map->tem->diry < 0)
+		map->tem->diry = -1;
+	while (map->tem->i != map->tem->x2)
+	{
+		draw_gr(map, map->tem->i, map->tem->j, color);
+		map->tem->er += map->tem->de;
+		if (map->tem->er >= map->tem->dx + 1)
+		{
+			map->tem->j += map->tem->diry;
+			map->tem->er = map->tem->er - (map->tem->dx + 1);
+		}
+		map->tem->i += map->tem->di;
+	}
+}
+
+void	two_n(t_map *map, t_color color)
+{
+	map->tem->i = map->tem->y1;
+	map->tem->j = map->tem->x1;
+	map->tem->di = (map->tem->y2 - map->tem->y1) / map->tem->dy;
+	map->tem->diry = map->tem->x2 - map->tem->x1;
+	map->tem->de = map->tem->dx + 1;
+	if (map->tem->diry > 0)
+		map->tem->diry = 1;
+	if (map->tem->diry < 0)
+		map->tem->diry = -1;
+	while (map->tem->i != map->tem->y2)
+	{
+		draw_gr(map, map->tem->j, map->tem->i, color);
+		map->tem->er += map->tem->de;
+		if (map->tem->er >= map->tem->dy + 1)
+		{
+			map->tem->j += map->tem->diry;
+			map->tem->er = map->tem->er - (map->tem->dy + 1);
+		}
+		map->tem->i += map->tem->di;
+	}
+}
+
 void	draw_node(t_map *map, t_nod *n)
 {
-	int x1;
-	int y1;
-	int x2;
-	int y2;
-	int dx;
-	int dy;
-	int er;
-	int de;
-	int i;
-	int j;
-	int diry;
-	int di;
-
+	zerotem(map);
 	if (n)
 	{
-		x1 = n->x1 ;
-		x2 = n->x2 ;
-		if (x1 < 0 && x2 < 0)
+		map->tem->x1 = n->x1;
+		map->tem->x2 = n->x2;
+		if (map->tem->x1 < 0 && map->tem->x2 < 0)
 			return ;
-		y1 = n->y1 ;
-		y2 = n->y2 ;
-		dx = abs(x1 - x2);
-		dy = abs(y1 - y2);
-		er = 0;
-		de = dy + 1;
-		j = y1;
-		i = x1;
-		di = 0;
-		if (dx > dy)
-		{
-			i = x1;
-			j = y1;
-			di = (x2 - x1) / dx;
-			diry = y2 - y1;
-			de = dy + 1;
-			if (diry > 0)
-				diry = 1;
-			if (diry < 0)
-				diry = -1;
-			while (i != x2)
-			{
-				draw_gr(map, i, j, GREEN);
-				er += de;
-				if (er >= dx + 1)
-				{
-					j += diry;
-					er = er - (dx + 1);
-				}
-				i += di;
-			}
-		}
-		else if (dy != 0)
-		{
-			i = y1;
-			j = x1;
-			di = (y2 - y1) / dy;
-			diry = x2 - x1;
-			de = dx + 1;
-			if (diry > 0)
-				diry = 1;
-			if (diry < 0)
-				diry = -1;
-			while (i != y2)
-			{
-				draw_gr(map, j, i, GREEN);
-				er += de;
-				if (er >= dy + 1)
-				{
-					j += diry;
-					er = er - (dy + 1);
-				}
-				i += di;
-			}
-		}
-		bigdot(map, x1, y1, RED);
-		bigdot(map, x2, y2, RED);
+		map->tem->y1 = n->y1;
+		map->tem->y2 = n->y2;
+		map->tem->dx = abs(map->tem->x1 - map->tem->x2);
+		map->tem->dy = abs(map->tem->y1 - map->tem->y2);
+		map->tem->er = 0;
+		map->tem->de = map->tem->dy + 1;
+		map->tem->j = map->tem->y1;
+		map->tem->i = map->tem->x1;
+		map->tem->di = 0;
+		if (map->tem->dx > map->tem->dy)
+			one_n(map, GREEN);
+		else if (map->tem->dy != 0)
+			two_n(map, GREEN);
+		bigdot(map, map->tem->x1, map->tem->y1, RED);
+		bigdot(map, map->tem->x2, map->tem->y2, RED);
 	}
 }
 

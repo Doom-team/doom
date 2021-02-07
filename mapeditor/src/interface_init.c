@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/31 19:35:45 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/07 14:32:35 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		init_all(t_map *map)
 	map->tmpfloor_y = -1;
 
 	map->stirsgroup = 1;
+	map->tem = malloc(sizeof(t_tempnod));
 	map->floorstr = malloc(sizeof(char *) * 10);
 	map->ceilingstr = malloc(sizeof(char *) * 10);
 	map->objects = malloc(sizeof(char *) * 10);

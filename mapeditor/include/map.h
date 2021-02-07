@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 19:28:52 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/07 15:20:13 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,22 @@ typedef struct		s_cursor
 	t_image			*curosr_img;// структура изобр курсора
 }					t_cursor;
 
+typedef struct		s_tempnod
+{
+	int				x1;
+	int				y1;
+	int				x2;
+	int				y2;
+	int				dx;
+	int				dy;
+	int				er;
+	int				de;
+	int				i;
+	int				j;
+	int				diry;
+	int				di;
+}					t_tempnod;
+
 typedef struct		s_map
 {
 	SDL_Window		*win;
@@ -142,6 +158,7 @@ typedef struct		s_map
 	t_nod			*nod; // все узлы на карте
 	t_removeinfo	*remove; // tmp труктура для функции удаления готовых блоков
 	t_object		*obj;
+	t_tempnod		*tem;
 	int				wclick; // коэф + - виджета размера
 	int				whclick; // коэф + - виджета высоты
 	int				stclick; // коэф + - виджета высоты ступенек
@@ -236,9 +253,13 @@ void				draw_player(t_map *map);
 void				draw_guns(t_map *map);
 void				draw_enemy(t_map *map);
 void				draw_door_light_exit(t_map *map);
-void				tmp_draw2(t_map *map, int w, int i, t_nod *nod);
-void				tmp_draw(t_map *map, int index, t_nod *nod);
+void				tmp_draw2(t_map *map, int w, int i, t_nod *nod); //
+void				tmp_draw(t_map *map, int index, t_nod *nod); //
+void				draw_standartpanel(t_map *map);
 
+void				one_n(t_map *map, t_color color);
+void				two_n(t_map *map, t_color color);
+void				zerotem(t_map *map);
 void				add_node(t_map *mp, int x, int y);
 void				wichonemusic(t_map *map);
 

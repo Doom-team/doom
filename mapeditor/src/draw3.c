@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:55 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 13:38:57 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/07 15:23:06 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	draw_floor_textures(t_map *map)
 {
-	int i;
-	int x;
-	int y;
+	int	i;
+	int	x;
+	int	y;
 
 	i = 0;
 	x = 20;
@@ -40,9 +40,9 @@ void	draw_floor_textures(t_map *map)
 
 void	draw_wall_textures(t_map *map)
 {
-	int i;
-	int x;
-	int y;
+	int	i;
+	int	x;
+	int	y;
 
 	i = 0;
 	x = 20;
@@ -66,9 +66,9 @@ void	draw_wall_textures(t_map *map)
 
 void	draw_sky_textures(t_map *map)
 {
-	int i;
-	int x;
-	int y;
+	int	i;
+	int	x;
+	int	y;
 
 	i = 8;
 	x = 20;
@@ -87,9 +87,9 @@ void	draw_sky_textures(t_map *map)
 
 void	draw_liquid_textures(t_map *map)
 {
-	int i;
-	int x;
-	int y;
+	int	i;
+	int	x;
+	int	y;
 
 	i = 0;
 	x = 20;

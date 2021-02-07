@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/31 19:03:12 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/07 13:50:02 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	draw_img(t_map *map, t_info *info, t_image *st)
 {
-	int i;
-	int j;
-	int pixel1;
-	int pixel2;
+	int	i;
+	int	j;
+	int	pixel1;
+	int	pixel2;
 
 	i = info->y;
 	while (i < HEIGHT && i < info->y + info->h)
@@ -61,9 +61,9 @@ void	draw_pixel(t_map *map, int x, int y, t_color color)
 
 void	draw_point(t_map *map, int x, int y, t_color color)
 {
-	int i;
-	int j;
-	int pixel;
+	int	i;
+	int	j;
+	int	pixel;
 
 	i = -1;
 	while (i < 1)
@@ -104,28 +104,28 @@ void	draw_block_textures(t_map *map)
 	draw_img(map, &(t_info){165, 250, 50, 50}, map->block_tex[1]);
 	draw_img(map, &(t_info){65, 320, 50, 50}, map->block_tex[2]);
 	draw_img(map, &(t_info){165, 320, 50, 50}, map->block_tex[3]);
-	// draw_img(map, &(t_info){65, 400, 50, 50}, map->block_tex[0]);
+}
+
+void draw_standartpanel(t_map *map)
+{
+	draw_block_textures(map);
+	draw_slider(map);
+	draw_stairs(map);
+	draw_tests(map);
+	draw_music(map);
 }
 
 void	whichone_tool(t_map *map)
 {
 	if (map->inter_tex[3]->active || map->inter_tex[6]->active ||
 		map->inter_tex[7]->active || map->inter_tex[8]->active)
-	{
-		draw_block_textures(map);
-		draw_slider(map);
-		draw_stairs(map);
-		draw_tests(map);
-		draw_music(map);
-	}
-	// (map->inter_tex[3]->active == 1) ? (draw_slider(map), fonts_classic(map, "radius", 122, 135)) : printf("qwe\n");
+		draw_standartpanel(map);
 	if (map->inter_tex[4]->active == 1)
 		texture_block(map);
 	if (map->showactive == 2)
 		open_floor_win(map);
 	if (map->inter_tex[5]->active == 1)
 		objectsblock(map);
-		//draw_img2(map, &(t_info){map->floor_x , map->floor_y , abs(map->tmpfloor_x - map->floor_x), abs(map->tmpfloor_y - map->floor_y)}, map->floorsky_tex[map->index_tex]);
 	if (map->inter_tex[6]->active == 1)
 	{
 		fonts_classic(map, "edit tool", &(t_info){305, 780, 0, 0}, WHITEFONT);
@@ -135,22 +135,17 @@ void	whichone_tool(t_map *map)
 		fonts_classic(map, "info tool", &(t_info){305, 780, 0, 0}, WHITEFONT);
 	if (map->inter_tex[8]->active == 1)
 		fonts_classic(map, "remove tool", &(t_info){305, 780, 0, 0}, WHITEFONT);
-	if (map->errorflag == 1)
+	if (map->errorflag == 1) //////////////////////////////////////////////////////////////hears the error log
 	{
-		printf("shiiiiit\n");
 		fonts_classic(map, "map is not closed!",
 			&(t_info){350, HEIGHT - 20, 0, 0}, REDFONT);
 	}
-
 }
 
 void	draw(t_map *map)
 {
 	draw_basic_interface(map);
-
 	whichone_tool(map);
-	
-	// open_texture_win(map);
 	if (map->click)
 		bigdot(map, map->x_c, map->y_c, RED);
 	if ((map->click || map->tmpclick) && (map->block_tex[0]->active ||

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/31 19:03:19 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/07 15:22:20 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	draw_slider(t_map *map)
 
 void	draw_hlider(t_map *map)
 {
-	// draw_img(map, &(t_info){40, 120, 220, 100}, map->inter_tex[9]);
 	if (map->inter_tex[6]->active)
 	{
 		draw_img(map, &(t_info){70, 180, 25, 25}, map->inter_tex[11]);
@@ -94,8 +93,8 @@ void	draw_line(t_map *map, t_info *info, t_color color)
 
 void	bigdot(t_map *map, int x, int y, t_color color)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < 3)
@@ -134,84 +133,24 @@ void	draw_grid(t_map *map)
 
 void	draw_floor_line(t_map *map, t_info *cor)
 {
-	int x1;
-	int y1;
-	int x2;
-	int y2;
-	int dx;
-	int dy;
-	int er;
-	int de;
-	int i;
-	int j;
-	int diry;
-	int di;
-	int numiter = 0;
-
-	x1 = cor->x ;
-	x2 = cor->w ;
-	if (x1 < 0 && x2 < 0)
+	zerotem(map);
+	map->tem->x1 = cor->x;
+	map->tem->x2 = cor->w;
+	if (map->tem->x1 < 0 && map->tem->x2 < 0)
 		return ;
-	y1 = cor->y ;
-	y2 = cor->h ;
-	dx = abs(x1 - x2);
-	dy = abs(y1 - y2);
-	// if (dx > 20 || dy > 20)
-	// 	return ;
-	er = 0;
-	de = dy + 1;
-	j = y1;
-	i = x1;
-	di = 0;
-	if (dx > dy)
-	{
-		i = x1;
-		j = y1;
-		di = (x2 - x1) / dx;
-		diry = y2 - y1;
-		de = dy + 1;
-		if (diry > 0)
-			diry = 1;
-		if (diry < 0)
-			diry = -1;
-		while (i != x2)
-		{
-			draw_gr(map, i, j, YELLOW);
-			numiter++;
-			er += de;
-			if (er >= dx + 1)
-			{
-				j += diry;
-				er = er - (dx + 1);
-			}
-			i += di;
-		}
-	}
-	else if (dy != 0)
-	{
-		i = y1;
-		j = x1;
-		di = (y2 - y1) / dy;
-		diry = x2 - x1;
-		de = dx + 1;
-		if (diry > 0)
-			diry = 1;
-		if (diry < 0)
-			diry = -1;
-		numiter = 0;
-		while (i != y2)
-		{
-			draw_gr(map, j, i, YELLOW);
-			numiter++;
-			er += de;
-			if (er >= dy + 1)
-			{
-				j += diry;
-				er = er - (dy + 1);
-			}
-			i += di;
-		}
-	}
-	bigdot(map, x1, y1, HOTPINK);
-	bigdot(map, x2, y2, HOTPINK);
+	map->tem->y1 = cor->y;
+	map->tem->y2 = cor->h;
+	map->tem->dx = abs(map->tem->x1 - map->tem->x2);
+	map->tem->dy = abs(map->tem->y1 - map->tem->y2);
+	map->tem->er = 0;
+	map->tem->de = map->tem->dy + 1;
+	map->tem->j = map->tem->y1;
+	map->tem->i = map->tem->x1;
+	map->tem->di = 0;
+	if (map->tem->dx > map->tem->dy)
+		one_n(map, YELLOW);
+	else if (map->tem->dy != 0)
+		two_n(map, YELLOW);
+	bigdot(map, map->tem->x1, map->tem->y1, HOTPINK);
+	bigdot(map, map->tem->x2, map->tem->y2, HOTPINK);
 }
