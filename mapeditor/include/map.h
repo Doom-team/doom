@@ -6,7 +6,7 @@
 /*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 15:20:13 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/07 20:41:55 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 # define REDFONT (SDL_Color){255, 0, 0}
 # define WHITEFONT (SDL_Color){255, 255, 255}
-# define SANBYBROWNFONT (SDL_Color){244, 164, 96}
+# define SABF (SDL_Color){244, 164, 96}
 # define BLACKFONT (SDL_Color){0, 0, 0}
 
 # define WIDTH 1424
@@ -194,6 +194,7 @@ typedef struct		s_map
 }					t_map;
 
 int					init_all(t_map *map);
+void				init_all2(t_map *map);
 void				init_interface(t_map *map);
 void				init_texture(SDL_Surface *tex, unsigned char **s,
 						unsigned char *pixb, int *strb);
@@ -211,6 +212,7 @@ void				get_enemy_textures(t_map *map);
 void				get_player_textures(t_map *map);
 void				get_gun_textures(t_map *map);
 void				get_door_textures(t_map *map);
+void				get_door(t_map *map, int x, int y);
 
 void				malloc_block_texture(t_map *map);
 void				malloc_interface(t_map *map);
@@ -278,18 +280,42 @@ int					mkey(int key, int x, int y, t_map *map);
 
 void				edit_tool(t_map *map, int index);
 void				edit_blocktexture(t_map *map, int index);
+void				edit_walltexture(t_map *map, int index);
+void				edit_liquidtexture(t_map *map, int index);
+
 void				wall_editor(t_map *map, int x, int y);
 void				remove_tool(t_map *map, int x, int y);
 
 void				remove_blocks(t_map *map);
-
+void				showup_lick(t_map *map, int x, int y);
+int					clickevent(t_map *map, int x, int y, SDL_Event event);
 int					interface_click(t_map *map, int x, int y);
 void				section_click(t_map *map, int x, int y);
 int					catch_click(t_map *map, int x, int y);
+void				catch_click2(t_map *map, int x, int y);
+void				catch_click3(t_map *map, int x, int y);
 int					widget_click(t_map *map, int x, int y);
 void				tools_click(t_map *map, int x, int y);
 void				blockterxture_click(t_map *map, int x, int y);
+void				blockterxture_click2(t_map *map, int x, int y);
+void				walltx_click(t_map *map, int x, int y);
+void				walltx_click2(t_map *map, int x, int y);
+void				floortx_click(t_map *map, int x, int y);
+void				skytx_click(t_map *map, int x, int y);
+void				hwidget_click(t_map *map, int x, int y);
+void				terxtures_click(t_map *map, int x, int y);
+void				objects_click(t_map *map, int x, int y);
+void				objects_click2(t_map *map, int x, int y);
+void				change_texture_click(t_map *map, int x, int y);
+void				change_floor_click(t_map *map, int x, int y);
 void				zerroother(t_map *map);
+void				zerroothero(t_map *map);
+void				rewrite(t_map *map, int inx, int x, int y);
+void				rewrite2(t_map *map, char *str, char *tmp, int inx);
+void				floorker(t_map *map, int x, int y);
+int					searchelem(char *str1, char *str2);
+void				set_door(t_map *map, int indx);
+
 
 void				add_my_node(t_map *map, t_info *info, int type);
 void				made_blocks(t_map *map, int x, int y);
@@ -322,6 +348,9 @@ void				change_text_inter2(t_map *map);
 int					change_floor_inter(t_map *map);
 
 void				save_texture(t_map *map, int index, int num);
+void				save_obj_tmp1(t_map *map, int x, int y);
+void				save_obj_tmp2(t_map *map, int x, int y);
+
 
 void				open_texture_win(t_map *map);
 void				open_floor_win(t_map *map);
@@ -342,6 +371,7 @@ void				objectsblock(t_map *map);
 
 void				edit_object(t_map *map, t_image **name, int n, int index);
 void				stairs_editor(t_map *map, int x, int y);
+void				stairswhile(t_map *map, int x, int y);
 
 int					xyround(t_map *map, int x, int y);
 void				doorshit(t_map *map);

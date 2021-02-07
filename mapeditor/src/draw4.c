@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:58 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 13:38:59 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/07 15:24:40 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	tmp_draw2(t_map *map, int w, int i, t_nod *nod)
 {
-	int tmp;
+	int	tmp;
 
 	if ((nod->texture->texture_name[0] != NULL &&
 		map->inter_tex[17]->active == 0) ||
@@ -42,10 +42,10 @@ void	tmp_draw2(t_map *map, int w, int i, t_nod *nod)
 
 void	tmp_draw(t_map *map, int index, t_nod *nod)
 {
-	int c;
-	int w;
-	int i;
-	int tmp;
+	int	c;
+	int	w;
+	int	i;
+	int	tmp;
 
 	i = -1;
 	tmp = 0;

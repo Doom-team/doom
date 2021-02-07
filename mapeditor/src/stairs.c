@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   stairs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/04 21:11:08 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/07 17:10:38 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
+
+void	stairswhile(t_map *map, int x, int y)
+{
+	int i;
+
+	i = 1;
+	while (i <= map->stclick)
+	{
+		draw_mapstairs(map, x , y , i);
+		i++;
+	}
+}
 
 void savestairs(t_map *map)
 {

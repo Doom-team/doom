@@ -6,7 +6,7 @@
 /*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 15:20:06 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/07 21:04:39 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ void	find_coord(t_map *map, int *x, int *y)
 		if (abs((nod->x1 ) - *x) < 10 &&
 			abs((nod->y1 ) - *y) < 10)
 		{
-			abs2 = sq(*x, *y, nod->x1 , nod->y1 );
+			abs2 = sq(*x, *y, nod->x1 , nod->y1);
 			if (abs2 < abs1)
 			{
 				abs1 = abs2;
@@ -233,7 +233,7 @@ void	find_coord(t_map *map, int *x, int *y)
 		if (abs((nod->x2 ) - *x) < 10 &&
 			abs((nod->y2 ) - *y) < 10)
 		{
-			abs2 = sq(*x, *y, nod->x2 , nod->y2 );
+			abs2 = sq(*x, *y, nod->x2 , nod->y2);
 			if (abs2 < abs1)
 			{
 				abs1 = abs2;

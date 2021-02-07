@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   writemap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/03 16:37:26 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/07 17:02:19 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,5 +259,5 @@ int		writedown_map(t_map *map)
 	write_ceiling(map, fd);
 	write_objects(map, fd);
 	close(fd);
-	return (0);
+	return (1);
 }

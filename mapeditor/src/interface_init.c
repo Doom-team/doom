@@ -6,7 +6,7 @@
 /*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 14:32:35 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/07 20:41:46 by gordey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,10 @@ void	init_texture(SDL_Surface *tex, unsigned char **s,
 	*strb = (tex->pitch);
 }
 
-int		init_all(t_map *map)
+void	init_all2(t_map *map)
 {
-	int i;
-
-	i = -1;
-	SDL_Init(SDL_INIT_EVERYTHING);
-	TTF_Init();
-	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
-	if (!(map->win = SDL_CreateWindow("Mapeditor", 200, 200,
-		WIDTH, HEIGHT, SDL_WINDOW_SHOWN)))
-		return (0);
-	init_interface(map);
-	map->click = 0;
-	map->nod = NULL;
-	map->wclick = 25;
-	map->whclick = 5;
-	map->tmpclick = 0;
-	map->stclick = 1;
-	map->showactive = 0;
-	map->change_x = 0;
-	map->change_y = 0;
-	map->errorflag = 0;
-	// map->change_plus = 0;
-	map->index_tex = -1;
-	map->validflag = 0;
-	map->index_wall = -1;
-	map->floor_x = -1;
-	map->floor_y = -1;
 	map->tmpfloor_x = -1;
 	map->tmpfloor_y = -1;
-
 	map->stirsgroup = 1;
 	map->tem = malloc(sizeof(t_tempnod));
 	map->floorstr = malloc(sizeof(char *) * 10);
@@ -68,6 +41,33 @@ int		init_all(t_map *map)
 	map->music[3] = Mix_LoadMUS("/textures/music/music1.mp3");
 	map->fontclasic = TTF_OpenFont("/textures/fonts/classic.ttf", 32);
 	map->fontdoom = TTF_OpenFont("/textures/fonts/doom.ttf", 32);
+}
+
+int		init_all(t_map *map)
+{
+	SDL_Init(SDL_INIT_EVERYTHING);
+	TTF_Init();
+	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+	if (!(map->win = SDL_CreateWindow("Mapeditor", 200, 200,
+		WIDTH, HEIGHT, SDL_WINDOW_SHOWN)))
+		return (0);
+	init_interface(map);
+	map->click = 0;
+	map->nod = NULL;
+	map->wclick = 25;
+	map->whclick = 5;
+	map->tmpclick = 0;
+	map->stclick = 1;
+	map->showactive = 0;
+	map->change_x = 0;
+	map->change_y = 0;
+	map->errorflag = 0;
+	map->index_tex = -1;
+	map->validflag = 0;
+	map->index_wall = -1;
+	map->floor_x = -1;
+	map->floor_y = -1;
+	init_all2(map);
 	return (1);
 }
 

@@ -1,6 +1,7 @@
-ALL_C =	main.c draw.c draw2.c hooks.c interface_init.c nodes.c event.c key.c tools.c cursor.c blocks.c font.c \
-		textureblock.c malloc_texture.c get_texture.c draw3.c validation.c writemap.c showtexture.c floor_text.c \
-		draw4.c wall_text.c ceiling_text.c objects_block.c draw5.c stairs.c
+ALL_C =	main.c draw1.c draw2.c hooks1.c interface_init.c nodes.c event.c key.c tools.c cursor.c blocks.c font.c \
+		textureblock.c malloc_texture1.c get_texture.c draw3.c validation.c writemap.c showtexture.c floor_text.c \
+		draw4.c wall_text.c ceiling_text.c objects_block.c draw5.c stairs.c hooks2.c hooks3.c hooks4.c hooks5.c \
+		hooks6.c malloc_texture2.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
