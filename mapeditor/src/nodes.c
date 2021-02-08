@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nodes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 21:04:39 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/08 14:42:33 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,49 +203,51 @@ int		sq(int x1, int y1, int x2, int y2)
 	return ((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
+void find_help(t_nod *nod, t_info *inf, int *x, int *y)
+{
+	if (abs((nod->x1) - *x) < 10 && abs((nod->y1) - *y) < 10)
+	{
+		inf->h = sq(*x, *y, nod->x1, nod->y1);
+		if (inf->h < inf->w)
+		{
+			inf->w = inf->h;
+			inf->x = nod->x1;
+			inf->y = nod->y1;
+		}
+	}
+	if (abs((nod->x2) - *x) < 10 && abs((nod->y2) - *y) < 10)
+	{
+		inf->h = sq(*x, *y, nod->x2, nod->y2);
+		if (inf->h < inf->w)
+		{
+			inf->w = inf->h;
+			inf->x = nod->x2;
+			inf->y = nod->y2;
+		}
+	}
+}
+
 void	find_coord(t_map *map, int *x, int *y)
 {
-	int		x1;
-	int		y1;
-	int		abs1;
-	int		abs2;
+	t_info *inf;
 	t_nod	*nod;
 
+	inf = malloc(sizeof(inf));
 	nod = map->nod;
-	x1 = *x + 10;
-	y1 = *y + 10;
-	abs1 = 200;
+	inf->x = *x + 10;
+	inf->y = *y + 10;
+	inf->w = 200;
 	if (!nod)
 		return ;
 	while (nod)
 	{
-		if (abs((nod->x1 ) - *x) < 10 &&
-			abs((nod->y1 ) - *y) < 10)
-		{
-			abs2 = sq(*x, *y, nod->x1 , nod->y1);
-			if (abs2 < abs1)
-			{
-				abs1 = abs2;
-				x1 = nod->x1 ;
-				y1 = nod->y1 ;
-			}
-		}
-		if (abs((nod->x2 ) - *x) < 10 &&
-			abs((nod->y2 ) - *y) < 10)
-		{
-			abs2 = sq(*x, *y, nod->x2 , nod->y2);
-			if (abs2 < abs1)
-			{
-				abs1 = abs2;
-				x1 = nod->x2 ;
-				y1 = nod->y2 ;
-			}
-		}
+		find_help(nod, inf, x, y);
 		nod = nod->nxt;
 	}
-	if (abs1 < 200)
+	if (inf->w < 200)
 	{
-		*x = x1;
-		*y = y1;
+		*x = inf->x;
+		*y = inf->y;
 	}
+	free(inf);
 }
