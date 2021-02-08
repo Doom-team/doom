@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:29:09 by clala             #+#    #+#             */
-/*   Updated: 2021/02/03 21:26:04 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/08 20:21:13 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int				main()
 	SDL_Init(SDL_INIT_EVERYTHING) != 0 ? error(wolf, SDL_GetError()) : 0;
 	TTF_Init() != 0 ? error(wolf, SDL_GetError()) : 0;
 	wolf = t_wolf_new();
+	// printf("main %p\n", &(wolf->p->floor_texture));
 	init_player(wolf, wolf->player, wolf->map);
 	init_bonus(wolf);
 	init_monster(wolf);

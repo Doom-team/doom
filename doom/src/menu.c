@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahusk <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 20:31:26 by ahusk             #+#    #+#             */
-/*   Updated: 2020/12/26 20:31:27 by ahusk            ###   ########.fr       */
+/*   Updated: 2021/02/08 19:51:35 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static void		reinit_sdl(t_wolf *wolf)
 	wolf->sdl->win = SDL_CreateWindow("Doom", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, W, H, SDL_WINDOW_SHOWN);
 	wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);
+	// wolf->surface = SDL_ConvertSurfaceFormat(wolf->surface, SDL_PIXELFORMAT_ABGR8888, 0);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 }
 

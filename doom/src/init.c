@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:26:06 by clala             #+#    #+#             */
-/*   Updated: 2021/02/02 21:09:13 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/08 20:54:49 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,11 @@ void	init_sdl(t_wolf *wolf)
 	!wolf->sdl->win ? error(wolf, SDL_GetError()) : 0;
 	if (!(wolf->sdl->icon = SDL_LoadBMP(ICON_PATH)))
 		error(wolf, SDL_GetError());
-	if (!(wolf->sdl->sky = IMG_Load(SKY_PATH_2)))
-		error(wolf, SDL_GetError());
-	if (!(wolf->sdl->textures = IMG_Load("textures/plitka.jpg")))
-		error(wolf, SDL_GetError());
+	// if (!(wolf->sdl->sky = IMG_Load(SKY_PATH_2)))
+	// 	error(wolf, SDL_GetError());
+	// if (!(wolf->sdl->textures = IMG_Load("textures/plitka.jpg")))
+	// 	error(wolf, SDL_GetError());
+	// wolf->sdl->textures = SDL_ConvertSurfaceFormat(wolf->sdl->textures, SDL_PIXELFORMAT_BGRA32, 0);
 	SDL_SetWindowIcon(wolf->sdl->win, wolf->sdl->icon);
 	wolf->sdl->sides_mode = 1;
 	// wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);

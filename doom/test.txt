@@ -1,4 +1,4 @@
-walls: 27	floor: 1	ceiling: 0
+walls: 27 floor: 1 ceiling: 0 sky: 1
 w 645 264 480 440 "textures/wall/wall0.png" 7 0 0
 w 480 440 745 866 "textures/wall/wall0.png" 7 0 0
 w 745 866 1190 697 "textures/wall/wall0.png" 7 0 0

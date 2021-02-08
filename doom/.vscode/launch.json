@@ -8,10 +8,10 @@
             "name": "(lldb) Запустить",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/Volumes/ZOSMAWIN10/doom/doom/doom/wolf3D",
-            "args": ["maps/map.txt"],
+            "program": "/Users/wendell/wendell/yyy/doom/wolf3D",
+            "args": [],
             "stopAtEntry": false,
-            "cwd": "/Volumes/ZOSMAWIN10/doom/doom/doom",
+            "cwd": "/Users/wendell/wendell/yyy/doom",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb"

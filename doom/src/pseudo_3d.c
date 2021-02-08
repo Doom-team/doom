@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2021/01/30 20:44:10 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/08 20:30:36 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -413,12 +413,12 @@ void			floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distanc
 			currFloorX = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (cof * cof_h)) + (1.0 - weight) * (wolf->player->x / (cof * cof_h));
 			currFloorY = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (cof * cof_h)) + (1.0 - weight) * (wolf->player->y / (cof * cof_h));
 			
-			textx = (int)(currFloorX * wolf->sdl->textures->w * cof * cof_h) % wolf->sdl->textures->w;
-			texty = (int)(currFloorY * wolf->sdl->textures->h * cof * cof_h) % wolf->sdl->textures->h;
+			textx = (int)(currFloorX * wolf->p->floor_texture->w * cof * cof_h) % wolf->p->floor_texture->w;
+			texty = (int)(currFloorY * wolf->p->floor_texture->h * cof * cof_h) % wolf->p->floor_texture->h;
 
 			if (textx > 0 && texty > 0)
 			{
-				color = get_pixel(wolf->sdl->textures, textx, texty);
+				color = get_pixel(wolf->p->floor_texture, textx, texty);
 				// wolf->z_buff_2[x + (temp_y) * W] = true;
 				set_pixel(wolf->surface, x, temp_y, color);
 			}
@@ -488,12 +488,12 @@ void			floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t
 			currFloorX = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (cof * cof_h)) + (1.0 - weight) * (wolf->player->x / (cof * cof_h));
 			currFloorY = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (cof * cof_h)) + (1.0 - weight) * (wolf->player->y / (cof * cof_h));
 			
-			textx = (int)(currFloorX * wolf->sdl->textures->w * cof * cof_h) % wolf->sdl->textures->w;
-			texty = (int)(currFloorY * wolf->sdl->textures->h * cof * cof_h) % wolf->sdl->textures->h;
+			textx = (int)(currFloorX * wolf->p->floor_texture->w * cof * cof_h) % wolf->p->floor_texture->w;
+			texty = (int)(currFloorY * wolf->p->floor_texture->h * cof * cof_h) % wolf->p->floor_texture->h;
 
 			if (textx > 0 && texty > 0)
 			{
-				color = get_pixel(wolf->sdl->textures, textx, texty);
+				color = get_pixel(wolf->p->floor_texture, textx, texty);
 				wolf->z_buff_2[x + (temp_y) * W] = true;
 				set_pixel(wolf->surface, x, temp_y, color);
 			}
@@ -527,25 +527,27 @@ static void		floorcast(t_wolf *wolf, t_distance *dist, int x, int y, int count_d
 		
 		currFloorX = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (cof)) + (1.0 - weight) * (wolf->player->x / (cof));
 		currFloorY = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (cof)) + (1.0 - weight) * (wolf->player->y / (cof));
-		
-		textx = (int)(currFloorX * wolf->sdl->textures->w * cof) % wolf->sdl->textures->w;
-		texty = (int)(currFloorY * wolf->sdl->textures->h * cof) % wolf->sdl->textures->h;
-
+		// printf("1\n");
+		// printf("%p\n", &(wolf->p->floor_texture));
+		textx = (int)(currFloorX * wolf->p->floor_texture->w * cof) % wolf->p->floor_texture->w;
+		texty = (int)(currFloorY * wolf->p->floor_texture->h * cof) % wolf->p->floor_texture->h;
+		// printf("2\n");
 		// if (textx < 0)
 		// 	continue;
 		// if (texty < 0)
 		// 	continue;
-		// color = get_pixel1(wolf->sdl->textures, textx, texty);
-		// set_pixel1(wolf->surface, wolf->sdl->textures, x, temp_y, color);
+		// color = get_pixel1(wolf->p->floor_texture, textx, texty);
+		// set_pixel1(wolf->surface, wolf->p->floor_texture, x, temp_y, color);
 		if (textx > 0 && texty > 0)
 		{
 			if (temp_y >= H / 2 - (wolf->player->dir_y - 1) && temp_y < H)
 			{
-				color = get_pixel(wolf->sdl->textures, textx, texty);
+				color = get_pixel(wolf->p->floor_texture, textx, texty);
 				set_pixel(wolf->surface, x, temp_y, color);
 			}
 		}
-		// color = get_pixel(wolf->sdl->textures, textx, texty);
+		// printf("3\n");
+		// color = get_pixel(wolf->p->floor_texture, textx, texty);
 		// if (temp_y_2 >= 0)
 		// 	set_pixel(wolf->surface, x, H - temp_y_2, color);
 		temp_y++;
@@ -570,11 +572,11 @@ void			draw_sky(t_wolf *wolf, int x, int y)
 	{
 		to_draw = i;
 		to_draw_x = x;
-		while (to_draw + (int)wolf->sdl->skybox_offset_y > wolf->sdl->sky->h - 1)
-			to_draw -= wolf->sdl->sky->h;
-		while (to_draw_x + (int)wolf->sdl->skybox_offset > wolf->sdl->sky->w)
-			to_draw_x -= wolf->sdl->sky->w;
-		set_pixel(wolf->surface, x, i, get_pixel(wolf->sdl->sky,
+		while (to_draw + (int)wolf->sdl->skybox_offset_y > wolf->p->sky_texture->h - 1)
+			to_draw -= wolf->p->sky_texture->h;
+		while (to_draw_x + (int)wolf->sdl->skybox_offset > wolf->p->sky_texture->w)
+			to_draw_x -= wolf->p->sky_texture->w;
+		set_pixel(wolf->surface, x, i, get_pixel(wolf->p->sky_texture,
 			to_draw_x + (int)wolf->sdl->skybox_offset, to_draw + (int)wolf->sdl->skybox_offset_y));
 	}
 }

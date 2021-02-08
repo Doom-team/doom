@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 19:38:26 by ahusk             #+#    #+#             */
-/*   Updated: 2021/01/30 23:54:55 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/08 20:20:39 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void		parsing(t_parser *parser, char *l)
 	if (arr[0][0] == 'w')
 		parsing_walls(parser, arr);
 	if (arr[0][0] == 'f')
-		parsing_param1(parser, parser->floor_texture, arr, &parser->buff.f);
+		parser->floor_texture = parsing_param1(parser, arr, &parser->buff.f);
 	if (arr[0][0] == 'c')
-		parsing_param1(parser, parser->ceiling_texture, arr, &parser->buff.c);
+		parser->ceiling_texture = parsing_param1(parser, arr, &parser->buff.c);
 	if (arr[0][0] == 's')
-		parsing_param1(parser, parser->sky_texture, arr, &parser->buff.s);
+		parser->sky_texture = parsing_param1(parser, arr, &parser->buff.s);
 	if (arr[0][0] == 'g')
 		parsing_param3(parser->guns, arr, &parser->buff.g);
 	if (arr[0][0] == 'b')
@@ -65,6 +65,10 @@ void		parser(t_wolf *wolf)
 			parsing(wolf->p, line);
 		free(line);
 	}
+	// printf("%p\n", &(wolf->p->floor_texture));
+	// printf("1\n");
+	// 	printf("%d %d\n", wolf->p->floor_texture->w, wolf->p->floor_texture->h);
+	// 	printf("2\n");
 	close(fd);
 	free(line);
 }

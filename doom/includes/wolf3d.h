@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2021/02/03 21:58:26 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/08 20:58:23 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,8 +217,9 @@ typedef struct		s_bonus
 typedef struct		s_sdl
 {
 	// SDL_Surface	*scrs; //menu** scrs
-	SDL_Surface		*textures;
-	SDL_Surface		*sky;
+	// int				ufshfadk;
+	// SDL_Surface		*textures;
+	// SDL_Surface		*sky;
 	SDL_Surface		*icon;
 	SDL_Window		*win; //menu** window
 	int				tex_arr[0xff];
@@ -341,7 +342,7 @@ void				render_hud(t_wolf *wolf);
 void				parser(t_wolf *wolf);
 void				slice(char s[100], char *a, int from, int to);
 void				parsing_walls(t_parser *parser, char **arr);
-void				parsing_param1(t_parser *parser, SDL_Surface *texture, char **arr, bool *b);
+SDL_Surface			*parsing_param1(t_parser *parser, char **arr, bool *b);
 void				parsing_param2(t_param2 *obj, char **arr, int *buff);
 void				parsing_param3(t_param3 *obj, char **arr, int *buff);
 void				init_size(t_parser *parser, char *l);
@@ -398,7 +399,7 @@ int					max(int a, int b);
 */
 void				calc_move(t_wolf *wolf, float dy, float dx);
 void				rotate(t_wolf *wolf, SDL_Event *event);
-void				add_skybox_offset(t_sdl *sdl, float to_add);
+void				add_skybox_offset(t_wolf *wolf, float to_add);
 void				jump(t_wolf *wolf);
 void	falling(t_wolf *wolf);
 

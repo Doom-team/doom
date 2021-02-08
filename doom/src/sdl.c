@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/02/03 21:20:17 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/08 20:40:38 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 	}
 	if ((s[SDL_SCANCODE_RIGHT] || s[SDL_SCANCODE_E])
 	&& add_arc(&p->dir, -0.05))
-		add_skybox_offset(wolf->sdl, W / (float)wolf->sdl->sky->w * 60.0);
+		add_skybox_offset(wolf, W / (float)wolf->p->sky_texture->w * 60.0);
 	if ((s[SDL_SCANCODE_LEFT] || s[SDL_SCANCODE_Q]) && add_arc(&p->dir, 0.05))
-		add_skybox_offset(wolf->sdl, W / (float)wolf->sdl->sky->w * -60.0);
+		add_skybox_offset(wolf, W / (float)wolf->p->sky_texture->w * -60.0);
 	if (s[SDL_SCANCODE_P])
 		wolf->sdl->sides_mode = wolf->sdl->sides_mode == 1 ? 0 : 1;
 	// if (s[SDL_SCANCODE_M])
