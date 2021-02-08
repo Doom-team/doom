@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 20:41:55 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/08 19:50:40 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 # include "../frameworks/SDL2.framework/Headers/SDL.h"
 # include "../frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h"
 # include "../frameworks/SDL2_image.framework/Headers/SDL_image.h"
+
 # include "../frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h"
 # include "../libft/includes/libft.h"
+
+# include "../../doom/libft/includes/ft_printf.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -254,6 +257,10 @@ void				draw_mapstairs(t_map *map, int x, int y, int i);
 void				draw_player(t_map *map);
 void				draw_guns(t_map *map);
 void				draw_enemy(t_map *map);
+void				draw_door_win(t_map *map);
+void				draw_door_winp1(t_map *map);
+void				draw_door_winp2(t_map *map);
+void				draw_door_winp3(t_map *map);
 void				draw_door_light_exit(t_map *map);
 void				tmp_draw2(t_map *map, int w, int i, t_nod *nod); //
 void				tmp_draw(t_map *map, int index, t_nod *nod); //
@@ -360,6 +367,8 @@ int					find_texture_name(char *str);
 void				findfloornod(t_map *map);
 void				findceilingnod(t_map *map);
 void				find_coord(t_map *mp, int *x, int *y);
+void				find_help(t_nod *nod, t_info *inf, int *x, int *y);
+
 void				find_remove(t_map *map, int x, int y);
 
 void				flooor(t_map *map);
@@ -375,6 +384,8 @@ void				stairswhile(t_map *map, int x, int y);
 
 int					xyround(t_map *map, int x, int y);
 void				doorshit(t_map *map);
+void				doorshit2(t_map *map);
+
 
 int					check_scene(t_info *info, t_map *map);
 int					valid_map(t_map *map);
@@ -383,5 +394,11 @@ int					range_click(t_info *info, int w, int h);
 int					lstdelone(t_nod **fd_lst, t_nod *fd);
 
 char				*count_floor(t_map *map, int fd);
+
+
+void				free_panel(t_map *map);
+
+int		error_free_s(t_map *map, char *s);
+int		error(t_map *map, const char *s);
 
 #endif

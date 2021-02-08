@@ -1,18 +1,23 @@
-walls: 17 floor: 1 ceiling: 0
-w 470 227 721 221 textures/wall/wall0.png 5 0 0
-w 721 221 859 475 textures/wall/wall0.png 5 0 0
-w 859 475 478 671 textures/wall/wall0.png 5 0 0
-w 478 671 338 485 textures/wall/wall0.png 5 0 0
-w 338 485 470 227 textures/wall/wall0.png 5 0 0
-w 567 269 667 269 textures/wall/wall0.png 5 0 0
-w 567 269 567 369 textures/wall/wall0.png 5 0 0
-w 667 269 667 369 textures/wall/wall0.png 5 0 0
-w 567 369 667 369 textures/wall/wall0.png 5 0 0
-w 682 401 671 380 textures/wall/wall0.png 1 1 1
-w 682 401 664 410 textures/wall/wall0.png 1 1 1
-w 671 380 653 389 textures/wall/wall0.png 1 1 1
-w 664 410 653 389 textures/wall/wall0.png 1 1 1
-w 524 479 545 458 textures/wall/wall0.png 1 1 2
+walls: 4 floor: 1 ceiling: 0
+w 500 249 600 249 textures/wall/wall0.png 5 0 0
+w 500 249 500 349 textures/wall/wall0.png 5 0 0
+w 600 249 600 349 textures/wall/wall0.png 5 0 0
+w 500 349 600 349 textures/wall/wall0.png 5 0 0
+f textures/floor/floor1.png
+s textures/floor/sky1.png
+textures/floor/floor1.png
+s textures/floor/sky1.png
+ 770 444 textures/wall/wall0.png 5 0 0
+w 862 194 962 194 textures/wall/wall0.png 5 0 0
+w 862 194 862 294 textures/wall/wall0.png 5 0 0
+w 962 194 962 294 textures/wall/wall0.png 5 0 0
+w 862 294 962 294 textures/wall/wall0.png 5 0 0
+f textures/floor/floor1.png
+s textures/floor/sky1.png
+5 0 0
+f textures/floor/floor1.png
+s textures/floor/sky1.png
+textures/wall/wall0.png 1 1 2
 w 524 479 518 459 textures/wall/wall0.png 1 1 2
 w 545 458 539 438 textures/wall/wall0.png 1 1 2
 w 518 459 539 438 textures/wall/wall0.png 1 1 2

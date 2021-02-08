@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stairs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 17:10:38 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/08 16:09:04 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,15 @@ void savestairs(t_map *map)
 			map->stairstr = ft_strjoin(map->stairstr, "w ");
 			map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->x[i]));
 		}
+		// char *tmp = map->stairstr;
+		// if(!(map->stairstr = ft_strjoin(map->stairstr, " ")))
+		// {
+		// 	//free all until this line 
+		// 	return (1);
+		// }
+		// free(tmp);
+
+		// func();
 		map->stairstr = ft_strjoin(map->stairstr, " ");
 		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->y[i]));
 		map->stairstr = ft_strjoin(map->stairstr, " ");
