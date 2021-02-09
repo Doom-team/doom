@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/08 14:42:33 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/09 18:41:44 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ t_nod	*n_cr(t_info *info, int type)
 	a = (t_nod*)malloc(sizeof(t_nod));
 	a->texture = (t_texinfo*)malloc(sizeof(t_texinfo));
 	a->texture->texture_name[0] = malloc(sizeof(char) * 100);
-	a->texture->texture_name[1] = malloc(sizeof(char) * 100);
-	a->texture->floor_name = malloc(sizeof(char) * 100);
-	a->texture->ceiling_name = malloc(sizeof(char) * 100);
+	// a->texture->texture_name[1] = malloc(sizeof(char) * 100);
+	// a->texture->floor_name = malloc(sizeof(char) * 100);
+	// a->texture->ceiling_name = malloc(sizeof(char) * 100);
 	a->texture->type_name = malloc(sizeof(char) * 100);
 	a->texture->texture_name[0] = NULL;
-	a->texture->texture_name[1] = NULL;
-	a->texture->floor_name = NULL;
-	a->texture->ceiling_name = NULL;
+	//a->texture->texture_name[1] = NULL;
+	//a->texture->floor_name = NULL;
+	//a->texture->ceiling_name = NULL;
 	a->texture->type_name = NULL;
 	a->x1 = info->x;
 	a->y1 = info->y;
@@ -232,13 +232,14 @@ void	find_coord(t_map *map, int *x, int *y)
 	t_info *inf;
 	t_nod	*nod;
 
-	inf = malloc(sizeof(inf));
+	if (!nod)
+		return ;
+	if (!(inf = malloc(sizeof(inf))))
+		error(ERM);
 	nod = map->nod;
 	inf->x = *x + 10;
 	inf->y = *y + 10;
 	inf->w = 200;
-	if (!nod)
-		return ;
 	while (nod)
 	{
 		find_help(nod, inf, x, y);

@@ -6,13 +6,13 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 16:55:39 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/16 14:30:19 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/09 18:54:56 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 
@@ -22,5 +22,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	str = ft_strcpy(str, s1);
 	str = ft_strcat(str, s2);
+	free(s1);
 	return (str);
 }

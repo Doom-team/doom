@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/08 19:50:40 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/09 18:15:30 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define WHITEFONT (SDL_Color){255, 255, 255}
 # define SABF (SDL_Color){244, 164, 96}
 # define BLACKFONT (SDL_Color){0, 0, 0}
+# define ERM "Malloc Error"
 
 # define WIDTH 1424
 # define HEIGHT 1020
@@ -56,8 +57,8 @@ typedef struct		s_texinfo
 	//int vector_len;
 	char			*texture_name[2];
 	char			*type_name;
-	char			*floor_name;
-	char			*ceiling_name;
+	// char			*floor_name;
+	// char			*ceiling_name;
 }					t_texinfo;
 
 typedef struct		s_nod
@@ -395,10 +396,12 @@ int					lstdelone(t_nod **fd_lst, t_nod *fd);
 
 char				*count_floor(t_map *map, int fd);
 
-
+void	free_map(t_map *map);
 void				free_panel(t_map *map);
+void	free_nodes(t_map *map);
 
-int		error_free_s(t_map *map, char *s);
-int		error(t_map *map, const char *s);
+void		error_free_s(t_map *map, char *s);
+void		error(char *s);
+SDL_Surface		*load_image(char *path);
 
 #endif

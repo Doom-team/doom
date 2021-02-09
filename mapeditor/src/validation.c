@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:36 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/20 13:35:05 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/09 14:21:17 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,5 @@ int		valid_map(t_map *map)
 	}
 	if (check_scene(&(t_info){max_x, max_y, min_x, min_y}, map))
 		return (1);
-	// printf("max x: %d y: %d\n", max_x, max_y);
-	// printf("min x: %d y: %d\n", min_x, min_y);
 	return (0);
 }
