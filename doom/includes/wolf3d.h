@@ -27,11 +27,6 @@
 # include "errors.h"
 # include <pthread.h>
 
-typedef struct		s_hud
-{
-	
-}					t_hud;
-
 typedef struct		s_wall
 {
 	float			x1;
@@ -288,6 +283,8 @@ typedef struct		s_menu
 	t_background	screen_start;
 	t_background	screen_death;
 	t_background	screen_win;
+	t_background	hp;
+	t_background	hp_bar;
 	t_button		logo;
 	t_button		start;
 	t_button		settings;
@@ -430,8 +427,6 @@ int					error_inv_n(t_wolf *wolf, char *s, int inv_num);
 */
 void				init_player(t_wolf *wolf, t_player *player, t_map *map);
 void				init_sdl(t_wolf *wolf);
-void				init_mm(t_map *map);
-void				init_tex_arr(t_wolf *wolf);
 
 /*
 ** init_bonus.c

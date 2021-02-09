@@ -55,5 +55,5 @@ int			get_pixel1(SDL_Surface *surface, int x, int y)
 
 int			is_texture(t_map *map, int x, int y, char texture)
 {
-	return (map->map[(y / CUBE) * map->w + (x / CUBE)] == texture);
+	return (map->map[y * map->w + x] == texture);
 }

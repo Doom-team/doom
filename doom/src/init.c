@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:26:06 by clala             #+#    #+#             */
-/*   Updated: 2021/02/08 20:54:49 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/09 16:35:34 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 	}
 	p->size = 10;
 	p->hp = 100.0f;
-	p->x = CUBE * 750 / RESIZE;
-	p->y = CUBE * 300 / RESIZE;
+	p->x = 750 / RESIZE;
+	p->y = 300 / RESIZE;
 	p->speed = 0.11f;
 	p->fov = RAD_60;
 	p->dir = RAD_270;
@@ -41,43 +41,6 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 	p->run_f = 0;
 	p->run_r = 0;
 	p->run_l = 0;
-}
-
-void	init_tex_arr(t_wolf *wolf)
-{
-	int	i;
-
-	i = -1;
-	wolf->sdl->tex_arr[TEX_BORDER] = CUBE * 6;
-	while (++i < 1 << 8)
-		wolf->sdl->tex_arr[i] = wolf->sdl->tex_arr[TEX_BORDER];
-	wolf->sdl->tex_arr[TEX_WALL] = CUBE * 7;
-	wolf->sdl->tex_arr[TEX_EAST] = CUBE * 2;
-	wolf->sdl->tex_arr[TEX_SOUTH] = CUBE * 3;
-	wolf->sdl->tex_arr[TEX_NORTH] = CUBE * 4;
-	wolf->sdl->tex_arr[TEX_WEST] = CUBE * 5;
-	wolf->sdl->tex_arr[TEX_BLOOD] = CUBE * 0;
-	wolf->sdl->tex_arr[TEX_PANEL] = CUBE * 1;
-	wolf->sdl->tex_arr[TEX_BOULD] = CUBE * 2;
-	wolf->sdl->tex_arr[TEX_CORALL] = CUBE * 3;
-	wolf->sdl->tex_arr[TEX_EYES] = CUBE * 4;
-	wolf->sdl->tex_arr[TEX_ISLE] = CUBE * 5;
-}
-
-void	init_mm(t_map *map)
-{
-	int	map_max_side;
-
-	map_max_side = max(map->w, map->h);
-	map->mm_cube = (W / 3) / map_max_side;
-	map->mm_start.x = 16;
-	map->mm_start.y = 16;
-	map->mm_w = map->mm_cube * map->w;
-	map->mm_h = map->mm_cube * map->h;
-	map->mm_p_size = map->mm_cube / 4;
-	map->mm_cube_coef = (float)map->mm_cube / CUBE;
-	map->mm_map_coef = (float)map->mm_w / W;
-	map->mm_show = 1;
 }
 
 void	init_sdl(t_wolf *wolf)

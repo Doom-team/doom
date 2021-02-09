@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2021/02/08 20:30:36 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/09 16:20:04 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		temp_y--;
 		while (++temp_y < size)
 		{
+			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) > H)
+				break;
 			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < -H - 2)
 			{
 				temp_y = -H - 1 + (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance));
@@ -148,6 +150,8 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		temp_y--;
 		while (++temp_y < size)
 		{
+			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) > H)
+				break;
 			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < -H - 2)
 			{
 				temp_y = -H - 1 + (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance));
@@ -232,6 +236,8 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 		temp_y--;
 		while (++temp_y < size)
 		{
+			if (temp_y - wolf->player->dir_y > H)
+				break;
 			if (temp_y - wolf->player->dir_y < -H - 2)
 			{
 				temp_y = -H - 1 + wolf->player->dir_y;
@@ -285,6 +291,8 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 	// printf ("%lld---%d\n", temp_y, size);
 	while (++temp_y < size)
 	{
+		if (temp_y - wolf->player->dir_y > H)
+			break;
 		if (temp_y - wolf->player->dir_y < -H - 2)
 		{
 			temp_y = -H - 1 + wolf->player->dir_y;
@@ -548,8 +556,8 @@ static void		floorcast(t_wolf *wolf, t_distance *dist, int x, int y, int count_d
 		}
 		// printf("3\n");
 		// color = get_pixel(wolf->p->floor_texture, textx, texty);
-		// if (temp_y_2 >= 0)
-		// 	set_pixel(wolf->surface, x, H - temp_y_2, color);
+		// if (temp_y >= 0)
+		// 	set_pixel(wolf->surface, x, H - temp_y, color);
 		temp_y++;
 		// temp_y_2++;
 		y++;

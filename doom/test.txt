@@ -1,10 +1,9 @@
-walls: 27 floor: 1 ceiling: 0 sky: 1
+walls: 30 floor: 1 ceiling: 0 sky: 1 p: 1
 w 645 264 480 440 "textures/wall/wall0.png" 7 0 0
 w 480 440 745 866 "textures/wall/wall0.png" 7 0 0
 w 745 866 1190 697 "textures/wall/wall0.png" 7 0 0
 w 1190 697 1044 220 "textures/wall/wall0.png" 7 0 0
 w 1044 220 645 264 "textures/wall/wall0.png" 7 0 0
-w 902 571 760 626 "textures/wall/wall0.png" 7 0 0
 w 738 413 699 503 "textures/wall/wall0.png" 7 0 0
 w 821 472 806 493 "textures/wall/wall0.png" 1 1 1
 w 821 472 835 486 "textures/wall/wall0.png" 1 1 1
@@ -26,5 +25,10 @@ w 877 528 862 549 "textures/wall/wall0.png" 5 1 5
 w 877 528 891 542 "textures/wall/wall0.png" 5 1 5
 w 862 549 876 563 "textures/wall/wall0.png" 5 1 5
 w 891 542 876 563 "textures/wall/wall0.png" 5 1 5
+w 845 605 920 676 "textures/wall/wall0.png" 5 1 6
+w 920 676 1012 546 "textures/wall/wall0.png" 5 1 6
+w 1012 546 916 500 "textures/wall/wall0.png" 5 1 6
+w 916 500 845 605 "textures/wall/wall0.png" 5 1 6
+p 850 600
 f "textures/floor/floor1.png"
 s "textures/floor/sky1.png"

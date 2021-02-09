@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/02/08 21:19:45 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/09 16:47:23 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	rotate(t_wolf *wolf, SDL_Event *event)
 void	falling(t_wolf *wolf)
 {
 	SDL_Event	event;
+	int dmg;
 	if (wolf->player->inside_step > abs(wolf->player->fly))
 	{
 		while (abs(wolf->player->fly) < wolf->player->inside_step)
@@ -84,6 +85,7 @@ void	falling(t_wolf *wolf)
 	}
 	else if (wolf->player->inside_step < abs(wolf->player->fly))
 	{
+		dmg = (wolf->player->inside_step + wolf->player->fly) / 60;
 		while (abs(wolf->player->fly) > wolf->player->inside_step)
 		{
 			wolf->player->fly += UP_LENGTH/4;
@@ -98,6 +100,9 @@ void	falling(t_wolf *wolf)
 			render_shot(wolf, wolf->surface);
 			SDL_UpdateWindowSurface(wolf->sdl->win);
 		}
+		printf("%d\n", dmg);
+		if (dmg < -15)
+			wolf->player->hp += dmg;
 	}
 }
 

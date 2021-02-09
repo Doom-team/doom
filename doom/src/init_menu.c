@@ -42,7 +42,7 @@ void	create_button(t_button *button, char *file, int k)
 
 void	create_background(t_background *background, char *file)
 {
-	if (!(background->srcs = SDL_LoadBMP(file)))
+	if (!(background->srcs = IMG_Load(file)))
 		exit(0);
 	background->texture = SDL_ConvertSurfaceFormat(background->srcs,
 		SDL_PIXELFORMAT_ABGR8888, 0);
@@ -63,6 +63,8 @@ void	init_menu(t_menu *menu)
 	create_background(&(menu->screen_start), "textures/screen_start.bmp");
 	create_background(&(menu->screen_death), "textures/screen_death.bmp");
 	create_background(&(menu->screen_win), "textures/screen_win.bmp");
+	create_background(&(menu->hp), "textures/hp.png");
+	create_background(&(menu->hp_bar), "textures/hp_bar.png");
 	create_button((&menu->logo), "textures/doom_logo.bmp", 0);
 	create_button((&menu->start), "textures/start_button.bmp", 4);
 	create_button((&menu->exit), "textures/exit_button.bmp", 6);
