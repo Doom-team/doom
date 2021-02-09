@@ -104,5 +104,6 @@ void			menu_loop(t_wolf *wolf)
 		reinit_sdl(wolf);
 		wolf_loop(wolf);
 	}
-	quit(wolf->sdl);
+	if (wolf->sdl->button_flag == 6)
+		quit(wolf->sdl);
 }

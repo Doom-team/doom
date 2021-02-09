@@ -182,6 +182,7 @@ void			wolf_loop(t_wolf *wolf)
 		render_shot(wolf, wolf->surface);
 		// wolf->map->mm_show ? draw_minimap(wolf, wolf->map, wolf->player) : 0;
 		// wolf->sdl->menu ? draw_menu(wolf) : 0;
+		screen_death(wolf, &event);
 		SDL_UpdateWindowSurface(wolf->sdl->win);
 		// printf("fly = %d, cof = %f\n", wolf->player->fly, wolf->t_cof); // для отладки кофов
 	}
