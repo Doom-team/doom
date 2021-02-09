@@ -71,7 +71,6 @@ int				main()
 	init_bonus(wolf);
 	init_monster(wolf);
 	music(wolf->bon);
-	init_tex_arr(wolf);
 	init_sdl(wolf);
 	init_menu(wolf->menu);
 	menu_loop(wolf);

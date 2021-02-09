@@ -11,12 +11,12 @@ void    init_monster(t_wolf *wolf)
         !wolf->monster->image_monster[2] ||
         !wolf->monster->image_monster[3])
 		error(wolf, SDL_GetError());
-    wolf->monster->monster_pos[0].x = 5.5 * CUBE;
-    wolf->monster->monster_pos[0].y = 2.5 * CUBE;
-    wolf->monster->monster_pos[1].x = 4.5 * CUBE;
-    wolf->monster->monster_pos[1].y = 2.5 * CUBE;
-    wolf->monster->monster_pos[2].x = 6.5 * CUBE;
-    wolf->monster->monster_pos[2].y = 4.5 * CUBE;
+    wolf->monster->monster_pos[0].x = 5.5;
+    wolf->monster->monster_pos[0].y = 2.5;
+    wolf->monster->monster_pos[1].x = 4.5;
+    wolf->monster->monster_pos[1].y = 2.5;
+    wolf->monster->monster_pos[2].x = 6.5;
+    wolf->monster->monster_pos[2].y = 4.5;
     wolf->monster->count_monster = 4;
     wolf->monster->monster_upscale[0] = 1;
     wolf->monster->monster_upscale[1] = 1;

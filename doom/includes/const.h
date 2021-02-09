@@ -50,7 +50,6 @@
 # define THREAD 8
 // # define W_MAX 1920
 // # define H_MAX 1080
-# define CUBE 1
 # define RESIZE 20.f
 
 # define PLAYER_MM_SIZE 4

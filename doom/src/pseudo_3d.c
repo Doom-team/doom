@@ -89,6 +89,8 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		temp_y--;
 		while (++temp_y < size)
 		{
+			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) > H)
+				break;
 			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < -H - 2)
 			{
 				temp_y = -H - 1 + (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance));
@@ -148,6 +150,8 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		temp_y--;
 		while (++temp_y < size)
 		{
+			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) > H)
+				break;
 			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < -H - 2)
 			{
 				temp_y = -H - 1 + (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance));
@@ -232,6 +236,8 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 		temp_y--;
 		while (++temp_y < size)
 		{
+			if (temp_y - wolf->player->dir_y > H)
+				break;
 			if (temp_y - wolf->player->dir_y < -H - 2)
 			{
 				temp_y = -H - 1 + wolf->player->dir_y;
@@ -285,6 +291,8 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 	// printf ("%lld---%d\n", temp_y, size);
 	while (++temp_y < size)
 	{
+		if (temp_y - wolf->player->dir_y > H)
+			break;
 		if (temp_y - wolf->player->dir_y < -H - 2)
 		{
 			temp_y = -H - 1 + wolf->player->dir_y;

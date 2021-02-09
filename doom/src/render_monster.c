@@ -38,10 +38,10 @@ static void		score_monster(t_wolf *wolf, int i)
 		{
 			y = rand() % wolf->map->h;
 			x = rand() % wolf->map->w;
-			if (wolf->map->map[(int)(y * wolf->map->w + x)] == TEX_FLOOR && check_free_position(wolf, i, (x + 0.5) * CUBE, (y + 0.5) * CUBE))
+			if (wolf->map->map[(int)(y * wolf->map->w + x)] == TEX_FLOOR && check_free_position(wolf, i, (x + 0.5), (y + 0.5)))
 			{
-				wolf->monster->monster_pos[i].x = (x + 0.5) * CUBE;
-				wolf->monster->monster_pos[i].y = (y + 0.5) * CUBE;
+				wolf->monster->monster_pos[i].x = (x + 0.5);
+				wolf->monster->monster_pos[i].y = (y + 0.5);
 				flag = 1;
 			}
 		}
