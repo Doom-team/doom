@@ -44,13 +44,13 @@ static void		init_param2(char **arr, t_parser *p, int i)
 			error((t_wolf *)p, ERR_MALLOC);
 		p->buff.a = p->count_armors;
 	}
-	if (arr[i][0] == 'l')
+	if (arr[i][0] == 'k')
 	{
-		p->count_lights = ft_atoi(arr[i + 1]);
-		if (!(p->lights = (t_param2 *)malloc(p->count_lights
-			* sizeof(t_param2))))
+		p->count_keys = ft_atoi(arr[i + 1]);
+		if (!(p->keys = (t_param3 *)malloc(p->count_keys
+			* sizeof(t_param3))))
 			error((t_wolf *)p, ERR_MALLOC);
-		p->buff.l = p->count_lights;
+		p->buff.k = p->count_keys;
 	}
 }
 
@@ -87,7 +87,7 @@ static void		help_size(char **arr, t_parser *parser, int i)
 	if (arr[i][0] == 'c' || arr[i][0] == 's' || arr[i][0] == 'f' ||
 		arr[i][0] == 'p' || arr[i][0] == 'x')
 		init_param1(arr, parser, i);
-	if (arr[i][0] == 'h' || arr[i][0] == 'a' || arr[i][0] == 'l')
+	if (arr[i][0] == 'h' || arr[i][0] == 'a' || arr[i][0] == 'k')
 		init_param2(arr, parser, i);
 	if (arr[i][0] == 'g' || arr[i][0] == 'b' || arr[i][0] == 'e')
 		init_param3(arr, parser, i);

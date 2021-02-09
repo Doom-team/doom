@@ -62,7 +62,7 @@ typedef struct		s_buff
 	int				g;
 	int				b;
 	int				e;
-	int				l;
+	int				k;
 	int				p;
 	int				x;
 	bool			f;
@@ -79,7 +79,7 @@ typedef struct		s_parser
 	t_param3		*bullets;
 	t_param3		*enemys;
 	t_param2		*healths;
-	t_param2		*lights;
+	t_param3		*keys;
 	t_param2		player;
 	SDL_Surface		*floor_texture;
 	SDL_Surface		*sky_texture;
@@ -91,7 +91,7 @@ typedef struct		s_parser
 	int				count_enemys;
 	int				count_healths;
 	int				count_armors;
-	int				count_lights;
+	int				count_keys;
 }					t_parser;
 
 typedef struct		s_way
