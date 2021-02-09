@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 19:09:30 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/09 19:13:02 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@ void	stairswhile(t_map *map, int x, int y)
 		i++;
 	}
 }
-char	*add_text(char *s1, char *s2)
-{
-	char *str;
-	// char *tmp;
+// char	*add_text(char *s1, char *s2)
+// {
+// 	char *str;
+// 	// char *tmp;
 
-	// tmp = s1;
-	if (!s1 || !s2)
-		return (NULL);
-	if (!(str = ft_strjoin(s1, s2))
-		error("Error!");
-	free(s1);
-	free(s2);
-	return (str);
-}
+// 	// tmp = s1;
+// 	if (!s1 || !s2)
+// 		return (NULL);
+// 	if (!(str = ft_strjoin(s1, s2))
+// 		error("Error!");
+// 	free(s1);
+// 	free(s2);
+// 	return (str);
+// }
 
 void savestairs(t_map *map)
 {
