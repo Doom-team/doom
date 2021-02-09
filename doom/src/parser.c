@@ -65,10 +65,6 @@ void		parser(t_wolf *wolf)
 			parsing(wolf->p, line);
 		free(line);
 	}
-	// printf("%p\n", &(wolf->p->floor_texture));
-	// printf("1\n");
-	// 	printf("%d %d\n", wolf->p->floor_texture->w, wolf->p->floor_texture->h);
-	// 	printf("2\n");
 	close(fd);
 	free(line);
 }

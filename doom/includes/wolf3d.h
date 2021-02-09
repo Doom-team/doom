@@ -27,11 +27,6 @@
 # include "errors.h"
 # include <pthread.h>
 
-typedef struct		s_hud
-{
-	
-}					t_hud;
-
 typedef struct		s_wall
 {
 	float			x1;
@@ -288,6 +283,8 @@ typedef struct		s_menu
 	t_background	screen_start;
 	t_background	screen_death;
 	t_background	screen_win;
+	t_background	hp;
+	t_background	hp_bar;
 	t_button		logo;
 	t_button		start;
 	t_button		settings;
