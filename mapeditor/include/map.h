@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 18:15:30 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/09 20:01:01 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -403,5 +403,6 @@ void	free_nodes(t_map *map);
 void		error_free_s(t_map *map, char *s);
 void		error(char *s);
 SDL_Surface		*load_image(char *path);
+char	*add_text(char *s1, char *s2, int f);
 
 #endif

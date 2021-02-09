@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_text.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:03 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 17:21:30 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/09 20:21:09 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,9 @@ void	get_floor_cordi(t_map *map, int x, int y)
 		if (!map->temporary)
 			map->temporary = ft_itoa(x);
 		else
-			map->temporary = ft_strjoin(ft_strjoin(map->temporary, " "),
-				ft_itoa(x));
-		map->temporary = ft_strjoin(map->temporary, " ");
-		map->temporary = ft_strjoin(map->temporary, ft_itoa(y));
+			map->temporary = add_text(add_text(map->temporary, " ", 1), ft_itoa(x), 2);
+		map->temporary = add_text(map->temporary, " ", 1);
+		map->temporary = add_text(map->temporary, ft_itoa(y), 2);
 	}
 }
 
@@ -128,18 +127,18 @@ char	*mapstrcpy(char *dst, const char *str)
 
 void	strfloor(t_map *map)
 {
-	map->floorstr = ft_strjoin("f", " textures/floor/floor");
-	map->floorstr = ft_strjoin(map->floorstr, ft_itoa(map->index_tex));
-	map->floorstr = ft_strjoin(map->floorstr, ".png");
-	map->floorstr = ft_strjoin(map->floorstr, "\n");
+	map->floorstr = add_text("f", " textures/floor/floor", 0);
+	map->floorstr = add_text(map->floorstr, ft_itoa(map->index_tex), 2);
+	map->floorstr = add_text(map->floorstr, ".png", 1);
+	map->floorstr = add_text(map->floorstr, "\n", 1);
 }
 
 void	strceiling(t_map *map)
 {
-	map->ceilingstr = ft_strjoin("c", " textures/floor/floor");
-	map->ceilingstr = ft_strjoin(map->ceilingstr, ft_itoa(map->index_tex));
-	map->ceilingstr = ft_strjoin(map->ceilingstr, ".png");
-	map->ceilingstr = ft_strjoin(map->ceilingstr, "\n");
+	map->ceilingstr = add_text("c", " textures/floor/floor", 0);
+	map->ceilingstr = add_text(map->ceilingstr, ft_itoa(map->index_tex), 2);
+	map->ceilingstr = add_text(map->ceilingstr, ".png", 1);
+	map->ceilingstr = add_text(map->ceilingstr, "\n", 1);
 }
 
 void	open_floor_win(t_map *map)

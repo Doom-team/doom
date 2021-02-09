@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks6.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 20:37:13 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/09 20:22:53 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,14 @@ int		searchelem(char *str1, char *str2)
 
 void	rewrite2(t_map *map, char *str, char *tmp, int inx)
 {
-	str = ft_strjoin(str, "\n");
+	str = add_text(str, "\n", 1);
 	if (tmp)
 	{
-		tmp = ft_strjoin(tmp, str);
-		map->objects = ft_strjoin(tmp, &map->objects[inx]);
+		tmp = add_text(tmp, str, 1);
+		map->objects = add_text(tmp, &map->objects[inx], 2);
 	}
 	else
-		map->objects = ft_strjoin(str, &map->objects[inx]);
+		map->objects = add_text(str, &map->objects[inx], 2);
 }
 
 void	rewrite(t_map *map, int inx, int x, int y)

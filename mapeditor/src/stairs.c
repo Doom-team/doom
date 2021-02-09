@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 19:13:02 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/09 20:00:24 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,25 @@ void	stairswhile(t_map *map, int x, int y)
 		i++;
 	}
 }
-// char	*add_text(char *s1, char *s2)
-// {
-// 	char *str;
-// 	// char *tmp;
 
-// 	// tmp = s1;
-// 	if (!s1 || !s2)
-// 		return (NULL);
-// 	if (!(str = ft_strjoin(s1, s2))
-// 		error("Error!");
-// 	free(s1);
-// 	free(s2);
-// 	return (str);
-// }
+char	*add_text(char *s1, char *s2, int f)
+{
+	char *str;
+
+	if (!s1 || !s2)
+		return (NULL);
+	str = ft_strjoin(s1, s2);
+	if (f == 1)
+		free(s1);
+	else if (f == 2)
+	{
+		free(s1);
+		free(s2);
+	}
+	else if (f == 3)
+		free(s2);
+	return (str);
+}
 
 void savestairs(t_map *map)
 {
@@ -53,43 +58,32 @@ void savestairs(t_map *map)
 	while (i < map->stclick * 8)
 	{
 		if (i == 0)
-			map->stairstr = ft_strjoin("w ", ft_itoa(map->remove->x[i]));
+			map->stairstr = add_text("w ", ft_itoa(map->remove->x[i]), 3);
 		else
 		{
-			map->stairstr = ft_strjoin(map->stairstr, "w ");
-			map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->x[i]));
+			map->stairstr = add_text(map->stairstr, "w ", 1);
+			map->stairstr = add_text(map->stairstr, ft_itoa(map->remove->x[i]), 2);
 		}
-		// char *tmp = map->stairstr;
-		// if(!(map->stairstr = ft_strjoin(map->stairstr, " ")))
-		// {
-		// 	//free all until this line 
-		// 	return (1);
-		// }
-		// free(tmp);
-
-		// func();
-		map->stairstr = ft_strjoin(map->stairstr, " ");
-		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->y[i]));
-		map->stairstr = ft_strjoin(map->stairstr, " ");
-		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->x[i + 1]));
-		map->stairstr = ft_strjoin(map->stairstr, " ");
-		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->remove->y[i + 1]));
-		map->stairstr = ft_strjoin(map->stairstr, " ");
-		map->stairstr = ft_strjoin(map->stairstr, "textures/wall/wall0.png ");
-		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(tmp));
-		map->stairstr = ft_strjoin(map->stairstr, " ");
-		map->stairstr = ft_strjoin(map->stairstr, "1");
-		map->stairstr = ft_strjoin(map->stairstr, " ");
-		map->stairstr = ft_strjoin(map->stairstr, ft_itoa(map->stirsgroup));
-		map->stairstr = ft_strjoin(map->stairstr, "\n");
+		map->stairstr = add_text(map->stairstr, " ", 1);
+		map->stairstr = add_text(map->stairstr, ft_itoa(map->remove->y[i]), 2);
+		map->stairstr = add_text(map->stairstr, " ", 1);
+		map->stairstr = add_text(map->stairstr, ft_itoa(map->remove->x[i + 1]), 2);
+		map->stairstr = add_text(map->stairstr, " ", 1);
+		map->stairstr = add_text(map->stairstr, ft_itoa(map->remove->y[i + 1]), 2);
+		map->stairstr = add_text(map->stairstr, " ", 1);
+		map->stairstr = add_text(map->stairstr, "textures/wall/wall0.png ", 1);
+		map->stairstr = add_text(map->stairstr, ft_itoa(tmp), 2);
+		map->stairstr = add_text(map->stairstr, " ", 1);
+		map->stairstr = add_text(map->stairstr, "1", 1);
+		map->stairstr = add_text(map->stairstr, " ", 1);
+		map->stairstr = add_text(map->stairstr, ft_itoa(map->stirsgroup), 2);
+		map->stairstr = add_text(map->stairstr, "\n", 1);
 		i += 2;
 		if (i % 8 == 0)
 			tmp++;
 		if (i % 8 == 0)
 			map->stirsgroup++;
 	}
-	//printf("%s\n", map->stairstr);
-	//printf("----------------------------------------------------------------\n");
 }
 
 void	stairs_editor(t_map *map, int x, int y)
@@ -107,12 +101,9 @@ void	stairs_editor(t_map *map, int x, int y)
 		if (!map->stairsoutput)
 			map->stairsoutput = ft_strdup(map->stairstr);
 		else
-			map->stairsoutput = ft_strjoin(map->stairsoutput, map->stairstr);
+			map->stairsoutput = add_text(map->stairsoutput, map->stairstr, 1);
 		free(map->stairstr);
 	}
-	printf("%s\n", map->stairsoutput);
-		printf("----------------------------------------------------------------\n");
-
 }
 
 void	stairarr(t_map *map, t_info *cor, int i, float nx, float ny)

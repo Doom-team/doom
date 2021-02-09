@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 18:41:44 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/09 19:26:15 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,14 +229,14 @@ void find_help(t_nod *nod, t_info *inf, int *x, int *y)
 
 void	find_coord(t_map *map, int *x, int *y)
 {
-	t_info *inf;
+	t_info	*inf;
 	t_nod	*nod;
 
+	nod = map->nod;
 	if (!nod)
 		return ;
 	if (!(inf = malloc(sizeof(inf))))
 		error(ERM);
-	nod = map->nod;
 	inf->x = *x + 10;
 	inf->y = *y + 10;
 	inf->w = 200;
