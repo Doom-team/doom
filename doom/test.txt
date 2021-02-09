@@ -1,4 +1,4 @@
-walls: 30 floor: 1 ceiling: 0 sky: 1 p: 1
+walls: 30 floor: 1 ceiling: 0 sky: 1 p: 1 x: 1
 w 645 264 480 440 "textures/wall/wall0.png" 7 0 0
 w 480 440 745 866 "textures/wall/wall0.png" 7 0 0
 w 745 866 1190 697 "textures/wall/wall0.png" 7 0 0
@@ -30,5 +30,6 @@ w 920 676 1012 546 "textures/wall/wall0.png" 5 1 6
 w 1012 546 916 500 "textures/wall/wall0.png" 5 1 6
 w 916 500 845 605 "textures/wall/wall0.png" 5 1 6
 p 850 600
+x 850 600
 f "textures/floor/floor1.png"
 s "textures/floor/sky1.png"

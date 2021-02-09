@@ -64,6 +64,7 @@ typedef struct		s_buff
 	int				e;
 	int				l;
 	int				p;
+	int				x;
 	bool			f;
 	bool			s;
 	bool			c;
@@ -73,6 +74,7 @@ typedef struct		s_parser
 {
 	t_wall			*walls;
 	t_param2		*armors;
+	t_param2		exit;
 	t_param3		*guns;
 	t_param3		*bullets;
 	t_param3		*enemys;

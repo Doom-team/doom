@@ -22,6 +22,8 @@ static void		init_param1(char **arr, t_parser *parser, int i)
 		size_param1(arr, &parser->buff.c, i);
 	if (arr[i][0] == 'p')
 		parser->buff.p = ft_atoi(arr[i + 1]);
+	if (arr[i][0] == 'x')
+		parser->buff.x = ft_atoi(arr[i + 1]);
 }
 
 static void		init_param2(char **arr, t_parser *p, int i)
@@ -80,6 +82,17 @@ static void		init_param3(char **arr, t_parser *p, int i)
 	}
 }
 
+static void		help_size(char **arr, t_parser *parser, int i)
+{
+	if (arr[i][0] == 'c' || arr[i][0] == 's' || arr[i][0] == 'f' ||
+		arr[i][0] == 'p' || arr[i][0] == 'x')
+		init_param1(arr, parser, i);
+	if (arr[i][0] == 'h' || arr[i][0] == 'a' || arr[i][0] == 'l')
+		init_param2(arr, parser, i);
+	if (arr[i][0] == 'g' || arr[i][0] == 'b' || arr[i][0] == 'e')
+		init_param3(arr, parser, i);
+}
+
 void			init_size(t_parser *parser, char *l)
 {
 	char	**arr;
@@ -97,13 +110,7 @@ void			init_size(t_parser *parser, char *l)
 				error((t_wolf *)parser, ERR_MALLOC);
 			parser->buff.w = parser->count_walls;
 		}
-		if (arr[i][0] == 'c' || arr[i][0] == 's' || arr[i][0] == 'f' ||
-			arr[i][0] == 'p')
-			init_param1(arr, parser, i);
-		if (arr[i][0] == 'h' || arr[i][0] == 'a' || arr[i][0] == 'l')
-			init_param2(arr, parser, i);
-		if (arr[i][0] == 'g' || arr[i][0] == 'b' || arr[i][0] == 'e')
-			init_param3(arr, parser, i);
+		help_size(arr, parser, i);
 		free(arr[i]);
 		free(arr[i + 1]);
 		i += 2;

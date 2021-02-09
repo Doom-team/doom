@@ -21,6 +21,8 @@ void		help_parsing(t_parser *parser, char **arr)
 		parsing_param2(parser->armors, arr, &parser->buff.a);
 	if (arr[0][0] == 'l')
 		parsing_param2(parser->lights, arr, &parser->buff.l);
+	if (arr[0][0] == 'x')
+		parsing_player(&parser->exit, arr, &parser->buff.x);
 	if (arr[0][0] == 'p')
 		parsing_player(&parser->player, arr, &parser->buff.p);
 }
