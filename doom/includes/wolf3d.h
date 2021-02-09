@@ -375,7 +375,7 @@ void				quit(t_sdl *sdl);
 ** screens.c
 */
 void				screen_start(t_wolf *wolf);
-void				screen_death(t_wolf *wolf);
+void				screen_death(t_wolf *wolf, SDL_Event *event);
 void				screen_win(t_wolf *wolf);
 
 /*
