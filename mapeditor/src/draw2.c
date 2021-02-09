@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 15:22:20 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/09 18:12:20 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	draw_tests(t_map *map)
 
 void	draw_stairs(t_map *map)
 {
+	char *str;
+
+	str = ft_itoa(map->stclick);
 	draw_img(map, &(t_info){40, 400, 220, 50}, map->inter_tex[9]);
 	draw_img(map, &(t_info){70, 410, 25, 25}, map->inter_tex[11]);
 	draw_img(map, &(t_info){195, 410, 25, 25}, map->inter_tex[10]);
@@ -38,9 +41,10 @@ void	draw_stairs(t_map *map)
 	draw_line(map, &(t_info){95, 423, 100, 0}, (t_color){255, 255, 255});
 	draw_line(map, &(t_info){95, 424, 100, 0}, (t_color){255, 255, 255});
 	fonts_classic(map, "stairs height", &(t_info){102, 402, 0, 0}, WHITEFONT);
-	fonts_classic(map, ft_itoa(map->stclick), &(t_info){130, 432, 0, 0},
+	fonts_classic(map, str, &(t_info){130, 432, 0, 0},
 		WHITEFONT);
 	draw_img(map, &(t_info){120, 470, 60, 60}, map->block_tex[5]);
+	free(str);
 }
 
 void	draw_slider(t_map *map)
@@ -61,6 +65,9 @@ void	draw_slider(t_map *map)
 
 void	draw_hlider(t_map *map)
 {
+	char *str;
+
+	str = ft_itoa(map->whclick);
 	if (map->inter_tex[6]->active)
 	{
 		draw_img(map, &(t_info){70, 180, 25, 25}, map->inter_tex[11]);
@@ -69,9 +76,10 @@ void	draw_hlider(t_map *map)
 		draw_line(map, &(t_info){95, 193, 100, 0}, (t_color){255, 255, 255});
 		draw_line(map, &(t_info){95, 194, 100, 0}, (t_color){255, 255, 255});
 		fonts_classic(map, "wall height", &(t_info){102, 172, 0, 0}, WHITEFONT);
-		fonts_classic(map, ft_itoa(map->whclick), &(t_info){130, 202, 0, 0},
+		fonts_classic(map, str, &(t_info){130, 202, 0, 0},
 			WHITEFONT);
 	}
+	free(str);
 }
 
 void	draw_line(t_map *map, t_info *info, t_color color)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   font.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:05 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 17:21:49 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/09 17:56:00 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,26 @@ int		struppercase(char *str)
 	return (0);
 }
 
+SDL_Surface		*load_font(t_map *map, char *str, TTF_Font *font, SDL_Color color)
+{
+	SDL_Surface		*tmp;
+	SDL_Surface		*tmp1;
+
+	if (!(tmp = TTF_RenderText_Solid(font, str, color)))
+		error((char *)SDL_GetError());
+	tmp1 = SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_BGRA32, 0);
+	SDL_FreeSurface(tmp);
+	tmp = NULL;
+	return (tmp1);
+}
+
 void	fonts_classic(t_map *map, char *str, t_info *info, SDL_Color color)
 {
 	TTF_Font	*font;
 	int			strlen;
 
-	map->font = (t_image *)malloc(sizeof(t_image));
 	strlen = ft_strlen(str);
-	map->font->img = TTF_RenderText_Solid(map->fontclasic, str, color);
-	map->font->img = SDL_ConvertSurfaceFormat(map->font->img,
-		SDL_PIXELFORMAT_BGRA32, 0);
+	map->font->img = load_font(map, str, map->fontclasic, color);
 	init_texture(map->font->img, &(map->font->s),
 		&(map->font->pixb), &(map->font->strb));
 	if (struppercase(str))
@@ -49,11 +59,8 @@ void	fonts_doom(t_map *map, char *str, t_info *info, SDL_Color color)
 	TTF_Font	*font;
 	int			strlen;
 
-	map->font = (t_image *)malloc(sizeof(t_image));
 	strlen = ft_strlen(str);
-	map->font->img = TTF_RenderText_Solid(map->fontdoom, str, color);
-	map->font->img = SDL_ConvertSurfaceFormat(map->font->img,
-		SDL_PIXELFORMAT_BGRA32, 0);
+	map->font->img = load_font(map, str, map->fontdoom, color);
 	init_texture(map->font->img, &(map->font->s), &(map->font->pixb),
 		&(map->font->strb));
 	if (struppercase(str))

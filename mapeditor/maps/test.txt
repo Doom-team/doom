@@ -1,57 +1,15 @@
-walls: 4 floor: 1 ceiling: 0
-w 500 249 600 249 textures/wall/wall0.png 5 0 0
-w 500 249 500 349 textures/wall/wall0.png 5 0 0
-w 600 249 600 349 textures/wall/wall0.png 5 0 0
-w 500 349 600 349 textures/wall/wall0.png 5 0 0
+walls: 12 floor: 1 ceiling: 0
+w 599 432 699 432 textures/wall/wall0.png 5 0 0
+w 599 432 599 532 textures/wall/wall0.png 5 0 0
+w 699 432 699 532 textures/wall/wall0.png 5 0 0
+w 599 532 699 532 textures/wall/wall0.png 5 0 0
+w 680 318 780 318 textures/wall/wall0.png 5 0 0
+w 680 318 680 418 textures/wall/wall0.png 5 0 0
+w 780 318 780 418 textures/wall/wall0.png 5 0 0
+w 680 418 780 418 textures/wall/wall0.png 5 0 0
+w 759 374 744 353 textures/wall/wall0.png 1 1 1
+w 759 374 745 389 textures/wall/wall0.png 1 1 1
+w 744 353 730 368 textures/wall/wall0.png 1 1 1
+w 745 389 730 368 textures/wall/wall0.png 1 1 1
 f textures/floor/floor1.png
 s textures/floor/sky1.png
-textures/floor/floor1.png
-s textures/floor/sky1.png
- 770 444 textures/wall/wall0.png 5 0 0
-w 862 194 962 194 textures/wall/wall0.png 5 0 0
-w 862 194 862 294 textures/wall/wall0.png 5 0 0
-w 962 194 962 294 textures/wall/wall0.png 5 0 0
-w 862 294 962 294 textures/wall/wall0.png 5 0 0
-f textures/floor/floor1.png
-s textures/floor/sky1.png
-5 0 0
-f textures/floor/floor1.png
-s textures/floor/sky1.png
-textures/wall/wall0.png 1 1 2
-w 524 479 518 459 textures/wall/wall0.png 1 1 2
-w 545 458 539 438 textures/wall/wall0.png 1 1 2
-w 518 459 539 438 textures/wall/wall0.png 1 1 2
-w 518 459 539 438 textures/wall/wall0.png 2 1 3
-w 518 459 512 440 textures/wall/wall0.png 2 1 3
-w 539 438 533 419 textures/wall/wall0.png 2 1 3
-w 512 440 533 419 textures/wall/wall0.png 2 1 3
-f textures/floor/floor1.png
-s textures/floor/sky1.png
-p 505 378
-h 422 497
-h 485 614
-h 593 532
-h 664 506
-a 550 422
-a 594 437
-a 521 323
-g 1 487 508
-g 1 477 558
-b 709 490
-b 1 465 395
-g 2 489 371
-g 2 447 441
-b 2 513 468
-b 2 478 517
-g 3 511 341
-g 3 591 414
-b 3 421 460
-b 3 426 582
-e 1 492 549
-e 2 549 500
-e 3 597 500
-e 4 441 422
-e 5 498 400
-k 1 721 350
-l 640 486
-l 542 578

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 20:41:46 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/09 18:18:43 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ void	init_all2(t_map *map)
 	map->tmpfloor_x = -1;
 	map->tmpfloor_y = -1;
 	map->stirsgroup = 1;
-	map->tem = malloc(sizeof(t_tempnod));
-	map->floorstr = malloc(sizeof(char *) * 10);
-	map->ceilingstr = malloc(sizeof(char *) * 10);
-	map->objects = malloc(sizeof(char *) * 10);
+	if (!(map->tem = malloc(sizeof(t_tempnod))))
+		error("ERM!");
 	map->floorstr = NULL;
 	map->ceilingstr = NULL;
 	map->objects = NULL;
@@ -50,7 +48,7 @@ int		init_all(t_map *map)
 	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	if (!(map->win = SDL_CreateWindow("Mapeditor", 200, 200,
 		WIDTH, HEIGHT, SDL_WINDOW_SHOWN)))
-		return (0);
+		error("Window Error!");
 	init_interface(map);
 	map->click = 0;
 	map->nod = NULL;
@@ -67,6 +65,8 @@ int		init_all(t_map *map)
 	map->index_wall = -1;
 	map->floor_x = -1;
 	map->floor_y = -1;
+	if (!(map->font = (t_image *)malloc(sizeof(t_image))))
+		error("ERM!");
 	init_all2(map);
 	return (1);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_error.c                                       :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 15:58:57 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/08 19:16:47 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/09 15:41:31 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,33 @@ void	free_panel(t_map *map)
 	i = -1;
 	while (++i < 11)
 		free(map->door_tex[i]);
-	error_free_s(map, "hello");
-	printf("%p\n", map->inter_tex[1]);
+}
+
+void	free_nodes(t_map *map)
+{
+	t_nod	*n;
+	t_nod	*tmp;
+
+	n = map->nod;
+	if (!n)
+		return ;
+	while (n)
+	{
+		tmp = n->nxt;
+		if (n->texture->texture_name)
+			free(n->texture->texture_name);
+		if (n->texture->type_name)
+			free(n->texture->type_name);
+		free(n);
+		n = tmp;
+	}
+	n = NULL;
+}
+
+void	free_map(t_map *map)
+{
+	free_panel(map);
+	free_nodes(map);
 }
 
 // void	free_interfce(t_map *map)
