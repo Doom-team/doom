@@ -113,7 +113,8 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 				pos_y = len * offsety;
 				fractpart_2 = modf(pos_y / tex_2, &intpart_2);
 				color = get_pixel(wolf->p->walls[dist->number_wall[j]].texture1, wolf->p->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->p->walls[dist->number_wall[j]].texture1->h); //где раунд коофицен колличества стен
-				set_pixel(wolf->surface, point.x, temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)), color);
+				if (color != 0)
+					set_pixel(wolf->surface, point.x, temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)), color);
 				// wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
 				if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
 				{
@@ -178,7 +179,8 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 				pos_y = len * offsety;
 				fractpart_2 = modf(pos_y / tex_2, &intpart_2);
 				color = get_pixel(wolf->p->walls[dist->number_wall[j]].texture1, wolf->p->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->p->walls[dist->number_wall[j]].texture1->h); //где раунд коофицен колличества стен
-				set_pixel(wolf->surface, point.x, temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)), color);
+				if (color != 0)
+					set_pixel(wolf->surface, point.x, temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)), color);
 				// wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
 			}
 		}
@@ -264,8 +266,11 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 				pos_y = len * offsety;
 				fractpart_2 = modf(pos_y / tex_2, &intpart_2);
 				color = get_pixel(wolf->p->walls[dist->number_wall[j]].texture1, wolf->p->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->p->walls[dist->number_wall[j]].texture1->h); //где раунд коофицен колличества стен
-				set_pixel(wolf->surface, point.x, temp_y - wolf->player->dir_y, color);
-				wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
+				if (color != 0)
+				{
+					set_pixel(wolf->surface, point.x, temp_y - wolf->player->dir_y, color);
+					wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
+				}
 			}
 		}
 	}
@@ -322,7 +327,8 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 			pos_y = len * offsety;
 			fractpart_2 = modf(pos_y / tex_2, &intpart_2);
 			color = get_pixel(wolf->p->walls[dist->number_wall[j]].texture1, wolf->p->walls[dist->number_wall[j]].texture1->w * fractpart, fractpart_2 * wolf->p->walls[dist->number_wall[j]].texture1->h); //где раунд коофицен колличества стен
-			set_pixel(wolf->surface, point.x, temp_y - wolf->player->dir_y, color);
+			if (color != 0)
+				set_pixel(wolf->surface, point.x, temp_y - wolf->player->dir_y, color);
 			// if (temp_y < 0)
 			// 	printf ("%lld---%d\n", temp_y, size);
 		}

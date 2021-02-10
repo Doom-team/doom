@@ -29,7 +29,7 @@ w 845 605 920 676 textures/wall/wall0.png 5 1 6
 w 920 676 1012 546 textures/wall/wall0.png 5 1 6
 w 1012 546 916 500 textures/wall/wall0.png 5 1 6
 w 916 500 845 605 textures/wall/wall0.png 5 1 6
-w 850 450 0 0 textures/demon.png 5 3 0
+w 850 450 0 0 ../textures/enemy/e1.png 5 3 0
 p 850 600
 x 850 600
 f textures/floor/floor1.png
