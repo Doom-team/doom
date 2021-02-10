@@ -173,8 +173,7 @@ void			wolf_loop(t_wolf *wolf)
 		all_get_distance(wolf);
 		// printf("%f\n", wolf->player->distance[W/2]->dist[0]);
 		pseudo_3d(wolf, wolf->player, wolf->surface);
-		// render_coin(wolf, wolf->surface);
-		// render_monster(wolf, wolf->surface);
+		render_monster(wolf, wolf->surface);
 		render_score_coin(wolf);
 		render_fps(wolf, wolf->bon);
 		render_aim(wolf);

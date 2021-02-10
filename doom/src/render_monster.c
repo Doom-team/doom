@@ -1,50 +1,50 @@
 #include "../includes/wolf3d.h"
 
-static int		check_free_position(t_wolf *wolf, int i, int x, int y)
-{
-	int j;
+// static int		check_free_position(t_wolf *wolf, int i, int x, int y)
+// {
+// 	int j;
 
-	j = 0;
-	while (j < wolf->monster->count_monster)
-	{
-		if (i != j)
-		{
-			if (wolf->monster->monster_pos[j].x == x &&
-				wolf->monster->monster_pos[j].y == y)
-			{
-				return (0);
-			}
-		}
-		j++;
-	}
-	return (1);
-}
+// 	j = 0;
+// 	while (j < wolf->monster->count_monster)
+// 	{
+// 		if (i != j)
+// 		{
+// 			if (wolf->monster->monster_pos[j].x == x &&
+// 				wolf->monster->monster_pos[j].y == y)
+// 			{
+// 				return (0);
+// 			}
+// 		}
+// 		j++;
+// 	}
+// 	return (1);
+// }
 
 static void		score_monster(t_wolf *wolf, int i)
 {
-	float	x;
-	float	y;
-	int		flag;
+	// float	x;
+	// float	y;
+	// int		flag;
 
-	flag = 0;
-	if (wolf->monster->data[i].dist < 20 || wolf->monster->penetration_flag == 1)
+	// flag = 0;
+	if (wolf->monster->data[i].dist < 0.2 || wolf->monster->penetration_flag == 1)
 	{
 		Mix_Volume(0, 32);
 		Mix_PlayChannel(2, wolf->bon->music_coin, 0);
 		Mix_VolumeMusic(5);
 		wolf->monster->score_coin++;
 		wolf->monster->penetration_flag = 0;
-		while (flag != 1)
-		{
-			y = rand() % wolf->map->h;
-			x = rand() % wolf->map->w;
-			if (wolf->map->map[(int)(y * wolf->map->w + x)] == TEX_FLOOR && check_free_position(wolf, i, (x + 0.5), (y + 0.5)))
-			{
-				wolf->monster->monster_pos[i].x = (x + 0.5);
-				wolf->monster->monster_pos[i].y = (y + 0.5);
-				flag = 1;
-			}
-		}
+		// while (flag != 1)
+		// {
+		// 	y = rand() % wolf->map->h;
+		// 	x = rand() % wolf->map->w;
+		// 	if (wolf->map->map[(int)(y * wolf->map->w + x)] == TEX_FLOOR && check_free_position(wolf, i, (x + 0.5), (y + 0.5)))
+		// 	{
+		// 		wolf->monster->monster_pos[i].x = (x + 0.5);
+		// 		wolf->monster->monster_pos[i].y = (y + 0.5);
+		// 		flag = 1;
+		// 	}
+		// }
 	}
 }
 
@@ -54,49 +54,49 @@ static void		search_angle_monster(t_wolf *wolf, int i)
 		+ powf((wolf->monster->monster_pos[i].y - wolf->player->y), 2));
 	if (wolf->monster->monster_pos[i].x - wolf->player->x > 0
 		&& wolf->monster->monster_pos[i].y - wolf->player->y < 0)
-		wolf->monster->data[i].angle = asin((wolf->player->y - wolf->monster->monster_pos[i].y)
+		wolf->monster->data[i].angle = asinf((wolf->player->y - wolf->monster->monster_pos[i].y)
 			/ wolf->monster->data[i].dist);
 	else if (wolf->monster->monster_pos[i].x - wolf->player->x < 0
 		&& wolf->monster->monster_pos[i].y - wolf->player->y < 0)
-		wolf->monster->data[i].angle = asin((wolf->monster->monster_pos[i].y - wolf->player->y)
+		wolf->monster->data[i].angle = asinf((wolf->monster->monster_pos[i].y - wolf->player->y)
 			/ wolf->monster->data[i].dist) + RAD_180;
 	else if (wolf->monster->monster_pos[i].x - wolf->player->x < 0
 		&& wolf->monster->monster_pos[i].y - wolf->player->y > 0)
-		wolf->monster->data[i].angle = asin((wolf->monster->monster_pos[i].y - wolf->player->y)
+		wolf->monster->data[i].angle = asinf((wolf->monster->monster_pos[i].y - wolf->player->y)
 			/ wolf->monster->data[i].dist) + RAD_180;
 	else if (wolf->monster->monster_pos[i].x - wolf->player->x > 0
 		&& wolf->monster->monster_pos[i].y - wolf->player->y > 0)
-		wolf->monster->data[i].angle = asin((wolf->player->y - wolf->monster->monster_pos[i].y)
+		wolf->monster->data[i].angle = asinf((wolf->player->y - wolf->monster->monster_pos[i].y)
 			/ wolf->monster->data[i].dist) + RAD_360;
 }
 
 static void		wall_check_monster(t_wolf *wolf, int i)
 {
-	// wolf->monster->data[i].i = (int)((W / wolf->player->fov) * ( wolf->monster->data[i].temp_3)
-	// 	- ((W / 32) * (wolf->player->dist_to_canvas /  wolf->monster->data[i].dist)) / 2);
-	// while ( wolf->monster->data[i].i < (W / wolf->player->fov) * ( wolf->monster->data[i].temp_3)
-	// 	+ ((W / 32) * (wolf->player->dist_to_canvas /  wolf->monster->data[i].dist)) / 2)
-	// {
-	// 	if ( wolf->monster->data[i].i > 0 &&  wolf->monster->data[i].i <= W)
-	// 	{
-	// 		if ( wolf->monster->data[i].dist < wolf->player->distance[W -  wolf->monster->data[i].i]->dist
-	// 			/ cosf(wolf->player->fov / 2))
-	// 		{
-	// 			if (wolf->monster->data[i].flag_1 == 0)
-	// 			{
-	// 				wolf->monster->data[i].flag_i = wolf->monster->data[i].i;
-	// 				wolf->monster->data[i].flag_1 = wolf->monster->data[i].count;
-	// 			}
-	// 		}
-	// 		else if (wolf->monster->data[i].flag_2 == 0 && wolf->monster->data[i].flag_1 != 0)
-	// 			wolf->monster->data[i].flag_2 = wolf->monster->data[i].count;
-	// 	}
-	// 	wolf->monster->data[i].i++;
-	// 	wolf->monster->data[i].count++;
-	// }
-	// wolf->monster->data[i].count--;
-	// if (wolf->monster->data[i].flag_1 != 0 && (wolf->monster->data[i].flag_2 == 0 || wolf->monster->data[i].flag_2 == 1))
-	// 	wolf->monster->data[i].flag_2 = wolf->monster->data[i].count;
+	wolf->monster->data[i].i = (int)((W / wolf->player->fov) * ( wolf->monster->data[i].temp_3)
+		- ((W / 700.0f) * (wolf->player->dist_to_canvas /  wolf->monster->data[i].dist)) / 2);
+	while ( wolf->monster->data[i].i < (W / wolf->player->fov) * ( wolf->monster->data[i].temp_3)
+		+ ((W / 700.0f) * (wolf->player->dist_to_canvas /  wolf->monster->data[i].dist)) / 2)
+	{
+		if ( wolf->monster->data[i].i > 0 &&  wolf->monster->data[i].i <= W)
+		{
+			if ( wolf->monster->data[i].dist < wolf->player->distance[W -  wolf->monster->data[i].i]->dist[0] // тут нужен перебор по дата,дист
+				/ cosf(wolf->player->fov / 2))
+			{
+				if (wolf->monster->data[i].flag_1 == 0)
+				{
+					wolf->monster->data[i].flag_i = wolf->monster->data[i].i;
+					wolf->monster->data[i].flag_1 = wolf->monster->data[i].count;
+				}
+			}
+			else if (wolf->monster->data[i].flag_2 == 0 && wolf->monster->data[i].flag_1 != 0)
+				wolf->monster->data[i].flag_2 = wolf->monster->data[i].count;
+		}
+		wolf->monster->data[i].i++;
+		wolf->monster->data[i].count++;
+	}
+	wolf->monster->data[i].count--;
+	if (wolf->monster->data[i].flag_1 != 0 && (wolf->monster->data[i].flag_2 == 0 || wolf->monster->data[i].flag_2 == 1))
+		wolf->monster->data[i].flag_2 = wolf->monster->data[i].count;
 }
 
 static void		through_zero_monster(t_wolf *wolf, int i)
@@ -170,16 +170,17 @@ void			render_monster(t_wolf *wolf, SDL_Surface *surface)
 		through_zero_monster(wolf, wolf->monster->sort_arr[i]);
 		wall_check_monster(wolf, wolf->monster->sort_arr[i]);
 		wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.w = (int)((wolf->monster->data[wolf->monster->sort_arr[i]].flag_2 - wolf->monster->data[wolf->monster->sort_arr[i]].flag_1)
-			* (wolf->monster->image_monster[wolf->monster->sort_arr[i]]->w) / ((W / 32)
+			* (wolf->monster->image_monster[wolf->monster->sort_arr[i]]->w) / ((W / 700.0f)
 			* (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)));
 		wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.h = (wolf->monster->image_monster[wolf->monster->sort_arr[i]]->w);
 		wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.x = (int)(wolf->monster->data[wolf->monster->sort_arr[i]].flag_1 * (wolf->monster->image_monster[wolf->monster->sort_arr[i]]->w)
-			/ ((W / 32) * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)));
+			/ ((W / 700.0f) * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)));
 		wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img.y = 0;
-		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.w = (wolf->monster->data[wolf->monster->sort_arr[i]].flag_2 - wolf->monster->data[wolf->monster->sort_arr[i]].flag_1) * wolf->monster->monster_upscale[wolf->monster->sort_arr[i]];
-		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.h = (W / 32) * wolf->monster->monster_upscale[wolf->monster->sort_arr[i]] * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist);
+		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.w = (wolf->monster->data[wolf->monster->sort_arr[i]].flag_2 - wolf->monster->data[wolf->monster->sort_arr[i]].flag_1);
+		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.h = (W / 700.0f) * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist);
 		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.x = wolf->monster->data[wolf->monster->sort_arr[i]].flag_i;
-		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.y = (H / 2) - ((W / 32) * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)) / 2 - wolf->player->dir_y; //сюда динамическое изменение высоты постановки прикрутить
+		int fly_cor = (wolf->player->fly / wolf->monster->data[wolf->monster->sort_arr[i]].dist) * (28.9357956f * (W * 1.0 / H) - 1.1785647f) / 64.0;
+		wolf->monster->data[wolf->monster->sort_arr[i]].img_location.y = (H / 2) - ((W / 700.0f) * (wolf->player->dist_to_canvas / wolf->monster->data[wolf->monster->sort_arr[i]].dist)) / 2 - (wolf->player->dir_y + fly_cor); //сюда динамическое изменение высоты постановки прикрутить
 		SDL_BlitScaled(wolf->monster->image_monster[wolf->monster->sort_arr[i]], &(wolf->monster->data[wolf->monster->sort_arr[i]].cut_vertical_img),
 			surface, &(wolf->monster->data[wolf->monster->sort_arr[i]].img_location));
 		penetration_check(wolf, wolf->monster->data[wolf->monster->sort_arr[i]].img_location);

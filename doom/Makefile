@@ -106,7 +106,7 @@ re: fclean all
 
 go:
 	$(MAKE) -j
-	./wolf3d maps/map.txt
+	./wolf3d
 
 rg: fclean go
 
