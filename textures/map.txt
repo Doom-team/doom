@@ -1,0 +1,7 @@
+w 4
+w 645 241 797 253 ../../textures/wall/wall0.png 5 0 0
+w 797 253 792 348../../textures/doors/defdoor.png 5 2 1
+w 792 348 660 349 ../../textures/wall/wall0.png 5 0 0
+w 660 349 645 241 ../../textures/wall/wall0.png 5 0 0
+f ../../textures/floor/floor1.png
+s ../../textures/floor/sky1.png

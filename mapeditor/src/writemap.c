@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 22:12:21 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 00:00:52 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,12 +172,15 @@ char	*write_wall_text(t_nod *n)
 
 	maxlen = 0;
 	if (n->type == 2)
-		return (n->texture->texture_name[1]);
+	{
+		printf("vishel\n");
+		return (NULL);
+	}
 	if (n->texture->texture_name[0] != NULL)
 		maxlen = ft_strlen(n->texture->texture_name[0]);
 	else
 		maxlen = ft_strlen("../../textures/wall/wall0.png");
-	buf = malloc(sizeof(char *) * (maxlen + 3));
+	buf = malloc(sizeof(char *) + 3);
 	buf = " ";
 	if (n->texture->texture_name[0] != NULL)
 	{
@@ -217,14 +220,19 @@ void	write_walls(t_map *map, int fd)
 	n = map->nod;
 	while (n)
 	{
-		if (n->type == 0)
+		if (n->type == 0 || n->type == 2)
 		{
 			maxlen = ft_strlen(n->texture->type_name) + ft_strlen(write_wall_xy(n))
 				+ ft_strlen(ft_itoa(n->wallh)) + ft_strlen(write_wall_text(n)) + 6;
+			if (n->type == 2)
+				maxlen += ft_strlen(n->texture->texture_name[0]);
 			buffer = malloc(sizeof(char *) * (maxlen));
 			buffer = n->texture->type_name;
 			buffer = add_text(buffer, write_wall_xy(n), 3);
-			buffer = add_text(buffer, write_wall_text(n), 2);
+			if (n->type == 2)
+				buffer = add_text(buffer, n->texture->texture_name[0], 1);
+			else
+				buffer = add_text(buffer, write_wall_text(n), 2);
 			buffer = add_text(buffer, " ", 1);
 			buffer = add_text(buffer, ft_itoa(n->wallh), 2);
 			buffer = add_text(buffer, " ", 1);
@@ -234,7 +242,7 @@ void	write_walls(t_map *map, int fd)
 			buffer = add_text(buffer, "\n", 1);
 			if (write(fd, buffer, maxlen) != maxlen)
 				error("Write Error\n");
-			free(buffer);
+			//free(buffer);
 		}
 		n = n->nxt;
 	}
@@ -246,7 +254,7 @@ int		writedown_map(t_map *map)
 {
 	int fd;
 
-	if ((fd = open("./maps/test.txt", O_WRONLY)) == -1)
+	if ((fd = open("../textures/map.txt", O_WRONLY |  O_CREAT| O_TRUNC, S_IWRITE | S_IREAD)) == -1)
 		error("Cannot open file.\n");
 	ft_strlen(NULL);
 	count_write(map, fd);
