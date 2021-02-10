@@ -168,19 +168,17 @@ typedef struct		s_bonus
 {
 	int				music_flag;
 	Mix_Music		*music;
-	Mix_Chunk		*music_guns;
-	Mix_Chunk		*music_coin;
+	int				set_gun; // 1 - пистолет 2 - ак 3 шотган
 	int				fps;
 	Uint32			start_time;
 	int				fps_count;
 	int				guns_fire;
-	SDL_Surface		*image_1;
-	SDL_Surface		*image_2;
-	SDL_Surface		*image_3;
-	SDL_Surface		*image_4;
-	SDL_Surface		*image_5;
-	// SDL_Surface	*image_6; //text.jpg
-	// SDL_Surface	*image_coin;
+	SDL_Surface		*pistol_image[5];
+	SDL_Surface		*ak_image[4];
+	SDL_Surface		*shotgun_image[7];
+	Mix_Chunk		*music_pistol;
+	Mix_Chunk		*music_ak;
+	Mix_Chunk		*music_shotgan;
 	SDL_Surface		*image_aim;
 	SDL_Rect		img_location;
 	int				flag_guns;

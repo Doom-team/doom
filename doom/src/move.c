@@ -75,7 +75,7 @@ void	falling(t_wolf *wolf)
 			// handle_phisics(wolf, wolf->player);
 			all_get_distance(wolf);
 			pseudo_3d(wolf, wolf->player, wolf->surface);
-			render_monster(wolf, wolf->surface);
+			// render_monster(wolf, wolf->surface);
 			render_score_coin(wolf);
 			render_fps(wolf, wolf->bon);
 			render_aim(wolf);
@@ -94,7 +94,7 @@ void	falling(t_wolf *wolf)
 			// handle_phisics(wolf, wolf->player);
 			all_get_distance(wolf);
 			pseudo_3d(wolf, wolf->player, wolf->surface);
-			render_monster(wolf, wolf->surface);
+			// render_monster(wolf, wolf->surface);
 			render_score_coin(wolf);
 			render_fps(wolf, wolf->bon);
 			render_aim(wolf);
@@ -121,7 +121,7 @@ void	jump(t_wolf *wolf)
 		handle_phisics(wolf, wolf->player);
 		all_get_distance(wolf);
 		pseudo_3d(wolf, wolf->player, wolf->surface);
-		render_monster(wolf, wolf->surface);
+		// render_monster(wolf, wolf->surface);
 		render_score_coin(wolf);
 		render_fps(wolf, wolf->bon);
 		render_aim(wolf);
