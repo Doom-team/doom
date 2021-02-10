@@ -93,8 +93,6 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		temp_y--;
 		while (++temp_y < size)
 		{
-			if (wolf->p->walls[dist->number_wall[j]].active != 1)
-				break;
 			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) > H)
 				break;
 			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < -H - 2)
@@ -164,6 +162,8 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		temp_y--;
 		while (++temp_y < size)
 		{
+			if (wolf->p->walls[dist->number_wall[j]].active != 1)
+				break;
 			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) > H)
 				break;
 			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < -H - 2)
