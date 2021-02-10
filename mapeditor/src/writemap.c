@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 14:47:19 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 22:12:21 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	write_ceiling(t_map *map, int fd)
 	}
 	else
 	{
-		maxlen = ft_strlen("s textures/floor/sky1.png\n");
-		if (write(fd, "s textures/floor/sky1.png\n", maxlen) != maxlen)
+		maxlen = ft_strlen("s ../../textures/floor/sky1.png\n");
+		if (write(fd, "s ../../textures/floor/sky1.png\n", maxlen) != maxlen)
 			printf("error\n");
 	}
 }
@@ -101,8 +101,8 @@ void	write_floor(t_map *map, int fd)
 	}
 	else
 	{
-		maxlen = ft_strlen("f textures/floor/floor1.png\n");
-		if (write(fd, "f textures/floor/floor1.png\n", maxlen) != maxlen)
+		maxlen = ft_strlen("f ../../textures/floor/floor1.png\n");
+		if (write(fd, "f ../../textures/floor/floor1.png\n", maxlen) != maxlen)
 			printf("error\n");
 	}
 }
@@ -138,13 +138,12 @@ void	count_write(t_map *map, int fd)
 			num_w++;
 		n = n->nxt;
 	}
-	maxlen = ft_strlen("walls: ") + ft_strlen(ft_itoa(num_w)) +
-		ft_strlen(count_floor(map, fd)) + 2; // ft_strlen(count_floor(map, fd))
+	maxlen = ft_strlen("w ") + ft_strlen(ft_itoa(num_w)) + 1; // ft_strlen(count_floor(map, fd))
 	buffer = malloc(sizeof(char *) * (maxlen));
-	buffer = "walls: ";
+	buffer = "w ";
 	buffer = add_text(buffer, ft_itoa(num_w), 3);
-	buffer = add_text(buffer, " ", 1);
-	buffer = add_text(buffer, count_floor(map, fd), 2);
+	// buffer = add_text(buffer, " ", 1);
+	//buffer = add_text(buffer, count_floor(map, fd), 2);
 	buffer = add_text(buffer, "\n", 1);
 	// printf("return: %s\n",count_floor(map, fd));
 	if (write(fd, buffer, maxlen) != maxlen)
@@ -177,16 +176,16 @@ char	*write_wall_text(t_nod *n)
 	if (n->texture->texture_name[0] != NULL)
 		maxlen = ft_strlen(n->texture->texture_name[0]);
 	else
-		maxlen = ft_strlen("textures/wall/wall0.png");
+		maxlen = ft_strlen("../../textures/wall/wall0.png");
 	buf = malloc(sizeof(char *) * (maxlen + 3));
 	buf = " ";
 	if (n->texture->texture_name[0] != NULL)
 	{
-		buf = add_text(buf, "textures/wall/", 0);
+		buf = add_text(buf, "../../textures/wall/", 0);
 		buf = add_text(buf, n->texture->texture_name[0], 1);
 	}
 	else
-		buf = add_text(buf, "textures/wall/wall0.png", 0);
+		buf = add_text(buf, "../../textures/wall/wall0.png", 0);
 	return (buf);
 }
 
@@ -218,7 +217,7 @@ void	write_walls(t_map *map, int fd)
 	n = map->nod;
 	while (n)
 	{
-		if (n->type != 1)
+		if (n->type == 0)
 		{
 			maxlen = ft_strlen(n->texture->type_name) + ft_strlen(write_wall_xy(n))
 				+ ft_strlen(ft_itoa(n->wallh)) + ft_strlen(write_wall_text(n)) + 6;
@@ -239,7 +238,6 @@ void	write_walls(t_map *map, int fd)
 		}
 		n = n->nxt;
 	}
-	// printf("FINAL %s\n", map->stairsoutput)
 	if (write(fd, map->stairsoutput, ft_strlen(map->stairsoutput)) != ft_strlen(map->stairsoutput))
 		printf("error\n");
 }

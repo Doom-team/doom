@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:03 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 20:21:09 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 21:25:47 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ char	*mapstrcpy(char *dst, const char *str)
 
 void	strfloor(t_map *map)
 {
-	map->floorstr = add_text("f", " textures/floor/floor", 0);
+	map->floorstr = add_text("f", " ../../textures/floor/floor", 0);
 	map->floorstr = add_text(map->floorstr, ft_itoa(map->index_tex), 2);
 	map->floorstr = add_text(map->floorstr, ".png", 1);
 	map->floorstr = add_text(map->floorstr, "\n", 1);
@@ -135,7 +135,7 @@ void	strfloor(t_map *map)
 
 void	strceiling(t_map *map)
 {
-	map->ceilingstr = add_text("c", " textures/floor/floor", 0);
+	map->ceilingstr = add_text("c", " ../../textures/floor/floor", 0);
 	map->ceilingstr = add_text(map->ceilingstr, ft_itoa(map->index_tex), 2);
 	map->ceilingstr = add_text(map->ceilingstr, ".png", 1);
 	map->ceilingstr = add_text(map->ceilingstr, "\n", 1);

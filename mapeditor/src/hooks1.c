@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 16:02:28 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 20:43:53 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,54 +60,83 @@ void	cordinator(t_map *map, char *c, int x, int y)
 	}
 }
 
+void	save_objects(t_map *map, t_info *inf, char *textstr)
+{
+	if (!map->stairstr)
+			map->stairstr = add_text("w ", ft_itoa(inf->x), 3);
+		else
+		{
+			map->stairstr = add_text(map->stairstr, "w ", 1);
+			map->stairstr = add_text(map->stairstr, ft_itoa(inf->x), 2);
+		}
+	map->stairstr = add_text(map->stairstr, " ", 1);
+	map->stairstr = add_text(map->stairstr, ft_itoa(inf->y), 2);
+	map->stairstr = add_text(map->stairstr, " ", 1);
+	map->stairstr = add_text(map->stairstr, "0", 1);
+	map->stairstr = add_text(map->stairstr, " ", 1);
+	map->stairstr = add_text(map->stairstr, "0", 1);
+	map->stairstr = add_text(map->stairstr, " ", 1);
+	map->stairstr = add_text(map->stairstr, textstr, 1);
+	map->stairstr = add_text(map->stairstr, " 5", 1);
+	map->stairstr = add_text(map->stairstr, " ", 1);
+	map->stairstr = add_text(map->stairstr, ft_itoa(inf->w), 1);
+	map->stairstr = add_text(map->stairstr, " ", 1);
+	map->stairstr = add_text(map->stairstr, ft_itoa(inf->h), 2);
+	map->stairstr = add_text(map->stairstr, "\n", 1);
+	map->stairsoutput = (!map->stairsoutput) ? ft_strdup(map->stairstr) :
+	add_text(map->stairsoutput, map->stairstr, 1);
+	free(map->stairstr);
+	map->stairstr = 0;
+}
+
 void	save_obj_tmp1(t_map *map, int x, int y)
 {
 	if (map->player_tex[0]->active == 1)
 		cordinator(map, "p ", x, y);
 	if (map->player_tex[1]->active == 1)
-		cordinator(map, "h ", x, y);
+		save_objects(map, &(t_info){x, y, 4, 0}, "../../textures/pickup/health.png");
 	if (map->player_tex[2]->active == 1)
-		cordinator(map, "a ", x, y);
+		save_objects(map, &(t_info){x, y, 5, 0}, "../../textures/pickup/armor.png");
 	if (map->gun_tex[0]->active == 1)
-		cordinator(map, "g 1 ", x, y);
+		save_objects(map, &(t_info){x, y, 6, 1}, "../../textures/guns/pistol/img.png");
 	if (map->gun_tex[1]->active == 1)
-		cordinator(map, "b 1 ", x, y);
+		save_objects(map, &(t_info){x, y, 6, 2}, "../../textures/guns/shotgun/img.png");
 	if (map->gun_tex[2]->active == 1)
-		cordinator(map, "g 2 ", x, y);
+		save_objects(map, &(t_info){x, y, 6, 3}, "../../textures/guns/ak/img.png");
 	if (map->gun_tex[3]->active == 1)
-		cordinator(map, "b 2 ", x, y);
+		save_objects(map, &(t_info){x, y, 7, 1},"../../textures/guns/pistol/pistol_b.png");
 	if (map->gun_tex[4]->active == 1)
-		cordinator(map, "g 3 ", x, y);
+		save_objects(map, &(t_info){x, y, 7, 2}, "../../textures/guns/pistol/shotgun_b.png");
 	if (map->gun_tex[5]->active == 1)
-		cordinator(map, "b 3 ", x, y);
+		save_objects(map, &(t_info){x, y, 7, 3}, "../../textures/guns/pistol/ak_b.png");
 	if (map->enemy_tex[0]->active == 1)
-		cordinator(map, "e 1 ", x, y);
+		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/guns/pistol/e1.png");
 	if (map->enemy_tex[1]->active == 1)
-		cordinator(map, "e 2 ", x, y);
+		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/guns/pistol/e2.png");
 	if (map->enemy_tex[2]->active == 1)
-		cordinator(map, "e 3 ", x, y);
+		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/guns/pistol/e3.png");
 }
 void	save_obj_tmp2(t_map *map, int x, int y)
 {
 	if (map->enemy_tex[3]->active == 1)
-		cordinator(map, "e 4 ", x, y);
+		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/guns/pistol/e4.png");
 	if (map->enemy_tex[4]->active == 1)
-		cordinator(map, "e 5 ", x, y);
-	if (map->door_tex[8]->active == 1)
-		cordinator(map, "l ", x, y);
+		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/guns/pistol/e5.png");
+	// if (map->door_tex[8]->active == 1)
+	// 	cordinator(map, "l ", x, y);
 	if (map->door_tex[9]->active == 1)
-		cordinator(map, "b ", x, y);
-	if (map->door_tex[4]->active == 1 && range_click(&(t_info){x, y,
-		WIDTH / 2 - 165, 5}, 330, 150))
-	{
-		map->validflag = 8;
-		cordinator(map, "k 1 ", x, y);
-	}
+		cordinator(map, "x ", x, y);
+	// if (map->door_tex[4]->active == 1 && range_click(&(t_info){x, y,
+	// 	WIDTH / 2 - 165, 5}, 330, 150))
+	// {
+	// 	map->validflag = 8;
+	// 	save_objects(map, &(t_info){x, y, 3, 0} "../../textures/guns/pistol/e1.png");
+	// }
 	if (map->door_tex[5]->active == 1 && range_click(&(t_info){x, y,
 		WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 	{
 		map->validflag = 8;
-		cordinator(map, "k 2 ", x, y);
+		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/pikup/pistol/bluekey.png");
 	}
 }
 
@@ -122,13 +151,13 @@ void	save_objcord(t_map *map, int x, int y)
 			WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 		{
 			map->validflag = 8;
-			cordinator(map, "k 3 ", x, y);
+			save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/pikup/pistol/yellowkey.png");
 		}
 		if (map->door_tex[7]->active == 1 && range_click(&(t_info){x, y,
 			WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 		{
 			map->validflag = 8;
-			cordinator(map, "k 4 ", x, y);
+			save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/pikup/pistol/redkey.png");;
 		}
 	}
 }

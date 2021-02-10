@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:36:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 16:33:23 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 21:24:53 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,15 @@ void	stairs_text(t_map *map, t_info *inf)
 	map->stairstr = add_text(map->stairstr, " ", 1);
 	map->stairstr = add_text(map->stairstr, ft_itoa(inf->h), 2);
 	map->stairstr = add_text(map->stairstr, " ", 1);
-	map->stairstr = add_text(map->stairstr, "textures/wall/wall0.png ", 1);
+	map->stairstr = add_text(map->stairstr, "../../textures/wall/wall0.png ", 1);
 	map->stairstr = add_text(map->stairstr, ft_itoa(map->stclick), 2);
 	map->stairstr = add_text(map->stairstr, " ", 1);
 	map->stairstr = add_text(map->stairstr, "1", 1);
 	map->stairstr = add_text(map->stairstr, " ", 1);
 	map->stairstr = add_text(map->stairstr, ft_itoa(map->stirsgroup), 2);
 	map->stairstr = add_text(map->stairstr, "\n", 1);
-	// if (!map->stairsoutput)
-	// 		map->stairsoutput = ft_strdup(map->stairstr);
-	// else
-	// 	map->stairsoutput = add_text(map->stairsoutput, map->stairstr, 1);
-	map->stairsoutput = (!map->stairsoutput) ? ft_strdup(map->stairstr) : add_text(map->stairsoutput, map->stairstr, 1);
+	map->stairsoutput = (!map->stairsoutput) ? ft_strdup(map->stairstr) :
+		add_text(map->stairsoutput, map->stairstr, 0);
 	free(map->stairstr);
 	map->stairstr = 0;
 }
