@@ -25,10 +25,28 @@ static void		init_param(t_parser *parser)
 
 static void		parsing_4param(t_parser *parser, char **arr)
 {
-	parser->walls[--parser->buff.w].x1 = ft_atoi(arr[1]) / RESIZE;
-	parser->walls[parser->buff.w].y1 = ft_atoi(arr[2]) / RESIZE;
-	parser->walls[parser->buff.w].x2 = ft_atoi(arr[3]) / RESIZE;
-	parser->walls[parser->buff.w].y2 = ft_atoi(arr[4]) / RESIZE;
+	if (arr[1])
+	{
+		parser->walls[--parser->buff.w].x1 = ft_atoi(arr[1]) / RESIZE;
+		if (arr[2])
+		{
+			parser->walls[parser->buff.w].y1 = ft_atoi(arr[2]) / RESIZE;
+			if (arr[3])
+			{
+				parser->walls[parser->buff.w].x2 = ft_atoi(arr[3]) / RESIZE;
+				if (arr[4])
+					parser->walls[parser->buff.w].y2 = ft_atoi(arr[4]) / RESIZE;
+				else
+					error((t_wolf*)parser, ERR_FILE_INVALID);
+			}
+			else
+				error((t_wolf*)parser, ERR_FILE_INVALID);
+		}
+		else
+			error((t_wolf*)parser, ERR_FILE_INVALID);
+	}
+	else
+		error((t_wolf*)parser, ERR_FILE_INVALID);
 }
 
 static void		parsing_type(t_parser *parser, char **arr)
@@ -44,6 +62,8 @@ static void		parsing_type(t_parser *parser, char **arr)
 				parser->walls[parser->buff.w].y1;
 		}
 	}
+	else
+		error((t_wolf*)parser, ERR_FILE_INVALID);
 }
 
 void			parsing_walls(t_parser *parser, char **arr)
@@ -61,15 +81,16 @@ void			parsing_walls(t_parser *parser, char **arr)
 			SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_BGRA32, 0);
 		SDL_FreeSurface(tmp);
 	}
+	else
+		error((t_wolf*)parser, ERR_FILE_INVALID);
 	if (arr[6])
 		parser->walls[parser->buff.w].h = ft_atoi(arr[6]);
+	else
+		error((t_wolf*)parser, ERR_FILE_INVALID);
 	parsing_type(parser, arr);
 	if (arr[8])
-	{
 		parser->walls[parser->buff.w].squad_stage = ft_atoi(arr[8]);
-		parser->buff.w_check = true;
-	}
 	else
-		parser->buff.w_check = false;
+		error((t_wolf*)parser, ERR_FILE_INVALID);
 	init_param(parser);
 }

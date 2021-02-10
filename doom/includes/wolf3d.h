@@ -52,7 +52,6 @@ typedef struct		s_param2
 typedef struct		s_buff
 {
 	int				w;
-	bool			w_check;
 	bool			p;
 	bool			x;
 	bool			f;

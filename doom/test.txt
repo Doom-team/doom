@@ -22,7 +22,7 @@ w 863 514 877 528 textures/wall/wall0.png 4 1 4
 w 848 535 862 549 textures/wall/wall0.png 4 1 4
 w 877 528 862 549 textures/wall/wall0.png 4 1 4
 w 877 528 862 549 textures/wall/wall0.png 5 1 5
-w 877 528 891 542 textures/wall/wall0.png 5 1 5
+w 877 528 891 542 textures/wall/wall0.png 5 1 4
 w 862 549 876 563 textures/wall/wall0.png 5 1 5
 w 891 542 876 563 textures/wall/wall0.png 5 1 5
 w 845 605 920 676 textures/wall/wall0.png 5 1 6

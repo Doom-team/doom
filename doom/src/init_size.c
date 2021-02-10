@@ -33,7 +33,6 @@ void			init_size(t_parser *parser, char *l)
 		if (arr[i][0] == 'w')
 		{
 			parser->count_walls = ft_atoi(arr[i + 1]);
-			parser->buff.w_check = false;
 			if (!(parser->walls = (t_wall *)malloc(parser->count_walls
 				* sizeof(t_wall))))
 				error((t_wolf *)parser, ERR_MALLOC);
