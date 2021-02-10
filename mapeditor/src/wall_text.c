@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:39 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/04 20:48:25 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 23:55:54 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,34 +65,34 @@ void	save_texture(t_map *map, int index, int num)
 			//printf("shit: %d\n", some_texture_active(map));
 			if (some_texture_active(map) == 4)
 			{
-				printf("a 0: %d\n", map->door_tex[0]->active);
-				printf("a 1: %d\n", map->door_tex[1]->active);
-				printf("a 2: %d\n", map->door_tex[2]->active);
-				printf("a 3: %d\n", map->door_tex[3]->active);
+				// printf("a 0: %d\n", map->door_tex[0]->active);
+				// printf("a 1: %d\n", map->door_tex[1]->active);
+				// printf("a 2: %d\n", map->door_tex[2]->active);
+				// printf("a 3: %d\n", map->door_tex[3]->active);
 				n->type = 2;
 				if (map->door_tex[0]->active == 1)
 				{
 					n->grnum = 1;
-					n->texture->texture_name[1] =
-						" \"textures/doors/defdoor.png\"";
+					n->texture->texture_name[0] =
+						"../../textures/doors/defdoor.png";
 				}
 				if (map->door_tex[1]->active == 1)
 				{
 					n->grnum = 2;
-					n->texture->texture_name[1] =
-						" \"textures/doors/bluedoor.png\"";
+					n->texture->texture_name[0] =
+						"../../textures/doors/bluedoor.png";
 				}
 				if (map->door_tex[2]->active == 1)
 				{
 					n->grnum = 3;
-					n->texture->texture_name[1] =
-						" \"textures/doors/yellowdoor.png\"";
+					n->texture->texture_name[0] =
+						"../../textures/doors/yellowdoor.png";
 				}
 				if (map->door_tex[3]->active == 1)
 				{
 					n->grnum = 4;
-					n->texture->texture_name[1] =
-						" \"textures/doors/reddoor.png\"";
+					n->texture->texture_name[0] =
+						"../../textures/doors/reddoor.png";
 				}
 			}
 		}
