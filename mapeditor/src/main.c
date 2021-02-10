@@ -6,11 +6,12 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:18 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 14:58:42 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 15:53:49 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
+#include <string.h>
 
 void	i_error(void)
 {
@@ -36,6 +37,7 @@ void	wichonemusic(t_map *map)
 	else if (map->musicflag == 4)
 		music(map->music[3]);
 }
+
 
 int		main(int ac, char **av)
 {

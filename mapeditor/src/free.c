@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 15:58:57 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 15:41:31 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 13:44:07 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ void	free_nodes(t_map *map)
 	while (n)
 	{
 		tmp = n->nxt;
-		if (n->texture->texture_name)
-			free(n->texture->texture_name);
+		free(n->texture->texture_name);
 		if (n->texture->type_name)
 			free(n->texture->type_name);
 		free(n);
