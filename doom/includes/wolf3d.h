@@ -36,6 +36,7 @@ typedef struct		s_wall
 	float			realx;
 	float			realy;
 	float			length;
+	int				active;
 	int				vert;
 	int				h;
 	int				type_flag;
