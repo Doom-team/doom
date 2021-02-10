@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 20:22:53 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 16:08:47 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,10 @@ void	rewrite2(t_map *map, char *str, char *tmp, int inx)
 	if (tmp)
 	{
 		tmp = add_text(tmp, str, 1);
-		map->objects = add_text(tmp, &map->objects[inx], 2);
+		map->objects = add_text(tmp, &map->objects[inx], 1);
 	}
 	else
-		map->objects = add_text(str, &map->objects[inx], 2);
+		map->objects = add_text(str, &map->objects[inx], 1);
 }
 
 void	rewrite(t_map *map, int inx, int x, int y)
@@ -153,9 +153,10 @@ void	rewrite(t_map *map, int inx, int x, int y)
 		if (map->player_tex[0]->active == 1)
 			str = ft_strjoin("p ", ft_itoa(x));
 		else if (map->door_tex[9]->active == 1)
-			str = ft_strjoin("b ", ft_itoa(x));
+			str = ft_strjoin("x ", ft_itoa(x));
 		str = ft_strjoin(ft_strjoin(str, " "), ft_itoa(y));
 		rewrite2(map, str, tmp, inx);
 	}
-	free(tmp);
+	// if (tmp)
+	// 	free(tmp);
 }

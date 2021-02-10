@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 20:00:24 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 16:35:26 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void savestairs(t_map *map)
 
 void	stairs_editor(t_map *map, int x, int y)
 {
+	if (map->stairsoutput)
+		free(map->stairsoutput);
 	if (map->click == 0 && interface_click(map, x, y))
 	{
 		map->click = 1;
@@ -101,10 +103,12 @@ void	stairs_editor(t_map *map, int x, int y)
 		if (!map->stairsoutput)
 			map->stairsoutput = ft_strdup(map->stairstr);
 		else
-			map->stairsoutput = add_text(map->stairsoutput, map->stairstr, 1);
+			map->stairsoutput = add_text(map->stairsoutput, map->stairstr, 0);
 		free(map->stairstr);
+		map->stairstr = 0;
 	}
 }
+
 
 void	stairarr(t_map *map, t_info *cor, int i, float nx, float ny)
 {

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:08 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 17:51:40 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 13:06:17 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@ SDL_Surface		*load_image(char *path)
 	SDL_Surface		*tmp1;
 
 	if (!(tmp = IMG_Load(path)))
+	{
+		SDL_FreeSurface(tmp);
 		error((char *)SDL_GetError());
+	}
 	tmp1 = SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_BGRA32, 0);
 	SDL_FreeSurface(tmp);
-	tmp = NULL;
-	// SDL_FreeSurface(tmp1);
+	//tmp = NULL;
 	return (tmp1);
 }
-
+ 
 void	get_inter_textures(t_map *map)
 {
 	map->inter_tex[0]->img = SDL_GetWindowSurface(map->win);

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 20:12:36 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 14:47:19 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ char	*write_wall_text(t_nod *n)
 	if (n->texture->texture_name[0] != NULL)
 	{
 		buf = add_text(buf, "textures/wall/", 0);
-		buf = add_text(buf, n->texture->texture_name[0], 2);
+		buf = add_text(buf, n->texture->texture_name[0], 1);
 	}
 	else
 		buf = add_text(buf, "textures/wall/wall0.png", 0);
@@ -239,6 +239,7 @@ void	write_walls(t_map *map, int fd)
 		}
 		n = n->nxt;
 	}
+	// printf("FINAL %s\n", map->stairsoutput)
 	if (write(fd, map->stairsoutput, ft_strlen(map->stairsoutput)) != ft_strlen(map->stairsoutput))
 		printf("error\n");
 }

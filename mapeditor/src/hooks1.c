@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 21:06:13 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 16:02:28 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	cordinator(t_map *map, char *c, int x, int y)
 			rewrite(map, searchelem(map->objects, "b ") - 1, x, y);
 			return ;
 		}
-		map->objects = add_text(map->objects, c, 1);
+		map->objects = add_text(map->objects, c, 0);
 		map->objects = add_text(map->objects, ft_itoa(x), 2);
 		map->objects = add_text(map->objects, " ", 1);
 		map->objects = add_text(map->objects, ft_itoa(y), 2);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_texture.c                                   :+:      :+:    :+:   */
+/*   malloc_texture1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:21 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 20:56:24 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/10 13:13:07 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	malloc_interface(t_map *map)
 {
 	int i;
+	SDL_Surface		*tmp;
 
 	i = -1;
 	while (++i < 22)
@@ -23,8 +24,6 @@ void	malloc_interface(t_map *map)
 	i = 0;
 	while (++i < 22)
 	{
-		map->inter_tex[i]->img = SDL_ConvertSurfaceFormat(
-			map->inter_tex[i]->img, SDL_PIXELFORMAT_BGRA32, 0);
 		init_texture(map->inter_tex[i]->img, &(map->inter_tex[i]->s),
 			&(map->inter_tex[i]->pixb), &(map->inter_tex[i]->strb));
 		map->inter_tex[i]->active = 0;
@@ -44,8 +43,6 @@ void	malloc_cursor(t_map *map)
 	i = 0;
 	while (++i < 7)
 	{
-		map->curosr_img[i]->img = SDL_ConvertSurfaceFormat(
-			map->curosr_img[i]->img, SDL_PIXELFORMAT_BGRA32, 0);
 		init_texture(map->curosr_img[i]->img, &(map->curosr_img[i]->s),
 			&(map->curosr_img[i]->pixb), &(map->curosr_img[i]->strb));
 	}
@@ -65,8 +62,6 @@ void	malloc_block_texture(t_map *map)
 	i = -1;
 	while (++i < 9)
 	{
-		map->block_tex[i]->img = SDL_ConvertSurfaceFormat(
-			map->block_tex[i]->img, SDL_PIXELFORMAT_BGRA32, 0);
 		init_texture(map->block_tex[i]->img, &(map->block_tex[i]->s),
 			&(map->block_tex[i]->pixb), &(map->block_tex[i]->strb));
 		map->block_tex[i]->active = 0;
@@ -84,8 +79,6 @@ void	malloc_floorsky_texture(t_map *map)
 	i = -1;
 	while (++i < 13)
 	{
-		map->floorsky_tex[i]->img = SDL_ConvertSurfaceFormat(
-			map->floorsky_tex[i]->img, SDL_PIXELFORMAT_BGRA32, 0);
 		init_texture(map->floorsky_tex[i]->img, &(map->floorsky_tex[i]->s),
 			&(map->floorsky_tex[i]->pixb), &(map->floorsky_tex[i]->strb));
 		map->floorsky_tex[i]->active = 0;
@@ -103,8 +96,6 @@ void	malloc_wall_texture(t_map *map)
 	i = -1;
 	while (++i < 20)
 	{
-		map->wall_tex[i]->img = SDL_ConvertSurfaceFormat(
-			map->wall_tex[i]->img, SDL_PIXELFORMAT_BGRA32, 0);
 		init_texture(map->wall_tex[i]->img, &(map->wall_tex[i]->s),
 			&(map->wall_tex[i]->pixb), &(map->wall_tex[i]->strb));
 		map->wall_tex[i]->active = 0;

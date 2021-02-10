@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textureblock.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:30 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/29 14:42:52 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/10 13:37:38 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int		find_texture_name(char *str)
 	int i;
 
 	i = 0;
+	if (!str)
+		error("Error!");
 	if (ft_strlen(str) == 9)
 		i = ft_atoi(&str[4]);
 	else if (ft_strlen(str) == 10)

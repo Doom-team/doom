@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 19:26:15 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/10 13:39:46 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ t_nod	*n_cr(t_info *info, int type)
 
 	a = (t_nod*)malloc(sizeof(t_nod));
 	a->texture = (t_texinfo*)malloc(sizeof(t_texinfo));
-	a->texture->texture_name[0] = malloc(sizeof(char) * 100);
+	//a->texture->texture_name[0] = malloc(sizeof(char) * 100);
 	// a->texture->texture_name[1] = malloc(sizeof(char) * 100);
 	// a->texture->floor_name = malloc(sizeof(char) * 100);
 	// a->texture->ceiling_name = malloc(sizeof(char) * 100);
-	a->texture->type_name = malloc(sizeof(char) * 100);
+	//a->texture->type_name = malloc(sizeof(char) * 100);
 	a->texture->texture_name[0] = NULL;
-	//a->texture->texture_name[1] = NULL;
+	a->texture->texture_name[1] = NULL;
 	//a->texture->floor_name = NULL;
 	//a->texture->ceiling_name = NULL;
 	a->texture->type_name = NULL;

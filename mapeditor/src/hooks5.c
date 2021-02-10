@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 20:08:06 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/10 13:46:49 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	change_texture_click(t_map *map, int x, int y)
 		map->inter_tex[17]->active = 1;
 		map->inter_tex[19]->active = 0;
 	}
-	if ((x > WIDTH / 2 - 10 && x < WIDTH / 2 + 20) && (y > 83 && y < 118))
-	{
-		map->inter_tex[17]->active = 0;
-		map->inter_tex[19]->active = 1;
-	}
+	// if ((x > WIDTH / 2 - 10 && x < WIDTH / 2 + 20) && (y > 83 && y < 118))
+	// {
+	// 	map->inter_tex[17]->active = 0;
+	// 	map->inter_tex[19]->active = 1;
+	// }
 	if ((x > WIDTH / 2 - 145 && x < WIDTH / 2 - 80) && (y > 100 && y < 130))
 	{
 		map->inter_tex[16]->active = 0;
