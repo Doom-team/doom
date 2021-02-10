@@ -92,5 +92,6 @@ void			parsing_walls(t_parser *parser, char **arr)
 		parser->walls[parser->buff.w].squad_stage = ft_atoi(arr[8]);
 	else
 		error((t_wolf*)parser, ERR_FILE_INVALID);
+	parser->walls[parser->buff.w].active = 1;
 	init_param(parser);
 }

@@ -19,6 +19,7 @@ static void		init_param1(t_parser *parser)
 	parser->buff.c = false;
 	parser->buff.p = false;
 	parser->buff.x = false;
+	parser->buff.m = false;
 }
 
 void			init_size(t_parser *parser, char *l)
