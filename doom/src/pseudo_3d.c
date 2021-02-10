@@ -41,6 +41,10 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		temp_y = (H - temp_y) / 2;
 		size = H - temp_y;
 		temp_y = size - ceilf((wolf->p->walls[dist->number_wall[j]].h / 5.0f * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]); // отвечает за высоту ступеньки
+		// if (wolf->p->walls[dist->number_wall[j]].active != 1)
+		// 	continue;
+		if (wolf->p->walls[dist->number_wall[j]].active != 1)
+			continue;
 		if (wolf->p->walls[dist->number_wall[j]].type_flag == 1)
 		{
 
@@ -89,6 +93,8 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		temp_y--;
 		while (++temp_y < size)
 		{
+			if (wolf->p->walls[dist->number_wall[j]].active != 1)
+				break;
 			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) > H)
 				break;
 			if (temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)) < -H - 2)
@@ -118,7 +124,10 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 				// wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
 				if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
 				{
-					// wolf->p->walls[dist->number_wall[j]].type_flag == 
+					if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
+					{
+						wolf->p->walls[dist->number_wall[j]].active = 0;
+					}
 				}
 			}
 		}
@@ -182,6 +191,13 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 				if (color != 0)
 					set_pixel(wolf->surface, point.x, temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)), color);
 				// wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
+				if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
+				{
+					if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
+					{
+						wolf->p->walls[dist->number_wall[j]].active = 0;
+					}
+				}
 			}
 		}
 	}
@@ -209,6 +225,8 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 		temp_y = (H - temp_y) / 2;
 		size = H - temp_y;
 		temp_y = size - ceilf((wolf->p->walls[dist->number_wall[j]].h / 5.0f * wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]); // отвечает за высоту ступеньки
+		if (wolf->p->walls[dist->number_wall[j]].active != 1)
+			continue;
 		if (wolf->p->walls[dist->number_wall[j]].type_flag == 1)
 		{
 			if (stage.dist[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] == 0)
@@ -271,6 +289,13 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 					set_pixel(wolf->surface, point.x, temp_y - wolf->player->dir_y, color);
 					wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
 				}
+				if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
+				{
+					if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
+					{
+						wolf->p->walls[dist->number_wall[j]].active = 0;
+					}
+				}
 			}
 		}
 	}
@@ -300,6 +325,8 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 	// printf ("%lld---%d\n", temp_y, size);
 	while (++temp_y < size)
 	{
+		if (wolf->p->walls[dist->number_wall[j]].active != 1)
+			break;
 		if (temp_y - wolf->player->dir_y > H)
 			break;
 		if (temp_y - wolf->player->dir_y < -H - 2)
@@ -331,6 +358,13 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 				set_pixel(wolf->surface, point.x, temp_y - wolf->player->dir_y, color);
 			// if (temp_y < 0)
 			// 	printf ("%lld---%d\n", temp_y, size);
+			if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
+			{
+				if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
+				{
+					wolf->p->walls[dist->number_wall[j]].active = 0;
+				}
+			}
 		}
 	}
 }
