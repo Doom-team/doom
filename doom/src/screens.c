@@ -52,6 +52,7 @@ void		screen_death(t_wolf *wolf, SDL_Event *event)
 
 	if (wolf->player->hp <= 0)
 	{
+		Mix_PauseMusic();
 		while (wolf->sdl->run)
 		{
 			while (SDL_PollEvent(event))

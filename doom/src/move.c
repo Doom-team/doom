@@ -65,6 +65,7 @@ void	rotate(t_wolf *wolf, SDL_Event *event)
 void take_damage(t_wolf *wolf, int dmg)
 {
 	wolf->player->hp -= dmg;
+	Mix_PlayChannel(1, wolf->p->take_damage, 0);
 }
 
 void	falling(t_wolf *wolf)

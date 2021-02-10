@@ -67,6 +67,7 @@ typedef struct		s_parser
 	t_param2		exit;
 	t_param2		player;
 	Mix_Music		*music;
+	Mix_Chunk		*take_damage;
 	SDL_Surface		*floor_texture;
 	SDL_Surface		*sky_texture;
 	SDL_Surface		*ceiling_texture;
