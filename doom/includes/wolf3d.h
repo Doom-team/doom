@@ -318,6 +318,7 @@ void				parsing_walls(t_parser *parser, char **arr);
 SDL_Surface			*parsing_param1(t_parser *parser, char **arr, bool *b);
 void				parsing_param2(t_param2 *obj, char **arr, bool *b);
 void				init_size(t_parser *parser, char *l);
+void				check_valid(t_buff *buff);
 
 void				draw_background(SDL_Surface *surface);
 int					draw_minimap(t_wolf *wolf, t_map *map, t_player *p);

@@ -38,8 +38,6 @@ void			init_size(t_parser *parser, char *l)
 				error((t_wolf *)parser, ERR_MALLOC);
 			parser->buff.w = parser->count_walls;
 		}
-		if (arr[i][0] == 'c' || arr[i][0] == 's' || arr[i][0] == 'f' ||
-			arr[i][0] == 'p' || arr[i][0] == 'x')
 		free(arr[i]);
 		free(arr[i + 1]);
 		i += 2;

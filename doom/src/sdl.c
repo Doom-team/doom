@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by clala             #+#    #+#             */
-/*   Updated: 2021/02/08 20:40:38 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/10 20:58:49 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,55 @@ void		handle_event(t_wolf *wolf, SDL_Event *event)
 	}
 }
 
+float			search_angle(t_wall w, t_wolf *wolf)
+{
+	float dist;
+	float angle;
+	dist = sqrtf(powf((w.realx - wolf->player->x), 2)
+		+ powf((w.realy - wolf->player->y), 2));
+	if (w.realx - wolf->player->x > 0
+		&& w.realy - wolf->player->y < 0)
+		angle = asinf((wolf->player->y - w.realy)
+			/ dist);
+	else if (w.realx - wolf->player->x < 0
+		&& w.realy - wolf->player->y < 0)
+		angle = asinf((w.realy - wolf->player->y)
+			/ dist) + RAD_180;
+	else if (w.realx - wolf->player->x < 0
+		&& w.realy - wolf->player->y > 0)
+		angle = asinf((w.realy - wolf->player->y)
+			/ dist) + RAD_180;
+	else if (w.realx - wolf->player->x > 0
+		&& w.realy - wolf->player->y > 0)
+		angle = asinf((wolf->player->y - w.realy)
+			/ dist) + RAD_360;
+	return (angle);
+}
+
+t_wall			rotate_wall(t_wall w, t_wolf *wolf)
+{
+	float angle = search_angle(w, wolf);
+	// printf("%f\n", search_angle(w, wolf));
+	w.x1 = w.realx - sinf(-angle) * 0.5;
+	w.x2 = w.realx + sinf(-angle) * 0.5;
+	w.y1 = w.realy + cosf(-angle) * 0.5;
+	w.y2 = w.realy - cosf(-angle) * 0.5;
+	return (w);
+}
+
+void			recalc_rotation(t_wolf *wolf)
+{
+	int i;
+
+	i = 0;
+	while (i < wolf->p->count_walls)
+	{
+		if (wolf->p->walls[i].type_flag >= 3 && wolf->p->walls[i].type_flag <= 8)
+			wolf->p->walls[i] = rotate_wall(wolf->p->walls[i], wolf);
+		i++;
+	}
+}
+
 void			wolf_loop(t_wolf *wolf)
 {
 	SDL_Event	event;
@@ -170,6 +219,7 @@ void			wolf_loop(t_wolf *wolf)
 		handle_event(wolf, &event);
 		handle_phisics(wolf, wolf->player);
 		// draw_background(wolf->surface); // для отладки
+		recalc_rotation(wolf);
 		all_get_distance(wolf);
 		// printf("%f\n", wolf->player->distance[W/2]->dist[0]);
 		pseudo_3d(wolf, wolf->player, wolf->surface);
