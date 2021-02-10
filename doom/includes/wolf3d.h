@@ -33,6 +33,8 @@ typedef struct		s_wall
 	float			y1;
 	float			x2;
 	float			y2;
+	float			realx;
+	float			realy;
 	float			length;
 	int				vert;
 	int				h;
@@ -47,24 +49,11 @@ typedef struct		s_param2
 	int				y;
 }					t_param2;
 
-typedef struct		s_param3
-{
-	int				type;
-	int				x;
-	int				y;
-}					t_param3;
-
 typedef struct		s_buff
 {
 	int				w;
-	int				h;
-	int				a;
-	int				g;
-	int				b;
-	int				e;
-	int				k;
-	int				p;
-	int				x;
+	bool			p;
+	bool			x;
 	bool			f;
 	bool			s;
 	bool			c;
@@ -73,25 +62,13 @@ typedef struct		s_buff
 typedef struct		s_parser
 {
 	t_wall			*walls;
-	t_param2		*armors;
 	t_param2		exit;
-	t_param3		*guns;
-	t_param3		*bullets;
-	t_param3		*enemys;
-	t_param2		*healths;
-	t_param3		*keys;
 	t_param2		player;
 	SDL_Surface		*floor_texture;
 	SDL_Surface		*sky_texture;
 	SDL_Surface		*ceiling_texture;
 	t_buff			buff;
 	int				count_walls;
-	int				count_guns;
-	int				count_bullets;
-	int				count_enemys;
-	int				count_healths;
-	int				count_armors;
-	int				count_keys;
 }					t_parser;
 
 typedef struct		s_way
@@ -191,19 +168,17 @@ typedef struct		s_bonus
 {
 	int				music_flag;
 	Mix_Music		*music;
-	Mix_Chunk		*music_guns;
-	Mix_Chunk		*music_coin;
+	int				set_gun; // 1 - пистолет 2 - ак 3 шотган
 	int				fps;
 	Uint32			start_time;
 	int				fps_count;
 	int				guns_fire;
-	SDL_Surface		*image_1;
-	SDL_Surface		*image_2;
-	SDL_Surface		*image_3;
-	SDL_Surface		*image_4;
-	SDL_Surface		*image_5;
-	// SDL_Surface	*image_6; //text.jpg
-	// SDL_Surface	*image_coin;
+	SDL_Surface		*pistol_image[5];
+	SDL_Surface		*ak_image[4];
+	SDL_Surface		*shotgun_image[7];
+	Mix_Chunk		*music_pistol;
+	Mix_Chunk		*music_ak;
+	Mix_Chunk		*music_shotgan;
 	SDL_Surface		*image_aim;
 	SDL_Rect		img_location;
 	int				flag_guns;
@@ -339,16 +314,11 @@ void				render_hud(t_wolf *wolf);
 ** parser.c
 */
 void				parser(t_wolf *wolf);
-void				slice(char s[100], char *a, int from, int to);
 void				parsing_walls(t_parser *parser, char **arr);
 SDL_Surface			*parsing_param1(t_parser *parser, char **arr, bool *b);
-void				parsing_param2(t_param2 *obj, char **arr, int *buff);
-void				parsing_param3(t_param3 *obj, char **arr, int *buff);
+void				parsing_param2(t_param2 *obj, char **arr, bool *b);
 void				init_size(t_parser *parser, char *l);
-void				size_param3(int count, int *buff, t_param3 *object, t_parser *parser);
-void				size_param2(int count, int *buff, t_param2 *object, t_parser *parser);
-void				size_param1(char **arr, bool *b, int i);
-void				parsing_player(t_param2 *obj, char **arr, int *buff);
+void				check_valid(t_buff *buff);
 
 void				draw_background(SDL_Surface *surface);
 int					draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
@@ -400,7 +370,7 @@ void				calc_move(t_wolf *wolf, float dy, float dx);
 void				rotate(t_wolf *wolf, SDL_Event *event);
 void				add_skybox_offset(t_wolf *wolf, float to_add);
 void				jump(t_wolf *wolf);
-void	falling(t_wolf *wolf);
+void				falling(t_wolf *wolf);
 
 /*
 ** load_textures.c

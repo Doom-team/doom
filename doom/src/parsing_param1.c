@@ -15,23 +15,18 @@
 SDL_Surface		*parsing_param1(t_parser *parser,
 						char **arr, bool *b)
 {
-	char			sub_arr[100];
 	SDL_Surface		*tmp;
 	SDL_Surface		*tmp1;
 
-	if (*b)
+	if (arr[1] != 0)
 	{
-		if (arr[1] != 0)
-		{
-			slice(sub_arr, arr[1], 1, ft_strlen(arr[1]));
-			if (!(tmp = IMG_Load(sub_arr)))
-				error((t_wolf *)parser, SDL_GetError());
-			tmp1 = SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_BGRA32, 0);
-			SDL_FreeSurface(tmp);
-		}
-		else
-			tmp1 = NULL;
-		*b = false;
+		if (!(tmp = IMG_Load(arr[1])))
+			error((t_wolf *)parser, SDL_GetError());
+		tmp1 = SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_BGRA32, 0);
+		SDL_FreeSurface(tmp);
+		*b = true;
 	}
+	else
+		tmp1 = NULL;
 	return (tmp1);
 }

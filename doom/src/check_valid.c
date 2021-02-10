@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_player.c                                   :+:      :+:    :+:   */
+/*   check_valid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahusk <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 01:09:47 by ahusk             #+#    #+#             */
-/*   Updated: 2021/01/29 01:09:50 by ahusk            ###   ########.fr       */
+/*   Created: 2021/02/10 20:18:20 by ahusk             #+#    #+#             */
+/*   Updated: 2021/02/10 20:18:21 by ahusk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-void	parsing_player(t_param2 *obj, char **arr, int *buff)
+void	check_valid(t_buff *buff)
 {
-	if (*buff == 0)
-		return ;
-	obj->x = ft_atoi(arr[1]) / RESIZE;
-	obj->y = ft_atoi(arr[2]) / RESIZE;
+	if (!buff->p || !buff->f || (!buff->s && !buff->c) || !buff->x)
+		error((t_wolf*)buff, ERR_FILE_INVALID);
 }

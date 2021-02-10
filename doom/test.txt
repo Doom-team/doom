@@ -1,37 +1,36 @@
-walls: 30 floor: 1 ceiling: 0 sky: 1 p: 1 x: 1 keys: 2
-w 645 264 480 440 "textures/wall/wall0.png" 7 0 0
-w 480 440 745 866 "textures/wall/wall0.png" 7 0 0
-w 745 866 1190 697 "textures/wall/wall0.png" 7 0 0
-w 1190 697 1044 220 "textures/wall/wall0.png" 7 0 0
-w 1044 220 645 264 "textures/wall/wall0.png" 1 0 0
-w 738 413 699 503 "textures/wall/wall0.png" 1 0 0
-w 821 472 806 493 "textures/wall/wall0.png" 1 1 1
-w 821 472 835 486 "textures/wall/wall0.png" 1 1 1
-w 806 493 820 507 "textures/wall/wall0.png" 1 1 1
-w 835 486 820 507 "textures/wall/wall0.png" 1 1 1
-w 835 486 820 507 "textures/wall/wall0.png" 2 1 2
-w 835 486 849 500 "textures/wall/wall0.png" 2 1 2
-w 820 507 834 521 "textures/wall/wall0.png" 2 1 2
-w 849 500 834 521 "textures/wall/wall0.png" 2 1 2
-w 849 500 834 521 "textures/wall/wall0.png" 3 1 3
-w 849 500 863 514 "textures/wall/wall0.png" 3 1 3
-w 834 521 848 535 "textures/wall/wall0.png" 3 1 3
-w 863 514 848 535 "textures/wall/wall0.png" 3 1 3
-w 863 514 848 535 "textures/wall/wall0.png" 4 1 4
-w 863 514 877 528 "textures/wall/wall0.png" 4 1 4
-w 848 535 862 549 "textures/wall/wall0.png" 4 1 4
-w 877 528 862 549 "textures/wall/wall0.png" 4 1 4
-w 877 528 862 549 "textures/wall/wall0.png" 5 1 5
-w 877 528 891 542 "textures/wall/wall0.png" 5 1 5
-w 862 549 876 563 "textures/wall/wall0.png" 5 1 5
-w 891 542 876 563 "textures/wall/wall0.png" 5 1 5
-w 845 605 920 676 "textures/wall/wall0.png" 5 1 6
-w 920 676 1012 546 "textures/wall/wall0.png" 5 1 6
-w 1012 546 916 500 "textures/wall/wall0.png" 5 1 6
-w 916 500 845 605 "textures/wall/wall0.png" 5 1 6
+walls: 31
+w 645 264 480 440 textures/wall/wall0.png 7 0 0
+w 480 440 745 866 textures/wall/wall0.png 7 0 0
+w 745 866 1190 697 textures/wall/wall0.png 7 0 0
+w 1190 697 1044 220 textures/wall/wall0.png 7 0 0
+w 1044 220 645 264 textures/wall/wall0.png 1 0 0
+w 738 413 699 503 textures/wall/wall0.png 1 0 0
+w 821 472 806 493 textures/wall/wall0.png 1 1 1
+w 821 472 835 486 textures/wall/wall0.png 1 1 1
+w 806 493 820 507 textures/wall/wall0.png 1 1 1
+w 835 486 820 507 textures/wall/wall0.png 1 1 1
+w 835 486 820 507 textures/wall/wall0.png 2 1 2
+w 835 486 849 500 textures/wall/wall0.png 2 1 2
+w 820 507 834 521 textures/wall/wall0.png 2 1 2
+w 849 500 834 521 textures/wall/wall0.png 2 1 2
+w 849 500 834 521 textures/wall/wall0.png 3 1 3
+w 849 500 863 514 textures/wall/wall0.png 3 1 3
+w 834 521 848 535 textures/wall/wall0.png 3 1 3
+w 863 514 848 535 textures/wall/wall0.png 3 1 3
+w 863 514 848 535 textures/wall/wall0.png 4 1 4
+w 863 514 877 528 textures/wall/wall0.png 4 1 4
+w 848 535 862 549 textures/wall/wall0.png 4 1 4
+w 877 528 862 549 textures/wall/wall0.png 4 1 4
+w 877 528 862 549 textures/wall/wall0.png 5 1 5
+w 877 528 891 542 textures/wall/wall0.png 5 1 5
+w 862 549 876 563 textures/wall/wall0.png 5 1 5
+w 891 542 876 563 textures/wall/wall0.png 5 1 5
+w 845 605 920 676 textures/wall/wall0.png 5 1 6
+w 920 676 1012 546 textures/wall/wall0.png 5 1 6
+w 1012 546 916 500 textures/wall/wall0.png 5 1 6
+w 916 500 845 605 textures/wall/wall0.png 5 1 6
+w 850 450 0 0 textures/demon.png 5 3 0
 p 850 600
 x 850 600
-k 1 200 200
-k 2 300 300
-f "textures/floor/floor1.png"
-s "textures/floor/sky1.png"
+f textures/floor/floor1.png
+s textures/floor/sky1.png

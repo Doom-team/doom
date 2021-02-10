@@ -34,14 +34,11 @@ ALL_C = main.c \
 		parser.c \
 		screens.c \
 		parsing_walls.c \
-		slice.c \
 		init_size.c \
-		size_param.c \
-		parsing_param3.c \
 		parsing_param2.c \
 		parsing_param1.c \
-		parsing_player.c \
-		render_hud.c
+		render_hud.c \
+		check_valid.c
 
 SRCDIR = ./src
 OBJDIR = ./objs

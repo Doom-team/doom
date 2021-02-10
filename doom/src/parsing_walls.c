@@ -23,31 +23,74 @@ static void		init_param(t_parser *parser)
 			parser->walls[parser->buff.w].y1, 2));
 }
 
+static void		parsing_4param(t_parser *parser, char **arr)
+{
+	if (arr[1])
+	{
+		parser->walls[--parser->buff.w].x1 = ft_atoi(arr[1]) / RESIZE;
+		if (arr[2])
+		{
+			parser->walls[parser->buff.w].y1 = ft_atoi(arr[2]) / RESIZE;
+			if (arr[3])
+			{
+				parser->walls[parser->buff.w].x2 = ft_atoi(arr[3]) / RESIZE;
+				if (arr[4])
+					parser->walls[parser->buff.w].y2 = ft_atoi(arr[4]) / RESIZE;
+				else
+					error((t_wolf*)parser, ERR_FILE_INVALID);
+			}
+			else
+				error((t_wolf*)parser, ERR_FILE_INVALID);
+		}
+		else
+			error((t_wolf*)parser, ERR_FILE_INVALID);
+	}
+	else
+		error((t_wolf*)parser, ERR_FILE_INVALID);
+}
+
+static void		parsing_type(t_parser *parser, char **arr)
+{
+	if (arr[7])
+	{
+		parser->walls[parser->buff.w].type_flag = ft_atoi(arr[7]);
+		if (parser->walls[parser->buff.w].type_flag >= 3)
+		{
+			parser->walls[parser->buff.w].realx =
+				parser->walls[parser->buff.w].x1;
+			parser->walls[parser->buff.w].realy =
+				parser->walls[parser->buff.w].y1;
+		}
+	}
+	else
+		error((t_wolf*)parser, ERR_FILE_INVALID);
+}
+
 void			parsing_walls(t_parser *parser, char **arr)
 {
-	char			sub_arr[100];
 	SDL_Surface		*tmp;
 
 	if (parser->buff.w == 0)
 		return ;
-	parser->walls[--parser->buff.w].x1 = ft_atoi(arr[1]) / RESIZE;
-	parser->walls[parser->buff.w].y1 = ft_atoi(arr[2]) / RESIZE;
-	parser->walls[parser->buff.w].x2 = ft_atoi(arr[3]) / RESIZE;
-	parser->walls[parser->buff.w].y2 = ft_atoi(arr[4]) / RESIZE;
+	parsing_4param(parser, arr);
 	if (arr[5] != 0)
 	{
-		slice(sub_arr, arr[5], 1, ft_strlen(arr[5]));
-		if (!(tmp = IMG_Load(sub_arr)))
+		if (!(tmp = IMG_Load(arr[5])))
 			error((t_wolf *)parser, SDL_GetError());
 		parser->walls[parser->buff.w].texture1 =
 			SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_BGRA32, 0);
 		SDL_FreeSurface(tmp);
 	}
+	else
+		error((t_wolf*)parser, ERR_FILE_INVALID);
 	if (arr[6])
 		parser->walls[parser->buff.w].h = ft_atoi(arr[6]);
-	if (arr[7])
-		parser->walls[parser->buff.w].type_flag = ft_atoi(arr[7]);
+	else
+		error((t_wolf*)parser, ERR_FILE_INVALID);
+	parsing_type(parser, arr);
 	if (arr[8])
 		parser->walls[parser->buff.w].squad_stage = ft_atoi(arr[8]);
+	else
+		error((t_wolf*)parser, ERR_FILE_INVALID);
 	init_param(parser);
 }
