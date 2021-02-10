@@ -40,7 +40,7 @@ void		parser(t_wolf *wolf)
 	int			fd;
 
 	ch = 0;
-	if ((fd = open("test.txt", O_RDONLY)) == -1)
+	if ((fd = open("../textures/map.txt", O_RDONLY)) == -1)
 		error((t_wolf *)wolf->p, ERR_FILE_OPEN);
 	while (get_next_line(fd, &line) > 0)
 	{
