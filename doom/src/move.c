@@ -62,7 +62,7 @@ void	rotate(t_wolf *wolf, SDL_Event *event)
 		add_skybox_offset_y(wolf, (int)(H / 200.0 * event->motion.yrel / 5.0));
 }
 
-void take_damage(t_wolf *walf, int dmg)
+void take_damage(t_wolf *wolf, int dmg)
 {
 	wolf->player->hp -= dmg;
 }
