@@ -19,7 +19,6 @@ ALL_C = main.c \
 		distance.c \
 		pseudo_3d.c \
 		draw.c \
-		music.c \
 		render_text.c \
 		guns_shot.c \
 		move.c \
@@ -38,7 +37,8 @@ ALL_C = main.c \
 		parsing_param2.c \
 		parsing_param1.c \
 		render_hud.c \
-		check_valid.c
+		check_valid.c \
+		parsing_music.c
 
 SRCDIR = ./src
 OBJDIR = ./objs

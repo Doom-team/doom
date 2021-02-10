@@ -37,19 +37,6 @@ static void		handle_other_keys(t_wolf *wolf)
 		wolf->t_cof -= 0.001;
 	if (wolf->sdl->state[SDL_SCANCODE_H])
 		wolf->sdl->menu = wolf->sdl->menu ? 0 : 1;
-	if (wolf->sdl->state[SDL_SCANCODE_O])
-	{
-		if (wolf->bon->music_flag == 0)
-		{
-			Mix_PlayMusic(wolf->bon->music, -1);
-			wolf->bon->music_flag = 1;
-		}
-		else
-		{
-			wolf->bon->music_flag = 0;
-			Mix_HaltMusic();
-		}
-	}
 }
 
 static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
@@ -213,6 +200,7 @@ void			wolf_loop(t_wolf *wolf)
 {
 	SDL_Event	event;
 
+	Mix_PlayMusic(wolf->p->music, -1);
 	while (wolf->sdl->run)
 	{
 		recalc(wolf);

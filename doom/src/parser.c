@@ -26,6 +26,8 @@ void		parsing(t_parser *parser, char *l)
 		parsing_walls(parser, arr);
 	if (arr[0][0] == 'f' && !parser->buff.f)
 		parser->floor_texture = parsing_param1(parser, arr, &parser->buff.f);
+	if (arr[0][0] == 'm' && !parser->buff.m)
+		parser->music = parsing_music(parser, arr, &parser->buff.m);
 	if (arr[0][0] == 'c' && !parser->buff.c)
 		parser->ceiling_texture = parsing_param1(parser, arr, &parser->buff.c);
 	if (arr[0][0] == 's' && !parser->buff.s)

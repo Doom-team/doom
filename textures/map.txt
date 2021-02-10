@@ -34,3 +34,4 @@ p 850 600
 x 850 600
 f textures/floor/floor1.png
 s textures/floor/sky1.png
+m music/Oto_Kapanadze-Mystic_Mountain.mp3

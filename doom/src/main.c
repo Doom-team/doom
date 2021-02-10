@@ -63,6 +63,7 @@ int				main()
 	t_wolf		*wolf;
 
 	wolf = NULL;
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 	SDL_Init(SDL_INIT_EVERYTHING) != 0 ? error(wolf, SDL_GetError()) : 0;
 	TTF_Init() != 0 ? error(wolf, SDL_GetError()) : 0;
 	wolf = t_wolf_new();
@@ -70,7 +71,6 @@ int				main()
 	init_player(wolf, wolf->player, wolf->map);
 	init_bonus(wolf);
 	init_monster(wolf);
-	music(wolf->bon);
 	init_sdl(wolf);
 	init_menu(wolf->menu);
 	menu_loop(wolf);

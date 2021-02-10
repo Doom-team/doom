@@ -32,7 +32,6 @@ void	init_bonus_load(t_wolf *wolf)
 	wolf->bon->shotgun_image[6] = IMG_Load("../textures/guns/shotgun/6.png");
 	wolf->bon->image_aim = IMG_Load("textures/aim.png");
 	wolf->bon->my_font = TTF_OpenFont("ttf/19888.ttf", (int)(H / 28));
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 	// wolf->bon->music_guns = Mix_LoadWAV("music/01664_q6IhiXXL.wav");
 	wolf->bon->music_ak = Mix_LoadWAV("../textures/guns/ak/shot.wav");
 	wolf->bon->music_pistol = Mix_LoadWAV("../textures/guns/pistol/shot.wav");
@@ -54,7 +53,6 @@ void	init_bonus(t_wolf *wolf)
 	init_bonus_load(wolf);
 	wolf->bon->set_gun = 1;
 	wolf->monster->penetration_flag = 0;
-	wolf->bon->music_flag = 0;
 	wolf->bon->fps = 1;
 	wolf->bon->start_time = 0;
 	wolf->bon->fps_count = 0;

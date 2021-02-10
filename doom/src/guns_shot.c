@@ -18,7 +18,6 @@ void	guns_shot1(SDL_Surface *screen, int flag, t_bonus *bon)
 	{
 		Mix_Volume(0, 32);
 		Mix_PlayChannel(1, bon->music_pistol, 0);
-		Mix_VolumeMusic(5);
 	}
 	flag == 1 ? SDL_BlitScaled(bon->pistol_image[0], NULL, screen,
 		&bon->img_location) : 0;
@@ -38,7 +37,6 @@ void	guns_shot2(SDL_Surface *screen, int flag, t_bonus *bon)
 	{
 		Mix_Volume(0, 32);
 		Mix_PlayChannel(1, bon->music_ak, 0);
-		Mix_VolumeMusic(5);
 	}
 	flag == 1 ? SDL_BlitScaled(bon->ak_image[0], NULL, screen,
 		&bon->img_location) : 0;
@@ -56,7 +54,6 @@ void	guns_shot3(SDL_Surface *screen, int flag, t_bonus *bon)
 	{
 		Mix_Volume(0, 32);
 		Mix_PlayChannel(1, bon->music_pistol, 0);
-		Mix_VolumeMusic(5);
 	}
 	flag == 1 ? SDL_BlitScaled(bon->shotgun_image[0], NULL, screen,
 		&bon->img_location) : 0;

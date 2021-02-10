@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   music.c                                            :+:      :+:    :+:   */
+/*   parsing_music.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahusk <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 18:31:38 by clala             #+#    #+#             */
-/*   Updated: 2021/01/26 16:04:34 by wendell          ###   ########.fr       */
+/*   Created: 2021/02/10 22:52:37 by ahusk             #+#    #+#             */
+/*   Updated: 2021/02/10 22:52:38 by ahusk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-void	music(t_bonus *bon)
+Mix_Music	*parsing_music(t_parser *parser,
+						char **arr, bool *b)
 {
-	Mix_Volume(0, 32);
-	if (bon->music_flag == 1)
-		Mix_PlayMusic(bon->music, -1);
-	Mix_VolumeMusic(5);
+	Mix_Music *tmp;
+
+	if (arr[1] != 0)
+	{
+		if (!(tmp = Mix_LoadMUS(arr[1])))
+			error((t_wolf *)parser, SDL_GetError());
+		*b = true;
+	}
+	return (tmp);
 }

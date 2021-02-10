@@ -52,6 +52,7 @@ typedef struct		s_param2
 typedef struct		s_buff
 {
 	int				w;
+	bool			m;
 	bool			p;
 	bool			x;
 	bool			f;
@@ -64,6 +65,7 @@ typedef struct		s_parser
 	t_wall			*walls;
 	t_param2		exit;
 	t_param2		player;
+	Mix_Music		*music;
 	SDL_Surface		*floor_texture;
 	SDL_Surface		*sky_texture;
 	SDL_Surface		*ceiling_texture;
@@ -166,8 +168,6 @@ typedef	struct		s_sprite_calc
 
 typedef struct		s_bonus
 {
-	int				music_flag;
-	Mix_Music		*music;
 	int				set_gun; // 1 - пистолет 2 - ак 3 шотган
 	int				fps;
 	Uint32			start_time;
@@ -319,6 +319,7 @@ SDL_Surface			*parsing_param1(t_parser *parser, char **arr, bool *b);
 void				parsing_param2(t_param2 *obj, char **arr, bool *b);
 void				init_size(t_parser *parser, char *l);
 void				check_valid(t_buff *buff);
+Mix_Music			*parsing_music(t_parser *parser, char **arr, bool *b);
 
 void				draw_background(SDL_Surface *surface);
 int					draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
@@ -482,10 +483,5 @@ int					diry_correction_from_fly(int fly);
 */
 void				guns_shot(SDL_Surface *screen, int flag, t_bonus *bon);
 void				render_shot(t_wolf *wolf, SDL_Surface *surface);
-
-/*
-** music.c
-*/
-void				music(t_bonus *bon);
 
 #endif
