@@ -12,10 +12,17 @@
 
 #include "../includes/wolf3d.h"
 
-void	parsing_param2(t_param2 *obj, char **arr, int *buff)
+void	parsing_param2(t_param2 *obj, char **arr, bool *b)
 {
-	if (*buff == 0)
+	if (*b)
 		return ;
-	obj[--*buff].x = ft_atoi(arr[1]) / RESIZE;
-	obj[*buff].y = ft_atoi(arr[2]) / RESIZE;
+	if (arr[1])
+	{
+		obj->x = ft_atoi(arr[1]) / RESIZE;
+		if( arr[2])
+		{
+			obj->y = ft_atoi(arr[2]) / RESIZE;
+			*b = true;
+		}
+	}
 }

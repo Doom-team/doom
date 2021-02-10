@@ -12,85 +12,13 @@
 
 #include "../includes/wolf3d.h"
 
-static void		init_param1(char **arr, t_parser *parser, int i)
+static void		init_param1(t_parser *parser)
 {
-	if (arr[i][0] == 'f')
-		size_param1(arr, &parser->buff.f, i);
-	if (arr[i][0] == 's')
-		size_param1(arr, &parser->buff.s, i);
-	if (arr[i][0] == 'c')
-		size_param1(arr, &parser->buff.c, i);
-	if (arr[i][0] == 'p')
-		parser->buff.p = ft_atoi(arr[i + 1]);
-	if (arr[i][0] == 'x')
-		parser->buff.x = ft_atoi(arr[i + 1]);
-}
-
-static void		init_param2(char **arr, t_parser *p, int i)
-{
-	if (arr[i][0] == 'h')
-	{
-		p->count_healths = ft_atoi(arr[i + 1]);
-		if (!(p->healths = (t_param2 *)malloc(p->count_healths
-			* sizeof(t_param2))))
-			error((t_wolf *)p, ERR_MALLOC);
-		p->buff.h = p->count_healths;
-	}
-	if (arr[i][0] == 'a')
-	{
-		p->count_armors = ft_atoi(arr[i + 1]);
-		if (!(p->armors = (t_param2 *)malloc(p->count_armors
-			* sizeof(t_param2))))
-			error((t_wolf *)p, ERR_MALLOC);
-		p->buff.a = p->count_armors;
-	}
-	if (arr[i][0] == 'k')
-	{
-		p->count_keys = ft_atoi(arr[i + 1]);
-		if (!(p->keys = (t_param3 *)malloc(p->count_keys
-			* sizeof(t_param3))))
-			error((t_wolf *)p, ERR_MALLOC);
-		p->buff.k = p->count_keys;
-	}
-}
-
-static void		init_param3(char **arr, t_parser *p, int i)
-{
-	if (arr[i][0] == 'g')
-	{
-		p->count_guns = ft_atoi(arr[i + 1]);
-		if (!(p->guns = (t_param3 *)malloc(p->count_guns
-			* sizeof(t_param3))))
-			error((t_wolf *)p, ERR_MALLOC);
-		p->buff.g = p->count_guns;
-	}
-	if (arr[i][0] == 'b')
-	{
-		p->count_bullets = ft_atoi(arr[i + 1]);
-		if (!(p->bullets = (t_param3 *)malloc(p->count_bullets
-			* sizeof(t_param3))))
-			error((t_wolf *)p, ERR_MALLOC);
-		p->buff.b = p->count_bullets;
-	}
-	if (arr[i][0] == 'e')
-	{
-		p->count_enemys = ft_atoi(arr[i + 1]);
-		if (!(p->enemys = (t_param3 *)malloc(p->count_enemys
-			* sizeof(t_param3))))
-			error((t_wolf *)parser, ERR_MALLOC);
-		p->buff.e = p->count_enemys;
-	}
-}
-
-static void		help_size(char **arr, t_parser *parser, int i)
-{
-	if (arr[i][0] == 'c' || arr[i][0] == 's' || arr[i][0] == 'f' ||
-		arr[i][0] == 'p' || arr[i][0] == 'x')
-		init_param1(arr, parser, i);
-	if (arr[i][0] == 'h' || arr[i][0] == 'a' || arr[i][0] == 'k')
-		init_param2(arr, parser, i);
-	if (arr[i][0] == 'g' || arr[i][0] == 'b' || arr[i][0] == 'e')
-		init_param3(arr, parser, i);
+	parser->buff.f = false;
+	parser->buff.s = false;
+	parser->buff.c = false;
+	parser->buff.p = false;
+	parser->buff.x = false;
 }
 
 void			init_size(t_parser *parser, char *l)
@@ -110,10 +38,12 @@ void			init_size(t_parser *parser, char *l)
 				error((t_wolf *)parser, ERR_MALLOC);
 			parser->buff.w = parser->count_walls;
 		}
-		help_size(arr, parser, i);
+		if (arr[i][0] == 'c' || arr[i][0] == 's' || arr[i][0] == 'f' ||
+			arr[i][0] == 'p' || arr[i][0] == 'x')
 		free(arr[i]);
 		free(arr[i + 1]);
 		i += 2;
 	}
+	init_param1(parser);
 	free(arr);
 }
