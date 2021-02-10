@@ -37,7 +37,8 @@ ALL_C = main.c \
 		init_size.c \
 		parsing_param2.c \
 		parsing_param1.c \
-		render_hud.c
+		render_hud.c \
+		check_valid.c
 
 SRCDIR = ./src
 OBJDIR = ./objs

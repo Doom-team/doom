@@ -51,5 +51,6 @@ void		parser(t_wolf *wolf)
 		free(line);
 	}
 	close(fd);
+	check_valid(&wolf->p->buff);
 	free(line);
 }

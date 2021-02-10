@@ -33,3 +33,4 @@ p 850 600
 x 850 600
 f textures/floor/floor1.png
 s textures/floor/sky1.png
+c textures/floor/sky1.png
