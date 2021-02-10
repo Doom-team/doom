@@ -3,8 +3,8 @@ w 645 264 480 440 "textures/wall/wall0.png" 7 0 0
 w 480 440 745 866 "textures/wall/wall0.png" 7 0 0
 w 745 866 1190 697 "textures/wall/wall0.png" 7 0 0
 w 1190 697 1044 220 "textures/wall/wall0.png" 7 0 0
-w 1044 220 645 264 "textures/wall/wall0.png" 7 0 0
-w 738 413 699 503 "textures/wall/wall0.png" 7 0 0
+w 1044 220 645 264 "textures/wall/wall0.png" 1 0 0
+w 738 413 699 503 "textures/wall/wall0.png" 1 0 0
 w 821 472 806 493 "textures/wall/wall0.png" 1 1 1
 w 821 472 835 486 "textures/wall/wall0.png" 1 1 1
 w 806 493 820 507 "textures/wall/wall0.png" 1 1 1

@@ -42,7 +42,7 @@ void	render_shot(t_wolf *wolf, SDL_Surface *surface)
 			wolf->bon->flag_guns++;
 			wolf->bon->start_guns = SDL_GetTicks();
 		}
-		if (wolf->bon->start_guns + 200 < SDL_GetTicks())
+		if (wolf->bon->start_guns + 10 < SDL_GetTicks())
 		{
 			wolf->bon->flag_guns++;
 			wolf->bon->start_guns = SDL_GetTicks();
