@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 20:59:21 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:39:34 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ void	init_all2(t_map *map)
 	map->stairstr = NULL;
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 	map->musicflag = 0;
-	map->music[0] = Mix_LoadMUS("/textures/music/m1.mp3");
-	map->music[1] = Mix_LoadMUS("/textures/music/music1.mp3");
-	map->music[2] = Mix_LoadMUS("/textures/music/m1.mp3");
-	map->music[3] = Mix_LoadMUS("/textures/music/music1.mp3");
+	map->musicoutput = 0;
+	map->music[0] = Mix_LoadMUS("../textures/music/m1.mp3");
+	map->music[1] = Mix_LoadMUS("../textures/music/m2.mp3");
+	map->music[2] = Mix_LoadMUS("../textures/music/m1.mp3");
+	map->music[3] = Mix_LoadMUS("../textures/music/m2.mp3");
 	map->fontclasic = TTF_OpenFont("/textures/fonts/classic.ttf", 32);
 	map->fontdoom = TTF_OpenFont("/textures/fonts/doom.ttf", 32);
 }

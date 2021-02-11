@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 20:43:53 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:26:14 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,34 +94,34 @@ void	save_obj_tmp1(t_map *map, int x, int y)
 	if (map->player_tex[0]->active == 1)
 		cordinator(map, "p ", x, y);
 	if (map->player_tex[1]->active == 1)
-		save_objects(map, &(t_info){x, y, 4, 0}, "../../textures/pickup/health.png");
+		save_objects(map, &(t_info){x, y, 4, 0}, "../textures/pickup/health.png");
 	if (map->player_tex[2]->active == 1)
-		save_objects(map, &(t_info){x, y, 5, 0}, "../../textures/pickup/armor.png");
+		save_objects(map, &(t_info){x, y, 5, 0}, "../textures/pickup/armor.png");
 	if (map->gun_tex[0]->active == 1)
-		save_objects(map, &(t_info){x, y, 6, 1}, "../../textures/guns/pistol/img.png");
+		save_objects(map, &(t_info){x, y, 6, 1}, "../textures/guns/pistol/img.png");
 	if (map->gun_tex[1]->active == 1)
-		save_objects(map, &(t_info){x, y, 6, 2}, "../../textures/guns/shotgun/img.png");
+		save_objects(map, &(t_info){x, y, 6, 2}, "../textures/guns/shotgun/img.png");
 	if (map->gun_tex[2]->active == 1)
-		save_objects(map, &(t_info){x, y, 6, 3}, "../../textures/guns/ak/img.png");
+		save_objects(map, &(t_info){x, y, 6, 3}, "../textures/guns/ak/img.png");
 	if (map->gun_tex[3]->active == 1)
-		save_objects(map, &(t_info){x, y, 7, 1},"../../textures/guns/pistol/pistol_b.png");
+		save_objects(map, &(t_info){x, y, 7, 1},"../textures/guns/pistol/pistol_b.png");
 	if (map->gun_tex[4]->active == 1)
-		save_objects(map, &(t_info){x, y, 7, 2}, "../../textures/guns/pistol/shotgun_b.png");
+		save_objects(map, &(t_info){x, y, 7, 2}, "../textures/guns/pistol/shotgun_b.png");
 	if (map->gun_tex[5]->active == 1)
-		save_objects(map, &(t_info){x, y, 7, 3}, "../../textures/guns/pistol/ak_b.png");
+		save_objects(map, &(t_info){x, y, 7, 3}, "../textures/guns/pistol/ak_b.png");
 	if (map->enemy_tex[0]->active == 1)
-		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/guns/pistol/e1.png");
+		save_objects(map, &(t_info){x, y, 3, 0}, "../textures/guns/pistol/e1.png");
 	if (map->enemy_tex[1]->active == 1)
-		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/guns/pistol/e2.png");
+		save_objects(map, &(t_info){x, y, 3, 0}, "../textures/guns/pistol/e2.png");
 	if (map->enemy_tex[2]->active == 1)
-		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/guns/pistol/e3.png");
+		save_objects(map, &(t_info){x, y, 3, 0}, "../textures/guns/pistol/e3.png");
 }
 void	save_obj_tmp2(t_map *map, int x, int y)
 {
 	if (map->enemy_tex[3]->active == 1)
-		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/guns/pistol/e4.png");
+		save_objects(map, &(t_info){x, y, 3, 0}, "../textures/guns/pistol/e4.png");
 	if (map->enemy_tex[4]->active == 1)
-		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/guns/pistol/e5.png");
+		save_objects(map, &(t_info){x, y, 3, 0}, "../textures/guns/pistol/e5.png");
 	// if (map->door_tex[8]->active == 1)
 	// 	cordinator(map, "l ", x, y);
 	if (map->door_tex[9]->active == 1)
@@ -130,13 +130,13 @@ void	save_obj_tmp2(t_map *map, int x, int y)
 	// 	WIDTH / 2 - 165, 5}, 330, 150))
 	// {
 	// 	map->validflag = 8;
-	// 	save_objects(map, &(t_info){x, y, 3, 0} "../../textures/guns/pistol/e1.png");
+	// 	save_objects(map, &(t_info){x, y, 3, 0} "../textures/guns/pistol/e1.png");
 	// }
 	if (map->door_tex[5]->active == 1 && range_click(&(t_info){x, y,
 		WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 	{
 		map->validflag = 8;
-		save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/pikup/pistol/bluekey.png");
+		save_objects(map, &(t_info){x, y, 3, 0}, "../textures/pikup/pistol/bluekey.png");
 	}
 }
 
@@ -151,13 +151,13 @@ void	save_objcord(t_map *map, int x, int y)
 			WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 		{
 			map->validflag = 8;
-			save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/pikup/pistol/yellowkey.png");
+			save_objects(map, &(t_info){x, y, 3, 0}, "../textures/pikup/pistol/yellowkey.png");
 		}
 		if (map->door_tex[7]->active == 1 && range_click(&(t_info){x, y,
 			WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 		{
 			map->validflag = 8;
-			save_objects(map, &(t_info){x, y, 3, 0}, "../../textures/pikup/pistol/redkey.png");;
+			save_objects(map, &(t_info){x, y, 3, 0}, "../textures/pikup/pistol/redkey.png");;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:18 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 15:53:49 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:09:55 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	i_error(void)
 
 void	music(Mix_Music *music)
 {
+	printf("zashel\n");
 	Mix_Volume(0, 32);
 	Mix_PlayMusic(music, -1);
 	Mix_VolumeMusic(5);
@@ -28,6 +29,7 @@ void	music(Mix_Music *music)
 
 void	wichonemusic(t_map *map)
 {
+	printf("music: %d\n", map->musicflag);
 	if (map->musicflag == 1)
 		music(map->music[0]);
 	else if (map->musicflag == 2)
