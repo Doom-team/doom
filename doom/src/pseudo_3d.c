@@ -360,8 +360,8 @@ void			floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distanc
 {
 	float	curr_dist;
 	float	weight;
-	float	currFloorX;
-	float	currFloorY;
+	float	curr_floorx;
+	float	curr_floory;
 	int		textx;
 	int		texty;
 	int		color;
@@ -438,11 +438,11 @@ void			floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distanc
 			// printf("%f\n", curr_dist);
 			weight = curr_dist / (dist->dist[wolf->player->distance[count_distance]->count - 1] / (cof * cof_h));
 			
-			currFloorX = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (cof * cof_h)) + (1.0 - weight) * (wolf->player->x / (cof * cof_h));
-			currFloorY = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (cof * cof_h)) + (1.0 - weight) * (wolf->player->y / (cof * cof_h));
+			curr_floorx = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (cof * cof_h)) + (1.0 - weight) * (wolf->player->x / (cof * cof_h));
+			curr_floory = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (cof * cof_h)) + (1.0 - weight) * (wolf->player->y / (cof * cof_h));
 			
-			textx = (int)(currFloorX * wolf->p->floor_texture->w * cof * cof_h) % wolf->p->floor_texture->w;
-			texty = (int)(currFloorY * wolf->p->floor_texture->h * cof * cof_h) % wolf->p->floor_texture->h;
+			textx = (int)(curr_floorx * wolf->p->floor_texture->w * cof * cof_h) % wolf->p->floor_texture->w;
+			texty = (int)(curr_floory * wolf->p->floor_texture->h * cof * cof_h) % wolf->p->floor_texture->h;
 
 			if (textx > 0 && texty > 0)
 			{

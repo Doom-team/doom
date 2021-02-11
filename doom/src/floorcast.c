@@ -57,10 +57,10 @@ void				floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, 
 		{
 			d.curr_dist = H / (2.0 * d.y - H);
 			d.weight = d.curr_dist / (dist->dist[wolf->player->distance[count_distance]->count - 1] / (d.cof * d.cof_h));
-			d.currFloorX = d.weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (d.cof * d.cof_h)) + (1.0 - d.weight) * (wolf->player->x / (d.cof * d.cof_h));
-			d.currFloorY = d.weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (d.cof * d.cof_h)) + (1.0 - d.weight) * (wolf->player->y / (d.cof * d.cof_h));
-			d.textx = (int)(d.currFloorX * wolf->p->floor_texture->w * d.cof * d.cof_h) % wolf->p->floor_texture->w;
-			d.texty = (int)(d.currFloorY * wolf->p->floor_texture->h * d.cof * d.cof_h) % wolf->p->floor_texture->h;
+			d.curr_floorx = d.weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (d.cof * d.cof_h)) + (1.0 - d.weight) * (wolf->player->x / (d.cof * d.cof_h));
+			d.curr_floory = d.weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (d.cof * d.cof_h)) + (1.0 - d.weight) * (wolf->player->y / (d.cof * d.cof_h));
+			d.textx = (int)(d.curr_floorx * wolf->p->floor_texture->w * d.cof * d.cof_h) % wolf->p->floor_texture->w;
+			d.texty = (int)(d.curr_floory * wolf->p->floor_texture->h * d.cof * d.cof_h) % wolf->p->floor_texture->h;
 			if (d.textx > 0 && d.texty > 0)
 			{
 				d.color = get_pixel(wolf->p->floor_texture, d.textx, d.texty);
@@ -79,15 +79,15 @@ t_distance *dist, int cy[2])
 	(2.0 * (cy[1] + wolf->player->fly) - (H - wolf->player->fly));
 	d->weight = d->curr_dist / (dist->dist[wolf->player->\
 	distance[cy[0]]->count - 1] / (d->cof));
-	d->currFloorX = d->weight * (dist->coords[wolf->player->\
+	d->curr_floorx = d->weight * (dist->coords[wolf->player->\
 	distance[cy[0]]->count - 1].x /\
 	(d->cof)) + (1.0 - d->weight) * (wolf->player->x / (d->cof));
-	d->currFloorY = d->weight * (dist->coords[wolf->player->\
+	d->curr_floory = d->weight * (dist->coords[wolf->player->\
 	distance[cy[0]]->count - 1].y\
 	/ (d->cof)) + (1.0 - d->weight) * (wolf->player->y / (d->cof));
-	d->textx = (int)(d->currFloorX * wolf->p->floor_texture->w * d->cof)\
+	d->textx = (int)(d->curr_floorx * wolf->p->floor_texture->w * d->cof)\
 	% wolf->p->floor_texture->w;
-	d->texty = (int)(d->currFloorY * wolf->p->floor_texture->h * d->cof)\
+	d->texty = (int)(d->curr_floory * wolf->p->floor_texture->h * d->cof)\
 	% wolf->p->floor_texture->h;
 }
 
