@@ -1,8 +1,37 @@
-w 4
-w 652 197 912 209 ../textures/wall/wall0.png 5 0 0
-w 912 209 887 369 ../textures/wall/wall1.png 5 0 0
-w 887 369 654 352 ../textures/wall/wall0.png 5 0 0
-w 654 352 652 197 ../textures/wall/wall0.png 5 0 0
-f ../textures/floor/floor1.png
-s ../textures/floor/sky1.png
-m ../textures/music/music1.mp3
+walls: 31
+w 645 264 480 440 textures/wall/wall0.png 7 0 0
+w 480 440 745 866 textures/wall/wall0.png 7 0 0
+w 745 866 1190 697 textures/wall/wall0.png 7 0 0
+w 1190 697 1044 220 textures/wall/wall0.png 7 0 0
+w 1044 220 645 264 textures/wall/wall0.png 1 0 0
+w 738 413 699 503 textures/wall/wall0.png 1 0 0
+w 821 472 806 493 textures/wall/wall0.png 1 1 1
+w 821 472 835 486 textures/wall/wall0.png 1 1 1
+w 806 493 820 507 textures/wall/wall0.png 1 1 1
+w 835 486 820 507 textures/wall/wall0.png 1 1 1
+w 835 486 820 507 textures/wall/wall0.png 2 1 2
+w 835 486 849 500 textures/wall/wall0.png 2 1 2
+w 820 507 834 521 textures/wall/wall0.png 2 1 2
+w 849 500 834 521 textures/wall/wall0.png 2 1 2
+w 849 500 834 521 textures/wall/wall0.png 3 1 3
+w 849 500 863 514 textures/wall/wall0.png 3 1 3
+w 834 521 848 535 textures/wall/wall0.png 3 1 3
+w 863 514 848 535 textures/wall/wall0.png 3 1 3
+w 863 514 848 535 textures/wall/wall0.png 4 1 4
+w 863 514 877 528 textures/wall/wall0.png 4 1 4
+w 848 535 862 549 textures/wall/wall0.png 4 1 4
+w 877 528 862 549 textures/wall/wall0.png 4 1 4
+w 877 528 862 549 textures/wall/wall0.png 5 1 5
+w 877 528 891 542 textures/wall/wall0.png 5 1 5
+w 862 549 876 563 textures/wall/wall0.png 5 1 5
+w 891 542 876 563 textures/wall/wall0.png 5 1 5
+w 845 605 920 676 textures/wall/wall0.png 5 1 6
+w 920 676 1012 546 textures/wall/wall0.png 5 1 6
+w 1012 546 916 500 textures/wall/wall0.png 5 1 6
+w 916 500 845 605 textures/wall/wall0.png 5 1 6
+w 850 450 0 0 ../textures/enemy/e1.png 5 3 0
+p 850 600
+x 850 600
+f textures/floor/floor1.png
+s textures/floor/sky1.png
+m music/Oto_Kapanadze-Mystic_Mountain.mp3

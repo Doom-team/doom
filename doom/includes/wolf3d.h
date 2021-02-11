@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
+/*   Created: 2020/10/18 18:31:45 by skaren            #+#    #+#             */
 /*   Updated: 2021/02/08 20:58:23 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -278,23 +278,42 @@ typedef struct		s_wolf
 	t_bonus			*bon;
 	t_menu			*menu;
 	bool			z_buff[W * H];
-	bool			z_buff_2[W * H];
-	float			t_cof; // для отладки и тестов
 }					t_wolf;
 
-/*
-** draw.c
-*/
-
-typedef struct
+typedef struct		s_pthrdata
 {
 	int				number;
 	t_wolf			*wolf;
 	t_point			point;
 	int				interlaced_rendering;
 	int				count_distance;
-}					pthrData;
+}					t_pthrdata;
 
+typedef struct		s_data_floor
+{
+	float	curr_dist;
+	float	weight;
+	float	currFloorX;
+	float	currFloorY;
+	float	cof;
+	float	cof_h;
+	int		textx;
+	int		texty;
+	int		color;
+	int		temp_y;
+	int		y;
+	int		tmp;
+}					t_data_floor;
+
+
+/*
+** cof.c
+*/
+float				cof_size_displ(void);
+int					fly_correct_fuf(t_wolf *wolf);
+int					fly_correction_from_dist(t_wolf	*wolf, int	j, int count_distance);
+float				correct_cof_h(t_wolf *wolf);
+int					diry_correction_from_fly(int fly);
 /*
 ** render_hud.c
 */
@@ -351,12 +370,6 @@ void				screen_win(t_wolf *wolf);
 void				print_menu(t_wolf *wolf);
 void				draw_button(t_sdl *sdl, t_button *button);
 void				draw_texture(t_sdl *sdl, t_button *button, t_position *pos);
-
-/*
-** main.c
-*/
-t_point				dot(int x, int y);
-int					max(int a, int b);
 
 /*
 ** move.c
@@ -444,22 +457,28 @@ SDL_Color			set_color_sdl(int a, int b, int c);
 SDL_Rect			set_rect_sdl(int x, int y, int w, int h);
 
 /*
-** pseudo_3d.c
+** thread_func.c
 */
 void				pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface);
-void				floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j);
+
+/*
+** pseudo_3d.c
+*/
 void				floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j);
 void				draw_sky(t_wolf *wolf, int x, int y);
 void				draw_column(t_wolf *wolf, t_point point,
 					t_distance *dist, int count_distance);
 void				draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_distance);
-int					fly_correction_from_dist(t_wolf	*wolf, int	j, int count_distance);
-int					diry_correction_from_fly(int fly);
 
 /*
 ** guns_shot.c
 */
 void				guns_shot(SDL_Surface *screen, int flag, t_bonus *bon);
 void				render_shot(t_wolf *wolf, SDL_Surface *surface);
+/*
+** floorcast.c
+*/
+void				floorcast(t_wolf *wolf, t_distance *dist, t_point point, int count_distance);
+void				floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j);
 
 #endif

@@ -12,20 +12,6 @@
 
 #include "../includes/wolf3d.h"
 
-t_point			dot(int x, int y)
-{
-	t_point	new;
-
-	new.x = x;
-	new.y = y;
-	return (new);
-}
-
-int				max(int a, int b)
-{
-	return (a > b ? a : b);
-}
-
 static t_wolf	*t_wolf_new(void)
 {
 	t_wolf		*new;
@@ -52,7 +38,6 @@ static t_wolf	*t_wolf_new(void)
 	parser(new);
 	recalc(new);
 	printf("%d\n", new->p->count_walls);
-	new->t_cof = 0;
 	return (new);
 }
 

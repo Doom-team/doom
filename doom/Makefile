@@ -6,7 +6,7 @@
 #    By: wendell <wendell@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/15 16:58:46 by clala             #+#    #+#              #
-#    Updated: 2021/02/04 21:11:12 by wendell          ###   ########.fr        #
+#    Updated: 2021/02/11 18:29:18 by wendell          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ ALL_C = main.c \
 		load_textures.c \
 		distance.c \
 		pseudo_3d.c \
-		draw.c \
 		render_text.c \
 		guns_shot.c \
 		move.c \
@@ -36,7 +35,10 @@ ALL_C = main.c \
 		parsing_param1.c \
 		render_hud.c \
 		check_valid.c \
-		parsing_music.c
+		parsing_music.c \
+		cof.c \
+		thread_func.c \
+		floorcast.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
@@ -54,8 +56,8 @@ LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
-# FLAGS = -Ofast -mprefer-vector-width=512
-FLAGS = -fmudflap -g
+FLAGS = -Ofast -mprefer-vector-width=512
+# FLAGS = -fmudflap -g
 # FLAGS =
 #-Wall -Wextra -Werror
 

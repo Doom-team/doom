@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/10 20:58:49 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/11 18:36:35 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		handle_other_keys(t_wolf *wolf)
 	{
 		if (wolf->player->flying)
 			wolf->player->fly -= UP_LENGTH;
-		else if (!wolf->player->in_jump)
+		else if (!wolf->player->in_jump && abs(wolf->player->fly) == wolf->player->inside_step)
 			jump(wolf);
 	}
 		// wolf->bon->guns_fire = 1;
@@ -31,10 +31,6 @@ static void		handle_other_keys(t_wolf *wolf)
 		if (wolf->player->fly > 0)
 			wolf->player->fly = 0;
 	}
-	if (wolf->sdl->state[SDL_SCANCODE_V]) // отладка
-		wolf->t_cof += 0.001;
-	if (wolf->sdl->state[SDL_SCANCODE_B]) // отладка
-		wolf->t_cof -= 0.001;
 	if (wolf->sdl->state[SDL_SCANCODE_H])
 		wolf->sdl->menu = wolf->sdl->menu ? 0 : 1;
 }
@@ -61,23 +57,18 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 		// calc_move(wolf, p->speed * sinf(p->dir - RAD_90),
 		// -(p->speed * cosf(p->dir - RAD_90)));
 	}
-	if (s[SDL_SCANCODE_DOWN] || s[SDL_SCANCODE_S])
+	if (s[SDL_SCANCODE_S])
 	{
 		wolf->player->run_b = 1;
 		wolf->player->run_f = 0;
 		// calc_move(wolf, p->speed * sinf(p->dir), -(p->speed * cosf(p->dir)));
 	}
-	if (s[SDL_SCANCODE_W] || s[SDL_SCANCODE_UP])
+	if (s[SDL_SCANCODE_W])
 	{
 		wolf->player->run_f = 1;
 		wolf->player->run_b = 0;
 		// calc_move(wolf, -(p->speed * sinf(p->dir)), p->speed * cosf(p->dir));
 	}
-	if ((s[SDL_SCANCODE_RIGHT] || s[SDL_SCANCODE_E])
-	&& add_arc(&p->dir, -0.05))
-		add_skybox_offset(wolf, W / (float)wolf->p->sky_texture->w * 60.0);
-	if ((s[SDL_SCANCODE_LEFT] || s[SDL_SCANCODE_Q]) && add_arc(&p->dir, 0.05))
-		add_skybox_offset(wolf, W / (float)wolf->p->sky_texture->w * -60.0);
 	if (s[SDL_SCANCODE_P])
 		wolf->sdl->sides_mode = wolf->sdl->sides_mode == 1 ? 0 : 1;
 	// if (s[SDL_SCANCODE_M])
@@ -206,25 +197,15 @@ void			wolf_loop(t_wolf *wolf)
 		recalc(wolf);
 		handle_event(wolf, &event);
 		handle_phisics(wolf, wolf->player);
-		// draw_background(wolf->surface); // для отладки
 		recalc_rotation(wolf);
 		all_get_distance(wolf);
-		// printf("%f\n", wolf->player->distance[W/2]->dist[0]);
 		pseudo_3d(wolf, wolf->player, wolf->surface);
-		// render_monster(wolf, wolf->surface);
 		render_score_coin(wolf);
 		render_fps(wolf, wolf->bon);
 		render_aim(wolf);
 		render_hud(wolf);
 		render_shot(wolf, wolf->surface);
-		// wolf->map->mm_show ? draw_minimap(wolf, wolf->map, wolf->player) : 0;
-		// wolf->sdl->menu ? draw_menu(wolf) : 0;
 		screen_death(wolf, &event);
 		SDL_UpdateWindowSurface(wolf->sdl->win);
-		// printf("fly = %d, cof = %f\n", wolf->player->fly, wolf->t_cof); // для отладки кофов
 	}
-	// SDL_DestroyWindow(wolf->sdl->win);
-	// TTF_Quit();
-	// SDL_Quit();
-	// exit(EXIT_SUCCESS);
 }
