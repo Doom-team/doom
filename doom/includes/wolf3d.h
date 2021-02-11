@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/08 20:58:23 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/11 21:50:22 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct		s_wall
 	int				h;
 	int				type_flag;
 	int				squad_stage;
+	int				type_stage;
+	int				opening;
 	SDL_Surface		*texture1;
 }					t_wall;
 
@@ -108,15 +110,10 @@ typedef struct		s_float2
 typedef struct		s_distance
 {
 	float			dist[1000];
-	int				number_wall[1000]; //номер стены для того чтобы узнать ее длину при отрисовке текстур для колличества репликаций текстуры на стене
+	int				number_wall[1000];
 	float			offsetx[1000];
 	t_float2		coords[1000];
-	// int			type_flag[1000]; // 0 стена, 1 ступенька, 2 двер?
-	// int			squad_stage[1000]; // номер блока ступеньки состоит из 3 и более стен
-	// int			y[100]; // что это ?
 	int				count;
-	// char		tex;
-	// int			side;
 }					t_distance;
 
 typedef struct		s_player
@@ -125,6 +122,7 @@ typedef struct		s_player
 	float			y;
 	float			speed;
 	int				size;
+	int				num_ammo;
 	float			hp;
 	float			fov;
 	float			dir;
@@ -148,6 +146,10 @@ typedef struct		s_player
 	int				run_b;
 	int				run_r;
 	int				run_l;
+	float			dist_obj;
+	int				indx_obj;
+	float			dist_mon;
+	int				indx_mon;
 }					t_player;
 
 typedef	struct		s_sprite_calc
@@ -170,7 +172,7 @@ typedef	struct		s_sprite_calc
 
 typedef struct		s_bonus
 {
-	int				set_gun; // 1 - пистолет 2 - ак 3 шотган
+	int				set_gun;
 	int				fps;
 	Uint32			start_time;
 	int				fps_count;
@@ -191,12 +193,8 @@ typedef struct		s_bonus
 
 typedef struct		s_sdl
 {
-	// SDL_Surface	*scrs; //menu** scrs
-	// int				ufshfadk;
-	// SDL_Surface		*textures;
-	// SDL_Surface		*sky;
 	SDL_Surface		*icon;
-	SDL_Window		*win; //menu** window
+	SDL_Window		*win;
 	int				tex_arr[0xff];
 	const Uint8		*state;
 	float			skybox_offset;
@@ -253,6 +251,7 @@ typedef struct		s_menu
 	t_background	screen_win;
 	t_background	hp;
 	t_background	hp_bar;
+	t_background	ammo;
 	t_button		logo;
 	t_button		start;
 	t_button		settings;
@@ -265,7 +264,7 @@ typedef struct		s_floor_up
 	int				y2[1000];
 	float			dist[1000];
 	int				h[1000];
-	int				count; // храним номер
+	int				count;
 }					t_floot_up;
 
 typedef struct		s_wolf
@@ -293,8 +292,8 @@ typedef struct		s_data_floor
 {
 	float	curr_dist;
 	float	weight;
-	float	currFloorX;
-	float	currFloorY;
+	float	curr_floorx;
+	float	curr_floory;
 	float	cof;
 	float	cof_h;
 	int		textx;
@@ -305,13 +304,13 @@ typedef struct		s_data_floor
 	int		tmp;
 }					t_data_floor;
 
-
 /*
 ** cof.c
 */
 float				cof_size_displ(void);
 int					fly_correct_fuf(t_wolf *wolf);
-int					fly_correction_from_dist(t_wolf	*wolf, int	j, int count_distance);
+int					fly_correction_from_dist(t_wolf	*wolf,
+					int	j, int count_distance);
 float				correct_cof_h(t_wolf *wolf);
 int					diry_correction_from_fly(int fly);
 /*
@@ -333,7 +332,6 @@ Mix_Music			*parsing_music(t_parser *parser, char **arr, bool *b);
 */
 void				check_valid(t_buff *buff);
 
-
 void				draw_background(SDL_Surface *surface);
 int					draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
 void				draw_ray(t_wolf *wolf, float player, int x, int y);
@@ -354,7 +352,8 @@ void				handle_phisics(t_wolf *wolf, t_player *p);
 */
 void				menu_loop(t_wolf *wolf);
 void				hooks(t_sdl *sdl, t_menu *menu);
-void				check_pos_button(t_sdl *sdl, t_button *button, int k, t_menu *menu);
+void				check_pos_button(t_sdl *sdl, t_button *button,
+					int k, t_menu *menu);
 void				quit(t_sdl *sdl);
 
 /*
@@ -386,7 +385,8 @@ void				falling(t_wolf *wolf);
 void				set_pixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
 Uint32				get_pixel(SDL_Surface *surface, int x, int y);
 int					get_pixel1(SDL_Surface *surface, int x, int y);
-void				set_pixel1(SDL_Surface *surface, SDL_Surface *surface1, int x, int y, int pixel);
+void				set_pixel1(SDL_Surface *surface, SDL_Surface *surface1,
+					int x, int y, int pixel);
 int					is_texture(t_map *map, int x, int y, char texture);
 
 /*
@@ -405,7 +405,7 @@ int					error_inv_n(t_wolf *wolf, char *s, int inv_num);
 /*
 ** init.c
 */
-void				init_player(t_wolf *wolf, t_player *player, t_map *map);
+void				init_player(t_wolf *wolf, t_player *player);
 void				init_sdl(t_wolf *wolf);
 
 /*
@@ -439,7 +439,8 @@ int					get_fps_time(t_bonus *bon);
 /*
 ** distance.c
 */
-t_distance			*dist_to_wall(t_wolf *wolf, float angle, int count_distance);
+t_distance			*dist_to_wall(t_wolf *wolf, float angle,
+					int count_distance);
 t_distance			*t_distance_new(t_wolf *wolf);
 void				t_distance_clear(t_distance *dist);
 void				all_get_distance(t_wolf *wolf);
@@ -459,26 +460,33 @@ SDL_Rect			set_rect_sdl(int x, int y, int w, int h);
 /*
 ** thread_func.c
 */
-void				pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface);
+void				pseudo_3d(t_wolf *wolf);
 
 /*
 ** pseudo_3d.c
 */
-void				floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j);
+void				floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x,
+					int count_distance, t_floot_up stage, int j);
 void				draw_sky(t_wolf *wolf, int x, int y);
 void				draw_column(t_wolf *wolf, t_point point,
 					t_distance *dist, int count_distance);
-void				draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_distance);
+void				draw_column_fly(t_wolf *wolf, t_point point,
+					t_distance *dist, int count_distance);
 
 /*
 ** guns_shot.c
 */
 void				guns_shot(SDL_Surface *screen, int flag, t_bonus *bon);
 void				render_shot(t_wolf *wolf, SDL_Surface *surface);
+void				render_shot1(t_wolf *wolf, SDL_Surface *surface);
+void				render_shot2(t_wolf *wolf, SDL_Surface *surface);
+void				render_shot3(t_wolf *wolf, SDL_Surface *surface);
 /*
 ** floorcast.c
 */
-void				floorcast(t_wolf *wolf, t_distance *dist, t_point point, int count_distance);
-void				floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j);
+void				floorcast(t_wolf *wolf, t_distance *dist,
+					t_point point, int count_distance);
+void				floorcast_up(t_wolf *wolf, t_distance *dist,
+					int x, int count_distance, t_floot_up stage, int j);
 
 #endif

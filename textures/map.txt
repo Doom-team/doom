@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 w 76
 w 501 165 1085 191 ../textures/wall/wall1.png 5 0 0
 w 1085 191 1132 837 ../textures/wall/wall1.png 5 0 0
@@ -79,3 +80,51 @@ f ../textures/floor/floor1.png
 s ../textures/floor/sky1.png
 m ../textures/music/m1.mp3
 p 601 245
+=======
+w 40
+w 604 297 993 288 ../textures/wall/wall1.png 5 0 0
+w 993 288 981 591 ../textures/wall/wall1.png 5 0 0
+w 981 591 603 597 ../textures/wall/wall1.png 5 0 0
+w 603 597 604 297 ../textures/wall/wall1.png 5 0 0
+w 633 414 631 341 ../textures/wall/wall1.png 5 0 0
+w 716 365 816 365 ../textures/wall/wall1.png 1 1 1
+w 716 365 716 465 ../textures/wall/wall1.png 1 1 1
+w 816 365 816 465 ../textures/wall/wall1.png 1 1 1
+w 716 465 816 465 ../textures/wall/wall1.png 1 1 1
+w 652 415 653 436 ../textures/wall/wall1.png 1 1 2
+w 652 415 671 413 ../textures/wall/wall1.png 1 1 2
+w 653 436 672 434 ../textures/wall/wall1.png 1 1 2
+w 671 413 672 434 ../textures/wall/wall1.png 1 1 2
+w 671 413 672 434 ../textures/wall/wall1.png 2 1 3
+w 671 413 691 411 ../textures/wall/wall1.png 2 1 3
+w 672 434 692 432 ../textures/wall/wall1.png 2 1 3
+w 691 411 692 432 ../textures/wall/wall1.png 2 1 3
+w 726 430 707 409 ../textures/wall/wall1.png 1 1 4
+w 726 430 717 448 ../textures/wall/wall1.png 1 1 4
+w 707 409 698 427 ../textures/wall/wall1.png 1 1 4
+w 717 448 698 427 ../textures/wall/wall1.png 1 1 4
+w 717 448 698 427 ../textures/wall/wall1.png 2 1 5
+w 717 448 709 466 ../textures/wall/wall1.png 2 1 5
+w 698 427 690 445 ../textures/wall/wall1.png 2 1 5
+w 709 466 690 445 ../textures/wall/wall1.png 2 1 5
+w 699 453 694 474 ../textures/wall/wall1.png 1 1 6
+w 699 453 718 458 ../textures/wall/wall1.png 1 1 6
+w 694 474 713 479 ../textures/wall/wall1.png 1 1 6
+w 718 458 713 479 ../textures/wall/wall1.png 1 1 6
+w 718 458 713 479 ../textures/wall/wall1.png 2 1 7
+w 718 458 737 464 ../textures/wall/wall1.png 2 1 7
+w 713 479 732 485 ../textures/wall/wall1.png 2 1 7
+w 737 464 732 485 ../textures/wall/wall1.png 2 1 7
+w 738 383 0 0 ../textures/pickup/health.png 5 4 0
+w 728 389 0 0 ../textures/pickup/armor.png 5 5 0
+w 730 419 0 0 ../textures/guns/pistol/img.png 5 6 1
+w 768 403 0 0 ../textures/guns/ak/img.png 5 6 3
+w 672 428 0 0 ../textures/guns/shotgun/shotgun_b.png 5 7 2
+w 703 435 0 0 ../textures/guns/shotgun/img.png 5 6 2
+w 707 448 0 0 ../textures/guns/pistol/pistol_b.png 5 7 1
+f ../textures/floor/floor1.png
+s ../textures/floor/sky1.png
+m ../textures/music/m1.mp3
+p 656 325
+x 800 800
+>>>>>>> 815ceb0520d169c5432d05211243377877e52ebc

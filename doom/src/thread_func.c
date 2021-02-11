@@ -63,7 +63,7 @@ static	void	wait_and_free_thread(pthread_t *threads,\
 	free(thread_data);
 }
 
-void			pseudo_3d(t_wolf *wolf, t_player *player, SDL_Surface *surface)
+void			pseudo_3d(t_wolf *wolf)
 {
 	t_point		point;
 	pthread_t	*threads;

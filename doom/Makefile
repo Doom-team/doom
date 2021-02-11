@@ -38,7 +38,10 @@ ALL_C = main.c \
 		parsing_music.c \
 		cof.c \
 		thread_func.c \
-		floorcast.c
+		floorcast.c \
+		render_shot1.c \
+		render_shot2.c \
+		render_shot3.c 
 
 SRCDIR = ./src
 OBJDIR = ./objs
@@ -56,8 +59,8 @@ LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
-FLAGS = -Ofast -mprefer-vector-width=512
-# FLAGS = -fmudflap -g
+# FLAGS = -Ofast -mprefer-vector-width=512
+FLAGS = -Wall -Wextra -Werror -g
 # FLAGS =
 #-Wall -Wextra -Werror
 
