@@ -71,7 +71,7 @@ void savestairs(t_map *map)
 		map->stairstr = add_text(map->stairstr, " ", 1);
 		map->stairstr = add_text(map->stairstr, ft_itoa(map->remove->y[i + 1]), 2);
 		map->stairstr = add_text(map->stairstr, " ", 1);
-		map->stairstr = add_text(map->stairstr, "../textures/wall/wall0.png ", 1);
+		map->stairstr = add_text(map->stairstr, "../textures/wall/wall1.png ", 1);
 		map->stairstr = add_text(map->stairstr, ft_itoa(tmp), 2);
 		map->stairstr = add_text(map->stairstr, " ", 1);
 		map->stairstr = add_text(map->stairstr, "1", 1);
