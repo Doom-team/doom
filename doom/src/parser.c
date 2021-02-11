@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 19:38:26 by ahusk             #+#    #+#             */
-/*   Updated: 2021/02/08 20:20:39 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/11 15:26:14 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
-#include "../../doom/libft/includes/get_next_line.h"
+#include "../doom/libft/includes/get_next_line.h"
 
 void		parsing(t_parser *parser, char *l)
 {
