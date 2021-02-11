@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
-#include "../doom/libft/includes/get_next_line.h"
+#include "../../doom/libft/includes/get_next_line.h"
 
 void		parsing(t_parser *parser, char *l)
 {
