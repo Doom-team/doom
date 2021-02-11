@@ -12,7 +12,21 @@
 
 #include "../includes/wolf3d.h"
 
-void	render_hud(t_wolf *wolf)
+static void		render_ammo(t_wolf *wolf, SDL_Rect *img_location)
+{
+	int	i;
+
+	i = -1;
+	while (++i < wolf->player->num_ammo && i < 10)
+	{
+		*img_location = set_rect_sdl(W / 14 + (27 * i),
+			H * 19 / 25, W / 50, H / 25);
+		SDL_BlitScaled(wolf->menu->ammo.texture, NULL,
+			wolf->surface, img_location);
+	}
+}
+
+void			render_hud(t_wolf *wolf)
 {
 	SDL_Rect	img_location;
 
@@ -22,4 +36,5 @@ void	render_hud(t_wolf *wolf)
 		NULL, wolf->surface, &img_location);
 	img_location = set_rect_sdl(0, H * 8 / 10, W / 3, H / 11);
 	SDL_BlitScaled(wolf->menu->hp.texture, NULL, wolf->surface, &img_location);
+	render_ammo(wolf, &img_location);
 }

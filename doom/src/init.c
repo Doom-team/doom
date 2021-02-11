@@ -23,6 +23,7 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 		p->distance_vert[i] = t_distance_new(wolf);
 	}
 	p->hp = 100.0f;
+	p->num_ammo = 10;
 	p->x = 750 / RESIZE;
 	p->y = 300 / RESIZE;
 	p->speed = 0.11f;
