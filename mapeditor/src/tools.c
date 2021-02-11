@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:33 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/04 21:08:32 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 16:47:48 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	edit_tool(t_map *map, int index)
 	i = -1;
 	edit_blocktexture(map, -1);
 	zerroother(map);
-	map->inter_tex[16]->active = 0;
+	zerroothero(map);
+	//map->inter_tex[16]->active = 0;
 	while (++i < 25)
 	{
 		if (i == index)

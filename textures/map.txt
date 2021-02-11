@@ -1,12 +1,8 @@
-w 8
-w 760 295 860 295 ../textures/wall/wall0.png 1 1 1
-w 760 295 760 395 ../textures/wall/wall0.png 1 1 1
-w 860 295 860 395 ../textures/wall/wall0.png 1 1 1
-w 760 395 860 395 ../textures/wall/wall0.png 1 1 1
-w 762 298 862 298 ../textures/wall/wall0.png 1 1 2
-w 762 298 762 398 ../textures/wall/wall0.png 1 1 2
-w 862 298 862 398 ../textures/wall/wall0.png 1 1 2
-w 762 398 862 398 ../textures/wall/wall0.png 1 1 2
+w 4
+w 652 197 912 209 ../textures/wall/wall0.png 5 0 0
+w 912 209 887 369 ../textures/wall/wall1.png 5 0 0
+w 887 369 654 352 ../textures/wall/wall0.png 5 0 0
+w 654 352 652 197 ../textures/wall/wall0.png 5 0 0
 f ../textures/floor/floor1.png
 s ../textures/floor/sky1.png
-m ../textures/music/m1.mp3
+m ../textures/music/music1.mp3
