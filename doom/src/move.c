@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/09 16:47:23 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/11 16:43:02 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	rotate(t_wolf *wolf, SDL_Event *event)
 
 void take_damage(t_wolf *wolf, int dmg)
 {
+	printf("dmg %d\n", dmg);
 	wolf->player->hp -= dmg;
 	Mix_PlayChannel(1, wolf->p->take_damage, 0);
 }
@@ -78,6 +79,7 @@ void	falling(t_wolf *wolf)
 		{
 			wolf->player->fly -= UP_LENGTH/2;
 			handle_event(wolf, &event);
+			recalc(wolf);
 			// handle_phisics(wolf, wolf->player);
 			all_get_distance(wolf);
 			pseudo_3d(wolf, wolf->player, wolf->surface);
@@ -98,6 +100,7 @@ void	falling(t_wolf *wolf)
 			wolf->player->fly += UP_LENGTH/4;
 			handle_event(wolf, &event);
 			// handle_phisics(wolf, wolf->player);
+			recalc(wolf);
 			all_get_distance(wolf);
 			pseudo_3d(wolf, wolf->player, wolf->surface);
 			// render_monster(wolf, wolf->surface);
@@ -108,15 +111,15 @@ void	falling(t_wolf *wolf)
 			render_shot(wolf, wolf->surface);
 			SDL_UpdateWindowSurface(wolf->sdl->win);
 		}
-		printf("%d\n", dmg);
 		if (dmg < -15)
-			take_damage(wolf, abs(dmg));
+			take_damage(wolf, abs(dmg) / 2);
 	}
 }
 
 void	jump(t_wolf *wolf)
 {
 	int i = 0;
+	int dmg;
 	SDL_Event	event;
 
 	wolf->player->in_jump = 1;
@@ -124,6 +127,7 @@ void	jump(t_wolf *wolf)
 	{
 		wolf->player->fly -= UP_LENGTH/6;
 		handle_event(wolf, &event);
+
 		handle_phisics(wolf, wolf->player);
 		all_get_distance(wolf);
 		pseudo_3d(wolf, wolf->player, wolf->surface);
@@ -136,7 +140,25 @@ void	jump(t_wolf *wolf)
 		SDL_UpdateWindowSurface(wolf->sdl->win);
 		i++;
 	}
-	falling(wolf);
+	dmg = (wolf->player->inside_step + wolf->player->fly) / 60;
+	while (abs(wolf->player->fly) > wolf->player->inside_step && wolf->player->fly < 0)
+	{
+		wolf->player->fly += UP_LENGTH/3;
+		handle_event(wolf, &event);
+		recalc(wolf);
+		handle_phisics(wolf, wolf->player);
+		all_get_distance(wolf);
+		pseudo_3d(wolf, wolf->player, wolf->surface);
+		render_score_coin(wolf);
+		render_fps(wolf, wolf->bon);
+		render_aim(wolf);
+		render_hud(wolf);
+		render_shot(wolf, wolf->surface);
+		SDL_UpdateWindowSurface(wolf->sdl->win);
+	}
+	wolf->player->fly = -wolf->player->inside_step;
+	if (dmg < -15)
+		take_damage(wolf, abs(dmg) / 2);
 	wolf->player->in_jump = 0;
 }
 

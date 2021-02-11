@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/10 20:58:49 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/11 16:16:22 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		handle_other_keys(t_wolf *wolf)
 	{
 		if (wolf->player->flying)
 			wolf->player->fly -= UP_LENGTH;
-		else if (!wolf->player->in_jump)
+		else if (!wolf->player->in_jump && abs(wolf->player->fly) == wolf->player->inside_step)
 			jump(wolf);
 	}
 		// wolf->bon->guns_fire = 1;
