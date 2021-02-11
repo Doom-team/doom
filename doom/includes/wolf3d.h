@@ -41,6 +41,7 @@ typedef struct		s_wall
 	int				h;
 	int				type_flag;
 	int				squad_stage;
+	int				type_stage;
 	SDL_Surface		*texture1;
 }					t_wall;
 

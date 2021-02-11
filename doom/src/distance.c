@@ -251,16 +251,17 @@ void			calculate_distance(t_wolf *wolf, float angle, t_way *d)
 	player.y = wolf->player->y;
 	dist = MAXFLOAT;
 	tmp = -1;
-	i = 0;
-	while (i < wolf->p->count_walls)
+	i = -1;
+	while (++i < wolf->p->count_walls) //&& wolf->p->walls[i].type_stage >= 0 && wolf->p->walls[i].type_ <= 2)
 	{
+		if (wolf->p->walls[i].type_flag >= 3)
+			continue;
 		tmp = calc_dist_without_v(player, angle, wolf->p->walls[i]);
 		if (tmp != -1. && tmp < dist)
 		{
 			dist = tmp;
 			j = i;
 		}
-		i++;
 	}
 	d->dist = dist;
 	if (j != -1)

@@ -89,7 +89,12 @@ void			parsing_walls(t_parser *parser, char **arr)
 		error((t_wolf*)parser, ERR_FILE_INVALID);
 	parsing_type(parser, arr);
 	if (arr[8])
-		parser->walls[parser->buff.w].squad_stage = ft_atoi(arr[8]);
+	{
+		if (parser->walls[parser->buff.w].type_flag >= 3)
+			parser->walls[parser->buff.w].type_stage = ft_atoi(arr[8]);
+		else
+			parser->walls[parser->buff.w].squad_stage = ft_atoi(arr[8]);
+	}
 	else
 		error((t_wolf*)parser, ERR_FILE_INVALID);
 	parser->walls[parser->buff.w].active = 1;

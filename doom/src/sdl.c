@@ -49,7 +49,38 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 		{
 			wolf->p->walls[wolf->player->indx_obj].active = 0;
 			wolf->player->dist_obj = MAXFLOAT;
-			// if ()
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 1)
+			{
+				wolf->bon->set_gun = 1;
+				wolf->player->num_ammo = 10;
+			}
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 2)
+			{
+				wolf->bon->set_gun = 2;
+				wolf->player->num_ammo = 10;
+			}
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 3)
+			{
+				wolf->bon->set_gun = 3;
+				wolf->player->num_ammo = 10;
+			}
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 4)
+				wolf->player->hp = 100;
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 7 && wolf->p->walls[wolf->player->indx_obj].type_stage == 1 && wolf->bon->set_gun == 1)
+				wolf->player->num_ammo = 10;
+			else
+				wolf->p->walls[wolf->player->indx_obj].active = 1;
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 7 && wolf->p->walls[wolf->player->indx_obj].type_stage == 2 && wolf->bon->set_gun == 2)
+				wolf->player->num_ammo = 10;
+			else
+				wolf->p->walls[wolf->player->indx_obj].active = 1;
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 7 && wolf->p->walls[wolf->player->indx_obj].type_stage == 3 && wolf->bon->set_gun == 3)
+				wolf->player->num_ammo = 10;
+			else
+				wolf->p->walls[wolf->player->indx_obj].active = 1;
+			printf("%d\n", wolf->p->walls[wolf->player->indx_obj].type_flag);
+			printf("%d\n", wolf->p->walls[wolf->player->indx_obj].type_stage);
+			// // printf("%d\n", wolf->bon->flag_guns);
 		}
 	}
 	if (s[SDL_SCANCODE_D])
