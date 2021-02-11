@@ -81,7 +81,7 @@ void		falling(t_wolf *wolf)
 			handle_event(wolf, &event);
 			recalc(wolf);
 			all_get_distance(wolf);
-			pseudo_3d(wolf, wolf->player, wolf->surface);
+			pseudo_3d(wolf);
 			render_score_coin(wolf);
 			render_fps(wolf, wolf->bon);
 			render_aim(wolf);
@@ -99,7 +99,7 @@ void		falling(t_wolf *wolf)
 			handle_event(wolf, &event);
 			recalc(wolf);
 			all_get_distance(wolf);
-			pseudo_3d(wolf, wolf->player, wolf->surface);
+			pseudo_3d(wolf);
 			render_score_coin(wolf);
 			render_fps(wolf, wolf->bon);
 			render_aim(wolf);
@@ -126,7 +126,7 @@ void		jump(t_wolf *wolf)
 		handle_event(wolf, &event);
 		handle_phisics(wolf, wolf->player);
 		all_get_distance(wolf);
-		pseudo_3d(wolf, wolf->player, wolf->surface);
+		pseudo_3d(wolf);
 		render_score_coin(wolf);
 		render_fps(wolf, wolf->bon);
 		render_aim(wolf);
@@ -144,7 +144,7 @@ void		jump(t_wolf *wolf)
 		recalc(wolf);
 		handle_phisics(wolf, wolf->player);
 		all_get_distance(wolf);
-		pseudo_3d(wolf, wolf->player, wolf->surface);
+		pseudo_3d(wolf);
 		render_score_coin(wolf);
 		render_fps(wolf, wolf->bon);
 		render_aim(wolf);

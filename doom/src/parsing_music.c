@@ -17,9 +17,11 @@ Mix_Music	*parsing_music(t_parser *parser,
 {
 	Mix_Music *tmp;
 
+	tmp = NULL;
 	if (arr[1] != 0)
 	{
-		if (!(tmp = Mix_LoadMUS(arr[1])))
+		tmp = Mix_LoadMUS(arr[1]);
+		if (!tmp)
 			error((t_wolf *)parser, SDL_GetError());
 		if (!(parser->take_damage = Mix_LoadWAV("music/take_damage.wav")))
 			error((t_wolf *)parser, SDL_GetError());

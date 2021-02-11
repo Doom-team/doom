@@ -60,7 +60,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
 # FLAGS = -Ofast -mprefer-vector-width=512
-FLAGS = -fmudflap -g
+FLAGS = -Wall -Wextra -Werror -g
 # FLAGS =
 #-Wall -Wextra -Werror
 

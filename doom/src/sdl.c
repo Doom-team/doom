@@ -35,8 +35,7 @@ static void		handle_other_keys(t_wolf *wolf)
 		wolf->sdl->menu = wolf->sdl->menu ? 0 : 1;
 }
 
-static void		handle_keys(t_wolf *wolf, SDL_Event *event,
-							t_map *map, t_player *p)
+static void		handle_keys(t_wolf *wolf, SDL_Event *event)
 {
 	const		Uint8 *s;
 
@@ -172,7 +171,7 @@ void			handle_event(t_wolf *wolf, SDL_Event *event)
 				wolf->bon->guns_fire = 0;
 		}
 		if (event->type == SDL_KEYDOWN)
-			handle_keys(wolf, event, wolf->map, wolf->player);
+			handle_keys(wolf, event);
 		if (event->type == SDL_KEYUP)
 			handle_ukeys(wolf, (unsigned char)event->key.keysym.sym);
 	}
@@ -183,6 +182,7 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 	float	dist;
 	float	angle;
 
+	angle = 0.f;
 	dist = sqrtf(powf((w.realx - wolf->player->x), 2)
 		+ powf((w.realy - wolf->player->y), 2));
 	if (w.realx - wolf->player->x > 0
@@ -266,7 +266,7 @@ void			wolf_loop(t_wolf *wolf)
 		handle_phisics(wolf, wolf->player);
 		recalc_rotation(wolf);
 		all_get_distance(wolf);
-		pseudo_3d(wolf, wolf->player, wolf->surface);
+		pseudo_3d(wolf);
 		render_score_coin(wolf);
 		render_fps(wolf, wolf->bon);
 		render_aim(wolf);

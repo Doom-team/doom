@@ -405,7 +405,7 @@ int					error_inv_n(t_wolf *wolf, char *s, int inv_num);
 /*
 ** init.c
 */
-void				init_player(t_wolf *wolf, t_player *player, t_map *map);
+void				init_player(t_wolf *wolf, t_player *player);
 void				init_sdl(t_wolf *wolf);
 
 /*
@@ -460,8 +460,7 @@ SDL_Rect			set_rect_sdl(int x, int y, int w, int h);
 /*
 ** thread_func.c
 */
-void				pseudo_3d(t_wolf *wolf, t_player *player,
-					SDL_Surface *surface);
+void				pseudo_3d(t_wolf *wolf);
 
 /*
 ** pseudo_3d.c

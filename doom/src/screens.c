@@ -12,7 +12,7 @@
 
 #include "../includes/wolf3d.h"
 
-static void	hooks_screen(t_sdl *sdl, t_menu *menu)
+static void	hooks_screen(t_sdl *sdl)
 {
 	while (SDL_PollEvent(&sdl->e) != 0)
 	{
@@ -32,7 +32,7 @@ void		screen_start(t_wolf *wolf)
 {
 	while (wolf->sdl->run_screen)
 	{
-		hooks_screen(wolf->sdl, wolf->menu);
+		hooks_screen(wolf->sdl);
 		SDL_LockTexture(wolf->sdl->window_texture, NULL,
 			(void**)&wolf->sdl->bytes, &wolf->sdl->pitch);
 		draw_button(wolf->sdl, (t_button *)&wolf->menu->screen_start);
@@ -73,7 +73,7 @@ void		screen_death(t_wolf *wolf, SDL_Event *event)
 
 void		screen_win(t_wolf *wolf)
 {
-	hooks_screen(wolf->sdl, wolf->menu);
+	hooks_screen(wolf->sdl);
 	SDL_LockTexture(wolf->sdl->window_texture, NULL,
 		(void**)&wolf->sdl->bytes, &wolf->sdl->pitch);
 	draw_button(wolf->sdl, (t_button *)&wolf->menu->screen_win);

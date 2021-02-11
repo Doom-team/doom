@@ -25,7 +25,7 @@ static void		init_player_help(t_player *p)
 	p->fly = 0;
 }
 
-void			init_player(t_wolf *wolf, t_player *p, t_map *map)
+void			init_player(t_wolf *wolf, t_player *p)
 {
 	int	i;
 

@@ -49,7 +49,7 @@ int				main(void)
 	SDL_Init(SDL_INIT_EVERYTHING) != 0 ? error(wolf, SDL_GetError()) : 0;
 	TTF_Init() != 0 ? error(wolf, SDL_GetError()) : 0;
 	wolf = t_wolf_new();
-	init_player(wolf, wolf->player, wolf->map);
+	init_player(wolf, wolf->player);
 	init_bonus(wolf);
 	init_sdl(wolf);
 	init_menu(wolf->menu);
