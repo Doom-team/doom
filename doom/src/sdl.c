@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/11 20:56:07 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/11 21:50:38 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,13 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 	{
 		if (wolf->player->dist_obj <= 1.)
 		{
-			wolf->p->walls[wolf->player->indx_obj].active = 0;
-			wolf->player->dist_obj = MAXFLOAT;
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag != 2)
+			{
+				wolf->p->walls[wolf->player->indx_obj].active = 0;
+				wolf->player->dist_obj = MAXFLOAT;
+			}
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 2)
+				wolf->p->walls[wolf->player->indx_obj].opening = 1;
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 1)
 			{
 				wolf->bon->set_gun = 1;
@@ -80,32 +85,24 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 	{
 		wolf->player->run_r = 1;
 		wolf->player->run_l = 0;
-		// calc_move(wolf, p->speed * sinf(p->dir + RAD_90),
-		// -(p->speed * cosf(p->dir + RAD_90)));
 	}
 	if (s[SDL_SCANCODE_A])
 	{
 		wolf->player->run_l = 1;
 		wolf->player->run_r = 0;
-		// calc_move(wolf, p->speed * sinf(p->dir - RAD_90),
-		// -(p->speed * cosf(p->dir - RAD_90)));
 	}
 	if (s[SDL_SCANCODE_S])
 	{
 		wolf->player->run_b = 1;
 		wolf->player->run_f = 0;
-		// calc_move(wolf, p->speed * sinf(p->dir), -(p->speed * cosf(p->dir)));
 	}
 	if (s[SDL_SCANCODE_W])
 	{
 		wolf->player->run_f = 1;
 		wolf->player->run_b = 0;
-		// calc_move(wolf, -(p->speed * sinf(p->dir)), p->speed * cosf(p->dir));
 	}
 	if (s[SDL_SCANCODE_P])
-		wolf->sdl->sides_mode = wolf->sdl->sides_mode == 1 ? 0 : 1;
-	// if (s[SDL_SCANCODE_M])
-	// 	map->mm_show = map->mm_show == 1 ? 0 : 1;
+		wolf->sdl->sides_mode = !wolf->sdl->sides_mode;
 	if (s[SDL_SCANCODE_U])
 		wolf->player->flying = !wolf->player->flying;
 	handle_other_keys(wolf);
@@ -209,6 +206,11 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 		wolf->player->dist_obj = dist;
 		wolf->player->indx_obj = i;
 	}
+	if (w.type_flag == 2 && dist < wolf->player->dist_obj && dist <= 1.)
+	{
+		wolf->player->dist_obj = dist;
+		wolf->player->indx_obj = i;
+	}
 	return (angle);
 }
 
@@ -216,10 +218,13 @@ t_wall			rotate_wall(t_wall w, t_wolf *wolf, int i)
 {
 	float angle = search_angle(w, wolf, i);
 	// printf("%f\n", search_angle(w, wolf));
-	w.x1 = w.realx - sinf(-angle) * 0.5;
-	w.x2 = w.realx + sinf(-angle) * 0.5;
-	w.y1 = w.realy + cosf(-angle) * 0.5;
-	w.y2 = w.realy - cosf(-angle) * 0.5;
+	if (w.type_flag != 2)
+	{
+		w.x1 = w.realx - sinf(-angle) * 0.5;
+		w.x2 = w.realx + sinf(-angle) * 0.5;
+		w.y1 = w.realy + cosf(-angle) * 0.5;
+		w.y2 = w.realy - cosf(-angle) * 0.5;
+	}
 	return (w);
 }
 
@@ -230,8 +235,13 @@ void			recalc_rotation(t_wolf *wolf)
 	i = 0;
 	while (i < wolf->p->count_walls)
 	{
-		if (wolf->p->walls[i].active && wolf->p->walls[i].type_flag >= 3 && wolf->p->walls[i].type_flag <= 8)
+		if (wolf->p->walls[i].active && wolf->p->walls[i].type_flag >= 2 && wolf->p->walls[i].type_flag <= 8)
 			wolf->p->walls[i] = rotate_wall(wolf->p->walls[i], wolf, i);
+		
+		if (wolf->p->walls[i].active == 1 && wolf->p->walls[i].type_flag == 2 && wolf->p->walls[i].opening)
+			wolf->p->walls[i].h -= 1;
+		if (wolf->p->walls[i].h == 0)
+			wolf->p->walls[i].active = 0;
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/08 20:58:23 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/11 21:50:22 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_wall
 	int				type_flag;
 	int				squad_stage;
 	int				type_stage;
+	int				opening;
 	SDL_Surface		*texture1;
 }					t_wall;
 

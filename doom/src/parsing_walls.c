@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 19:19:15 by ahusk             #+#    #+#             */
-/*   Updated: 2021/02/08 19:41:34 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/11 21:59:27 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,7 @@ void			parsing_walls(t_parser *parser, char **arr)
 	else
 		error((t_wolf*)parser, ERR_FILE_INVALID);
 	parser->walls[parser->buff.w].active = 1;
+	parser->walls[parser->buff.w].opening = 0;
+	
 	init_param(parser);
 }
