@@ -37,7 +37,6 @@ static t_wolf	*t_wolf_new(void)
 		error(new, ERR_MALLOC);
 	parser(new);
 	recalc(new);
-	printf("%d\n", new->p->count_walls);
 	return (new);
 }
 
@@ -50,7 +49,6 @@ int				main()
 	SDL_Init(SDL_INIT_EVERYTHING) != 0 ? error(wolf, SDL_GetError()) : 0;
 	TTF_Init() != 0 ? error(wolf, SDL_GetError()) : 0;
 	wolf = t_wolf_new();
-	// printf("main %p\n", &(wolf->p->floor_texture));
 	init_player(wolf, wolf->player, wolf->map);
 	init_bonus(wolf);
 	init_sdl(wolf);
