@@ -18,7 +18,6 @@ ALL_C = main.c \
 		load_textures.c \
 		distance.c \
 		pseudo_3d.c \
-		draw.c \
 		render_text.c \
 		guns_shot.c \
 		move.c \
@@ -38,7 +37,8 @@ ALL_C = main.c \
 		check_valid.c \
 		parsing_music.c \
 		cof.c \
-		thread_func.c
+		thread_func.c \
+		floorcast.c
 
 SRCDIR = ./src
 OBJDIR = ./objs

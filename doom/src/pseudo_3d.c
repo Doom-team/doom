@@ -368,7 +368,7 @@ void			floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distanc
 	int		temp_y;
 	int		y;
 	int		tmp;
-	float	cof = 0.8654409f * pow((W * 1.0f / H), 1.0118661f)/* + wolf->t_cof*/;
+	float	cof = cof_size_displ();
 	float	cof_h = -0.4 * stage.h[j] + 1.0  + correct_cof_h(wolf) * stage.h[j];
 	// float	cof_h = -0.4 * stage.h[j] + 1.0  + wolf->t_cof * stage.h[j];
 	// float	cof_h = 1 + wolf->t_cof;
@@ -454,135 +454,6 @@ void			floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distanc
 		temp_y++;
 		y++;
 	}
-}
-
-void			floorcast_up(t_wolf *wolf, t_distance *dist, int x, int count_distance, t_floot_up stage, int j)
-{
-	float	curr_dist;
-	float	weight;
-	float	currFloorX;
-	float	currFloorY;
-	int		textx;
-	int		texty;
-	int		color;
-	int		temp_y;
-	int		y;
-	int		tmp;
-	float	cof = 0.8654409f * pow((W * 1.0f / H), 1.0118661f);
-	float	cof_h = -0.4 * stage.h[j] + 1;
-
-	// printf("%d\n", wolf->walls[dist->number_wall[j]].h);
-	// if (x == W / 2) // для отладки по центру экрана
-	// 	x = x;
-	if ((stage.y1[j] == 0 && stage.y2[j] == 0)/* || (dist->dist[0] < stage.dist[j])*/)
-		return ;
-	// printf("%d ----%d ----- %d\n", stage.y1[j], stage.y2[j], j);
-	// if (stage.y1[j] > stage.y2[j])
-	// 	return ;
-	if (stage.y1[j] == 0 && stage.y2[j] != 0)
-	{
-		// stage.y1[j] = stage.y2[j]; // если будут лаги с вертикальынми полосами то тут
-		tmp = stage.y2[j];
-		stage.y2[j] = H;
-		stage.y1[j] = tmp;
-		temp_y = stage.y1[j];
-	}
-	else if (stage.y1[j] == -1 && stage.y2[j] != 0)
-	{
-		stage.y1[j] = stage.y2[j];
-		if (stage.count % 2 == 0 && j - 1 >= 0 && stage.h[j] < stage.h[j - 1]) // dd
-		{
-			tmp = stage.y2[j];
-			stage.y2[j] = H;
-			stage.y1[j] = tmp;
-			temp_y = stage.y1[j];
-		}
-		else
-			return ;
-	}
-	else
-		stage.y2[j] -= wolf->player->dir_y;
-	temp_y = stage.y1[j] - wolf->player->dir_y;
-	y = stage.y1[j];
-	// temp_y_2 = y + wolf->player->dir_y;
-	while (temp_y < stage.y2[j])
-	{
-		if (temp_y >= 0 && temp_y <= H)
-		{
-			curr_dist = H / (2.0 * y - H); // 1.05 для искажения угла и придания большей реалистичности
-			// printf("%f\n", curr_dist);
-			weight = curr_dist / (dist->dist[wolf->player->distance[count_distance]->count - 1] / (cof * cof_h));
-			
-			currFloorX = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (cof * cof_h)) + (1.0 - weight) * (wolf->player->x / (cof * cof_h));
-			currFloorY = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (cof * cof_h)) + (1.0 - weight) * (wolf->player->y / (cof * cof_h));
-			
-			textx = (int)(currFloorX * wolf->p->floor_texture->w * cof * cof_h) % wolf->p->floor_texture->w;
-			texty = (int)(currFloorY * wolf->p->floor_texture->h * cof * cof_h) % wolf->p->floor_texture->h;
-
-			if (textx > 0 && texty > 0)
-			{
-				color = get_pixel(wolf->p->floor_texture, textx, texty);
-				// wolf->z_buff_2[x + (temp_y) * W] = true;
-				set_pixel(wolf->surface, x, temp_y, color);
-			}
-		}
-		temp_y++;
-		y++;
-	}
-}
-
-void		floorcast(t_wolf *wolf, t_distance *dist, int x, int y, int count_distance)
-{
-	float curr_dist;
-	float weight;
-	float currFloorX;
-	float currFloorY;
-	int textx;
-	int texty;
-	int color;
-	int temp_y;
-	// int temp_y_2;
-	float	cof = 0.8654409f * pow((W * 1.0f / H), 1.0118661f);
-
-	temp_y = y - (wolf->player->dir_y + diry_correction_from_fly(wolf->player->fly));
-	// temp_y_2 = y + wolf->player->dir_y;
-	// printf("temp_y = %d, y = %d\n", temp_y, y);
-	while (temp_y < H)
-	{
-		curr_dist = (H - wolf->player->fly) / (2.0 * (y + wolf->player->fly) - (H - wolf->player->fly));
-		// printf("%f\n", curr_dist);
-		weight = curr_dist / (dist->dist[wolf->player->distance[count_distance]->count - 1] / (cof));
-		
-		currFloorX = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].x / (cof)) + (1.0 - weight) * (wolf->player->x / (cof));
-		currFloorY = weight * (dist->coords[wolf->player->distance[count_distance]->count - 1].y / (cof)) + (1.0 - weight) * (wolf->player->y / (cof));
-		// printf("1\n");
-		// printf("%p\n", &(wolf->p->floor_texture));
-		textx = (int)(currFloorX * wolf->p->floor_texture->w * cof) % wolf->p->floor_texture->w;
-		texty = (int)(currFloorY * wolf->p->floor_texture->h * cof) % wolf->p->floor_texture->h;
-		// printf("2\n");
-		// if (textx < 0)
-		// 	continue;
-		// if (texty < 0)
-		// 	continue;
-		// color = get_pixel1(wolf->p->floor_texture, textx, texty);
-		// set_pixel1(wolf->surface, wolf->p->floor_texture, x, temp_y, color);
-		if (textx > 0 && texty > 0)
-		{
-			if (temp_y >= H / 2 - (wolf->player->dir_y - 1) && temp_y < H)
-			{
-				color = get_pixel(wolf->p->floor_texture, textx, texty);
-				set_pixel(wolf->surface, x, temp_y, color);
-			}
-		}
-		// printf("3\n");
-		// color = get_pixel(wolf->p->floor_texture, textx, texty);
-		// if (temp_y >= 0)
-		// 	set_pixel(wolf->surface, x, H - temp_y, color);
-		temp_y++;
-		// temp_y_2++;
-		y++;
-	}
-	// printf("temp_y = %d, y = %d\n", temp_y, y);
 }
 
 void			draw_sky(t_wolf *wolf, int x, int y)

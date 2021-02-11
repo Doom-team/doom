@@ -21,7 +21,7 @@ static	void	main_rendering(t_pthrdata *data)
 	draw_sky(data->wolf, data->point.x,\
 	data->point.y - data->wolf->player->dir_y);
 	floorcast(data->wolf, data->wolf->player->distance[data->count_distance]\
-	, data->point.x, H - data->point.y, data->count_distance);
+	, data->point, data->count_distance);
 	if (data->wolf->player->fly < 0)
 		draw_column_fly(data->wolf, data->point, data->wolf->player->\
 		distance[data->count_distance], data->count_distance);

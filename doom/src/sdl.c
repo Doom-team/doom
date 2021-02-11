@@ -31,10 +31,6 @@ static void		handle_other_keys(t_wolf *wolf)
 		if (wolf->player->fly > 0)
 			wolf->player->fly = 0;
 	}
-	if (wolf->sdl->state[SDL_SCANCODE_V]) // отладка
-		wolf->t_cof += 0.001;
-	if (wolf->sdl->state[SDL_SCANCODE_B]) // отладка
-		wolf->t_cof -= 0.001;
 	if (wolf->sdl->state[SDL_SCANCODE_H])
 		wolf->sdl->menu = wolf->sdl->menu ? 0 : 1;
 }
@@ -206,25 +202,15 @@ void			wolf_loop(t_wolf *wolf)
 		recalc(wolf);
 		handle_event(wolf, &event);
 		handle_phisics(wolf, wolf->player);
-		// draw_background(wolf->surface); // для отладки
 		recalc_rotation(wolf);
 		all_get_distance(wolf);
-		// printf("%f\n", wolf->player->distance[W/2]->dist[0]);
 		pseudo_3d(wolf, wolf->player, wolf->surface);
-		// render_monster(wolf, wolf->surface);
 		render_score_coin(wolf);
 		render_fps(wolf, wolf->bon);
 		render_aim(wolf);
 		render_hud(wolf);
 		render_shot(wolf, wolf->surface);
-		// wolf->map->mm_show ? draw_minimap(wolf, wolf->map, wolf->player) : 0;
-		// wolf->sdl->menu ? draw_menu(wolf) : 0;
 		screen_death(wolf, &event);
 		SDL_UpdateWindowSurface(wolf->sdl->win);
-		// printf("fly = %d, cof = %f\n", wolf->player->fly, wolf->t_cof); // для отладки кофов
 	}
-	// SDL_DestroyWindow(wolf->sdl->win);
-	// TTF_Quit();
-	// SDL_Quit();
-	// exit(EXIT_SUCCESS);
 }

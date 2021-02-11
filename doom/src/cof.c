@@ -34,3 +34,8 @@ int			diry_correction_from_fly(int fly)
 {
 	return (-1.5029996f * fly - 1.064349f);
 }
+
+float		cof_size_displ(void)
+{
+	return (0.8654409f * pow((W * 1.0f / H), 1.0118661f));
+}

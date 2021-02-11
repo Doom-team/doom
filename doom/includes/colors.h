@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: skaren <skaren@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
-/*   Updated: 2020/10/18 18:31:46 by clala            ###   ########.fr       */
+/*   Created: 2020/10/18 18:31:45 by skaren             #+#    #+#             */
+/*   Updated: 2020/10/18 18:31:46 by skaren           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@
 # define COLOR_SKY_BLUE 0x15DAEA
 # define COLOR_GREY 0xAAAAAA
 # define COLOR_BROWN 0xBE8641
-
 # define TEXT_FOREGROUND_COLOR 0
 # define TEXT_BACKGROUND_COLOR 1
-
-//# define RGB(r, g, b) r + (g << 8) + (b << 16)
 
 #endif
