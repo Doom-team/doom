@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 17:09:14 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:39:52 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int		clickevent(t_map *map, int x, int y, SDL_Event event)
 	if (map->musicflag > 0)
 	{
 		wichonemusic(map);
+		map->musicoutput = map->musicflag;
 		map->musicflag = 0;
 	}
 	SDL_GetMouseState(&x, &y);

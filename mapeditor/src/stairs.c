@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 21:31:20 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:26:14 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void savestairs(t_map *map)
 		map->stairstr = add_text(map->stairstr, " ", 1);
 		map->stairstr = add_text(map->stairstr, ft_itoa(map->remove->y[i + 1]), 2);
 		map->stairstr = add_text(map->stairstr, " ", 1);
-		map->stairstr = add_text(map->stairstr, "../../textures/wall/wall0.png ", 1);
+		map->stairstr = add_text(map->stairstr, "../textures/wall/wall0.png ", 1);
 		map->stairstr = add_text(map->stairstr, ft_itoa(tmp), 2);
 		map->stairstr = add_text(map->stairstr, " ", 1);
 		map->stairstr = add_text(map->stairstr, "1", 1);

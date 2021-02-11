@@ -1,15 +1,15 @@
 w 12
-w 637 222 879 249 ../../textures/wall/wall0.png 5 0 0
-w 879 249 883 455 ../../textures/wall/wall0.png 5 0 0
-w 883 455 587 441 ../../textures/wall/wall0.png 5 0 0
-w 587 441 637 222 ../../textures/wall/wall0.png 5 0 0
-w 728 260 828 260 ../../textures/wall/wall0.png 1 1 1
-w 728 260 728 360 ../../textures/wall/wall0.png 1 1 1
-w 828 260 828 360 ../../textures/wall/wall0.png 1 1 1
-w 728 360 828 360 ../../textures/wall/wall0.png 1 1 1
-w 651 264 751 264 ../../textures/wall/wall0.png 1 1 2
-w 651 264 651 364 ../../textures/wall/wall0.png 1 1 2
-w 751 264 751 364 ../../textures/wall/wall0.png 1 1 2
-w 651 364 751 364 ../../textures/wall/wall0.png 1 1 2
-f ../../textures/floor/floor1.png
-s ../../textures/floor/sky1.png
+w 637 222 879 249 ../textures/wall/wall0.png 5 0 0
+w 879 249 883 455 ../textures/wall/wall0.png 5 0 0
+w 883 455 587 441 ../textures/wall/wall0.png 5 0 0
+w 587 441 637 222 ../textures/wall/wall0.png 5 0 0
+w 728 260 828 260 ../textures/wall/wall0.png 1 1 1
+w 728 260 728 360 ../textures/wall/wall0.png 1 1 1
+w 828 260 828 360 ../textures/wall/wall0.png 1 1 1
+w 728 360 828 360 ../textures/wall/wall0.png 1 1 1
+w 651 264 751 264 ../textures/wall/wall0.png 1 1 2
+w 651 264 651 364 ../textures/wall/wall0.png 1 1 2
+w 751 264 751 364 ../textures/wall/wall0.png 1 1 2
+w 651 364 751 364 ../textures/wall/wall0.png 1 1 2
+f ../textures/floor/floor1.png
+s ../textures/floor/sky1.png
