@@ -125,6 +125,7 @@ typedef struct		s_player
 	float			y;
 	float			speed;
 	int				size;
+	int				num_ammo;
 	float			hp;
 	float			fov;
 	float			dir;
@@ -257,6 +258,7 @@ typedef struct		s_menu
 	t_background	screen_win;
 	t_background	hp;
 	t_background	hp_bar;
+	t_background	ammo;
 	t_button		logo;
 	t_button		start;
 	t_button		settings;

@@ -133,7 +133,13 @@ void		handle_event(t_wolf *wolf, SDL_Event *event)
 		if (event->type == SDL_MOUSEBUTTONDOWN)
 		{
 			if (event->button.button == SDL_BUTTON_LEFT)
-				wolf->bon->guns_fire = 1;
+			{
+				if (wolf->player->num_ammo > 0)
+				{
+					wolf->bon->guns_fire = 1;
+					wolf->player->num_ammo--;
+				}
+			}
 		}
 		if (event->type == SDL_MOUSEBUTTONUP)
 		{
