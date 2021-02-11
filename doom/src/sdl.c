@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/11 18:36:35 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/11 20:56:07 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 		wolf->sdl->run = false;
 	if (s[SDL_SCANCODE_F])
 	{
-		if (wolf->player->dist_obj <= 2.)
+		if (wolf->player->dist_obj <= 1.)
 		{
 			wolf->p->walls[wolf->player->indx_obj].active = 0;
 			wolf->player->dist_obj = MAXFLOAT;
@@ -204,7 +204,7 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 		wolf->player->dist_mon = dist;
 		wolf->player->indx_mon = i;
 	}
-	if (w.type_flag >= 4 && w.type_flag <= 7 && dist < wolf->player->dist_obj)
+	if (w.type_flag >= 4 && w.type_flag <= 7 && dist < wolf->player->dist_obj && dist <= 1.)
 	{
 		wolf->player->dist_obj = dist;
 		wolf->player->indx_obj = i;
