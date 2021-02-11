@@ -57,11 +57,11 @@ void	init_menu(t_menu *menu)
 {
 	Mix_VolumeMusic(32);
 	if (!(menu->menu_music = Mix_LoadMUS("music/Main_menu.mp3")))
-			error((t_wolf *)menu, SDL_GetError());
+		error((t_wolf *)menu, SDL_GetError());
 	if (!(menu->move_button = Mix_LoadWAV("music/move_button.wav")))
-			error((t_wolf *)menu, SDL_GetError());
+		error((t_wolf *)menu, SDL_GetError());
 	if (!(menu->click_button = Mix_LoadWAV("music/click_button.wav")))
-			error((t_wolf *)menu, SDL_GetError());
+		error((t_wolf *)menu, SDL_GetError());
 	create_background(&(menu->background), "textures/background.bmp");
 	create_background(&(menu->screen_start), "textures/screen_start.bmp");
 	create_background(&(menu->screen_death), "textures/screen_death.bmp");

@@ -17,8 +17,8 @@ static t_wolf	*t_wolf_new(void)
 	t_wolf		*new;
 
 	!(new = (t_wolf *)malloc(sizeof(t_wolf))) ? error(new, ERR_MALLOC) : 0;
-	// !(new->map = (t_map *)malloc(sizeof(t_map))) ? error(new, ERR_MALLOC) : 0;
-	!(new->p = (t_parser *)malloc(sizeof(t_parser))) ? error(new, ERR_MALLOC) : 0;
+	!(new->p = (t_parser *)malloc(sizeof(t_parser))) ?
+		error(new, ERR_MALLOC) : 0;
 	if (!(new->player = (t_player *)malloc(sizeof(t_player))))
 		error(new, ERR_MALLOC);
 	if (!(new->sdl = (t_sdl *)malloc(sizeof(t_sdl))))
@@ -41,7 +41,7 @@ static t_wolf	*t_wolf_new(void)
 	return (new);
 }
 
-int				main()
+int				main(void)
 {
 	t_wolf		*wolf;
 
@@ -50,7 +50,6 @@ int				main()
 	SDL_Init(SDL_INIT_EVERYTHING) != 0 ? error(wolf, SDL_GetError()) : 0;
 	TTF_Init() != 0 ? error(wolf, SDL_GetError()) : 0;
 	wolf = t_wolf_new();
-	// printf("main %p\n", &(wolf->p->floor_texture));
 	init_player(wolf, wolf->player, wolf->map);
 	init_bonus(wolf);
 	init_sdl(wolf);

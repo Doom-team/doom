@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skaren<skaren@student.42.fr>               +#+  +:+       +#+        */
+/*   By: skaren <skaren@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:26:06 by skaren            #+#    #+#             */
 /*   Updated: 2020/10/18 18:26:22 by skaren           ###   ########.fr       */
@@ -32,20 +32,9 @@ void	init_bonus_load(t_wolf *wolf)
 	wolf->bon->shotgun_image[6] = IMG_Load("../textures/guns/shotgun/6.png");
 	wolf->bon->image_aim = IMG_Load("textures/aim.png");
 	wolf->bon->my_font = TTF_OpenFont("ttf/19888.ttf", (int)(H / 28));
-	// wolf->bon->music_guns = Mix_LoadWAV("music/01664_q6IhiXXL.wav");
 	wolf->bon->music_ak = Mix_LoadWAV("../textures/guns/ak/shot.wav");
 	wolf->bon->music_pistol = Mix_LoadWAV("../textures/guns/pistol/shot.wav");
 	wolf->bon->music_shotgan = Mix_LoadWAV("../textures/guns/shotgan/shot.wav");
-	// wolf->bon->music_coin = Mix_LoadWAV("music/coin_m.wav");
-	// wolf->bon->music = Mix_LoadMUS("music/Oto Kapanadze - Mystic Mountain.mp3");
-	// if (!wolf->bon->image_1 || !wolf->bon->image_2 || !wolf->bon->image_3 ||
-	// 	!wolf->bon->image_4 || !wolf->bon->image_5 ||
-	// 	!wolf->bon->my_font ||
-	// 	!wolf->bon->music_guns ||
-	// 	!wolf->bon->music || !wolf->bon->music_coin ||
-	// 	!wolf->bon->image_aim)
-	// 	error(wolf, SDL_GetError());
-	//  ПРОВЕРКИ НЕТУ !!!!!
 }
 
 void	init_bonus(t_wolf *wolf)
