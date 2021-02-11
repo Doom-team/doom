@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 18:09:51 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 00:49:15 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,4 @@ void	zerroother(t_map *map)
 	i = 0;
 	while (++i < 4)
 		map->liquid_tex[i]->active = 0;
-
-	
-}
-
-void	edit_walltexture(t_map *map, int index)
-{
-	int i;
-
-	i = 0;
-	zerroother(map);
-	while (++i < 19)
-	{
-		if (i == index)
-			map->wall_tex[i]->active = 1;
-		else
-			map->wall_tex[i]->active = 0;
-	}
 }

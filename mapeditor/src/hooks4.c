@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 20:05:43 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/12 00:49:53 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	edit_liquidtexture(t_map *map, int index)
 	}
 }
 
-void walltx_click2(t_map *map, int x, int y)
+void	walltx_click2(t_map *map, int x, int y)
 {
 	int i;
 	int x_c;
@@ -91,28 +91,6 @@ void	floortx_click(t_map *map, int x, int y)
 	x_c = 20;
 	y_c = 340;
 	while (++i < 9)
-	{
-		if ((x > x_c && x < x_c + 50) && (y > y_c && y < y_c + 50))
-			edit_floortexture(map, i);
-		x_c += 60;
-		if (i == 4)
-		{
-			x_c = 20;
-			y_c = 400;
-		}
-	}
-}
-
-void	skytx_click(t_map *map, int x, int y)
-{
-	int i;
-	int x_c;
-	int y_c;
-
-	i = 8;
-	x_c = 20;
-	y_c = 520;
-	while (++i < 13)
 	{
 		if ((x > x_c && x < x_c + 50) && (y > y_c && y < y_c + 50))
 			edit_floortexture(map, i);

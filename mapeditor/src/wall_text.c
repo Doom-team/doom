@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:39 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 16:34:04 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 23:18:38 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,25 @@ void	save_texture(t_map *map, int index, int num)
 				{
 					n->grnum = 1;
 					n->texture->texture_name[0] =
-						"../textures/doors/defdoor.png";
+						" ../textures/doors/defdoor.png";
 				}
 				if (map->door_tex[1]->active == 1)
 				{
 					n->grnum = 2;
 					n->texture->texture_name[0] =
-						"../textures/doors/bluedoor.png";
+						" ../textures/doors/bluedoor.png";
 				}
 				if (map->door_tex[2]->active == 1)
 				{
 					n->grnum = 3;
 					n->texture->texture_name[0] =
-						"../textures/doors/yellowdoor.png";
+						" ../textures/doors/yellowdoor.png";
 				}
 				if (map->door_tex[3]->active == 1)
 				{
 					n->grnum = 4;
 					n->texture->texture_name[0] =
-						"../textures/doors/reddoor.png";
+						" ../textures/doors/reddoor.png";
 				}
 			}
 		}
@@ -98,8 +98,6 @@ void	save_texture(t_map *map, int index, int num)
 
 void	get_wall_cord(t_map *map, int x, int y)
 {
-	if (range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
-		printf("interface!\n");
 	if (map->click == 0 && interface_click(map, x, y) &&
 		range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
 	{

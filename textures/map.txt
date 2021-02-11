@@ -1,37 +1,81 @@
-walls: 31
-w 645 264 480 440 textures/wall/wall0.png 7 0 0
-w 480 440 745 866 textures/wall/wall0.png 7 0 0
-w 745 866 1190 697 textures/wall/wall0.png 7 0 0
-w 1190 697 1044 220 textures/wall/wall0.png 7 0 0
-w 1044 220 645 264 textures/wall/wall0.png 1 0 0
-w 738 413 699 503 textures/wall/wall0.png 1 0 0
-w 821 472 806 493 textures/wall/wall0.png 1 1 1
-w 821 472 835 486 textures/wall/wall0.png 1 1 1
-w 806 493 820 507 textures/wall/wall0.png 1 1 1
-w 835 486 820 507 textures/wall/wall0.png 1 1 1
-w 835 486 820 507 textures/wall/wall0.png 2 1 2
-w 835 486 849 500 textures/wall/wall0.png 2 1 2
-w 820 507 834 521 textures/wall/wall0.png 2 1 2
-w 849 500 834 521 textures/wall/wall0.png 2 1 2
-w 849 500 834 521 textures/wall/wall0.png 3 1 3
-w 849 500 863 514 textures/wall/wall0.png 3 1 3
-w 834 521 848 535 textures/wall/wall0.png 3 1 3
-w 863 514 848 535 textures/wall/wall0.png 3 1 3
-w 863 514 848 535 textures/wall/wall0.png 4 1 4
-w 863 514 877 528 textures/wall/wall0.png 4 1 4
-w 848 535 862 549 textures/wall/wall0.png 4 1 4
-w 877 528 862 549 textures/wall/wall0.png 4 1 4
-w 877 528 862 549 textures/wall/wall0.png 5 1 5
-w 877 528 891 542 textures/wall/wall0.png 5 1 5
-w 862 549 876 563 textures/wall/wall0.png 5 1 5
-w 891 542 876 563 textures/wall/wall0.png 5 1 5
-w 845 605 920 676 textures/wall/wall0.png 5 1 6
-w 920 676 1012 546 textures/wall/wall0.png 5 1 6
-w 1012 546 916 500 textures/wall/wall0.png 5 1 6
-w 916 500 845 605 textures/wall/wall0.png 5 1 6
-w 850 450 0 0 ../textures/enemy/e1.png 5 3 0
-p 850 600
-x 850 600
-f textures/floor/floor1.png
-s textures/floor/sky1.png
-m music/Oto_Kapanadze-Mystic_Mountain.mp3
+w 76
+w 501 165 1085 191 ../textures/wall/wall1.png 5 0 0
+w 1085 191 1132 837 ../textures/wall/wall1.png 5 0 0
+w 1132 837 480 802 ../textures/wall/wall1.png 5 0 0
+w 480 802 501 165 ../textures/wall/wall1.png 5 0 0
+w 590 314 569 293 ../textures/wall/wall0.png 1 1 1
+w 590 314 585 333 ../textures/wall/wall0.png 1 1 1
+w 569 293 564 312 ../textures/wall/wall0.png 1 1 1
+w 585 333 564 312 ../textures/wall/wall0.png 1 1 1
+w 557 429 564 450 ../textures/wall/wall0.png 1 1 2
+w 557 429 575 421 ../textures/wall/wall0.png 1 1 2
+w 564 450 582 442 ../textures/wall/wall0.png 1 1 2
+w 575 421 582 442 ../textures/wall/wall0.png 1 1 2
+w 840 360 831 339 ../textures/wall/wall0.png 1 1 3
+w 840 360 821 367 ../textures/wall/wall0.png 1 1 3
+w 831 339 812 346 ../textures/wall/wall0.png 1 1 3
+w 821 367 812 346 ../textures/wall/wall0.png 1 1 3
+w 620 435 627 456 ../textures/wall/wall0.png 1 1 4
+w 620 435 638 428 ../textures/wall/wall0.png 1 1 4
+w 627 456 645 449 ../textures/wall/wall0.png 1 1 4
+w 638 428 645 449 ../textures/wall/wall0.png 1 1 4
+w 611 571 632 590 ../textures/wall/wall0.png 1 1 5
+w 611 571 613 551 ../textures/wall/wall0.png 1 1 5
+w 632 590 634 570 ../textures/wall/wall0.png 1 1 5
+w 613 551 634 570 ../textures/wall/wall0.png 1 1 5
+w 757 509 760 530 ../textures/wall/wall0.png 1 1 6
+w 757 509 776 505 ../textures/wall/wall0.png 1 1 6
+w 760 530 779 526 ../textures/wall/wall0.png 1 1 6
+w 776 505 779 526 ../textures/wall/wall0.png 1 1 6
+w 1002 496 1001 475 ../textures/wall/wall0.png 1 1 7
+w 1002 496 982 497 ../textures/wall/wall0.png 1 1 7
+w 1001 475 981 476 ../textures/wall/wall0.png 1 1 7
+w 982 497 981 476 ../textures/wall/wall0.png 1 1 7
+w 749 484 750 505 ../textures/wall/wall0.png 1 1 8
+w 749 484 768 482 ../textures/wall/wall0.png 1 1 8
+w 750 505 769 503 ../textures/wall/wall0.png 1 1 8
+w 768 482 769 503 ../textures/wall/wall0.png 1 1 8
+w 988 576 995 555 ../textures/wall/wall0.png 1 1 9
+w 988 576 968 570 ../textures/wall/wall0.png 1 1 9
+w 995 555 975 549 ../textures/wall/wall0.png 1 1 9
+w 968 570 975 549 ../textures/wall/wall0.png 1 1 9
+w 1025 480 1046 501 ../textures/wall/wall0.png 1 1 10
+w 1025 480 1029 460 ../textures/wall/wall0.png 1 1 10
+w 1046 501 1050 481 ../textures/wall/wall0.png 1 1 10
+w 1029 460 1050 481 ../textures/wall/wall0.png 1 1 10
+w 951 677 972 698 ../textures/wall/wall0.png 1 1 11
+w 951 677 955 657 ../textures/wall/wall0.png 1 1 11
+w 972 698 976 678 ../textures/wall/wall0.png 1 1 11
+w 955 657 976 678 ../textures/wall/wall0.png 1 1 11
+w 874 507 877 528 ../textures/wall/wall0.png 1 1 12
+w 874 507 893 504 ../textures/wall/wall0.png 1 1 12
+w 877 528 896 525 ../textures/wall/wall0.png 1 1 12
+w 893 504 896 525 ../textures/wall/wall0.png 1 1 12
+w 801 599 822 620 ../textures/wall/wall0.png 1 1 13
+w 801 599 806 579 ../textures/wall/wall0.png 1 1 13
+w 822 620 827 600 ../textures/wall/wall0.png 1 1 13
+w 806 579 827 600 ../textures/wall/wall0.png 1 1 13
+w 832 589 821 610 ../textures/wall/wall0.png 1 1 14
+w 832 589 849 599 ../textures/wall/wall0.png 1 1 14
+w 821 610 838 620 ../textures/wall/wall0.png 1 1 14
+w 849 599 838 620 ../textures/wall/wall0.png 1 1 14
+w 746 561 751 582 ../textures/wall/wall0.png 1 1 15
+w 746 561 765 555 ../textures/wall/wall0.png 1 1 15
+w 751 582 770 576 ../textures/wall/wall0.png 1 1 15
+w 765 555 770 576 ../textures/wall/wall0.png 1 1 15
+w 752 561 745 582 ../textures/wall/wall0.png 1 1 16
+w 752 561 770 568 ../textures/wall/wall0.png 1 1 16
+w 745 582 763 589 ../textures/wall/wall0.png 1 1 16
+w 770 568 763 589 ../textures/wall/wall0.png 1 1 16
+w -2147483648 -2147483648 -2147483648 -2147483648 ../textures/wall/wall0.png 1 1 17
+w -2147483648 -2147483648 -2147483648 -2147483648 ../textures/wall/wall0.png 1 1 17
+w -2147483648 -2147483648 -2147483648 -2147483648 ../textures/wall/wall0.png 1 1 17
+w -2147483648 -2147483648 -2147483648 -2147483648 ../textures/wall/wall0.png 1 1 17
+w 698 592 719 571 ../textures/wall/wall0.png 1 1 18
+w 698 592 692 572 ../textures/wall/wall0.png 1 1 18
+w 719 571 713 551 ../textures/wall/wall0.png 1 1 18
+w 692 572 713 551 ../textures/wall/wall0.png 1 1 18
+f ../textures/floor/floor1.png
+s ../textures/floor/sky1.png
+m ../textures/music/m1.mp3
+p 601 245

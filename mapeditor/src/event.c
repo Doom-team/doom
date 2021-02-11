@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 15:39:52 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 00:32:23 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 	{
 		if (map->z_x != x || map->z_y != y)
 			bigdot(map, map->z_x, map->z_y, HOTPINK);
-		cursor(map, 0 , 0, 16);
+		cursor(map, 0, 0, 16);
 	}
 	else if (map->inter_tex[8]->active)
 		(map->z_x != x || map->z_y != y) ? cursor(map, 1,
@@ -68,7 +68,7 @@ int		events(t_map *map)
 	while ((!done) && SDL_WaitEvent(&event))
 	{
 		if (event.type == SDL_QUIT)
-			return 0;
+			return (0);
 		if (event.type == SDL_KEYDOWN)
 			pkey((unsigned char)event.key.keysym.sym, map);
 		if (event.type == SDL_MOUSEBUTTONDOWN)

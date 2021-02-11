@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:21 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 13:13:07 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 01:06:41 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	malloc_interface(t_map *map)
 {
-	int i;
+	int				i;
 	SDL_Surface		*tmp;
 
 	i = -1;

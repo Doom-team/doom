@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:36 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 14:21:17 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 22:47:35 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,18 @@ int		check_scene(t_info *info, t_map *map) // x = max_x, y = max_y, w = min_x, h
 					i++;
 				tmp = tmp->nxt;
 			}
-			if (i == 8 || i == 12 || i == 11 || i == 10)
+			if (!ft_strchr(map->objects, 'p'))
 			{
-				printf("that's cool map!\n");
-				return (1);
+				map->inter_tex[21]->active = 0;
+				map->errorflag = 2;
+				events(map);
 			}
+			if (i == 8 || i == 12 || i == 11 || i == 10)
+				return (1);
 			else
 			{
 				map->inter_tex[21]->active = 0;
 				map->errorflag = 1;
-				printf("n close\n");
 				events(map);
 			}
 			break ;

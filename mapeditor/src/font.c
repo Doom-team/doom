@@ -6,13 +6,13 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:05 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 13:18:51 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 00:35:57 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
 
-int		struppercase(char *str)
+int				struppercase(char *str)
 {
 	int i;
 
@@ -26,7 +26,8 @@ int		struppercase(char *str)
 	return (0);
 }
 
-SDL_Surface		*load_font(t_map *map, char *str, TTF_Font *font, SDL_Color color)
+SDL_Surface		*load_font(t_map *map, char *str, TTF_Font *font,
+	SDL_Color color)
 {
 	SDL_Surface		*tmp;
 	SDL_Surface		*tmp1;
@@ -42,9 +43,10 @@ SDL_Surface		*load_font(t_map *map, char *str, TTF_Font *font, SDL_Color color)
 	return (tmp1);
 }
 
-void	fonts_classic(t_map *map, char *str, t_info *info, SDL_Color color)
+void			fonts_classic(t_map *map, char *str, t_info *info,
+	SDL_Color color)
 {
-	int			strlen;
+	int				strlen;
 	SDL_Surface		*tmp;
 
 	strlen = ft_strlen(str);
@@ -59,7 +61,7 @@ void	fonts_classic(t_map *map, char *str, t_info *info, SDL_Color color)
 		draw_img(map, &(t_info){info->x, info->y, strlen * 7, 15}, map->font);
 }
 
-void	fonts_doom(t_map *map, char *str, t_info *info, SDL_Color color)
+void			fonts_doom(t_map *map, char *str, t_info *info, SDL_Color color)
 {
 	int				strlen;
 	SDL_Surface		*tmp;

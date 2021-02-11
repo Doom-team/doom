@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 13:46:49 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 00:50:45 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ void	change_texture_click(t_map *map, int x, int y)
 		map->inter_tex[17]->active = 1;
 		map->inter_tex[19]->active = 0;
 	}
-	// if ((x > WIDTH / 2 - 10 && x < WIDTH / 2 + 20) && (y > 83 && y < 118))
-	// {
-	// 	map->inter_tex[17]->active = 0;
-	// 	map->inter_tex[19]->active = 1;
-	// }
 	if ((x > WIDTH / 2 - 145 && x < WIDTH / 2 - 80) && (y > 100 && y < 130))
 	{
 		map->inter_tex[16]->active = 0;
@@ -81,17 +76,7 @@ void	change_floor_click(t_map *map, int x, int y)
 
 void	floorker(t_map *map, int x, int y)
 {
-	int x1;
-	int y1;
-
-	//x1 = x;
-	//y1 = y;
-	//find_coord(map, &x1, &y1);
 	draw(map);
 	if (some_texture_active(map) == 2)
-	{
 		open_floor_win(map);
-		// if (x1 != x || y1 != y)
-		// 	get_floor_cordi(map, x1 , y1 );
-	}
 }

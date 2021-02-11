@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:16 by grinko            #+#    #+#             */
-/*   Updated: 2021/01/27 14:17:40 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 01:06:02 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,31 @@ int		pkey(int key, t_map *map)
 	if (key == 27)
 		SDL_Quit();
 	return (0);
+}
+
+void	i_error(void)
+{
+	printf("error");
+	exit(1);
+}
+
+void	music(Mix_Music *music)
+{
+	printf("zashel\n");
+	Mix_Volume(0, 32);
+	Mix_PlayMusic(music, -1);
+	Mix_VolumeMusic(5);
+}
+
+void	wichonemusic(t_map *map)
+{
+	printf("music: %d\n", map->musicflag);
+	if (map->musicflag == 1)
+		music(map->music[0]);
+	else if (map->musicflag == 2)
+		music(map->music[1]);
+	else if (map->musicflag == 3)
+		music(map->music[2]);
+	else if (map->musicflag == 4)
+		music(map->music[3]);
 }

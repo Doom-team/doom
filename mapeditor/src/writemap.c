@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 19:18:53 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 23:19:38 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,13 @@ void	write_objects(t_map *map, int fd)
 	int		maxlen;
 	char	*buffer;
 
+	printf("STR: %s\n", map->objects);
 	if (map->objects)
 	{
 		maxlen = ft_strlen(map->objects);
-		buffer = malloc(sizeof(char *) * maxlen);
-		buffer = map->objects;
-		if (write(fd, buffer, maxlen) != maxlen)
+		if (write(fd, map->objects, maxlen) != maxlen)
 			error("Write Error\n");
-		free(buffer);
+		free(map->objects);
 	}
 }
 
@@ -115,6 +114,7 @@ void	count_write(t_map *map, int fd)
 			num_w++;
 		n = n->nxt;
 	}
+	num_w += map->plus_objects;
 	maxlen = ft_strlen("w ") + ft_strlen(ft_itoa(num_w)) + 1;
 	buffer = malloc(sizeof(char *) * (maxlen));
 	buffer = "w ";

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 17:18:35 by grinko            #+#    #+#             */
-/*   Updated: 2019/09/10 14:51:27 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 22:44:40 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strchr(const char *str, int c)
 {
 	size_t len;
 
+	if (!str)
+		return (NULL);
 	len = ft_strlen(str) + 1;
 	while (len--)
 	{

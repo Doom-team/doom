@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 16:40:04 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 00:51:16 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,54 +107,4 @@ void	get_door(t_map *map, int x, int y)
 		map->validflag = 9;
 	if ((x > WIDTH / 2 - 145 && x < WIDTH / 2 - 80) && (y > 100 && y < 130))
 		zerroothero(map);
-}
-
-int		searchelem(char *str1, char *str2)
-{
-	char *istr;
-
-	istr = ft_strstr(str1, str2);
-	if (istr == NULL)
-		return (0);
-	else
-		return (istr - str1 + 1);
-}
-
-void	rewrite2(t_map *map, char *str, char *tmp, int inx)
-{
-	str = add_text(str, "\n", 1);
-	if (tmp)
-	{
-		tmp = add_text(tmp, str, 1);
-		map->objects = add_text(tmp, &map->objects[inx], 1);
-	}
-	else
-		map->objects = add_text(str, &map->objects[inx], 1);
-}
-
-void	rewrite(t_map *map, int inx, int x, int y)
-{
-	int		i;
-	char	*str;
-	char	*tmp;
-
-	i = 0;
-	tmp = malloc(sizeof(char *));
-	if (map->player_tex[0]->active == 1 || map->door_tex[9]->active == 1)
-	{
-		if (map->objects)
-		{
-			tmp = ft_strncpy(tmp, map->objects, inx);
-			tmp[inx] = '\0';
-		}
-		while (map->objects[inx] && map->objects[inx] != '\n')
-			inx++;
-		inx++;
-		if (map->player_tex[0]->active == 1)
-			str = ft_strjoin("p ", ft_itoa(x));
-		else if (map->door_tex[9]->active == 1)
-			str = ft_strjoin("x ", ft_itoa(x));
-		str = ft_strjoin(ft_strjoin(str, " "), ft_itoa(y));
-		rewrite2(map, str, tmp, inx);
-	}
 }

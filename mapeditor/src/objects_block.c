@@ -6,17 +6,11 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:48:27 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/08 14:51:41 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 23:03:09 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
-
-void	set_object(t_map *map, int x, int y)
-{
-	if (map->player_tex[0])
-		return ;
-}
 
 void	draw_door_winp1(t_map *map)
 {
@@ -139,15 +133,11 @@ void	objectsblock(t_map *map)
 {
 	draw_obj_block(map);
 	if (map->door_tex[10]->active == 1)
-	{
 		doorshit(map);
-	}
 	if (map->validflag == 6)
 	{
 		if (map->door_tex[0]->active == 1)
 			map->validflag = 7;
-		// if (map->door_tex[5]->active == 1)
-		// 	map->validflag = 8;
 		doorshit(map);
 	}
 	if (map->validflag == 9)

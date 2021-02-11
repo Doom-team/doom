@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 18:55:16 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 01:05:07 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	init_texture(SDL_Surface *tex, unsigned char **s,
 
 void	init_all2(t_map *map)
 {
+	map->objnum = 0;
+	map->plus_objects = 0;
+	if (!(map->font = (t_image *)malloc(sizeof(t_image))))
+		error("ERM!");
 	map->tmpfloor_x = -1;
 	map->tmpfloor_y = -1;
 	map->stirsgroup = 1;
@@ -67,8 +71,6 @@ int		init_all(t_map *map)
 	map->index_wall = -1;
 	map->floor_x = -1;
 	map->floor_y = -1;
-	if (!(map->font = (t_image *)malloc(sizeof(t_image))))
-		error("ERM!");
 	init_all2(map);
 	return (1);
 }

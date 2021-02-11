@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 15:39:17 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 01:04:18 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define RED (t_color){255, 0, 0}
 # define GREEN (t_color){0, 255, 0}
 # define YELLOW (t_color){255, 255, 0}
+# define BLUE (t_color){0, 0, 255}
 # define HOTPINK (t_color){255, 105, 180}
 
 # define REDFONT (SDL_Color){255, 0, 0}
@@ -141,6 +142,12 @@ typedef struct		s_tempnod
 	int				di;
 }					t_tempnod;
 
+typedef struct		s_objdots
+{
+	int				x[1000];
+	int				y[1000];
+}					t_objdots;
+
 typedef struct		s_map
 {
 	SDL_Window		*win;
@@ -163,6 +170,7 @@ typedef struct		s_map
 	t_removeinfo	*remove; // tmp труктура для функции удаления готовых блоков
 	t_object		*obj;
 	t_tempnod		*tem;
+	t_objdots		dots;
 	int				wclick; // коэф + - виджета размера
 	int				whclick; // коэф + - виджета высоты
 	int				stclick; // коэф + - виджета высоты ступенек
@@ -195,6 +203,8 @@ typedef struct		s_map
 	char			*stairsoutput;
 	int				stirsgroup;
 	int				musicoutput;
+	int				objnum;
+	int				plus_objects;
 	// int			floor_active;
 }					t_map;
 
@@ -267,6 +277,8 @@ void				draw_door_light_exit(t_map *map);
 void				tmp_draw2(t_map *map, int w, int i, t_nod *nod); //
 void				tmp_draw(t_map *map, int index, t_nod *nod); //
 void				draw_standartpanel(t_map *map);
+void				draw_music(t_map *map);
+void				draw_basic_interface(t_map *map);
 
 void				one_n(t_map *map, t_color color);
 void				two_n(t_map *map, t_color color);
@@ -291,6 +303,7 @@ void				edit_tool(t_map *map, int index);
 void				edit_blocktexture(t_map *map, int index);
 void				edit_walltexture(t_map *map, int index);
 void				edit_liquidtexture(t_map *map, int index);
+void				edit_floortexture(t_map *map, int index);
 
 void				wall_editor(t_map *map, int x, int y);
 void				remove_tool(t_map *map, int x, int y);
@@ -333,6 +346,7 @@ void				square(t_map *map, int x, int y);
 void				pentagon(t_map *map, int x, int y);
 void				hexagon(t_map *map, int x, int y);
 void				octagon(t_map *map, int x, int y);
+void				wtf(t_map *map);
 
 void				cursor(t_map *map, int index, int hot_x, int hot_y);
 void				fonts(t_map *map, char *str, int x, int y);
@@ -359,6 +373,8 @@ int					change_floor_inter(t_map *map);
 void				save_texture(t_map *map, int index, int num);
 void				save_obj_tmp1(t_map *map, int x, int y);
 void				save_obj_tmp2(t_map *map, int x, int y);
+void				save_obj_tmp3(t_map *map, int x, int y);
+void				save_objects(t_map *map, t_info *inf, char *textstr);
 
 
 void				open_texture_win(t_map *map);
@@ -380,6 +396,7 @@ int					writedown_map(t_map *map);
 void				write_music(t_map *map, int fd);
 
 void				objectsblock(t_map *map);
+void				dot_forobject(t_map *map, int x, int y);
 
 void				edit_object(t_map *map, t_image **name, int n, int index);
 void				stairs_editor(t_map *map, int x, int y);
@@ -397,9 +414,9 @@ int					range_click(t_info *info, int w, int h);
 int					lstdelone(t_nod **fd_lst, t_nod *fd);
 
 char				*count_floor(t_map *map, int fd);
+void	free_panel1(t_map *map);
+void	free_panel2(t_map *map);
 
-void	free_map(t_map *map);
-void				free_panel(t_map *map);
 void	free_nodes(t_map *map);
 
 void		error_free_s(t_map *map, char *s);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:58 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 15:24:40 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/11 23:09:56 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,15 @@ int		find_nod(t_map *map, int x, int y)
 		return (0);
 	while (n)
 	{
-		if ((n->x1 == map->change_x && n->y1 == map->change_y &&
-			n->x2 == x && n->y2 == y) ||
-		(n->x1 == x && n->y1 == y && n->x2 == map->change_x &&
-			n->y2 == map->change_y))
-			return (i);
-		i++;
+		if (n->type != 1)
+		{
+			if ((n->x1 == map->change_x && n->y1 == map->change_y &&
+				n->x2 == x && n->y2 == y) ||
+			(n->x1 == x && n->y1 == y && n->x2 == map->change_x &&
+				n->y2 == map->change_y))
+				return (i);
+			i++;
+		}
 		n = n->nxt;
 	}
 	return (0);
