@@ -184,11 +184,11 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 				if (color != 0)
 					set_pixel(wolf->surface, point.x, temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)), color);
 				// wolf->z_buff[point.x + (temp_y - wolf->player->dir_y) * W] = true;
-				if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
-				{
-					if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
-						wolf->p->walls[dist->number_wall[j]].active = 0;
-				}
+				// if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
+				// {
+				// 	if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
+				// 		wolf->p->walls[dist->number_wall[j]].active = 0;
+				// }
 			}
 		}
 	}
@@ -347,11 +347,11 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 				set_pixel(wolf->surface, point.x, temp_y - wolf->player->dir_y, color);
 			// if (temp_y < 0)
 			// 	printf ("%lld---%d\n", temp_y, size);
-			if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
-			{
-				if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
-					wolf->p->walls[dist->number_wall[j]].active = 0;
-			}
+			// if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
+			// {
+			// 	if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
+			// 		wolf->p->walls[dist->number_wall[j]].active = 0;
+			// }
 		}
 	}
 }

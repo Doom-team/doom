@@ -43,6 +43,15 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 	s = wolf->sdl->state;
 	if (event->key.keysym.sym == SDLK_ESCAPE)
 		wolf->sdl->run = false;
+	if (s[SDL_SCANCODE_F])
+	{
+		if (wolf->player->dist_obj <= 2.)
+		{
+			wolf->p->walls[wolf->player->indx_obj].active = 0;
+			wolf->player->dist_obj = MAXFLOAT;
+			// if ()
+		}
+	}
 	if (s[SDL_SCANCODE_D])
 	{
 		wolf->player->run_r = 1;
@@ -138,7 +147,7 @@ void		handle_event(t_wolf *wolf, SDL_Event *event)
 	}
 }
 
-float			search_angle(t_wall w, t_wolf *wolf)
+float			search_angle(t_wall w, t_wolf *wolf, int i)
 {
 	float dist;
 	float angle;
@@ -160,12 +169,22 @@ float			search_angle(t_wall w, t_wolf *wolf)
 		&& w.realy - wolf->player->y > 0)
 		angle = asinf((wolf->player->y - w.realy)
 			/ dist) + RAD_360;
+	if (w.type_flag == 3 && dist < wolf->player->dist_mon)
+	{
+		wolf->player->dist_mon = dist;
+		wolf->player->indx_mon = i;
+	}
+	if (w.type_flag >= 4 && w.type_flag <= 7 && dist < wolf->player->dist_obj)
+	{
+		wolf->player->dist_obj = dist;
+		wolf->player->indx_obj = i;
+	}
 	return (angle);
 }
 
-t_wall			rotate_wall(t_wall w, t_wolf *wolf)
+t_wall			rotate_wall(t_wall w, t_wolf *wolf, int i)
 {
-	float angle = search_angle(w, wolf);
+	float angle = search_angle(w, wolf, i);
 	// printf("%f\n", search_angle(w, wolf));
 	w.x1 = w.realx - sinf(-angle) * 0.5;
 	w.x2 = w.realx + sinf(-angle) * 0.5;
@@ -181,8 +200,8 @@ void			recalc_rotation(t_wolf *wolf)
 	i = 0;
 	while (i < wolf->p->count_walls)
 	{
-		if (wolf->p->walls[i].type_flag >= 3 && wolf->p->walls[i].type_flag <= 8)
-			wolf->p->walls[i] = rotate_wall(wolf->p->walls[i], wolf);
+		if (wolf->p->walls[i].active && wolf->p->walls[i].type_flag >= 3 && wolf->p->walls[i].type_flag <= 8)
+			wolf->p->walls[i] = rotate_wall(wolf->p->walls[i], wolf, i);
 		i++;
 	}
 }
@@ -199,6 +218,7 @@ void			wolf_loop(t_wolf *wolf)
 		handle_phisics(wolf, wolf->player);
 		recalc_rotation(wolf);
 		all_get_distance(wolf);
+
 		pseudo_3d(wolf, wolf->player, wolf->surface);
 		render_score_coin(wolf);
 		render_fps(wolf, wolf->bon);

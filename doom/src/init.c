@@ -40,6 +40,8 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 	p->run_f = 0;
 	p->run_r = 0;
 	p->run_l = 0;
+	p->dist_obj = MAXFLOAT;
+	p->dist_mon = MAXFLOAT;
 }
 
 void	init_sdl(t_wolf *wolf)

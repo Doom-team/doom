@@ -148,6 +148,10 @@ typedef struct		s_player
 	int				run_b;
 	int				run_r;
 	int				run_l;
+	float			dist_obj;
+	int				indx_obj;
+	float			dist_mon;
+	int				indx_mon;
 }					t_player;
 
 typedef	struct		s_sprite_calc
