@@ -66,6 +66,19 @@ static void		parsing_type(t_parser *parser, char **arr)
 		error((t_wolf*)parser, ERR_FILE_INVALID);
 }
 
+static void		parsing_eight(t_parser *parser, char **arr)
+{
+	if (arr[8])
+	{
+		if (parser->walls[parser->buff.w].type_flag >= 3)
+			parser->walls[parser->buff.w].type_stage = ft_atoi(arr[8]);
+		else
+			parser->walls[parser->buff.w].squad_stage = ft_atoi(arr[8]);
+	}
+	else
+		error((t_wolf*)parser, ERR_FILE_INVALID);
+}
+
 void			parsing_walls(t_parser *parser, char **arr)
 {
 	SDL_Surface		*tmp;
@@ -88,15 +101,7 @@ void			parsing_walls(t_parser *parser, char **arr)
 	else
 		error((t_wolf*)parser, ERR_FILE_INVALID);
 	parsing_type(parser, arr);
-	if (arr[8])
-	{
-		if (parser->walls[parser->buff.w].type_flag >= 3)
-			parser->walls[parser->buff.w].type_stage = ft_atoi(arr[8]);
-		else
-			parser->walls[parser->buff.w].squad_stage = ft_atoi(arr[8]);
-	}
-	else
-		error((t_wolf*)parser, ERR_FILE_INVALID);
+	parsing_eight(parser, arr);
 	parser->walls[parser->buff.w].active = 1;
 	init_param(parser);
 }

@@ -30,7 +30,8 @@ Uint32		get_pixel(SDL_Surface *surface, int x, int y)
 	return (*(Uint32 *)p);
 }
 
-void		set_pixel1(SDL_Surface *surface, SDL_Surface *surface1, int x, int y, int pixel)
+void		set_pixel1(SDL_Surface *surface, SDL_Surface *surface1,
+			int x, int y, int pixel)
 {
 	int				pix;
 	unsigned char	*s;

@@ -478,6 +478,9 @@ void				draw_column_fly(t_wolf *wolf, t_point point,
 */
 void				guns_shot(SDL_Surface *screen, int flag, t_bonus *bon);
 void				render_shot(t_wolf *wolf, SDL_Surface *surface);
+void				render_shot1(t_wolf *wolf, SDL_Surface *surface);
+void				render_shot2(t_wolf *wolf, SDL_Surface *surface);
+void				render_shot3(t_wolf *wolf, SDL_Surface *surface);
 /*
 ** floorcast.c
 */
