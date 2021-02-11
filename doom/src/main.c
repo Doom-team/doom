@@ -17,8 +17,8 @@ static t_wolf	*t_wolf_new(void)
 	t_wolf		*new;
 
 	!(new = (t_wolf *)malloc(sizeof(t_wolf))) ? error(new, ERR_MALLOC) : 0;
-	// !(new->map = (t_map *)malloc(sizeof(t_map))) ? error(new, ERR_MALLOC) : 0;
-	!(new->p = (t_parser *)malloc(sizeof(t_parser))) ? error(new, ERR_MALLOC) : 0;
+	!(new->p = (t_parser *)malloc(sizeof(t_parser))) ?
+		error(new, ERR_MALLOC) : 0;
 	if (!(new->player = (t_player *)malloc(sizeof(t_player))))
 		error(new, ERR_MALLOC);
 	if (!(new->sdl = (t_sdl *)malloc(sizeof(t_sdl))))
@@ -40,7 +40,7 @@ static t_wolf	*t_wolf_new(void)
 	return (new);
 }
 
-int				main()
+int				main(void)
 {
 	t_wolf		*wolf;
 

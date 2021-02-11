@@ -12,6 +12,7 @@
 
 #include "../includes/wolf3d.h"
 
+<<<<<<< HEAD
 void	guns_shot1(SDL_Surface *screen, int flag, t_bonus *bon)
 {
 	if (flag == 2)
@@ -137,6 +138,8 @@ void	render_shot3(t_wolf *wolf, SDL_Surface *surface)
 		guns_shot3(surface, 1, wolf->bon);
 }
 
+=======
+>>>>>>> 9ed5df100d25873c161cd9dd37d7fa638e92aa4d
 void	render_shot(t_wolf *wolf, SDL_Surface *surface)
 {
 	if (wolf->bon->set_gun == 1)

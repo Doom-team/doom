@@ -38,7 +38,10 @@ ALL_C = main.c \
 		parsing_music.c \
 		cof.c \
 		thread_func.c \
-		floorcast.c
+		floorcast.c \
+		render_shot1.c \
+		render_shot2.c \
+		render_shot3.c 
 
 SRCDIR = ./src
 OBJDIR = ./objs

@@ -80,7 +80,6 @@ static void		reinit_sdl(t_wolf *wolf)
 	wolf->sdl->win = SDL_CreateWindow("Doom", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, W, H, SDL_WINDOW_SHOWN);
 	wolf->surface = SDL_GetWindowSurface(wolf->sdl->win);
-	// wolf->surface = SDL_ConvertSurfaceFormat(wolf->surface, SDL_PIXELFORMAT_ABGR8888, 0);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 }
 
