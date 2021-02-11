@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:39 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 23:55:54 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:26:14 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,25 +74,25 @@ void	save_texture(t_map *map, int index, int num)
 				{
 					n->grnum = 1;
 					n->texture->texture_name[0] =
-						"../../textures/doors/defdoor.png";
+						"../textures/doors/defdoor.png";
 				}
 				if (map->door_tex[1]->active == 1)
 				{
 					n->grnum = 2;
 					n->texture->texture_name[0] =
-						"../../textures/doors/bluedoor.png";
+						"../textures/doors/bluedoor.png";
 				}
 				if (map->door_tex[2]->active == 1)
 				{
 					n->grnum = 3;
 					n->texture->texture_name[0] =
-						"../../textures/doors/yellowdoor.png";
+						"../textures/doors/yellowdoor.png";
 				}
 				if (map->door_tex[3]->active == 1)
 				{
 					n->grnum = 4;
 					n->texture->texture_name[0] =
-						"../../textures/doors/reddoor.png";
+						"../textures/doors/reddoor.png";
 				}
 			}
 		}

@@ -36,7 +36,9 @@ ALL_C = main.c \
 		parsing_param1.c \
 		render_hud.c \
 		check_valid.c \
-		parsing_music.c
+		parsing_music.c \
+		cof.c \
+		thread_func.c
 
 SRCDIR = ./src
 OBJDIR = ./objs

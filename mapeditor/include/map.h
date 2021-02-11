@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 20:01:01 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:39:17 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ typedef struct		s_map
 	char 			*stairstr;
 	char			*stairsoutput;
 	int				stirsgroup;
+	int				musicoutput;
 	// int			floor_active;
 }					t_map;
 
@@ -376,6 +377,7 @@ void				flooor(t_map *map);
 
 void				writedown_floor(t_map *map);
 int					writedown_map(t_map *map);
+void				write_music(t_map *map, int fd);
 
 void				objectsblock(t_map *map);
 
