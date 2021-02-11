@@ -33,7 +33,6 @@ void			render_shot2(t_wolf *wolf, SDL_Surface *surface)
 {
 	if (wolf->bon->guns_fire || wolf->bon->flag_guns != 0)
 	{
-		wolf->bon->guns_fire = 0;
 		if (!wolf->bon->start_guns)
 		{
 			wolf->bon->flag_guns++;

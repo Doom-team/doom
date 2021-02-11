@@ -56,23 +56,9 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event,
 				wolf->p->walls[wolf->player->indx_obj].opening = 1;
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 1)
 				wolf->bon->set_gun = 1;
-<<<<<<< HEAD
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 2)
 				wolf->bon->set_gun = 2;
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 3)
-=======
-				wolf->player->num_ammo = 10;
-			}
-			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 &&
-				wolf->p->walls[wolf->player->indx_obj].type_stage == 2)
-			{
-				wolf->bon->set_gun = 2;
-				wolf->player->num_ammo = 10;
-			}
-			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 &&
-				wolf->p->walls[wolf->player->indx_obj].type_stage == 3)
-			{
->>>>>>> 9ed5df100d25873c161cd9dd37d7fa638e92aa4d
 				wolf->bon->set_gun = 3;
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6)
 				wolf->player->num_ammo = 10;
@@ -220,9 +206,6 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 		wolf->player->dist_mon = dist;
 		wolf->player->indx_mon = i;
 	}
-<<<<<<< HEAD
-	if (w.type_flag >= 4 && w.type_flag <= 8 && dist < wolf->player->dist_obj)
-=======
 	if (w.type_flag >= 4 && w.type_flag <= 7 &&
 		dist < wolf->player->dist_obj && dist <= 1.)
 	{
@@ -230,7 +213,6 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 		wolf->player->indx_obj = i;
 	}
 	if (w.type_flag == 2 && dist < wolf->player->dist_obj && dist <= 1.)
->>>>>>> 9ed5df100d25873c161cd9dd37d7fa638e92aa4d
 	{
 		wolf->player->dist_obj = dist;
 		wolf->player->indx_obj = i;
