@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:36:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 15:26:14 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 16:26:07 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	stairs_text(t_map *map, t_info *inf)
 	map->stairstr = add_text(map->stairstr, ft_itoa(map->stirsgroup), 2);
 	map->stairstr = add_text(map->stairstr, "\n", 1);
 	map->stairsoutput = (!map->stairsoutput) ? ft_strdup(map->stairstr) :
-		add_text(map->stairsoutput, map->stairstr, 0);
+		add_text(map->stairsoutput, map->stairstr, 1);
 	free(map->stairstr);
 	map->stairstr = 0;
 }

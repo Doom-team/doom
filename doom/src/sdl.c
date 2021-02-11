@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/11 16:16:22 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/11 18:36:35 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,18 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event, t_map *map,
 		// calc_move(wolf, p->speed * sinf(p->dir - RAD_90),
 		// -(p->speed * cosf(p->dir - RAD_90)));
 	}
-	if (s[SDL_SCANCODE_DOWN] || s[SDL_SCANCODE_S])
+	if (s[SDL_SCANCODE_S])
 	{
 		wolf->player->run_b = 1;
 		wolf->player->run_f = 0;
 		// calc_move(wolf, p->speed * sinf(p->dir), -(p->speed * cosf(p->dir)));
 	}
-	if (s[SDL_SCANCODE_W] || s[SDL_SCANCODE_UP])
+	if (s[SDL_SCANCODE_W])
 	{
 		wolf->player->run_f = 1;
 		wolf->player->run_b = 0;
 		// calc_move(wolf, -(p->speed * sinf(p->dir)), p->speed * cosf(p->dir));
 	}
-	if ((s[SDL_SCANCODE_RIGHT] || s[SDL_SCANCODE_E])
-	&& add_arc(&p->dir, -0.05))
-		add_skybox_offset(wolf, W / (float)wolf->p->sky_texture->w * 60.0);
-	if ((s[SDL_SCANCODE_LEFT] || s[SDL_SCANCODE_Q]) && add_arc(&p->dir, 0.05))
-		add_skybox_offset(wolf, W / (float)wolf->p->sky_texture->w * -60.0);
 	if (s[SDL_SCANCODE_P])
 		wolf->sdl->sides_mode = wolf->sdl->sides_mode == 1 ? 0 : 1;
 	// if (s[SDL_SCANCODE_M])

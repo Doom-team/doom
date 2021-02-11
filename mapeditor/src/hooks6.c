@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 16:08:47 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 16:40:04 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,4 @@ void	rewrite(t_map *map, int inx, int x, int y)
 		str = ft_strjoin(ft_strjoin(str, " "), ft_itoa(y));
 		rewrite2(map, str, tmp, inx);
 	}
-	// if (tmp)
-	// 	free(tmp);
 }

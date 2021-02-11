@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 18:04:48 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/11 18:09:51 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,6 @@ void	showup_lick(t_map *map, int x, int y)
 		else
 			map->inter_tex[13]->active = 1;
 	}
-	// if ((x > 260 && x < 290) && y > 370 && y < 420)
-	// {
-	// 	map->showactive = 2;
-	// 	if (map->inter_tex[13]->active == 1)
-	// 		map->inter_tex[13]->active = 0;
-	// 	else
-	// 		map->inter_tex[13]->active = 1;
-	// }
 }
 
 void	zerroother(t_map *map)
@@ -94,6 +86,8 @@ void	zerroother(t_map *map)
 	i = 0;
 	while (++i < 4)
 		map->liquid_tex[i]->active = 0;
+
+	
 }
 
 void	edit_walltexture(t_map *map, int index)

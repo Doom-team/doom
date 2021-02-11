@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:39 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 15:26:14 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/11 16:34:04 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,20 @@ void	change_text_inter(t_map *map)
 void	save_texture(t_map *map, int index, int num)
 {
 	t_nod *n;
+	char *str;
 
 	n = map->nod;
 	while (n)
 	{
 		if (n->index == map->index_wall)
 		{
-			n->texture->texture_name[num] = "wall";
-			n->texture->texture_name[num] =
-				ft_strjoin(n->texture->texture_name[num], ft_itoa(index));
-			n->texture->texture_name[num] =
-				ft_strjoin(n->texture->texture_name[num], ".png");
-			//printf("shit: %d\n", some_texture_active(map));
+			str = "wall";
+			str = add_text(str, ft_itoa(index), 3);
+			if (n->texture->texture_name[num])
+				free(n->texture->texture_name[num]);
+			n->texture->texture_name[num] = add_text(str, ".png", 1);
 			if (some_texture_active(map) == 4)
 			{
-				// printf("a 0: %d\n", map->door_tex[0]->active);
-				// printf("a 1: %d\n", map->door_tex[1]->active);
-				// printf("a 2: %d\n", map->door_tex[2]->active);
-				// printf("a 3: %d\n", map->door_tex[3]->active);
 				n->type = 2;
 				if (map->door_tex[0]->active == 1)
 				{
