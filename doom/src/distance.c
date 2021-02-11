@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 18:19:22 by clala             #+#    #+#             */
+/*   Created: 2020/10/18 18:19:22 by skaren            #+#    #+#             */
 /*   Updated: 2021/02/03 21:11:15 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -27,9 +27,7 @@ void			free_dist_arr(t_wolf *wolf)
 
 	i = -1;
 	while (++i < W)
-	{
 		free(wolf->player->distance[i]);
-	}
 }
 
 void			t_distance_clear(t_distance *dist)
@@ -41,7 +39,6 @@ void			t_distance_clear(t_distance *dist)
 	{
 		dist->dist[i] = MAXFLOAT;
 		dist->offsetx[i] = 0;
-		// dist->tex = TEX_INF;
 		dist->coords[i].x = -1;
 		dist->coords[i].y = -1;
 		i++;
@@ -203,18 +200,13 @@ float			calc_dist(t_float2 player, float angle, t_wall wall, t_distance *v, int 
 		if (px != player.x)
 			return (-1.);
 	}
-	else
-	{
-		if (px > player.x)
-			return (-1.);
-	}
+	else if (px > player.x)
+		return (-1.);
 	v->coords[j].x = px;
 	v->coords[j].y = py;
 	px = vector_len(player.x, player.y, px, py);
 	if (px < 0.001)
-	{
 		return (-1.);
-	}
 	return (px);
 }
 
@@ -241,11 +233,8 @@ float			calc_dist_without_v(t_float2 player, float angle, t_wall wall)
 		if (angle == RAD_270 && py > player.y)
 			return (-1.);
 	}
-	else
-	{
-		if (px > player.x)
-			return (-1.);
-	}
+	else if (px > player.x)
+		return (-1.);
 	px = vector_len(player.x, player.y, px, py);
 	return (px);
 }

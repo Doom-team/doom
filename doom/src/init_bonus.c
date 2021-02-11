@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: skaren<skaren@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 18:26:06 by clala             #+#    #+#             */
-/*   Updated: 2020/10/18 18:26:22 by clala            ###   ########.fr       */
+/*   Created: 2020/10/18 18:26:06 by skaren            #+#    #+#             */
+/*   Updated: 2020/10/18 18:26:22 by skaren           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	init_bonus(t_wolf *wolf)
 {
 	init_bonus_load(wolf);
 	wolf->bon->set_gun = 1;
-	wolf->monster->penetration_flag = 0;
 	wolf->bon->fps = 1;
 	wolf->bon->start_time = 0;
 	wolf->bon->fps_count = 0;
@@ -63,5 +62,5 @@ void	init_bonus(t_wolf *wolf)
 	wolf->bon->img_location.y = H - H / 3;
 	wolf->bon->flag_guns = 0;
 	wolf->bon->start_guns = 0;
-	wolf->monster->score_coin = 0;
+	wolf->bon->score = 0;
 }

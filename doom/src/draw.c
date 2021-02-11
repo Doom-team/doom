@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 18:21:35 by clala             #+#    #+#             */
+/*   Created: 2020/10/18 18:21:35 by skaren            #+#    #+#             */
 /*   Updated: 2021/02/03 21:26:31 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -83,7 +83,7 @@ t_point width_height, int color)
 // 		COLOR_WHITE);
 // }
 
-void		draw_background(SDL_Surface *surface)
+void		draw_background(SDL_Surface *surface) // функция для отладки на релизе удалить 
 {
 	int		i;
 	int		j;

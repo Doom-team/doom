@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_text.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <clala@student.42.fr>                +#+  +:+       +#+        */
+/*   By: clala <skaren@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 18:31:59 by clala             #+#    #+#             */
-/*   Updated: 2020/10/18 19:43:59 by clala            ###   ########.fr       */
+/*   Created: 2020/10/18 18:31:59 by skaren            #+#    #+#             */
+/*   Updated: 2020/10/18 19:43:59 by skaren           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void		render_score_coin(t_wolf *wolf)
 	f_b_color[TEXT_FOREGROUND_COLOR] = set_color_sdl(COLOR_RED);
 	f_b_color[TEXT_BACKGROUND_COLOR] = set_color_sdl(COLOR_BLUE);
 	text_surface = NULL;
-	str_tmp = ft_itoa(wolf->monster->score_coin);
-	str = ft_strjoin("score coin: ", str_tmp);
+	str_tmp = ft_itoa(wolf->bon->score);
+	str = ft_strjoin("score: ", str_tmp);
 	render_text(
 		wolf, str,
 		set_rect_sdl(W - (int)(H / 28) * 9, H - (int)(H / 28), 0, 0),

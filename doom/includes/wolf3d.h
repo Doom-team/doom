@@ -186,6 +186,7 @@ typedef struct		s_bonus
 	int				flag_guns;
 	Uint32			start_guns;
 	TTF_Font		*my_font;
+	int				score;
 }					t_bonus;
 
 typedef struct		s_sdl
@@ -213,18 +214,6 @@ typedef struct		s_sdl
 	bool			run_screen;
 	int				button_flag;
 }					t_sdl;
-
-typedef struct		s_monster
-{
-	SDL_Surface		*image_monster[4];
-	int				count_monster;
-	t_sprite_calc	data[4];
-	t_float2		monster_pos[4];
-	float			monster_upscale[4];
-	int				sort_arr[4];
-	int				penetration_flag;
-	int				score_coin;
-}					t_monster;
 
 typedef struct		s_position
 {
@@ -287,7 +276,6 @@ typedef struct		s_wolf
 	t_sdl			*sdl;
 	SDL_Surface		*surface;
 	t_bonus			*bon;
-	t_monster		*monster;
 	t_menu			*menu;
 	bool			z_buff[W * H];
 	bool			z_buff_2[W * H];
@@ -320,8 +308,12 @@ void				parsing_walls(t_parser *parser, char **arr);
 SDL_Surface			*parsing_param1(t_parser *parser, char **arr, bool *b);
 void				parsing_param2(t_param2 *obj, char **arr, bool *b);
 void				init_size(t_parser *parser, char *l);
-void				check_valid(t_buff *buff);
 Mix_Music			*parsing_music(t_parser *parser, char **arr, bool *b);
+/*
+** check_valid.c
+*/
+void				check_valid(t_buff *buff);
+
 
 void				draw_background(SDL_Surface *surface);
 int					draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
@@ -410,11 +402,6 @@ void				init_bonus(t_wolf *wolf);
 void				init_bonus_load(t_wolf *wolf);
 
 /*
-** init_monster.c
-*/
-void				init_monster(t_wolf *wolf);
-
-/*
 ** init_menu.c
 */
 void				init_menu(t_menu *menu);
@@ -425,11 +412,7 @@ void				create_pos_button(t_button *button, int k);
 /*
 ** aux.c
 */
-int					draw_menu(t_wolf *wolf);
-int					draw_menu_text(t_wolf *wolf, SDL_Color f_b_color[2]);
 int					add_arc(float *arc, float to_add);
-int					is_angle(float angle, float rad);
-int					float_is_equal(float a, float b);
 
 /*
 ** render_text.c
@@ -450,16 +433,9 @@ void				all_get_distance(t_wolf *wolf);
 void				free_dist_arr(t_wolf *wolf);
 
 /*
-** render_coin.c
-*/
-
-void				render_monster(t_wolf *wolf, SDL_Surface *surface);
-
-/*
 ** render_aim.c
 */
 void				render_aim(t_wolf *wolf);
-void				penetration_check(t_wolf *wolf, SDL_Rect img_location);
 
 /*
 ** set_sdl.c

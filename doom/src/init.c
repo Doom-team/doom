@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 18:26:06 by clala             #+#    #+#             */
+/*   Created: 2020/10/18 18:26:06 by skaren            #+#    #+#             */
 /*   Updated: 2021/02/09 16:35:34 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -22,7 +22,6 @@ void	init_player(t_wolf *wolf, t_player *p, t_map *map)
 		p->distance_horiz[i] = t_distance_new(wolf);
 		p->distance_vert[i] = t_distance_new(wolf);
 	}
-	p->size = 10;
 	p->hp = 100.0f;
 	p->x = 750 / RESIZE;
 	p->y = 300 / RESIZE;

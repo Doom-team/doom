@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 18:31:45 by clala             #+#    #+#             */
+/*   Created: 2020/10/18 18:31:45 by skaren            #+#    #+#             */
 /*   Updated: 2021/02/09 16:20:04 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -123,9 +123,7 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 				if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
 				{
 					if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
-					{
 						wolf->p->walls[dist->number_wall[j]].active = 0;
-					}
 				}
 			}
 		}
@@ -194,9 +192,7 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 				if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
 				{
 					if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
-					{
 						wolf->p->walls[dist->number_wall[j]].active = 0;
-					}
 				}
 			}
 		}
@@ -292,9 +288,7 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 				if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
 				{
 					if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
-					{
 						wolf->p->walls[dist->number_wall[j]].active = 0;
-					}
 				}
 			}
 		}
@@ -361,9 +355,7 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 			if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
 			{
 				if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
-				{
 					wolf->p->walls[dist->number_wall[j]].active = 0;
-				}
 			}
 		}
 	}
@@ -620,7 +612,7 @@ void			draw_sky(t_wolf *wolf, int x, int y)
 		y = 0;
 	if (y > H)
 		y = H;
-	while (++i < H /*/ 2 - wolf->player->dir_y*/)//y // отрисовка неба до ,,,,
+	while (++i < H)
 	{
 		to_draw = i;
 		to_draw_x = x;

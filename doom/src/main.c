@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 18:29:09 by clala             #+#    #+#             */
+/*   Created: 2020/10/18 18:29:09 by skaren            #+#    #+#             */
 /*   Updated: 2021/02/08 20:21:13 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -39,8 +39,6 @@ static t_wolf	*t_wolf_new(void)
 		error(new, ERR_MALLOC);
 	if (!(new->bon = (t_bonus *)malloc(sizeof(t_bonus))))
 		error(new, ERR_MALLOC);
-	if (!(new->monster = (t_monster *)malloc(sizeof(t_monster))))
-		error(new, ERR_MALLOC);
 	if (!(new->menu = (t_menu *)malloc(sizeof(t_menu))))
 		error(new, ERR_MALLOC);
 	if (!(new->player->up_d = (t_way *)malloc(sizeof(t_way))))
@@ -70,7 +68,6 @@ int				main()
 	// printf("main %p\n", &(wolf->p->floor_texture));
 	init_player(wolf, wolf->player, wolf->map);
 	init_bonus(wolf);
-	init_monster(wolf);
 	init_sdl(wolf);
 	init_menu(wolf->menu);
 	menu_loop(wolf);

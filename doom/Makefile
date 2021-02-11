@@ -25,8 +25,6 @@ ALL_C = main.c \
 		init_bonus.c \
 		set_sdl.c \
 		render_aim.c \
-		render_monster.c \
-		init_monster.c \
 		init_menu.c \
 		menu.c \
 		print_menu.c \
