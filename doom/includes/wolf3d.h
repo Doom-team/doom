@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/11 21:50:22 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/12 03:16:20 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct		s_wall
 	float			length;
 	int				active;
 	int				vert;
-	int				h;
+	float			h;
 	int				type_flag;
 	int				squad_stage;
 	int				type_stage;
@@ -48,8 +48,8 @@ typedef struct		s_wall
 
 typedef struct		s_param2
 {
-	int				x;
-	int				y;
+	float			x;
+	float			y;
 }					t_param2;
 
 typedef struct		s_buff
@@ -185,10 +185,14 @@ typedef struct		s_bonus
 	Mix_Chunk		*music_shotgan;
 	SDL_Surface		*image_aim;
 	SDL_Rect		img_location;
+	int				flag_play_chunk;
 	int				flag_guns;
 	Uint32			start_guns;
 	TTF_Font		*my_font;
 	int				score;
+	int				key_blue;
+	int				key_yellow;
+	int				key_red;
 }					t_bonus;
 
 typedef struct		s_sdl

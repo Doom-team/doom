@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/11 22:05:16 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/12 03:29:11 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,16 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event)
 				wolf->player->dist_obj = MAXFLOAT;
 			}
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 2)
-				wolf->p->walls[wolf->player->indx_obj].opening = 1;
+			{
+				if (wolf->p->walls[wolf->player->indx_obj].type_stage == 1)
+					wolf->p->walls[wolf->player->indx_obj].opening = 1;
+				if (wolf->p->walls[wolf->player->indx_obj].type_stage == 2 && wolf->bon->key_blue)
+					wolf->p->walls[wolf->player->indx_obj].opening = 1;
+				if (wolf->p->walls[wolf->player->indx_obj].type_stage == 3 && wolf->bon->key_yellow)
+					wolf->p->walls[wolf->player->indx_obj].opening = 1;
+				if (wolf->p->walls[wolf->player->indx_obj].type_stage == 4 && wolf->bon->key_red)
+					wolf->p->walls[wolf->player->indx_obj].opening = 1;
+			}
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 1)
 				wolf->bon->set_gun = 1;
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 2)
@@ -77,6 +86,13 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event)
 				wolf->player->num_ammo = 10;
 			else if (wolf->p->walls[wolf->player->indx_obj].type_flag == 7)
 				wolf->p->walls[wolf->player->indx_obj].active = 1;
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 8 && wolf->p->walls[wolf->player->indx_obj].type_stage == 2)
+				wolf->bon->key_blue = 1;
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 8 && wolf->p->walls[wolf->player->indx_obj].type_stage == 3)
+				wolf->bon->key_yellow = 1;
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 8 && wolf->p->walls[wolf->player->indx_obj].type_stage == 4)
+				wolf->bon->key_red = 1;
+			wolf->player->dist_obj = MAXFLOAT;
 		}
 	}
 	if (s[SDL_SCANCODE_D])
@@ -156,19 +172,11 @@ void			handle_event(t_wolf *wolf, SDL_Event *event)
 			rotate(wolf, event);
 		if (event->type == SDL_MOUSEBUTTONDOWN)
 		{
-			if (event->button.button == SDL_BUTTON_LEFT)
+			if (wolf->player->num_ammo > 0 && wolf->bon->guns_fire != 1)
 			{
-				if (wolf->player->num_ammo > 0)
-				{
-					wolf->bon->guns_fire = 1;
-					wolf->player->num_ammo--;
-				}
+				wolf->bon->guns_fire = 1;
+				wolf->player->num_ammo--;
 			}
-		}
-		if (event->type == SDL_MOUSEBUTTONUP)
-		{
-			if (event->button.button == SDL_BUTTON_LEFT)
-				wolf->bon->guns_fire = 0;
 		}
 		if (event->type == SDL_KEYDOWN)
 			handle_keys(wolf, event);
@@ -183,6 +191,17 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 	float	angle;
 
 	angle = 0.f;
+	if (w.type_flag == 2)
+	{
+		dist = fabs((w.y1 - w.y2) * wolf->player->x + (w.x2 - w.x1) * wolf->player->y + w.x1 * w.y2 - w.x2 * w.y1);
+		dist /= sqrtf(powf(w.y1 - w.y2, 2) + powf(w.x1 - w.x2, 2));
+		if (dist < wolf->player->dist_obj && dist <= 1.)
+		{
+			wolf->player->dist_obj = dist;
+			wolf->player->indx_obj = i;
+		}
+		return (angle);
+	}
 	dist = sqrtf(powf((w.realx - wolf->player->x), 2)
 		+ powf((w.realy - wolf->player->y), 2));
 	if (w.realx - wolf->player->x > 0
@@ -206,13 +225,8 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 		wolf->player->dist_mon = dist;
 		wolf->player->indx_mon = i;
 	}
-	if (w.type_flag >= 4 && w.type_flag <= 7 &&
+	if (w.type_flag >= 4 && w.type_flag <= 8 &&
 		dist < wolf->player->dist_obj && dist <= 1.)
-	{
-		wolf->player->dist_obj = dist;
-		wolf->player->indx_obj = i;
-	}
-	if (w.type_flag == 2 && dist < wolf->player->dist_obj && dist <= 1.)
 	{
 		wolf->player->dist_obj = dist;
 		wolf->player->indx_obj = i;
@@ -247,9 +261,12 @@ void			recalc_rotation(t_wolf *wolf)
 			wolf->p->walls[i] = rotate_wall(wolf->p->walls[i], wolf, i);
 		
 		if (wolf->p->walls[i].active == 1 && wolf->p->walls[i].type_flag == 2 && wolf->p->walls[i].opening)
-			wolf->p->walls[i].h -= 1;
-		if (wolf->p->walls[i].h == 0)
+			wolf->p->walls[i].h -= 0.05;
+		if (wolf->p->walls[i].h <= 0.2)
+		{
+			wolf->p->walls[i].h = 0;
 			wolf->p->walls[i].active = 0;
+		}
 		i++;
 	}
 }
@@ -263,8 +280,8 @@ void			wolf_loop(t_wolf *wolf)
 	{
 		recalc(wolf);
 		handle_event(wolf, &event);
-		handle_phisics(wolf, wolf->player);
 		recalc_rotation(wolf);
+		handle_phisics(wolf, wolf->player);
 		all_get_distance(wolf);
 		pseudo_3d(wolf);
 		render_score_coin(wolf);

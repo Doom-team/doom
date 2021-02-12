@@ -5,7 +5,7 @@
 #                                                     +:+ +:+         +:+      #
 #    By: wendell <wendell@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/12/15 16:58:46 by clala             #+#    #+#              #
+#    Created: 2019/12/15 16:58:46 by skaren            #+#    #+#              #
 #    Updated: 2021/02/11 18:29:18 by wendell          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -59,8 +59,8 @@ LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
-# FLAGS = -Ofast -mprefer-vector-width=512
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Ofast -mprefer-vector-width=512
+FLAGS = -g #-Wall -Wextra -Werror
 # FLAGS =
 #-Wall -Wextra -Werror
 

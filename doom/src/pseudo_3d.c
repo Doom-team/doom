@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/09 16:20:04 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/12 02:49:52 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 	signed long long int	temp_y;
 	int						size;
 	t_floot_up				stage;
+	t_floot_up				sub_stage;
 
 	ft_memset(&stage, 0, sizeof(t_floot_up));
 	j = -1;
@@ -57,9 +58,13 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 					stage.y1[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] = stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1];
 				stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] = temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance));
 			}
-			if (stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] != 0)
+			if (stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] != 0 && stage.y1[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] != 0)
 			{
 				stage.h[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] = wolf->p->walls[dist->number_wall[j]].h;
+				sub_stage.h[stage.count] = stage.h[wolf->p->walls[dist->number_wall[j]].squad_stage - 1];
+				sub_stage.y1[stage.count] = stage.y1[wolf->p->walls[dist->number_wall[j]].squad_stage - 1];
+				sub_stage.y2[stage.count] = stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1];
+				sub_stage.dist[stage.count] = stage.dist[wolf->p->walls[dist->number_wall[j]].squad_stage - 1];
 				stage.count++;
 			}
 		}
@@ -111,10 +116,36 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 			}
 		}
 	}
-	stage.count += 10;
+	sub_stage.count = stage.count;
+	j = 0;
+	while (j < stage.count)
+	{
+		if (sub_stage.dist[j] == sub_stage.dist[j + 1])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		if (sub_stage.dist[j] == sub_stage.dist[j + 2])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		if (sub_stage.dist[j] == sub_stage.dist[j + 3])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		j++;
+	}
 	j = -1;
 	while (++j < stage.count)
-		floorcast_up_fly(wolf, wolf->player->distance[count_distance], point.x, count_distance, stage, j);
+		floorcast_up_fly(wolf, wolf->player->distance[count_distance], point.x, count_distance, sub_stage, j);
 	if (stage.count % 2 == 0)
 	{
 		j = dist->count - 1;
@@ -183,6 +214,7 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 	signed long long int	temp_y;
 	int						size;
 	t_floot_up				stage;
+	t_floot_up				sub_stage;
 
 	ft_memset(&stage, 0, sizeof(t_floot_up));
 	j = -1;
@@ -207,9 +239,13 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 			}
 			else if (stage.y1[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] < temp_y)
 				stage.y1[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] = temp_y;
-			if (stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] != 0 && stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] != 0)
+			if (stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] != 0)
 			{
 				stage.h[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] = wolf->p->walls[dist->number_wall[j]].h;
+				sub_stage.h[stage.count] = stage.h[wolf->p->walls[dist->number_wall[j]].squad_stage - 1];
+				sub_stage.y1[stage.count] = stage.y1[wolf->p->walls[dist->number_wall[j]].squad_stage - 1];
+				sub_stage.y2[stage.count] = stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1];
+				sub_stage.dist[stage.count] = stage.dist[wolf->p->walls[dist->number_wall[j]].squad_stage - 1];
 				stage.count++;
 			}
 		}
@@ -264,10 +300,36 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 			}
 		}
 	}
+	sub_stage.count = stage.count;
+	j = 0;
+	while (j < stage.count)
+	{
+		if (sub_stage.dist[j] == sub_stage.dist[j + 1])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		if (sub_stage.dist[j] == sub_stage.dist[j + 2])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		if (sub_stage.dist[j] == sub_stage.dist[j + 3])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		j++;
+	}
 	j = -1;
-	stage.count += 10;
 	while (++j < stage.count)
-		floorcast_up(wolf, wolf->player->distance[count_distance], point.x, count_distance, stage, j);
+		floorcast_up(wolf, wolf->player->distance[count_distance], point.x, count_distance, sub_stage, j);
 
 	j = 0;
 	temp_y = ceilf((wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]);
@@ -335,10 +397,10 @@ void			floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x, int count_distanc
 	float	cof;
 	float	cof_h;
 
-	cof = cof_size_displ();
-	cof_h = -0.4 * stage.h[j] + 1.0  + correct_cof_h(wolf) * stage.h[j];
 	if ((stage.y1[j] == 0 && stage.y2[j] == 0))
 		return ;
+	cof = cof_size_displ();
+	cof_h = -0.4 * stage.h[j] + 1.0  + correct_cof_h(wolf) * stage.h[j];
 	if (stage.y1[j] == 0 && stage.y2[j] != 0)
 	{
 		tmp = stage.y2[j];

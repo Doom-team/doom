@@ -70,8 +70,11 @@ static void		parsing_eight(t_parser *parser, char **arr)
 {
 	if (arr[8])
 	{
-		if (parser->walls[parser->buff.w].type_flag >= 3)
+		if (parser->walls[parser->buff.w].type_flag >= 2)
+		{
 			parser->walls[parser->buff.w].type_stage = ft_atoi(arr[8]);
+			parser->walls[parser->buff.w].squad_stage = 0;
+		}
 		else
 			parser->walls[parser->buff.w].squad_stage = ft_atoi(arr[8]);
 	}
@@ -104,6 +107,5 @@ void			parsing_walls(t_parser *parser, char **arr)
 	parsing_eight(parser, arr);
 	parser->walls[parser->buff.w].active = 1;
 	parser->walls[parser->buff.w].opening = 0;
-	
 	init_param(parser);
 }
