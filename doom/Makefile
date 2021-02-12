@@ -68,7 +68,7 @@ OBJDIR = ./objs
 ALL_OBJ = $(ALL_C:%.c=%.o)
 OBJS = $(addprefix $(OBJDIR)/, $(ALL_OBJ))
 
-NAME = wolf3d
+NAME = doom-nukem
 
 INCLUDES = ./includes/wolf3d.h \
 			./includes/const.h \
@@ -80,9 +80,6 @@ LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
 FLAGS = -Ofast -mprefer-vector-width=512
-#FLAGS = -g -Wall -Wextra -Werror
-# FLAGS =
-#-Wall -Wextra -Werror
 
 SDL_INCS =	-F./frameworks \
 			-I./frameworks/SDL2.framework/Headers \
@@ -126,7 +123,7 @@ re: fclean all
 
 go:
 	$(MAKE) -j
-	./wolf3d
+	./doom-nukem
 
 rg: fclean go
 

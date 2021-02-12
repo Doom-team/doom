@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clala <skaren@student.42.fr>               +#+  +:+       +#+        */
+/*   By: ahusk <skaren@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:27:09 by skaren            #+#    #+#             */
 /*   Updated: 2020/10/18 18:29:01 by skaren           ###   ########.fr       */

@@ -76,6 +76,7 @@ void			floorcast_up_fly(t_wolf *wolf, t_distance *dist,
 {
 	t_helper	h;
 
+	ft_memset(&h, 0, sizeof(t_helper));
 	if ((stage.y1[hel.j] == 0 && stage.y2[hel.j] == 0))
 		return ;
 	h.cof = cof_size_displ();

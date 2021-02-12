@@ -18,6 +18,7 @@ void			draw_column_fly(t_wolf *wolf, t_point point, int count_distance)
 	t_helper				hel;
 
 	ft_memset(&d, 0, sizeof(t_data_column));
+	ft_memset(&hel, 0, sizeof(t_helper));
 	d.dist = wolf->player->distance[count_distance];
 	d.j = -1;
 	d.flagg = 0;

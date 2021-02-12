@@ -41,6 +41,7 @@ float angle, int count_distance)
 	t_helper	h;
 
 	tmp = -1.0f;
+	ft_memset(&h, 0, sizeof(t_helper));
 	init_helper(&h, angle);
 	v = wolf->player->distance_vert[count_distance];
 	t_distance_clear(v);

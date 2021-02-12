@@ -12,27 +12,27 @@
 
 #include "../includes/wolf3d.h"
 
-void			draw_column(t_wolf *wolf, t_point point, int count_distance)
+void			draw_column(t_pthrdata *data, t_point point, int count_distance)
 {
 	t_data_column			d;
 
 	ft_memset(&d, 0, sizeof(t_data_column));
-	d.dist = wolf->player->distance[count_distance];
+	d.dist = data->wolf->player->distance[count_distance];
 	d.j = -1;
-	brute_draw_column(wolf, point, count_distance, &d);
-	cut_ctage(wolf, point, count_distance, &d);
+	brute_draw_column(data->wolf, point, count_distance, &d);
+	cut_ctage(data->wolf, point, count_distance, &d);
 	while (++d.j < d.stage.count)
 	{
-		wolf->helper.j = d.j;
-		wolf->helper.x = point.x;
-		floorcast_up(wolf, wolf->player->distance[count_distance],\
+		data->wolf->helper[data->number].j = d.j;
+		data->wolf->helper[data->number].x = point.x;
+		floorcast_up(data, data->wolf->player->distance[count_distance],\
 		count_distance, d.sub_stage);
 	}
 	if (d.dist->number_wall[d.j] < 0 &&\
-	d.dist->number_wall[d.j] > wolf->p->count_walls - 1)
+	d.dist->number_wall[d.j] > data->wolf->p->count_walls - 1)
 		return ;
-	brute_draw_column_1(wolf, point, count_distance, &d);
-	brute_draw_column_2(wolf, point, count_distance, &d);
+	brute_draw_column_1(data->wolf, point, count_distance, &d);
+	brute_draw_column_2(data->wolf, point, count_distance, &d);
 }
 
 void			brute_draw_column(t_wolf *wolf,\

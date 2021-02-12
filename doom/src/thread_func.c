@@ -25,7 +25,7 @@ static	void	main_rendering(t_pthrdata *data)
 	if (data->wolf->player->fly < 0)
 		draw_column_fly(data->wolf, data->point, data->count_distance);
 	else
-		draw_column(data->wolf, data->point, data->count_distance);
+		draw_column(data, data->point, data->count_distance);
 }
 
 static	void	*thread_func(void *thread_data)

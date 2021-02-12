@@ -14,14 +14,13 @@
 
 static void		handle_ukeys(t_wolf *wolf, int key)
 {
-	printf("%d\n", key);
-	if (key == 119)
+	if (key == 119 || key == 70)
 		wolf->player->run_f = 0;
-	if (key == 115)
+	if (key == 115 || key == 75)
 		wolf->player->run_b = 0;
-	if (key == 100)
+	if (key == 100 || key == 50)
 		wolf->player->run_r = 0;
-	if (key == 97)
+	if (key == 97 || key == 68)
 		wolf->player->run_l = 0;
 }
 

@@ -23,19 +23,19 @@ static void		init_bonus_load_helper1(t_wolf *wolf)
 	if (!(wolf->bon->ak_image[3] = IMG_Load("../textures/guns/ak/3.png")))
 		error(wolf, SDL_GetError());
 	if (!(wolf->bon->pistol_image[0] =
-		IMG_Load("../textures/guns/pistol/0.png")))
+		IMG_Load("../textures/guns/pistol/0.bmp")))
 		error(wolf, SDL_GetError());
 	if (!(wolf->bon->pistol_image[1] =
-		IMG_Load("../textures/guns/pistol/1.png")))
+		IMG_Load("../textures/guns/pistol/1.bmp")))
 		error(wolf, SDL_GetError());
 	if (!(wolf->bon->pistol_image[2] =
-		IMG_Load("../textures/guns/pistol/2.png")))
+		IMG_Load("../textures/guns/pistol/2.bmp")))
 		error(wolf, SDL_GetError());
 	if (!(wolf->bon->pistol_image[3] =
-		IMG_Load("../textures/guns/pistol/3.png")))
+		IMG_Load("../textures/guns/pistol/3.bmp")))
 		error(wolf, SDL_GetError());
 	if (!(wolf->bon->pistol_image[4] =
-		IMG_Load("../textures/guns/pistol/4.png")))
+		IMG_Load("../textures/guns/pistol/4.bmp")))
 		error(wolf, SDL_GetError());
 }
 
