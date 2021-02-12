@@ -43,7 +43,6 @@ ALL_C = main.c \
 		render_shot3.c \
 		floorcast_up.c \
 		draw_column_fly.c \
-		draw_column_fly2.c \
 		monster_load.c \
 		move1.c \
 		move2.c \
@@ -78,7 +77,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
 FLAGS = -Ofast -mprefer-vector-width=512
-FLAGS = -g #-Wall -Wextra -Werror
+# FLAGS = -g #-Wall -Wextra -Werror
 # FLAGS =
 #-Wall -Wextra -Werror
 

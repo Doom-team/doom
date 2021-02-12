@@ -23,11 +23,9 @@ static	void	main_rendering(t_pthrdata *data)
 	floorcast(data->wolf, data->wolf->player->distance[data->count_distance]\
 	, data->point, data->count_distance);
 	if (data->wolf->player->fly < 0)
-		draw_column_fly(data->wolf, data->point, data->wolf->player->\
-		distance[data->count_distance], data->count_distance);
+		draw_column_fly(data->wolf, data->point, data->count_distance);
 	else
-		draw_column(data->wolf, data->point, data->wolf\
-		->player->distance[data->count_distance], data->count_distance);
+		draw_column(data->wolf, data->point, data->count_distance);
 }
 
 static	void	*thread_func(void *thread_data)
