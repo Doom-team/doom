@@ -61,6 +61,8 @@ static void		parsing_type(t_parser *parser, char **arr)
 			parser->walls[parser->buff.w].realy =
 				parser->walls[parser->buff.w].y1;
 		}
+		if (parser->walls[parser->buff.w].type_flag == 3)
+			SDL_FreeSurface(parser->walls[parser->buff.w].texture1);
 	}
 	else
 		error((t_wolf*)parser, ERR_FILE_INVALID);

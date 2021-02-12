@@ -80,6 +80,13 @@ static void		init_bonus_load(t_wolf *wolf)
 	if (!(wolf->bon->music_shotgan =
 		Mix_LoadWAV("../textures/guns/shotgun/shot.wav")))
 		error(wolf, SDL_GetError());
+	if (!(wolf->bon->key_red_tex = IMG_Load("../textures/pickup/redkey.png")))
+		error(wolf, SDL_GetError());
+	if (!(wolf->bon->key_blue_tex = IMG_Load("../textures/pickup/bluekey.png")))
+		error(wolf, SDL_GetError());
+	if (!(wolf->bon->key_yellow_tex =
+		IMG_Load("../textures/pickup/yellowkey.png")))
+		error(wolf, SDL_GetError());
 }
 
 void			init_bonus(t_wolf *wolf)

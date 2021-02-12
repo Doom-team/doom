@@ -28,12 +28,12 @@ int			get_fps_time(t_bonus *bon)
 }
 
 void		render_text(t_wolf *wolf, char *text, SDL_Rect location,
-			SDL_Color f_b_color[2])
+			SDL_Color f_b_color)
 {
 	SDL_Surface		*txt_sur;
 
-	txt_sur = TTF_RenderText_Shaded(wolf->bon->my_font, text,
-	f_b_color[TEXT_FOREGROUND_COLOR], f_b_color[TEXT_BACKGROUND_COLOR]);
+	txt_sur = TTF_RenderText_Blended(wolf->bon->my_font, text,
+	f_b_color);
 	free(text);
 	if (txt_sur == NULL)
 		error(wolf, SDL_GetError());
@@ -43,15 +43,14 @@ void		render_text(t_wolf *wolf, char *text, SDL_Rect location,
 
 void		render_fps(t_wolf *wolf, t_bonus *bon)
 {
-	SDL_Color		f_b_color[2];
+	SDL_Color		f_b_color;
 	SDL_Surface		*txt_sur;
 	char			*str1;
 	char			*str2;
 
 	if (get_fps_time(bon))
 		return ;
-	f_b_color[TEXT_FOREGROUND_COLOR] = set_color_sdl(COLOR_RED);
-	f_b_color[TEXT_BACKGROUND_COLOR] = set_color_sdl(COLOR_BLUE);
+	f_b_color = set_color_sdl(COLOR_RED);
 	txt_sur = NULL;
 	bon->fps_count++;
 	str1 = ft_itoa(bon->fps);
@@ -65,13 +64,12 @@ void		render_fps(t_wolf *wolf, t_bonus *bon)
 
 void		render_score_coin(t_wolf *wolf)
 {
-	SDL_Color		f_b_color[2];
+	SDL_Color		f_b_color;
 	SDL_Surface		*text_surface;
 	char			*str;
 	char			*str_tmp;
 
-	f_b_color[TEXT_FOREGROUND_COLOR] = set_color_sdl(COLOR_RED);
-	f_b_color[TEXT_BACKGROUND_COLOR] = set_color_sdl(COLOR_BLUE);
+	f_b_color = set_color_sdl(COLOR_RED);
 	text_surface = NULL;
 	str_tmp = ft_itoa(wolf->bon->score);
 	str = ft_strjoin("score: ", str_tmp);

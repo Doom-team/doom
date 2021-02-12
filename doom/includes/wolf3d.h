@@ -143,6 +143,9 @@ typedef struct		s_bonus
 	SDL_Surface		*ak_image[4];
 	SDL_Surface		*shotgun_image[7];
 	SDL_Surface		*monster[30];
+	SDL_Surface		*key_red_tex;
+	SDL_Surface		*key_yellow_tex;
+	SDL_Surface		*key_blue_tex;
 	Mix_Chunk		*music_pistol;
 	Mix_Chunk		*music_ak;
 	Mix_Chunk		*music_shotgan;
@@ -428,7 +431,7 @@ int					add_arc(float *arc, float to_add);
 ** render_text.c
 */
 void				render_text(t_wolf *wolf, char *text, SDL_Rect location,
-					SDL_Color f_b_color[2]);
+					SDL_Color f_b_color);
 void				render_score_coin(t_wolf *wolf);
 void				render_fps(t_wolf *wolf, t_bonus *bon);
 int					get_fps_time(t_bonus *bon);
