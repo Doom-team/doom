@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 00:51:21 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 10:15:05 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		searchelem(char *str1, char *str2)
 	if (istr == NULL)
 		return (0);
 	else
-		return (istr - str1 + 1);
+		return (istr - str1);
 }
 
 void	rewrite2(t_map *map, char *str, char *tmp, int inx)
@@ -92,8 +92,6 @@ void	rewrite(t_map *map, int inx, int x, int y)
 		inx++;
 		if (map->player_tex[0]->active == 1)
 			str = ft_strjoin("p ", ft_itoa(x));
-		else if (map->door_tex[9]->active == 1)
-			str = ft_strjoin("x ", ft_itoa(x));
 		str = ft_strjoin(ft_strjoin(str, " "), ft_itoa(y));
 		rewrite2(map, str, tmp, inx);
 	}

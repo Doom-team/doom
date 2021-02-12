@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:03 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 00:34:47 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 11:22:58 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,50 +63,4 @@ char	**ft_clear(char **tab)
 		free(tab[i++]);
 	free(tab);
 	return (NULL);
-}
-
-void	get_floor_cordi(t_map *map, int x, int y)
-{
-	char **tmp;
-
-	if (checknod(map, x, y))
-	{
-		if (map->temporary)
-		{
-			tmp = ft_strsplit(map->temporary, ' ');
-			if (!ft_strcmp(tmp[0], ft_itoa(x)) && !ft_strcmp(tmp[1],
-				ft_itoa(y)))
-			{
-				map->inter_tex[16]->active = 3;
-				map->showactive = 2;
-			}
-			ft_clear(tmp);
-		}
-		else
-			map->temporary = malloc(sizeof(char *) * 100);
-		if (!map->temporary)
-			map->temporary = ft_itoa(x);
-		else
-			map->temporary = add_text(add_text(map->temporary,
-				" ", 1), ft_itoa(x), 2);
-		map->temporary = add_text(map->temporary, " ", 1);
-		map->temporary = add_text(map->temporary, ft_itoa(y), 2);
-	}
-}
-
-void	get_floor_cord(t_map *map, int x, int y)
-{
-	if (map->click == 0 && interface_click(map, x, y) &&
-		range_click(&(t_info){x, y, WIDTH / 2 - 115, 5}, 330, 100))
-	{
-		map->click = 1;
-		map->floor_x = x;
-		map->floor_y = y;
-	}
-	else if (interface_click(map, x, y) &&
-		range_click(&(t_info){x, y, WIDTH / 2 - 115, 5}, 330, 100))
-	{
-		map->click = 0;
-		changer(map, x, y);
-	}
 }

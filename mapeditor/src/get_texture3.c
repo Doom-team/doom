@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:08 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 07:14:06 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 12:14:51 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 
 void	get_door_textures(t_map *map)
 {
-	map->door_tex[0]->img = load_image("/textures/doors/defdoor.png");
-	map->door_tex[1]->img = load_image("/textures/doors/bluedoor.png");
-	map->door_tex[2]->img = load_image("/textures/doors/yellowdoor.png");
-	map->door_tex[3]->img = load_image("/textures/doors/reddoor.png");
+	map->door_tex[0]->img = load_image("../textures/doors/defdoor.png");
+	map->door_tex[1]->img = load_image("../textures/doors/bluedoor.png");
+	map->door_tex[2]->img = load_image("../textures/doors/yellowdoor.png");
+	map->door_tex[3]->img = load_image("../textures/doors/reddoor.png");
 	map->door_tex[4]->img = load_image("/textures/doors/switch.png");
-	map->door_tex[5]->img = load_image("/textures/doors/bluekey.png");
-	map->door_tex[6]->img = load_image("/textures/doors/yellowkey.png");
-	map->door_tex[7]->img = load_image("/textures/doors/redkey.png");
+	map->door_tex[5]->img = load_image("../textures/pickup/bluekey.png");
+	map->door_tex[6]->img = load_image("../textures/pickup/yellowkey.png");
+	map->door_tex[7]->img = load_image("../textures/pickup/redkey.png");
 	map->door_tex[8]->img = load_image("/textures/doors/light.png");
 	map->door_tex[9]->img = load_image("/textures/doors/exit.png");
-	map->door_tex[10]->img = load_image("/textures/doors/defdoor.png");
+	map->door_tex[10]->img = load_image("../textures/doors/defdoor.png");
 }
 
 void	wtf(t_map *map)
 {
-	free(map->stairstr);
 	map->stairstr = 0;
 	map->plus_objects++;
 }

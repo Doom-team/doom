@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 03:39:27 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 11:24:39 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ typedef struct		s_map
 	TTF_Font		*fontclasic;
 	TTF_Font		*fontdoom;
 	t_nod			*nod; // все узлы на карте
+	t_nod			*tmpnod;
 	t_removeinfo	*remove; // tmp труктура для функции удаления готовых блоков
 	t_object		*obj;
 	t_tempnod		*tem;
@@ -196,11 +197,6 @@ typedef struct		s_map
 	id_t			index_tex;
 	int				validflag;
 	int				index_wall;
-
-	int				floor_x; /// мб не нужно
-	int				floor_y; /// мб не нужно
-	int				tmpfloor_x; /// мб не нужно
-	int				tmpfloor_y;/// мб не нужно
 	char			*floorstr;
 	char			*ceilingstr;
 	char			*objects;
@@ -212,6 +208,7 @@ typedef struct		s_map
 	int				musicoutput;
 	int				objnum;
 	int				plus_objects;
+	int				exitflag;
 	// int			floor_active;
 }					t_map;
 
@@ -228,8 +225,6 @@ void				get_wall_textures(t_map *map);
 void				get_floorsky_textures(t_map *map);
 void				get_cursor(t_map *map);
 void				get_wall_cord(t_map *map, int x, int y);
-void				get_floor_cord(t_map *map, int x, int y);
-void				get_floor_cordi(t_map *map, int x, int y);
 void				get_enemy_textures(t_map *map);
 void				get_player_textures(t_map *map);
 void				get_gun_textures(t_map *map);
@@ -392,7 +387,13 @@ void				save_obj_tmp3(t_map *map, int x, int y);
 void				save_objects(t_map *map, t_info *inf, char *textstr);
 void				savestairs(t_map *map);
 void				savestairs2(t_map *map);
-
+void				save_texture1(t_map *map, t_nod *n);
+void				count_write(t_map *map, int fd);
+void				write_objects(t_map *map, int fd);
+void				write_floor(t_map *map, int fd);
+void				write_ceiling(t_map *map, int fd);
+char				*write_walls2(t_map *map, char *buffer, t_nod *n);
+char				*write_wall_text(t_nod *n);
 
 void				open_texture_win(t_map *map);
 void				open_floor_win(t_map *map);
@@ -422,6 +423,7 @@ void				stairswhile(t_map *map, int x, int y);
 int					xyround(t_map *map, int x, int y);
 void				doorshit(t_map *map);
 void				doorshit2(t_map *map);
+
 
 
 int					check_scene(t_info *info, t_map *map);

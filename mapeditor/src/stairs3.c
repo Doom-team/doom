@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 03:02:11 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 11:10:47 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,49 @@ void	lstdelone2(t_nod **fd_lst, t_nod *fd, t_nod *file, t_nod *last)
 	else
 		*fd_lst = file->nxt;
 	free(file);
+}
+
+void	save_texture1(t_map *map, t_nod *n)
+{
+	n->type = 2;
+	if (map->door_tex[0]->active == 1)
+	{
+		n->grnum = 1;
+		n->texture->texture_name[0] =
+			" ../textures/doors/defdoor.png";
+	}
+	if (map->door_tex[1]->active == 1)
+	{
+		n->grnum = 2;
+		n->texture->texture_name[0] =
+			" ../textures/doors/bluedoor.png";
+	}
+	if (map->door_tex[2]->active == 1)
+	{
+		n->grnum = 3;
+		n->texture->texture_name[0] =
+			" ../textures/doors/yellowdoor.png";
+	}
+	if (map->door_tex[3]->active == 1)
+	{
+		n->grnum = 4;
+		n->texture->texture_name[0] =
+			" ../textures/doors/reddoor.png";
+	}
+}
+
+char	*write_walls2(t_map *map, char *buffer, t_nod *n)
+{
+	if (n->type == 2)
+		buffer = add_text(buffer, n->texture->texture_name[0], 1);
+	else
+		buffer = add_text(buffer, write_wall_text(n), 2);
+	buffer = add_text(buffer, " ", 1);
+	buffer = add_text(buffer, ft_itoa(n->wallh), 2);
+	buffer = add_text(buffer, " ", 1);
+	buffer = add_text(buffer, ft_itoa(n->type), 2);
+	buffer = add_text(buffer, " ", 1);
+	buffer = add_text(buffer, ft_itoa(n->grnum), 2);
+	buffer = add_text(buffer, "\n", 1);
+	return (buffer);
 }

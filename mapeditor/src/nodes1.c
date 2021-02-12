@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 01:10:32 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 08:30:29 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,13 @@ void	draw_node(t_map *map, t_nod *n)
 void	draw_nodes(t_map *map)
 {
 	t_nod	*n;
+	t_nod	*tmpn;
 	int		i;
 
 	i = -1;
 	n = map->nod;
-	if (!n)
+	tmpn = map->tmpnod;
+	if (!n && !tmpn)
 		return ;
 	while (n)
 	{
@@ -78,6 +80,13 @@ void	draw_nodes(t_map *map)
 			n->texture->type_name = "w";
 		draw_node(map, n);
 		n = n->nxt;
+	}
+	while (tmpn)
+	{
+		if (map->inter_tex[6]->active)
+			tmpn->texture->type_name = "w";
+		draw_node(map, tmpn);
+		tmpn = tmpn->nxt;
 	}
 	while (++i <= map->objnum)
 		bigdot(map, map->dots.x[i], map->dots.y[i], BLUE);

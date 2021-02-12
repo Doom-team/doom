@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 02:46:27 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 11:24:44 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	init_all2(t_map *map)
 		error("ERM!");
 	if (!(map->ha = malloc(sizeof(t_shit))))
 		error("ERM!");
-	map->tmpfloor_x = -1;
-	map->tmpfloor_y = -1;
 	map->stirsgroup = 1;
 	map->floorstr = NULL;
 	map->ceilingstr = NULL;
@@ -60,6 +58,7 @@ int		init_all(t_map *map)
 	init_interface(map);
 	map->click = 0;
 	map->nod = NULL;
+	map->tmpnod = NULL;
 	map->wclick = 25;
 	map->whclick = 5;
 	map->tmpclick = 0;
@@ -71,8 +70,7 @@ int		init_all(t_map *map)
 	map->index_tex = -1;
 	map->validflag = 0;
 	map->index_wall = -1;
-	map->floor_x = -1;
-	map->floor_y = -1;
+	map->exitflag = 0;
 	init_all2(map);
 	return (1);
 }
