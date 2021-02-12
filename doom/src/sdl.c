@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/11 22:05:16 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/12 03:29:11 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,17 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 	float	angle;
 
 	angle = 0.f;
+	if (w.type_flag == 2)
+	{
+		dist = fabs((w.y1 - w.y2) * wolf->player->x + (w.x2 - w.x1) * wolf->player->y + w.x1 * w.y2 - w.x2 * w.y1);
+		dist /= sqrtf(powf(w.y1 - w.y2, 2) + powf(w.x1 - w.x2, 2));
+		if (dist < wolf->player->dist_obj && dist <= 1.)
+		{
+			wolf->player->dist_obj = dist;
+			wolf->player->indx_obj = i;
+		}
+		return (angle);
+	}
 	dist = sqrtf(powf((w.realx - wolf->player->x), 2)
 		+ powf((w.realy - wolf->player->y), 2));
 	if (w.realx - wolf->player->x > 0
@@ -208,11 +219,6 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 	}
 	if (w.type_flag >= 4 && w.type_flag <= 7 &&
 		dist < wolf->player->dist_obj && dist <= 1.)
-	{
-		wolf->player->dist_obj = dist;
-		wolf->player->indx_obj = i;
-	}
-	if (w.type_flag == 2 && dist < wolf->player->dist_obj && dist <= 1.)
 	{
 		wolf->player->dist_obj = dist;
 		wolf->player->indx_obj = i;
@@ -247,9 +253,12 @@ void			recalc_rotation(t_wolf *wolf)
 			wolf->p->walls[i] = rotate_wall(wolf->p->walls[i], wolf, i);
 		
 		if (wolf->p->walls[i].active == 1 && wolf->p->walls[i].type_flag == 2 && wolf->p->walls[i].opening)
-			wolf->p->walls[i].h -= 1;
-		if (wolf->p->walls[i].h == 0)
+			wolf->p->walls[i].h -= 0.05;
+		if (wolf->p->walls[i].h <= 0.2)
+		{
+			wolf->p->walls[i].h = 0;
 			wolf->p->walls[i].active = 0;
+		}
 		i++;
 	}
 }
