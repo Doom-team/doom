@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wendell <wendell@student.42.fr>            +#+  +:+       +#+         #
+#    By: grinko <grinko@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/15 16:58:46 by skaren            #+#    #+#              #
-#    Updated: 2021/02/11 18:29:18 by wendell          ###   ########.fr        #
+#    Updated: 2021/02/12 13:57:11 by grinko           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ ALL_C = main.c \
 		pseudo_3d.c \
 		render_text.c \
 		guns_shot.c \
-		move.c \
 		init_bonus.c \
 		set_sdl.c \
 		render_aim.c \
@@ -42,7 +41,12 @@ ALL_C = main.c \
 		render_shot1.c \
 		render_shot2.c \
 		render_shot3.c \
-		floorcast_up.c 
+		floorcast_up.c \
+		draw_column_fly.c \
+		draw_column_fly2.c \
+		monster_load.c \
+		move1.c \
+		move2.c
 
 SRCDIR = ./src
 OBJDIR = ./objs

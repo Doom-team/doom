@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:19:22 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/12 03:26:45 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/12 13:53:28 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_distance		*t_distance_new(t_wolf *wolf)
 
 void			free_dist_arr(t_wolf *wolf)
 {
-	int			i;
+	int	i;
 
 	i = -1;
 	while (++i < W)
@@ -97,46 +97,80 @@ int				crossing(t_float2 player, float angle, t_wall wall)
 		return (0);
 	if (angle < RAD_180)
 	{
-		if (wall.y1 < player.y && wall.y2 < player.y)
+		if (wall.y1 < player.y && wall.y2 < player.y || wall.x1 * k + b > wall.y1 && wall.x2 * k + b > wall.y2)
 			return (0);
 	}
 	else
 	{
-		if (wall.y1 > player.y && wall.y2 > player.y)
+		if (wall.y1 > player.y && wall.y2 > player.y || wall.x1 * k + b < wall.y1 && wall.x2 * k + b < wall.y2)
 			return (0);
 	}
 	if (angle < RAD_90 || angle > RAD_270)
 	{
-		if (wall.x1 < player.x && wall.x2 < player.x)
+		if (wall.x1 < player.x && wall.x2 < player.x || (wall.y1 - b) / k > wall.x1 && (wall.y2 - b) / k > wall.x2)
 			return (0);
 	}
 	else
 	{
-		if (wall.x1 > player.x && wall.x2 > player.x)
-			return (0);
-	}
-	if (angle < RAD_180)
-	{
-		if (wall.x1 * k + b > wall.y1 && wall.x2 * k + b > wall.y2)
-			return (0);
-	}
-	else
-	{
-		if (wall.x1 * k + b < wall.y1 && wall.x2 * k + b < wall.y2)
-			return (0);
-	}
-	if (angle < RAD_90 || angle > RAD_270)
-	{
-		if ((wall.y1 - b) / k > wall.x1 && (wall.y2 - b) / k > wall.x2)
-			return (0);
-	}
-	else
-	{
-		if ((wall.y1 - b) / k < wall.x1 && (wall.y2 - b) / k < wall.x2)
+		if (wall.x1 > player.x && wall.x2 > player.x || (wall.y1 - b) / k < wall.x1 && (wall.y2 - b) / k < wall.x2)
 			return (0);
 	}
 	return (1);
 }
+
+// int				ifcrossing(t_float2 player, float angle, t_wall wall)
+// {
+// 	if (angle < RAD_90 || angle > RAD_270)
+// 	{
+// 		if (wall.x1 < player.x && wall.x2 < player.x)
+// 			return (0);
+// 		if ((wall.y1 - b) / k > wall.x1 && (wall.y2 - b) / k > wall.x2)
+// 			return (0);
+// 	}
+// 	else
+// 	{
+// 		if (wall.x1 > player.x && wall.x2 > player.x)
+// 			return (0);
+// 	}
+// 	if (angle < RAD_180)
+// 	{
+// 		if (wall.x1 * k + b > wall.y1 && wall.x2 * k + b > wall.y2)
+// 			return (0);
+// 	}
+// 	else
+// 	{
+// 		if (wall.x1 * k + b < wall.y1 && wall.x2 * k + b < wall.y2)
+// 			return (0);
+// 	}
+// 	// if (angle < RAD_90 || angle > RAD_270)
+// 	// {
+// 	// 	if ((wall.y1 - b) / k > wall.x1 && (wall.y2 - b) / k > wall.x2)
+// 	// 		return (0);
+// 	// }
+// 	return (!(wall.y1 - b) / k < wall.x1 && (wall.y2 - b) / k < wall.x2);
+// }
+
+// int				crossing(t_float2 player, float angle, t_wall wall)
+// {
+// 	float k;
+// 	float b;
+
+// 	if (angle == RAD_90 || angle == RAD_270)
+// 		return ((player.x > wall.x1 && player.x < wall.x2) || (player.x > wall.x2 && player.x < wall.x1));
+// 	k = tanf(angle);
+// 	b = player.y - k * player.x;
+// 	if (!((wall.y1 - k * wall.x1 - b) * (wall.y2 - k * wall.x2 - b) < 0))
+// 		return (0);
+// 	if (angle < RAD_180)
+// 	{
+// 		if (wall.y1 < player.y && wall.y2 < player.y)
+// 			return (0);
+// 	}
+// 	else
+// 		if (wall.y1 > player.y && wall.y2 > player.y)
+// 			return (0);
+// 	return (ifcrossing(player, angle, wall));
+// }
 
 float			calc_x(t_float2 player, float angle, t_wall wall, float *py)
 {
