@@ -248,7 +248,7 @@ typedef struct		s_wolf
 	SDL_Surface		*surface;
 	t_bonus			*bon;
 	t_menu			*menu;
-	t_helper		helper;	
+	t_helper		helper;
 	bool			z_buff[W * H];
 }					t_wolf;
 
@@ -279,7 +279,7 @@ typedef struct		s_data_floor
 
 typedef	struct		s_data_column
 {
-	t_distance 				*dist;
+	t_distance				*dist;
 	t_floot_up				stage;
 	t_floot_up				sub_stage;
 	signed long long int	temp_y;
@@ -300,7 +300,7 @@ typedef	struct		s_data_column
 	int						count;
 	int						j;
 	int						size;
-	int 					flagg;
+	int						flagg;
 }					t_data_column;
 
 /*
@@ -326,6 +326,7 @@ SDL_Surface			*parsing_param1(t_parser *parser, char **arr, bool *b);
 void				parsing_param2(t_param2 *obj, char **arr, bool *b);
 void				init_size(t_parser *parser, char *l);
 Mix_Music			*parsing_music(t_parser *parser, char **arr, bool *b);
+
 /*
 ** check_valid.c
 */
@@ -338,6 +339,10 @@ void				wolf_loop(t_wolf *wolf);
 void				handle_event(t_wolf *wolf, SDL_Event *event);
 void				recalc(t_wolf *wolf);
 void				handle_phisics(t_wolf *wolf, t_player *p);
+void				handle_keys(t_wolf *wolf, SDL_Event *event);
+float				search_angle(t_wall w, t_wolf *wolf, int i);
+t_wall				rotate_wall(t_wall w, t_wolf *wolf, int i);
+
 /*
 ** menu.c
 */
@@ -460,8 +465,10 @@ void				floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x,
 void				draw_sky(t_wolf *wolf, int x, int y);
 void				draw_column(t_wolf *wolf, t_point point,
 					t_distance *dist, int count_distance);
-void				brute_column_fly_1_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void				upper_level_draw_3(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void				brute_column_fly_1_1(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				upper_level_draw_3(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
 
 /*
 ** guns_shot.c
@@ -485,35 +492,45 @@ int					floorcast_up_escape(t_wolf *wolf, t_floot_up *stage,
 /*
 ** draw_column_fly.c
 */
-void			draw_column_fly(t_wolf *wolf, t_point point, int count_distance);
-void			upper_level_draw(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			upper_level_draw_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-int				upper_level_draw_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			cut_ctage(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void				draw_column_fly(t_wolf *wolf, t_point point,
+					int count_distance);
+void				upper_level_draw(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				upper_level_draw_2(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+int					upper_level_draw_1(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				cut_ctage(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
 
 /*
 ** draw_column_fly2.c
 */
-void			brute_column_fly(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			brute_column_fly_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			brute_column_fly_2_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			brute_column_fly_2_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			brute_column_fly_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void				brute_column_fly(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				brute_column_fly_2(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				brute_column_fly_2_1(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				brute_column_fly_2_2(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				brute_column_fly_1(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
 
 /*
 ** move1.c
 */
-void			jump(t_wolf *wolf);
-void			falling(t_wolf *wolf);
-void			calc_move3(t_wolf *wolf, t_way *way, float dy);
-void			calc_move2(t_wolf *wolf, t_way *way, float dx);
-void			calc_move(t_wolf *wolf, float dy, float dx);
+void				jump(t_wolf *wolf);
+void				falling(t_wolf *wolf);
+void				calc_move3(t_wolf *wolf, t_way *way, float dy);
+void				calc_move2(t_wolf *wolf, t_way *way, float dx);
+void				calc_move(t_wolf *wolf, float dy, float dx);
 
 /*
 ** move1.c
 */
-void		falling2(t_wolf *wolf, SDL_Event *event);
-void		take_damage(t_wolf *wolf, int dmg);
-void		jump2(t_wolf *wolf, SDL_Event *event, int f);
+void				falling2(t_wolf *wolf, SDL_Event *event);
+void				take_damage(t_wolf *wolf, int dmg);
+void				jump2(t_wolf *wolf, SDL_Event *event, int f);
 
 #endif
