@@ -264,10 +264,10 @@ typedef struct		s_menu
 
 typedef struct		s_floor_up
 {
-	int				y1[2000];
-	int				y2[2000];
-	float			dist[2000];
-	int				h[2000];
+	int				y1[1000];
+	int				y2[1000];
+	float			dist[1000];
+	int				h[1000];
 	int				count;
 }					t_floot_up;
 

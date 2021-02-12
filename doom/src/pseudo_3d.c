@@ -116,8 +116,34 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 			}
 		}
 	}
+	sub_stage.count = stage.count;
+	j = 0;
+	while (j < stage.count)
+	{
+		if (sub_stage.dist[j] == sub_stage.dist[j + 1])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		if (sub_stage.dist[j] == sub_stage.dist[j + 2])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		if (sub_stage.dist[j] == sub_stage.dist[j + 3])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		j++;
+	}
 	j = -1;
-	sub_stage.count = stage.count + 2;
 	while (++j < stage.count)
 		floorcast_up_fly(wolf, wolf->player->distance[count_distance], point.x, count_distance, sub_stage, j);
 	if (stage.count % 2 == 0)
@@ -213,7 +239,7 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 			}
 			else if (stage.y1[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] < temp_y)
 				stage.y1[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] = temp_y;
-			if (stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] != 0 && stage.y1[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] != 0)
+			if (stage.y2[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] != 0)
 			{
 				stage.h[wolf->p->walls[dist->number_wall[j]].squad_stage - 1] = wolf->p->walls[dist->number_wall[j]].h;
 				sub_stage.h[stage.count] = stage.h[wolf->p->walls[dist->number_wall[j]].squad_stage - 1];
@@ -274,8 +300,34 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 			}
 		}
 	}
+	sub_stage.count = stage.count;
+	j = 0;
+	while (j < stage.count)
+	{
+		if (sub_stage.dist[j] == sub_stage.dist[j + 1])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		if (sub_stage.dist[j] == sub_stage.dist[j + 2])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		if (sub_stage.dist[j] == sub_stage.dist[j + 3])
+		{
+			sub_stage.y1[j] = 0.f;
+			sub_stage.y2[j] = 0.f;
+			sub_stage.dist[j] = 0.f;
+			sub_stage.h[j] = 0;
+		}
+		j++;
+	}
 	j = -1;
-	sub_stage.count = stage.count + 1;
 	while (++j < stage.count)
 		floorcast_up(wolf, wolf->player->distance[count_distance], point.x, count_distance, sub_stage, j);
 
