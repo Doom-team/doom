@@ -43,13 +43,22 @@ ALL_C = main.c \
 		render_shot3.c \
 		floorcast_up.c \
 		draw_column_fly.c \
-		draw_column_fly2.c \
 		monster_load.c \
 		move1.c \
 		move2.c \
+		draw_column.c \
+		draw_column2.c \
+		draw_column3.c \
 		handle_keys.c \
 		search_angle.c \
-		rotate_wall.c
+		rotate_wall.c \
+		action_dist.c \
+		calc_helper.c \
+		calc_dist.c \
+		recalc.c \
+		buble_sort.c \
+		buble_sort_fly.c \
+		calc_x.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
@@ -68,7 +77,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
 FLAGS = -Ofast -mprefer-vector-width=512
-FLAGS = -g #-Wall -Wextra -Werror
+# FLAGS = -g #-Wall -Wextra -Werror
 # FLAGS =
 #-Wall -Wextra -Werror
 
