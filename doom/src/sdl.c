@@ -52,7 +52,16 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event)
 				wolf->player->dist_obj = MAXFLOAT;
 			}
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 2)
-				wolf->p->walls[wolf->player->indx_obj].opening = 1;
+			{
+				if (wolf->p->walls[wolf->player->indx_obj].type_stage == 1)
+					wolf->p->walls[wolf->player->indx_obj].opening = 1;
+				if (wolf->p->walls[wolf->player->indx_obj].type_stage == 2 && wolf->bon->key_blue)
+					wolf->p->walls[wolf->player->indx_obj].opening = 1;
+				if (wolf->p->walls[wolf->player->indx_obj].type_stage == 3 && wolf->bon->key_yellow)
+					wolf->p->walls[wolf->player->indx_obj].opening = 1;
+				if (wolf->p->walls[wolf->player->indx_obj].type_stage == 4 && wolf->bon->key_red)
+					wolf->p->walls[wolf->player->indx_obj].opening = 1;
+			}
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 1)
 				wolf->bon->set_gun = 1;
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 6 && wolf->p->walls[wolf->player->indx_obj].type_stage == 2)
@@ -80,9 +89,10 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event)
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 8 && wolf->p->walls[wolf->player->indx_obj].type_stage == 2)
 				wolf->bon->key_blue = 1;
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 8 && wolf->p->walls[wolf->player->indx_obj].type_stage == 3)
-				wolf->bon->key_blue = 1;
+				wolf->bon->key_yellow = 1;
 			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 8 && wolf->p->walls[wolf->player->indx_obj].type_stage == 4)
-				wolf->bon->key_blue = 1;
+				wolf->bon->key_red = 1;
+			wolf->player->dist_obj = MAXFLOAT;
 		}
 	}
 	if (s[SDL_SCANCODE_D])
@@ -215,7 +225,7 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 		wolf->player->dist_mon = dist;
 		wolf->player->indx_mon = i;
 	}
-	if (w.type_flag >= 4 && w.type_flag <= 7 &&
+	if (w.type_flag >= 4 && w.type_flag <= 8 &&
 		dist < wolf->player->dist_obj && dist <= 1.)
 	{
 		wolf->player->dist_obj = dist;
@@ -270,8 +280,8 @@ void			wolf_loop(t_wolf *wolf)
 	{
 		recalc(wolf);
 		handle_event(wolf, &event);
-		handle_phisics(wolf, wolf->player);
 		recalc_rotation(wolf);
+		handle_phisics(wolf, wolf->player);
 		all_get_distance(wolf);
 		pseudo_3d(wolf);
 		render_score_coin(wolf);
