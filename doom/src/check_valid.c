@@ -14,6 +14,6 @@
 
 void	check_valid(t_buff *buff)
 {
-	if (!buff->p || !buff->f || (!buff->s && !buff->c) || !buff->x || !buff->m)
+	if (!buff->p || !buff->f || (!buff->s && !buff->c) || !buff->m)
 		error((t_wolf*)buff, ERR_FILE_INVALID);
 }

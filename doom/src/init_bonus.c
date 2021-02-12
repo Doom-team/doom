@@ -12,7 +12,7 @@
 
 #include "../includes/wolf3d.h"
 
-static	void	monster_load(t_wolf *wolf)
+static	void	monster_load_helper(t_wolf *wolf)
 {
 	wolf->bon->monster[0] = IMG_Load("../textures/enemy/beam/0.png");
 	wolf->bon->monster[1] = IMG_Load("../textures/enemy/beam/1.png");
@@ -26,6 +26,11 @@ static	void	monster_load(t_wolf *wolf)
 	wolf->bon->monster[9] = IMG_Load("../textures/enemy/abbadon/3.png");
 	wolf->bon->monster[10] = IMG_Load("../textures/enemy/abbadon/4.png");
 	wolf->bon->monster[11] = IMG_Load("../textures/enemy/abbadon/5.png");
+}
+
+static	void	monster_load(t_wolf *wolf)
+{
+	monster_load_helper(wolf);
 	wolf->bon->monster[12] = IMG_Load("../textures/enemy/arachnophyte/0.png");
 	wolf->bon->monster[13] = IMG_Load("../textures/enemy/arachnophyte/1.png");
 	wolf->bon->monster[14] = IMG_Load("../textures/enemy/arachnophyte/2.png");
@@ -46,7 +51,7 @@ static	void	monster_load(t_wolf *wolf)
 	wolf->bon->monster[29] = IMG_Load("../textures/enemy/hierophant/5.png");
 }
 
-void	init_bonus_load(t_wolf *wolf)
+void			init_bonus_load(t_wolf *wolf)
 {
 	wolf->bon->ak_image[0] = IMG_Load("../textures/guns/ak/0.png");
 	wolf->bon->ak_image[1] = IMG_Load("../textures/guns/ak/1.png");
@@ -71,7 +76,7 @@ void	init_bonus_load(t_wolf *wolf)
 	wolf->bon->music_shotgan = Mix_LoadWAV("../textures/guns/shotgan/shot.wav");
 }
 
-void	init_bonus(t_wolf *wolf)
+void			init_bonus(t_wolf *wolf)
 {
 	monster_load(wolf);
 	init_bonus_load(wolf);

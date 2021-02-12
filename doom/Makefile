@@ -41,7 +41,8 @@ ALL_C = main.c \
 		floorcast.c \
 		render_shot1.c \
 		render_shot2.c \
-		render_shot3.c 
+		render_shot3.c \
+		floorcast_up.c 
 
 SRCDIR = ./src
 OBJDIR = ./objs

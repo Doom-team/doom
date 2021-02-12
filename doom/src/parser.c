@@ -18,8 +18,6 @@ void		parsing(t_parser *parser, char *l)
 	char	**arr;
 
 	arr = ft_strsplit(l, ' ');
-	if (arr[0][0] == 'x')
-		parsing_param2(&parser->exit, arr, &parser->buff.x);
 	if (arr[0][0] == 'p')
 		parsing_param2(&parser->player, arr, &parser->buff.p);
 	if (arr[0][0] == 'w')
