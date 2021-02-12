@@ -449,8 +449,8 @@ void				buble_sort_fly(t_distance *v);
 void				buble_sort(t_distance *v);
 void				calculate_distance(t_wolf *wolf,
 					float angle, t_way *d);
-float				calc_dist(t_float2 player, float angle, t_wall wall,
-					t_distance *v, int j);
+float				calc_dist(t_float2 player, t_wall wall,
+					t_distance *v, t_helper *h);
 int					crossing(t_float2 player, float angle, t_wall wall);
 float				vector_len(float x1, float y1, float x2, float y2);
 float				calc_x(t_float2 player, float angle,

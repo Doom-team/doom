@@ -25,6 +25,13 @@ static void		dist_to_wall_helper(t_distance *v, t_helper *h,
 	*tmp = -1.0f;
 }
 
+static void		init_helper(t_helper *h, float angle)
+{
+	h->x = -1;
+	h->j = 0;
+	h->angle = angle;
+}
+
 t_distance		*dist_to_wall(t_wolf *wolf,
 float angle, int count_distance)
 {
@@ -34,15 +41,14 @@ float angle, int count_distance)
 	t_helper	h;
 
 	tmp = -1.0f;
-	h.x = -1;
-	h.j = 0;
+	init_helper(&h, angle);
 	v = wolf->player->distance_vert[count_distance];
 	t_distance_clear(v);
 	player.x = wolf->player->x;
 	player.y = wolf->player->y;
 	while (++h.x < wolf->p->count_walls)
 	{
-		tmp = calc_dist(player, angle, wolf->p->walls[h.x], v, h.j);
+		tmp = calc_dist(player, wolf->p->walls[h.x], v, &h);
 		if (tmp != -1.0f)
 			dist_to_wall_helper(v, &h, &tmp, wolf);
 	}
