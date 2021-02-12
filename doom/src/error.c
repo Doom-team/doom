@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skaren<skaren@student.42.fr>               +#+  +:+       +#+        */
+/*   By: skaren <skaren@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:23:45 by skaren            #+#    #+#             */
 /*   Updated: 2020/10/24 21:21:01 by skaren           ###   ########.fr       */

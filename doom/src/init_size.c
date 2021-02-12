@@ -18,7 +18,6 @@ static void		init_param1(t_parser *parser)
 	parser->buff.s = false;
 	parser->buff.c = false;
 	parser->buff.p = false;
-	parser->buff.x = false;
 	parser->buff.m = false;
 }
 
