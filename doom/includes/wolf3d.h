@@ -369,6 +369,9 @@ void				rotate(t_wolf *wolf, SDL_Event *event);
 void				add_skybox_offset(t_wolf *wolf, float to_add);
 void				jump(t_wolf *wolf);
 void				falling(t_wolf *wolf);
+void				falling2(t_wolf *wolf, SDL_Event *event);
+void				jump2(t_wolf *wolf, SDL_Event *event, int f);
+void				take_damage(t_wolf *wolf, int dmg);
 
 /*
 ** load_textures.c
