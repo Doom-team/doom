@@ -182,7 +182,11 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 	}
 	j = -1;
 	while (++j < stage.count)
-		floorcast_up(wolf, wolf->player->distance[count_distance], point.x, count_distance, sub_stage, j);
+	{
+		wolf->helper.j = j;
+		wolf->helper.x = point.x;
+		floorcast_up(wolf, wolf->player->distance[count_distance], count_distance, sub_stage);
+	}
 	j = 0;
 	temp_y = ceilf((wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]);
 	temp_y = (H - temp_y) / 2;

@@ -234,6 +234,12 @@ typedef struct		s_floor_up
 	int				count;
 }					t_floot_up;
 
+typedef struct		s_helper
+{
+	int				j;
+	int				x;
+}					t_helper;
+
 typedef struct		s_wolf
 {
 	t_parser		*p;
@@ -242,6 +248,7 @@ typedef struct		s_wolf
 	SDL_Surface		*surface;
 	t_bonus			*bon;
 	t_menu			*menu;
+	t_helper		helper;	
 	bool			z_buff[W * H];
 }					t_wolf;
 
@@ -392,7 +399,7 @@ void				init_sdl(t_wolf *wolf);
 ** init_bonus.c
 */
 void				init_bonus(t_wolf *wolf);
-void				init_bonus_load(t_wolf *wolf);
+void				monster_load(t_wolf *wolf);
 
 /*
 ** init_menu.c
@@ -468,7 +475,7 @@ void				render_shot3(t_wolf *wolf, SDL_Surface *surface);
 void				floorcast(t_wolf *wolf, t_distance *dist,
 					t_point point, int count_distance);
 void				floorcast_up(t_wolf *wolf, t_distance *dist,
-					int x, int count_distance, t_floot_up stage, int j);
+					int count_distance, t_floot_up stage);
 int					floorcast_up_escape(t_wolf *wolf, t_floot_up *stage,
 					t_data_floor *d, int j);
 
@@ -489,5 +496,21 @@ void			brute_column_fly_2(t_wolf *wolf, t_point point, int count_distance, t_dat
 void			brute_column_fly_2_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
 void			brute_column_fly_2_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
 void			brute_column_fly_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+
+/*
+** move1.c
+*/
+void			jump(t_wolf *wolf);
+void			falling(t_wolf *wolf);
+void			calc_move3(t_wolf *wolf, t_way *way, float dy);
+void			calc_move2(t_wolf *wolf, t_way *way, float dx);
+void			calc_move(t_wolf *wolf, float dy, float dx);
+
+/*
+** move1.c
+*/
+void		falling2(t_wolf *wolf, SDL_Event *event);
+void		take_damage(t_wolf *wolf, int dmg);
+void		jump2(t_wolf *wolf, SDL_Event *event, int f);
 
 #endif

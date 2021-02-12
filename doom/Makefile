@@ -20,7 +20,6 @@ ALL_C = main.c \
 		pseudo_3d.c \
 		render_text.c \
 		guns_shot.c \
-		move.c \
 		init_bonus.c \
 		set_sdl.c \
 		render_aim.c \
@@ -44,7 +43,10 @@ ALL_C = main.c \
 		render_shot3.c \
 		floorcast_up.c \
 		draw_column_fly.c \
-		draw_column_fly2.c
+		draw_column_fly2.c \
+		monster_load.c \
+		move1.c \
+		move2.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
