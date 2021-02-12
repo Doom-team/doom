@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 23:19:38 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 07:40:09 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ void	write_walls(t_map *map, int fd)
 	{
 		if (n->type == 0 || n->type == 2)
 		{
+			
 			maxlen = ft_strlen(n->texture->type_name) + ft_strlen(write_wall_xy(n))
 				+ ft_strlen(ft_itoa(n->wallh)) + ft_strlen(write_wall_text(n)) + 6;
 			if (n->type == 2)
@@ -216,7 +217,6 @@ void	write_walls(t_map *map, int fd)
 			buffer = add_text(buffer, "\n", 1);
 			if (write(fd, buffer, maxlen) != maxlen)
 				error("Write Error\n");
-			//free(buffer);
 		}
 		n = n->nxt;
 	}

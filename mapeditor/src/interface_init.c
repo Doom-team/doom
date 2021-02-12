@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 01:05:07 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 02:46:27 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ void	init_all2(t_map *map)
 	map->plus_objects = 0;
 	if (!(map->font = (t_image *)malloc(sizeof(t_image))))
 		error("ERM!");
+	if (!(map->tem = malloc(sizeof(t_tempnod))))
+		error("ERM!");
+	if (!(map->ha = malloc(sizeof(t_shit))))
+		error("ERM!");
 	map->tmpfloor_x = -1;
 	map->tmpfloor_y = -1;
 	map->stirsgroup = 1;
-	if (!(map->tem = malloc(sizeof(t_tempnod))))
-		error("ERM!");
 	map->floorstr = NULL;
 	map->ceilingstr = NULL;
 	map->objects = NULL;

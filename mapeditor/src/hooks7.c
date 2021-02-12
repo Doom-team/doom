@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 01:04:07 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 07:03:51 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,16 +118,16 @@ void	save_obj_tmp2(t_map *map, int x, int y)
 {
 	save_obj_tmp3(map, x, y);
 	if (map->enemy_tex[3]->active == 1)
-		save_objects(map, &(t_info){x, y, 3, 0}, "../textures/enemy/e4.png");
+		save_objects(map, &(t_info){x, y, 3, 4}, "../textures/enemy/e4.png");
 	if (map->enemy_tex[4]->active == 1)
-		save_objects(map, &(t_info){x, y, 3, 0}, "../textures/enemy/e5.png");
+		save_objects(map, &(t_info){x, y, 3, 5}, "../textures/enemy/e5.png");
 	if (map->door_tex[9]->active == 1)
 		cordinator(map, "x ", x, y);
 	if (map->door_tex[5]->active == 1 && range_click(&(t_info){x, y,
 		WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 	{
 		map->validflag = 8;
-		save_objects(map, &(t_info){x, y, 8, 0},
+		save_objects(map, &(t_info){x, y, 8, 2},
 			" ../textures/pickup/bluekey.png");
 	}
 }
