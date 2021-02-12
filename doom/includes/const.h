@@ -20,8 +20,6 @@
 # define THREAD 8
 # define RESIZE 20.f
 
-# define PLAYER_MM_SIZE 4
-# define KLUDGE 0.0001
 # define RAD_360 6.28319f
 # define RAD_1 0.0174533f
 # define RAD_60 1.047200f

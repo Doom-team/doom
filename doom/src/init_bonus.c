@@ -12,6 +12,40 @@
 
 #include "../includes/wolf3d.h"
 
+static	void	monster_load(t_wolf *wolf)
+{
+	wolf->bon->monster[0] = IMG_Load("../textures/enemy/beam/0.png");
+	wolf->bon->monster[1] = IMG_Load("../textures/enemy/beam/1.png");
+	wolf->bon->monster[2] = IMG_Load("../textures/enemy/beam/2.png");
+	wolf->bon->monster[3] = IMG_Load("../textures/enemy/beam/3.png");
+	wolf->bon->monster[4] = IMG_Load("../textures/enemy/beam/4.png");
+	wolf->bon->monster[5] = IMG_Load("../textures/enemy/beam/5.png");
+	wolf->bon->monster[6] = IMG_Load("../textures/enemy/abbadon/0.png");
+	wolf->bon->monster[7] = IMG_Load("../textures/enemy/abbadon/1.png");
+	wolf->bon->monster[8] = IMG_Load("../textures/enemy/abbadon/2.png");
+	wolf->bon->monster[9] = IMG_Load("../textures/enemy/abbadon/3.png");
+	wolf->bon->monster[10] = IMG_Load("../textures/enemy/abbadon/4.png");
+	wolf->bon->monster[11] = IMG_Load("../textures/enemy/abbadon/5.png");
+	wolf->bon->monster[12] = IMG_Load("../textures/enemy/arachnophyte/0.png");
+	wolf->bon->monster[13] = IMG_Load("../textures/enemy/arachnophyte/1.png");
+	wolf->bon->monster[14] = IMG_Load("../textures/enemy/arachnophyte/2.png");
+	wolf->bon->monster[15] = IMG_Load("../textures/enemy/arachnophyte/3.png");
+	wolf->bon->monster[16] = IMG_Load("../textures/enemy/arachnophyte/4.png");
+	wolf->bon->monster[17] = IMG_Load("../textures/enemy/arachnophyte/5.png");
+	wolf->bon->monster[18] = IMG_Load("../textures/enemy/annihilator/0.png");
+	wolf->bon->monster[19] = IMG_Load("../textures/enemy/annihilator/1.png");
+	wolf->bon->monster[20] = IMG_Load("../textures/enemy/annihilator/2.png");
+	wolf->bon->monster[21] = IMG_Load("../textures/enemy/annihilator/3.png");
+	wolf->bon->monster[22] = IMG_Load("../textures/enemy/annihilator/4.png");
+	wolf->bon->monster[23] = IMG_Load("../textures/enemy/annihilator/5.png");
+	wolf->bon->monster[24] = IMG_Load("../textures/enemy/hierophant/0.png");
+	wolf->bon->monster[25] = IMG_Load("../textures/enemy/hierophant/1.png");
+	wolf->bon->monster[26] = IMG_Load("../textures/enemy/hierophant/2.png");
+	wolf->bon->monster[27] = IMG_Load("../textures/enemy/hierophant/3.png");
+	wolf->bon->monster[28] = IMG_Load("../textures/enemy/hierophant/4.png");
+	wolf->bon->monster[29] = IMG_Load("../textures/enemy/hierophant/5.png");
+}
+
 void	init_bonus_load(t_wolf *wolf)
 {
 	wolf->bon->ak_image[0] = IMG_Load("../textures/guns/ak/0.png");
@@ -39,6 +73,7 @@ void	init_bonus_load(t_wolf *wolf)
 
 void	init_bonus(t_wolf *wolf)
 {
+	monster_load(wolf);
 	init_bonus_load(wolf);
 	wolf->bon->flag_play_chunk = 0;
 	wolf->bon->set_gun = 1;

@@ -36,9 +36,10 @@ typedef struct		s_wall
 	float			realx;
 	float			realy;
 	float			length;
+	float			h;
+	float			angle;
 	int				active;
 	int				vert;
-	float			h;
 	int				type_flag;
 	int				squad_stage;
 	int				type_stage;
@@ -83,24 +84,6 @@ typedef struct		s_way
 	t_wall			wall;
 }					t_way;
 
-typedef struct		s_map
-{
-	char			*map;
-	int				w;
-	int				h;
-	int				w_pix;
-	int				h_pix;
-	t_point			mm_start;
-	int				mm_cube;
-	int				mm_show;
-	int				mm_w;
-	int				mm_h;
-	int				mm_p_size;
-	float			mm_map_coef;
-	float			mm_cube_coef;
-	int				player_start;
-}					t_map;
-
 typedef struct		s_float2
 {
 	float			x;
@@ -141,7 +124,6 @@ typedef struct		s_player
 	int				flying;
 	int				inside_step;
 	int				in_jump;
-
 	int				run_f;
 	int				run_b;
 	int				run_r;
@@ -151,24 +133,6 @@ typedef struct		s_player
 	float			dist_mon;
 	int				indx_mon;
 }					t_player;
-
-typedef	struct		s_sprite_calc
-{
-	float			angle;
-	float			dist;
-	float			temp_1;
-	float			temp_2;
-	float			temp_3;
-	float			temp_4;
-	float			temp_5;
-	int				i;
-	int				flag_1;
-	int				flag_2;
-	int				flag_i;
-	int				count;
-	SDL_Rect		cut_vertical_img;
-	SDL_Rect		img_location;
-}					t_sprite_calc;
 
 typedef struct		s_bonus
 {
@@ -180,6 +144,7 @@ typedef struct		s_bonus
 	SDL_Surface		*pistol_image[5];
 	SDL_Surface		*ak_image[4];
 	SDL_Surface		*shotgun_image[7];
+	SDL_Surface		*monster[30];
 	Mix_Chunk		*music_pistol;
 	Mix_Chunk		*music_ak;
 	Mix_Chunk		*music_shotgan;
@@ -273,7 +238,6 @@ typedef struct		s_floor_up
 
 typedef struct		s_wolf
 {
-	t_map			*map;
 	t_parser		*p;
 	t_player		*player;
 	t_sdl			*sdl;
@@ -308,6 +272,32 @@ typedef struct		s_data_floor
 	int		tmp;
 }					t_data_floor;
 
+typedef	struct		s_data_column
+{
+	t_distance 				*dist;
+	t_floot_up				stage;
+	t_floot_up				sub_stage;
+	signed long long int	temp_y;
+	double					fractpart_2;
+	double					intpart_2;
+	double					fractpart;
+	double					intpart;
+	float					offsety;
+	float					tex_2;
+	float					pos_y;
+	float					koof;
+	float					tex_1;
+	float					pos;
+	int						begin_y;
+	int						len;
+	int						flag;
+	int						color;
+	int						count;
+	int						j;
+	int						size;
+	int 					flagg;
+}					t_data_column;
+
 /*
 ** cof.c
 */
@@ -335,14 +325,6 @@ Mix_Music			*parsing_music(t_parser *parser, char **arr, bool *b);
 ** check_valid.c
 */
 void				check_valid(t_buff *buff);
-
-void				draw_background(SDL_Surface *surface);
-int					draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
-void				draw_ray(t_wolf *wolf, float player, int x, int y);
-void				draw_line(SDL_Surface *surface, t_point start, t_point end,
-					int color);
-void				draw_rectangle(SDL_Surface *surface, t_point start,
-					t_point width_height, int color);
 
 /*
 ** sdl.c
@@ -388,10 +370,6 @@ void				falling(t_wolf *wolf);
 */
 void				set_pixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
 Uint32				get_pixel(SDL_Surface *surface, int x, int y);
-int					get_pixel1(SDL_Surface *surface, int x, int y);
-void				set_pixel1(SDL_Surface *surface, SDL_Surface *surface1,
-					int x, int y, int pixel);
-int					is_texture(t_map *map, int x, int y, char texture);
 
 /*
 ** map.c
@@ -474,8 +452,7 @@ void				floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x,
 void				draw_sky(t_wolf *wolf, int x, int y);
 void				draw_column(t_wolf *wolf, t_point point,
 					t_distance *dist, int count_distance);
-void				draw_column_fly(t_wolf *wolf, t_point point,
-					t_distance *dist, int count_distance);
+void				draw_column_fly(t_wolf *wolf, t_point point, int count_distance);
 
 /*
 ** guns_shot.c

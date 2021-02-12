@@ -73,6 +73,7 @@ void		screen_death(t_wolf *wolf, SDL_Event *event)
 
 void		screen_win(t_wolf *wolf)
 {
+
 	hooks_screen(wolf->sdl);
 	SDL_LockTexture(wolf->sdl->window_texture, NULL,
 		(void**)&wolf->sdl->bytes, &wolf->sdl->pitch);

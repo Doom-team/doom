@@ -1,14 +1,21 @@
-w 5
-w 464 172 648 178 ../textures/wall/wall1.png 5 0 0
-w 648 178 645 354 ../textures/wall/wall1.png 5 0 0
-w 645 354 456 357 ../textures/wall/wall1.png 5 0 0
-w 456 357 464 172 ../textures/wall/wall1.png 5 0 0
-w 506 197 606 197 ../textures/wall/wall1.png 1 1 1
-w 506 197 506 297 ../textures/wall/wall1.png 1 1 1
-w 606 197 606 297 ../textures/wall/wall1.png 1 1 1
-w 506 297 606 297 ../textures/wall/wall1.png 1 1 1
-w 493 315 0 0 ../textures/enemy/e5.png 5 9 0
+w 15
+w 537 359 518 702 ../textures/wall/wall1.png 5 0 0
+w 518 702 1053 709 ../textures/wall/wall1.png 5 0 0
+w 1053 709 1064 355 ../textures/wall/wall1.png 5 0 0
+w 1064 355 537 359 ../textures/wall/wall1.png 5 0 0
+w 580 496 0 0 ../textures/enemy/e1.png 5 3 1
+w 669 492 0 0 ../textures/enemy/e2.png 5 3 2
+w 771 497 0 0 ../textures/enemy/e3.png 5 3 3
+w 839 511 0 0 ../textures/enemy/e4.png 5 3 4
+w 904 532 0 0 ../textures/enemy/e5.png 5 3 5
+w 589 618 0 0 ../textures/enemy/e5.png 5 3 5
+w 670 598 0 0 ../textures/enemy/e4.png 5 3 4
+w 764 593 0 0 ../textures/enemy/e3.png 5 3 3
+w 837 598 0 0 ../textures/enemy/e2.png 5 3 2
+w 921 611 0 0 ../textures/enemy/e1.png 5 3 1
+w 900 611 0 0 ../textures/floor/floor8.png 5 9 0
 f ../textures/floor/floor1.png
 s ../textures/floor/sky1.png
 m ../textures/music/m1.mp3
-p 477 186
+p 700 400
+x 0 0
