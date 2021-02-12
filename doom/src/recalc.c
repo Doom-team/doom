@@ -42,16 +42,6 @@ void			recalc2(t_wolf *wolf)
 		recalc3(wolf);
 }
 
-void			calcl(t_wolf *wolf)
-{
-	calculate_distance(wolf, wolf->player->rght_d, &(t_helper){-1, -1, RAD_0});
-	calculate_distance(wolf, wolf->player->up_d, &(t_helper){-1, -1, RAD_90});
-	calculate_distance(wolf, wolf->player->left_d,
-		&(t_helper){-1, -1, RAD_180});
-	calculate_distance(wolf, wolf->player->down_d,
-		&(t_helper){-1, -1, RAD_270});
-}
-
 void			recalc(t_wolf *wolf)
 {
 	int r;
@@ -59,7 +49,10 @@ void			recalc(t_wolf *wolf)
 	int u;
 	int d;
 
-	calcl(wolf);
+	calculate_distance(wolf, RAD_0, wolf->player->rght_d);
+	calculate_distance(wolf, RAD_90, wolf->player->up_d);
+	calculate_distance(wolf, RAD_180, wolf->player->left_d);
+	calculate_distance(wolf, RAD_270, wolf->player->down_d);
 	r = wolf->player->rght_d->wall.squad_stage;
 	l = wolf->player->left_d->wall.squad_stage;
 	u = wolf->player->up_d->wall.squad_stage;

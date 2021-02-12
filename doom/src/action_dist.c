@@ -66,7 +66,7 @@ void			all_get_distance(t_wolf *wolf)
 			temp_i += RAD_360;
 		temp_i = RAD_360 - temp_i;
 		wolf->player->distance[count_distance] =
-			dist_to_wall(wolf, &(t_helper){0, 0, temp_i, count_distance});
+			dist_to_wall(wolf, temp_i, count_distance);
 		j = 0;
 		while (j < wolf->player->distance[count_distance]->count)
 			wolf->player->distance[count_distance]->dist[j++] *= cosf(cos_agle);

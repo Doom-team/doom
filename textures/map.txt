@@ -1,20 +1,64 @@
 w 15
-w 537 359 518 702 ../textures/wall/wall1.png 5 0 0
-w 518 702 1053 709 ../textures/wall/wall1.png 5 0 0
-w 1053 709 1064 355 ../textures/wall/wall1.png 5 0 0
-w 1064 355 537 359 ../textures/wall/wall1.png 5 0 0
-w 580 496 0 0 ../textures/enemy/e1.png 5 3 1
-w 669 492 0 0 ../textures/enemy/e2.png 5 3 2
-w 771 497 0 0 ../textures/enemy/e3.png 5 3 3
-w 839 511 0 0 ../textures/enemy/e4.png 5 3 4
-w 904 532 0 0 ../textures/enemy/e5.png 5 3 5
-w 589 618 0 0 ../textures/enemy/e5.png 5 3 5
-w 670 598 0 0 ../textures/enemy/e4.png 5 3 4
-w 764 593 0 0 ../textures/enemy/e3.png 5 3 3
-w 837 598 0 0 ../textures/enemy/e2.png 5 3 2
-w 921 611 0 0 ../textures/enemy/e1.png 5 3 1
-w 900 611 0 0 ../textures/floor/floor8.png 5 9 0
-f ../textures/floor/floor1.png
+w 687 353 736 332 ../textures/doors/bluedoor.png 6 2 2
+w 558 304 702 245 ../textures/wall/wall1.png 6 0 0
+w 869 261 882 407 ../textures/wall/wall1.png 6 0 0
+w 869 261 702 245 ../textures/wall/wall1.png 6 0 0
+w 558 304 664 541 ../textures/wall/wall1.png 6 0 0
+w 664 541 882 407 ../textures/wall/wall1.png 6 0 0
+w -1328081421 32714 -1328081315 32714 ../textures/wall/wall1.png 1 1 1
+w -1328081421 32714 -1328081421 32820 ../textures/wall/wall1.png 1 1 1
+w -1328081315 32714 -1328081315 32820 ../textures/wall/wall1.png 1 1 1
+w -1328081421 32820 -1328081315 32820 ../textures/wall/wall1.png 1 1 1
+w -1328081424 32711 -1328081312 32711 ../textures/wall/wall1.png 1 1 2
+w -1328081424 32711 -1328081424 32823 ../textures/wall/wall1.png 1 1 2
+w -1328081312 32711 -1328081312 32823 ../textures/wall/wall1.png 1 1 2
+w -1328081424 32823 -1328081312 32823 ../textures/wall/wall1.png 1 1 2
+w -1328081427 32708 -1328081309 32708 ../textures/wall/wall1.png 1 1 3
+w -1328081427 32708 -1328081427 32826 ../textures/wall/wall1.png 1 1 3
+w -1328081309 32708 -1328081309 32826 ../textures/wall/wall1.png 1 1 3
+w -1328081427 32826 -1328081309 32826 ../textures/wall/wall1.png 1 1 3
+w -1328081430 32705 -1328081306 32705 ../textures/wall/wall1.png 1 1 4
+w -1328081430 32705 -1328081430 32829 ../textures/wall/wall1.png 1 1 4
+w -1328081306 32705 -1328081306 32829 ../textures/wall/wall1.png 1 1 4
+w -1328081430 32829 -1328081306 32829 ../textures/wall/wall1.png 1 1 4
+w -1328081433 32702 -1328081303 32702 ../textures/wall/wall1.png 1 1 5
+w -1328081433 32702 -1328081433 32832 ../textures/wall/wall1.png 1 1 5
+w -1328081303 32702 -1328081303 32832 ../textures/wall/wall1.png 1 1 5
+w -1328081433 32832 -1328081303 32832 ../textures/wall/wall1.png 1 1 5
+w -1328081436 32699 -1328081300 32699 ../textures/wall/wall1.png 1 1 6
+w -1328081436 32699 -1328081436 32835 ../textures/wall/wall1.png 1 1 6
+w -1328081300 32699 -1328081300 32835 ../textures/wall/wall1.png 1 1 6
+w -1328081436 32835 -1328081300 32835 ../textures/wall/wall1.png 1 1 6
+w 667 309 803 309 ../textures/wall/wall1.png 1 1 7
+w 667 309 667 445 ../textures/wall/wall1.png 1 1 7
+w 803 309 803 445 ../textures/wall/wall1.png 1 1 7
+w 667 445 803 445 ../textures/wall/wall1.png 1 1 7
+w 788 364 767 343 ../textures/wall/wall1.png 1 1 8
+w 788 364 782 383 ../textures/wall/wall1.png 1 1 8
+w 767 343 761 362 ../textures/wall/wall1.png 1 1 8
+w 782 383 761 362 ../textures/wall/wall1.png 1 1 8
+w 782 383 761 362 ../textures/wall/wall1.png 2 1 9
+w 782 383 776 402 ../textures/wall/wall1.png 2 1 9
+w 761 362 755 381 ../textures/wall/wall1.png 2 1 9
+w 776 402 755 381 ../textures/wall/wall1.png 2 1 9
+w 776 402 755 381 ../textures/wall/wall1.png 3 1 10
+w 776 402 770 421 ../textures/wall/wall1.png 3 1 10
+w 755 381 749 400 ../textures/wall/wall1.png 3 1 10
+w 770 421 749 400 ../textures/wall/wall1.png 3 1 10
+w 770 421 749 400 ../textures/wall/wall1.png 4 1 11
+w 770 421 764 440 ../textures/wall/wall1.png 4 1 11
+w 749 400 743 419 ../textures/wall/wall1.png 4 1 11
+w 764 440 743 419 ../textures/wall/wall1.png 4 1 11
+w 794 431 0 0 ../textures/enemy/e5.png 5 9 0
+w 766 321 0 0 ../textures/enemy/e5.png 5 3 5
+w 697 377 0 0 ../textures/guns/ak/img.png 5 6 3
+w 739 352 0 0 ../textures/guns/shotgun/shotgun_b.png 5 7 2
+w 760 420 0 0 ../textures/enemy/e2.png 5 3 2
+w 763 403 0 0 ../textures/guns/ak/ak_b.png 5 7 3
+w 772 384 0 0 ../textures/guns/shotgun/shotgun_b.png 5 7 2
+w 677 409 0 0 ../textures/pickup/health.png 5 4 0
+w 717 370 0 0  ../textures/pickup/bluekey.png 5 8 2
+f ../textures/floor/floor2.png
 s ../textures/floor/sky1.png
 m ../textures/music/m1.mp3
-p 700 400
+p 688 324

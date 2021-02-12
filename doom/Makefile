@@ -56,7 +56,10 @@ ALL_C = main.c \
 		action_dist.c \
 		calc_helper.c \
 		calc_dist.c \
-		recalc.c
+		recalc.c \
+		buble_sort.c \
+		buble_sort_fly.c \
+		calc_x.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
