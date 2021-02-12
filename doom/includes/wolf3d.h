@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/12 13:56:50 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 15:34:19 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,8 @@ typedef struct		s_helper
 {
 	int				j;
 	int				x;
+	float			angle;
+	int				prikol;
 }					t_helper;
 
 typedef struct		s_wolf
@@ -434,8 +436,7 @@ int					get_fps_time(t_bonus *bon);
 /*
 ** distance.c
 */
-t_distance			*dist_to_wall(t_wolf *wolf, float angle,
-					int count_distance);
+t_distance			*dist_to_wall(t_wolf *wolf, t_helper *h);
 t_distance			*t_distance_new(t_wolf *wolf);
 void				t_distance_clear(t_distance *dist);
 void				all_get_distance(t_wolf *wolf);
