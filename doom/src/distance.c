@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:19:22 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/03 21:11:15 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/12 03:26:45 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,7 @@ void			calculate_distance(t_wolf *wolf, float angle, t_way *d)
 	i = -1;
 	while (++i < wolf->p->count_walls)
 	{
-		if (wolf->p->walls[i].type_flag >= 3)
+		if (wolf->p->walls[i].type_flag >= 3 || !wolf->p->walls[i].active)
 			continue;
 		tmp = calc_dist_without_v(player, angle, wolf->p->walls[i]);
 		if (tmp != -1. && tmp < dist)

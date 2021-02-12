@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:32:04 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/11 18:28:43 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/12 03:24:52 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,9 +182,7 @@ void		calc_move(t_wolf *wolf, float dy, float dx)
 				&& UP_LENGTH * wolf->player->rght_d->wall.h +
 					wolf->player->fly <= UP_LENGTH)
 				wolf->player->x += dx;
-			else if (!wolf->player->rght_d->wall.type_flag
-				&& UP_LENGTH * wolf->player->rght_d->wall.h +
-					wolf->player->fly < UP_LENGTH)
+			else if ((!wolf->player->rght_d->wall.type_flag || wolf->player->rght_d->wall.type_flag == 2) && UP_LENGTH * wolf->player->rght_d->wall.h + wolf->player->fly < UP_LENGTH)
 				wolf->player->x += dx;
 		}
 		else if (dx < 0)
@@ -198,7 +196,7 @@ void		calc_move(t_wolf *wolf, float dy, float dx)
 				UP_LENGTH * wolf->player->left_d->wall.h +
 					wolf->player->fly <= UP_LENGTH)
 				wolf->player->x += dx;
-			else if (!wolf->player->left_d->wall.type_flag &&
+			else if ((!wolf->player->left_d->wall.type_flag || wolf->player->left_d->wall.type_flag == 2) &&
 				UP_LENGTH * wolf->player->left_d->wall.h +
 					wolf->player->fly < UP_LENGTH)
 				wolf->player->x += dx;
@@ -211,11 +209,11 @@ void		calc_move(t_wolf *wolf, float dy, float dx)
 				i++;
 				wolf->player->y += dy * 0.8f;
 			}
-			else if (wolf->player->up_d->wall.type_flag &&
+			else if (wolf->player->up_d->wall.type_flag == 1 &&
 				UP_LENGTH * wolf->player->up_d->wall.h +
 					wolf->player->fly <= UP_LENGTH)
 				wolf->player->y += dy;
-			else if (!wolf->player->up_d->wall.type_flag &&
+			else if ((!wolf->player->up_d->wall.type_flag || wolf->player->up_d->wall.type_flag == 2) &&
 				UP_LENGTH * wolf->player->up_d->wall.h +
 					wolf->player->fly < UP_LENGTH)
 				wolf->player->y += dy;
@@ -227,11 +225,11 @@ void		calc_move(t_wolf *wolf, float dy, float dx)
 				i++;
 				wolf->player->y += dy * 0.8f;
 			}
-			else if (wolf->player->down_d->wall.type_flag &&
+			else if (wolf->player->down_d->wall.type_flag == 1 &&
 				UP_LENGTH * wolf->player->down_d->wall.h +
 					wolf->player->fly <= UP_LENGTH)
 				wolf->player->y += dy;
-			else if (!wolf->player->down_d->wall.type_flag &&
+			else if ((!wolf->player->down_d->wall.type_flag || wolf->player->down_d->wall.type_flag == 2) &&
 				UP_LENGTH * wolf->player->down_d->wall.h +
 					wolf->player->fly < UP_LENGTH)
 				wolf->player->y += dy;

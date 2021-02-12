@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:26:06 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/09 16:35:34 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/12 02:47:13 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void			init_player(t_wolf *wolf, t_player *p)
 	p->run_f = 0;
 	p->run_r = 0;
 	p->run_l = 0;
+	p->y = wolf->p->player.y;
+	p->x = wolf->p->player.x;
 	p->dist_obj = MAXFLOAT;
 	p->dist_mon = MAXFLOAT;
 }

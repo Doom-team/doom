@@ -6,7 +6,7 @@
 /*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/09 16:20:04 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/12 02:49:52 by wendell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 		}
 	}
 	j = -1;
-	sub_stage.count = stage.count;
+	sub_stage.count = stage.count + 2;
 	while (++j < stage.count)
 		floorcast_up_fly(wolf, wolf->player->distance[count_distance], point.x, count_distance, sub_stage, j);
 	if (stage.count % 2 == 0)
@@ -275,7 +275,7 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 		}
 	}
 	j = -1;
-	sub_stage.count = stage.count;
+	sub_stage.count = stage.count + 1;
 	while (++j < stage.count)
 		floorcast_up(wolf, wolf->player->distance[count_distance], point.x, count_distance, sub_stage, j);
 
