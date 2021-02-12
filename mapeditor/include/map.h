@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 01:04:18 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 03:39:27 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,12 @@ typedef struct		s_objdots
 	int				y[1000];
 }					t_objdots;
 
+typedef struct		s_shit
+{
+	float			nx;
+	float			ny;
+}					t_shit;
+
 typedef struct		s_map
 {
 	SDL_Window		*win;
@@ -171,6 +177,7 @@ typedef struct		s_map
 	t_object		*obj;
 	t_tempnod		*tem;
 	t_objdots		dots;
+	t_shit			*ha;
 	int				wclick; // коэф + - виджета размера
 	int				whclick; // коэф + - виджета высоты
 	int				stclick; // коэф + - виджета высоты ступенек
@@ -279,6 +286,7 @@ void				tmp_draw(t_map *map, int index, t_nod *nod); //
 void				draw_standartpanel(t_map *map);
 void				draw_music(t_map *map);
 void				draw_basic_interface(t_map *map);
+void				draw_obj_block(t_map *map);
 
 void				one_n(t_map *map, t_color color);
 void				two_n(t_map *map, t_color color);
@@ -287,11 +295,17 @@ void				add_node(t_map *mp, int x, int y);
 void				wichonemusic(t_map *map);
 
 void				bigdot(t_map *map, int x, int y, t_color color);
+void				stairarr1(t_map *map, t_info *cor, int i);
+void				stairarr2(t_map *map, t_info *cor, int i);
+void				draw_prikol(t_map *map, t_info *cord);
 t_nod				*n_cr(t_info *info, int type);
+
 
 int					sq(int x1, int y1, int x2, int y2);
 int					nod_len(t_nod *nod);
 void				whichone_tool(t_map *map);
+void				kakoetogovno1(t_map *map, int i, int tmp);
+void				kakoetogovno2(t_map *map, int i, int tmp);
 
 int					events(t_map *map);
 int					mmove(int x, int y, t_map *map, SDL_Event event);
@@ -311,6 +325,7 @@ void				remove_tool(t_map *map, int x, int y);
 void				remove_blocks(t_map *map);
 void				showup_lick(t_map *map, int x, int y);
 int					clickevent(t_map *map, int x, int y, SDL_Event event);
+void				lstdelone2(t_nod **fd_lst, t_nod *fd, t_nod *file, t_nod *last);
 int					interface_click(t_map *map, int x, int y);
 void				section_click(t_map *map, int x, int y);
 int					catch_click(t_map *map, int x, int y);
@@ -375,6 +390,8 @@ void				save_obj_tmp1(t_map *map, int x, int y);
 void				save_obj_tmp2(t_map *map, int x, int y);
 void				save_obj_tmp3(t_map *map, int x, int y);
 void				save_objects(t_map *map, t_info *inf, char *textstr);
+void				savestairs(t_map *map);
+void				savestairs2(t_map *map);
 
 
 void				open_texture_win(t_map *map);
@@ -408,20 +425,20 @@ void				doorshit2(t_map *map);
 
 
 int					check_scene(t_info *info, t_map *map);
-int					valid_map(t_map *map);
+int					valid_map(t_map *map, t_info *inf);
 
 int					range_click(t_info *info, int w, int h);
 int					lstdelone(t_nod **fd_lst, t_nod *fd);
 
 char				*count_floor(t_map *map, int fd);
-void	free_panel1(t_map *map);
-void	free_panel2(t_map *map);
+void				free_panel1(t_map *map);
+void				free_panel2(t_map *map);
 
-void	free_nodes(t_map *map);
+void				free_nodes(t_map *map);
 
-void		error_free_s(t_map *map, char *s);
-void		error(char *s);
-SDL_Surface		*load_image(char *path);
-char	*add_text(char *s1, char *s2, int f);
+void				error_free_s(t_map *map, char *s);
+void				error(char *s);
+SDL_Surface			*load_image(char *path);
+char				*add_text(char *s1, char *s2, int f);
 
 #endif

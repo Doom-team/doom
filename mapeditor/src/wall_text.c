@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:39 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 23:18:38 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 06:40:59 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,48 +48,57 @@ void	change_text_inter(t_map *map)
 	change_text_inter2(map);
 }
 
+void	save_texture1(t_map *map, t_nod *n)
+{
+	//lstdelone(&map->nod, n);
+	printf("wall1 %d\n", map->index_wall);
+	n->type = 2;
+	if (map->door_tex[0]->active == 1)
+	{
+		n->grnum = 1;
+		n->texture->texture_name[0] =
+			" ../textures/doors/defdoor.png";
+	}
+	if (map->door_tex[1]->active == 1)
+	{
+		n->grnum = 2;
+		n->texture->texture_name[0] =
+			" ../textures/doors/bluedoor.png";
+	}
+	if (map->door_tex[2]->active == 1)
+	{
+		n->grnum = 3;
+		n->texture->texture_name[0] =
+			" ../textures/doors/yellowdoor.png";
+	}
+	if (map->door_tex[3]->active == 1)
+	{
+		n->grnum = 4;
+		n->texture->texture_name[0] =
+			" ../textures/doors/reddoor.png";
+	}
+}
+
 void	save_texture(t_map *map, int index, int num)
 {
-	t_nod *n;
-	char *str;
+	t_nod	*n;
+	char	*str;
 
 	n = map->nod;
 	while (n)
 	{
 		if (n->index == map->index_wall)
 		{
-			str = "wall";
-			str = add_text(str, ft_itoa(index), 3);
-			if (n->texture->texture_name[num])
-				free(n->texture->texture_name[num]);
-			n->texture->texture_name[num] = add_text(str, ".png", 1);
 			if (some_texture_active(map) == 4)
+				save_texture1(map, n);
+			else
 			{
-				n->type = 2;
-				if (map->door_tex[0]->active == 1)
-				{
-					n->grnum = 1;
-					n->texture->texture_name[0] =
-						" ../textures/doors/defdoor.png";
-				}
-				if (map->door_tex[1]->active == 1)
-				{
-					n->grnum = 2;
-					n->texture->texture_name[0] =
-						" ../textures/doors/bluedoor.png";
-				}
-				if (map->door_tex[2]->active == 1)
-				{
-					n->grnum = 3;
-					n->texture->texture_name[0] =
-						" ../textures/doors/yellowdoor.png";
-				}
-				if (map->door_tex[3]->active == 1)
-				{
-					n->grnum = 4;
-					n->texture->texture_name[0] =
-						" ../textures/doors/reddoor.png";
-				}
+				printf("wall2 %d\n", map->index_wall);
+				str = "wall";
+				str = add_text(str, ft_itoa(index), 3);
+				if (n->texture->texture_name[num])
+					free(n->texture->texture_name[num]);
+				n->texture->texture_name[num] = add_text(str, ".png", 1);
 			}
 		}
 		n = n->nxt;
@@ -113,7 +122,7 @@ void	get_wall_cord(t_map *map, int x, int y)
 		map->click = 0;
 		cursor(map, 3, 0, 16);
 		find_coord(map, &x, &y);
-		changer(map, x , y );
+		changer(map, x, y);
 	}
 }
 
@@ -126,6 +135,7 @@ void	open_texture_win(t_map *map)
 	}
 	if (map->inter_tex[16]->active == 2 && map->validflag == 3)
 	{
+		printf("here1\n");
 		save_texture(map, map->index_tex, 0);
 		map->inter_tex[17]->active = 0;
 		map->inter_tex[19]->active = 0;
@@ -133,6 +143,7 @@ void	open_texture_win(t_map *map)
 	}
 	else if (map->inter_tex[16]->active == 2 && map->validflag == 4)
 	{
+		printf("here2\n");
 		save_texture(map, map->index_tex, 1);
 		map->inter_tex[17]->active = 0;
 		map->inter_tex[19]->active = 0;

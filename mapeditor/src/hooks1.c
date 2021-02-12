@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 01:02:29 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 03:43:08 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	save_objcord(t_map *map, int x, int y)
 			WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 		{
 			map->validflag = 8;
-			save_objects(map, &(t_info){x, y, 8, 0},
+			save_objects(map, &(t_info){x, y, 8, 3},
 				" ../textures/pickup/yellowkey.png");
 		}
 		if (map->door_tex[7]->active == 1 && range_click(&(t_info){x, y,
 			WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 		{
 			map->validflag = 8;
-			save_objects(map, &(t_info){x, y, 8, 0},
+			save_objects(map, &(t_info){x, y, 8, 4},
 				" ../textures/pickup/redkey.png");
 		}
 	}

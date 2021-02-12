@@ -6,14 +6,11 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:33 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/11 16:47:48 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 03:01:09 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
-
-// int delete_node(t_nod *del, t_nod **first);
-// // t_nod *deletelem(t_nod *lst, t_nod *root);
 
 void	find_remove(t_map *map, int x, int y)
 {
@@ -25,8 +22,8 @@ void	find_remove(t_map *map, int x, int y)
 	first = map->nod;
 	while (tmp)
 	{
-		if (((tmp->x1 ) == x && (tmp->y1 ) == y) ||
-		((tmp->x2 ) == x && (tmp->y2 ) == y))
+		if (((tmp->x1 == x) && (tmp->y1 == y)) ||
+		((tmp->x2 == x) && (tmp->y2 == y)))
 		{
 			tmp2 = tmp;
 			tmp = tmp->nxt;
@@ -46,7 +43,6 @@ void	edit_tool(t_map *map, int index)
 	edit_blocktexture(map, -1);
 	zerroother(map);
 	zerroothero(map);
-	//map->inter_tex[16]->active = 0;
 	while (++i < 25)
 	{
 		if (i == index)
@@ -106,11 +102,7 @@ int		lstdelone(t_nod **fd_lst, t_nod *fd)
 	{
 		if (file == fd)
 		{
-			if (last)
-				last->nxt = file->nxt;
-			else
-				*fd_lst = file->nxt;
-			free(file);
+			lstdelone2(fd_lst, fd, file, last);
 			if (flag)
 				return (1);
 			return (0);
@@ -119,16 +111,4 @@ int		lstdelone(t_nod **fd_lst, t_nod *fd)
 		file = file->nxt;
 	}
 	return (0);
-}
-
-void	remove_tool(t_map *map, int x, int y)
-{
-	int x1;
-	int y1;
-
-	x1 = x;
-	y1 = y;
-	find_coord(map, &x1, &y1);
-	if (x1 != x || y1 != y)
-		find_remove(map, x1, y1);
 }
