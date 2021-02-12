@@ -68,7 +68,7 @@ void		take_damage(t_wolf *wolf, int dmg)
 
 void		falling2(t_wolf *wolf, SDL_Event *event)
 {
-	handle_event(wolf, &event);
+	handle_event(wolf, event);
 	recalc(wolf);
 	all_get_distance(wolf);
 	pseudo_3d(wolf);
