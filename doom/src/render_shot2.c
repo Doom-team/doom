@@ -14,8 +14,9 @@
 
 static void		guns_shot2(SDL_Surface *screen, int flag, t_bonus *bon)
 {
-	if (flag == 2)
+	if (flag == 2 && bon->flag_play_chunk == 0)
 	{
+		bon->flag_play_chunk = 1;
 		Mix_Volume(0, 32);
 		Mix_PlayChannel(1, bon->music_ak, 0);
 	}
@@ -44,7 +45,12 @@ void			render_shot2(t_wolf *wolf, SDL_Surface *surface)
 			wolf->bon->start_guns = SDL_GetTicks();
 		}
 		guns_shot2(surface, wolf->bon->flag_guns, wolf->bon);
-		wolf->bon->flag_guns == 4 ? wolf->bon->flag_guns = 0 : 0;
+		if (wolf->bon->flag_guns == 4)
+		{
+			wolf->bon->guns_fire = 0;
+			wolf->bon->flag_guns = 0;
+			wolf->bon->flag_play_chunk = 0;
+		}
 	}
 	else
 		guns_shot2(surface, 1, wolf->bon);

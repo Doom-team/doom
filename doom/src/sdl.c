@@ -77,6 +77,12 @@ static void		handle_keys(t_wolf *wolf, SDL_Event *event)
 				wolf->player->num_ammo = 10;
 			else if (wolf->p->walls[wolf->player->indx_obj].type_flag == 7)
 				wolf->p->walls[wolf->player->indx_obj].active = 1;
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 8 && wolf->p->walls[wolf->player->indx_obj].type_stage == 2)
+				wolf->bon->key_blue = 1;
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 8 && wolf->p->walls[wolf->player->indx_obj].type_stage == 3)
+				wolf->bon->key_blue = 1;
+			if (wolf->p->walls[wolf->player->indx_obj].type_flag == 8 && wolf->p->walls[wolf->player->indx_obj].type_stage == 4)
+				wolf->bon->key_blue = 1;
 		}
 	}
 	if (s[SDL_SCANCODE_D])
@@ -156,19 +162,11 @@ void			handle_event(t_wolf *wolf, SDL_Event *event)
 			rotate(wolf, event);
 		if (event->type == SDL_MOUSEBUTTONDOWN)
 		{
-			if (event->button.button == SDL_BUTTON_LEFT)
+			if (wolf->player->num_ammo > 0 && wolf->bon->guns_fire != 1)
 			{
-				if (wolf->player->num_ammo > 0)
-				{
-					wolf->bon->guns_fire = 1;
-					wolf->player->num_ammo--;
-				}
+				wolf->bon->guns_fire = 1;
+				wolf->player->num_ammo--;
 			}
-		}
-		if (event->type == SDL_MOUSEBUTTONUP)
-		{
-			if (event->button.button == SDL_BUTTON_LEFT)
-				wolf->bon->guns_fire = 0;
 		}
 		if (event->type == SDL_KEYDOWN)
 			handle_keys(wolf, event);

@@ -16,8 +16,6 @@ static void		init_player_help(t_player *p)
 {
 	p->hp = 100.0f;
 	p->num_ammo = 10;
-	p->x = 750 / RESIZE;
-	p->y = 300 / RESIZE;
 	p->speed = 0.11f;
 	p->fov = RAD_60;
 	p->dir = RAD_270;
@@ -36,6 +34,8 @@ void			init_player(t_wolf *wolf, t_player *p)
 		p->distance_vert[i] = t_distance_new(wolf);
 	}
 	init_player_help(p);
+	p->y = wolf->p->player.y;
+	p->x = wolf->p->player.x;
 	p->dist_to_canvas = (W / 2) / tan(p->fov / 2);
 	p->step = p->fov / W;
 	p->floor_offset = 0;

@@ -40,6 +40,7 @@ void	init_bonus_load(t_wolf *wolf)
 void	init_bonus(t_wolf *wolf)
 {
 	init_bonus_load(wolf);
+	wolf->bon->flag_play_chunk = 0;
 	wolf->bon->set_gun = 1;
 	wolf->bon->fps = 1;
 	wolf->bon->start_time = 0;
@@ -52,4 +53,7 @@ void	init_bonus(t_wolf *wolf)
 	wolf->bon->flag_guns = 0;
 	wolf->bon->start_guns = 0;
 	wolf->bon->score = 0;
+	wolf->bon->key_blue = 0;
+	wolf->bon->key_yellow = 0;
+	wolf->bon->key_red = 0;
 }
