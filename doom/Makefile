@@ -42,7 +42,9 @@ ALL_C = main.c \
 		render_shot1.c \
 		render_shot2.c \
 		render_shot3.c \
-		floorcast_up.c 
+		floorcast_up.c \
+		draw_column_fly.c \
+		draw_column_fly2.c
 
 SRCDIR = ./src
 OBJDIR = ./objs

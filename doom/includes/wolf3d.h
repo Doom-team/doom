@@ -450,7 +450,8 @@ void				floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x,
 void				draw_sky(t_wolf *wolf, int x, int y);
 void				draw_column(t_wolf *wolf, t_point point,
 					t_distance *dist, int count_distance);
-void				draw_column_fly(t_wolf *wolf, t_point point, int count_distance);
+void				brute_column_fly_1_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void				upper_level_draw_3(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
 
 /*
 ** guns_shot.c
@@ -460,6 +461,7 @@ void				render_shot(t_wolf *wolf, SDL_Surface *surface);
 void				render_shot1(t_wolf *wolf, SDL_Surface *surface);
 void				render_shot2(t_wolf *wolf, SDL_Surface *surface);
 void				render_shot3(t_wolf *wolf, SDL_Surface *surface);
+
 /*
 ** floorcast.c
 */
@@ -469,5 +471,23 @@ void				floorcast_up(t_wolf *wolf, t_distance *dist,
 					int x, int count_distance, t_floot_up stage, int j);
 int					floorcast_up_escape(t_wolf *wolf, t_floot_up *stage,
 					t_data_floor *d, int j);
+
+/*
+** draw_column_fly.c
+*/
+void			draw_column_fly(t_wolf *wolf, t_point point, int count_distance);
+void			upper_level_draw(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			upper_level_draw_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+int				upper_level_draw_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			cut_ctage(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+
+/*
+** draw_column_fly2.c
+*/
+void			brute_column_fly(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_column_fly_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_column_fly_2_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_column_fly_2_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_column_fly_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
 
 #endif
