@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 10:45:55 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 18:45:33 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,13 @@ void	count_write(t_map *map, int fd)
 		n = n->nxt;
 	}
 	num_w += map->plus_objects;
-	maxlen = ft_strlen("w ") + ft_strlen(ft_itoa(num_w)) + 1;
-	buffer = malloc(sizeof(char *) * (maxlen));
+	num_w += (map->stirsgroup - 1) * 4;
+	// maxlen = ft_strlen("w ") + ft_strlen(ft_itoa(num_w)) + 1;
+	// buffer = malloc(sizeof(char *) * (maxlen));
 	buffer = "w ";
 	buffer = add_text(buffer, ft_itoa(num_w), 3);
 	buffer = add_text(buffer, "\n", 1);
+	maxlen = ft_strlen(buffer);
 	if (write(fd, buffer, maxlen) != maxlen)
 		error("Write Error\n");
 	free(buffer);

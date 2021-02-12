@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 11:52:39 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 17:48:57 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	save_obj_tmp2(t_map *map, int x, int y)
 	if (map->door_tex[9]->active == 1)
 	{
 		map->exitflag++;
-		save_objects(map, &(t_info){x, y, 9, 0}, "../textures/enemy/e5.png");
+		save_objects(map, &(t_info){x, y, 9, 0}, "../textures/pickup/end.png");
 	}
 	if (map->door_tex[5]->active == 1 && range_click(&(t_info){x, y,
 		WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)

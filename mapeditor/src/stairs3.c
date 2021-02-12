@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 11:10:47 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 18:28:28 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	save_texture1(t_map *map, t_nod *n)
 	n->type = 2;
 	if (map->door_tex[0]->active == 1)
 	{
+		// printf("here\n");
 		n->grnum = 1;
 		n->texture->texture_name[0] =
 			" ../textures/doors/defdoor.png";
