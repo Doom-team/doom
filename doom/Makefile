@@ -42,7 +42,8 @@ ALL_C = main.c \
 		render_shot1.c \
 		render_shot2.c \
 		render_shot3.c \
-		floorcast_up.c 
+		floorcast_up.c \
+		monster_load.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
