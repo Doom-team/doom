@@ -124,7 +124,6 @@ typedef struct		s_player
 	int				flying;
 	int				inside_step;
 	int				in_jump;
-
 	int				run_f;
 	int				run_b;
 	int				run_r;
@@ -272,6 +271,32 @@ typedef struct		s_data_floor
 	int		y;
 	int		tmp;
 }					t_data_floor;
+
+typedef	struct		s_data_column
+{
+	t_distance 				*dist;
+	t_floot_up				stage;
+	t_floot_up				sub_stage;
+	signed long long int	temp_y;
+	double					fractpart_2;
+	double					intpart_2;
+	double					fractpart;
+	double					intpart;
+	float					offsety;
+	float					tex_2;
+	float					pos_y;
+	float					koof;
+	float					tex_1;
+	float					pos;
+	int						begin_y;
+	int						len;
+	int						flag;
+	int						color;
+	int						count;
+	int						j;
+	int						size;
+	int 					flagg;
+}					t_data_column;
 
 /*
 ** cof.c
@@ -427,8 +452,7 @@ void				floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x,
 void				draw_sky(t_wolf *wolf, int x, int y);
 void				draw_column(t_wolf *wolf, t_point point,
 					t_distance *dist, int count_distance);
-void				draw_column_fly(t_wolf *wolf, t_point point,
-					t_distance *dist, int count_distance);
+void				draw_column_fly(t_wolf *wolf, t_point point, int count_distance);
 
 /*
 ** guns_shot.c

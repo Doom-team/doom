@@ -17,7 +17,7 @@ void		set_pixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
 	Uint32	*target_pixel;
 
 	if (pixel == UINT32_MAX || x >= surface->w || y >= surface->h)
-		return;
+		return ;
 	target_pixel = (Uint32 *)((Uint8 *)surface->pixels + y \
 	* surface->pitch + x * sizeof(*target_pixel));
 	*target_pixel = pixel;
