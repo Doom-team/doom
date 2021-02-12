@@ -119,6 +119,7 @@ void			wolf_loop(t_wolf *wolf)
 		render_hud(wolf);
 		render_shot(wolf, wolf->surface);
 		screen_death(wolf, &event);
+		printf("%d %d\n", (int)(wolf->player->x * RESIZE), (int)(wolf->player->y * RESIZE));
 		SDL_UpdateWindowSurface(wolf->sdl->win);
 	}
 }
