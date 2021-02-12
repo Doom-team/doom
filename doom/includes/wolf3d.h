@@ -84,24 +84,6 @@ typedef struct		s_way
 	t_wall			wall;
 }					t_way;
 
-typedef struct		s_map
-{
-	char			*map;
-	int				w;
-	int				h;
-	int				w_pix;
-	int				h_pix;
-	t_point			mm_start;
-	int				mm_cube;
-	int				mm_show;
-	int				mm_w;
-	int				mm_h;
-	int				mm_p_size;
-	float			mm_map_coef;
-	float			mm_cube_coef;
-	int				player_start;
-}					t_map;
-
 typedef struct		s_float2
 {
 	float			x;
@@ -257,7 +239,6 @@ typedef struct		s_floor_up
 
 typedef struct		s_wolf
 {
-	t_map			*map;
 	t_parser		*p;
 	t_player		*player;
 	t_sdl			*sdl;
@@ -320,14 +301,6 @@ Mix_Music			*parsing_music(t_parser *parser, char **arr, bool *b);
 */
 void				check_valid(t_buff *buff);
 
-void				draw_background(SDL_Surface *surface);
-int					draw_minimap(t_wolf *wolf, t_map *map, t_player *p);
-void				draw_ray(t_wolf *wolf, float player, int x, int y);
-void				draw_line(SDL_Surface *surface, t_point start, t_point end,
-					int color);
-void				draw_rectangle(SDL_Surface *surface, t_point start,
-					t_point width_height, int color);
-
 /*
 ** sdl.c
 */
@@ -372,10 +345,6 @@ void				falling(t_wolf *wolf);
 */
 void				set_pixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
 Uint32				get_pixel(SDL_Surface *surface, int x, int y);
-int					get_pixel1(SDL_Surface *surface, int x, int y);
-void				set_pixel1(SDL_Surface *surface, SDL_Surface *surface1,
-					int x, int y, int pixel);
-int					is_texture(t_map *map, int x, int y, char texture);
 
 /*
 ** map.c

@@ -110,8 +110,11 @@ void			draw_column_fly(t_wolf *wolf, t_point point, t_distance *dist, int count_
 					set_pixel(wolf->surface, point.x, temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, j, count_distance)), color);
 				if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
 				{
-					if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
+					if (wolf->bon->flag_guns == 2 && wolf->p->walls[dist->number_wall[j]].type_flag == 3 && wolf->p->walls[dist->number_wall[j]].active == 1)
+					{
 						wolf->p->walls[dist->number_wall[j]].active = 0;
+						wolf->bon->score++;
+					}
 				}
 			}
 		}
@@ -294,8 +297,11 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 				}
 				if (point.x == W / 2 && H / 2 < size && H / 2 > begin_y)
 				{
-					if (wolf->bon->guns_fire == 1 && wolf->p->walls[dist->number_wall[j]].type_flag == 3)
+					if (wolf->bon->flag_guns == 2 && wolf->p->walls[dist->number_wall[j]].type_flag == 3 && wolf->p->walls[dist->number_wall[j]].active == 1)
+					{
 						wolf->p->walls[dist->number_wall[j]].active = 0;
+						wolf->bon->score++;
+					}
 				}
 			}
 		}
@@ -330,7 +336,6 @@ void			draw_column(t_wolf *wolf, t_point point, t_distance *dist, int count_dist
 	j = -1;
 	while (++j < stage.count)
 		floorcast_up(wolf, wolf->player->distance[count_distance], point.x, count_distance, sub_stage, j);
-
 	j = 0;
 	temp_y = ceilf((wolf->player->dist_to_canvas) / wolf->player->distance[count_distance]->dist[j]);
 	temp_y = (H - temp_y) / 2;

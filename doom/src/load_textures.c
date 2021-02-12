@@ -33,30 +33,3 @@ Uint32		get_pixel(SDL_Surface *surface, int x, int y)
 	* surface->format->BytesPerPixel;
 	return (*(Uint32 *)p);
 }
-
-// void		set_pixel1(t_wolf *wolf, SDL_Surface *surface1, unsigned char *s1,
-// 			int x, int y, int pixel)
-// {
-// 	int				pix;
-
-// 	if (y >= H || y < 0 || y >= wolf->surface->h || x >= wolf->surface->w || pixel/4 >= (surface1->h - 1) * (surface1->w - 1))
-// 		return ;
-// 	pix = (x * wolf->surface->format->BytesPerPixel) + (y * wolf->surface->pitch);
-// 	wolf->s[pix] = s1[pixel];
-// 	wolf->s[++pix] = s1[++pixel];
-// 	wolf->s[++pix] = s1[++pixel];
-// }
-
-// int			get_pixel1(SDL_Surface *surface, int x, int y)
-// {
-// 	int	pixel;
-
-// 	pixel = ((x % surface->h) * surface->format->BytesPerPixel) +
-// 			((y % surface->h) * surface->pitch);
-// 	return (pixel);
-// }
-
-int			is_texture(t_map *map, int x, int y, char texture)
-{
-	return (map->map[y * map->w + x] == texture);
-}
