@@ -225,7 +225,7 @@ float			search_angle(t_wall w, t_wolf *wolf, int i)
 		wolf->player->dist_mon = dist;
 		wolf->player->indx_mon = i;
 	}
-	if (w.type_flag >= 4 && w.type_flag <= 8 &&
+	if (w.type_flag >= 4 && w.type_flag <= 9 &&
 		dist < wolf->player->dist_obj && dist <= 1.)
 	{
 		wolf->player->dist_obj = dist;
@@ -246,6 +246,8 @@ t_wall			rotate_wall(t_wall w, t_wolf *wolf, int i)
 		w.y1 = w.realy + cosf(-angle) * 0.5;
 		w.y2 = w.realy - cosf(-angle) * 0.5;
 	}
+	if (w.type_flag == 3)
+		w.texture1 = wolf->bon->monster[(w.type_stage - 1) * 6 + (int)((RAD_360 - angle) / RAD_60)];
 	return (w);
 }
 
@@ -257,7 +259,7 @@ void			recalc_rotation(t_wolf *wolf)
 	while (i < wolf->p->count_walls)
 	{
 		if (wolf->p->walls[i].active && wolf->p->walls[i].type_flag >= 2 &&
-			wolf->p->walls[i].type_flag <= 8)
+			wolf->p->walls[i].type_flag <= 9)
 			wolf->p->walls[i] = rotate_wall(wolf->p->walls[i], wolf, i);
 		
 		if (wolf->p->walls[i].active == 1 && wolf->p->walls[i].type_flag == 2 && wolf->p->walls[i].opening)
@@ -278,6 +280,11 @@ void			wolf_loop(t_wolf *wolf)
 	Mix_PlayMusic(wolf->p->music, -1);
 	while (wolf->sdl->run)
 	{
+		if (wolf->player->dist_obj != MAXFLOAT && wolf->p->walls[wolf->player->indx_obj].type_flag == 9)
+		{
+			wolf->player->hp = -1; // нужен скурин вина
+			screen_death(wolf, &event);
+		}
 		recalc(wolf);
 		handle_event(wolf, &event);
 		recalc_rotation(wolf);

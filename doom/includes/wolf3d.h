@@ -36,9 +36,10 @@ typedef struct		s_wall
 	float			realx;
 	float			realy;
 	float			length;
+	float			h;
+	float			angle;
 	int				active;
 	int				vert;
-	float			h;
 	int				type_flag;
 	int				squad_stage;
 	int				type_stage;
@@ -152,24 +153,6 @@ typedef struct		s_player
 	int				indx_mon;
 }					t_player;
 
-typedef	struct		s_sprite_calc
-{
-	float			angle;
-	float			dist;
-	float			temp_1;
-	float			temp_2;
-	float			temp_3;
-	float			temp_4;
-	float			temp_5;
-	int				i;
-	int				flag_1;
-	int				flag_2;
-	int				flag_i;
-	int				count;
-	SDL_Rect		cut_vertical_img;
-	SDL_Rect		img_location;
-}					t_sprite_calc;
-
 typedef struct		s_bonus
 {
 	int				set_gun;
@@ -180,6 +163,7 @@ typedef struct		s_bonus
 	SDL_Surface		*pistol_image[5];
 	SDL_Surface		*ak_image[4];
 	SDL_Surface		*shotgun_image[7];
+	SDL_Surface		*monster[30];
 	Mix_Chunk		*music_pistol;
 	Mix_Chunk		*music_ak;
 	Mix_Chunk		*music_shotgan;
