@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:19:22 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/12 13:53:28 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 14:35:36 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,97 +80,58 @@ float			vector_len(float x1, float y1, float x2, float y2)
 	return (sqrt((float)((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))));
 }
 
-int				crossing(t_float2 player, float angle, t_wall wall)
+int				ifcrossing(t_float2 player, float angle, t_wall wall)
 {
 	float k;
 	float b;
 
-	if (angle == RAD_90 || angle == RAD_270)
-	{
-		if ((player.x > wall.x1 && player.x < wall.x2) || (player.x > wall.x2 && player.x < wall.x1))
-			return (1);
-		return (0);
-	}
 	k = tanf(angle);
 	b = player.y - k * player.x;
-	if (!((wall.y1 - k * wall.x1 - b) * (wall.y2 - k * wall.x2 - b) < 0))
-		return (0);
-	if (angle < RAD_180)
+	if (angle > RAD_180)
 	{
-		if (wall.y1 < player.y && wall.y2 < player.y || wall.x1 * k + b > wall.y1 && wall.x2 * k + b > wall.y2)
-			return (0);
-	}
-	else
-	{
-		if (wall.y1 > player.y && wall.y2 > player.y || wall.x1 * k + b < wall.y1 && wall.x2 * k + b < wall.y2)
+		if ((wall.y1 > player.y && wall.y2 > player.y) ||
+			(wall.x1 * k + b < wall.y1 && wall.x2 * k + b < wall.y2))
 			return (0);
 	}
 	if (angle < RAD_90 || angle > RAD_270)
 	{
-		if (wall.x1 < player.x && wall.x2 < player.x || (wall.y1 - b) / k > wall.x1 && (wall.y2 - b) / k > wall.x2)
+		if ((wall.x1 < player.x && wall.x2 < player.x) || ((wall.y1 - b) /
+			k > wall.x1 && (wall.y2 - b) / k > wall.x2))
 			return (0);
 	}
 	else
 	{
-		if (wall.x1 > player.x && wall.x2 > player.x || (wall.y1 - b) / k < wall.x1 && (wall.y2 - b) / k < wall.x2)
+		if ((wall.x1 > player.x && wall.x2 > player.x) || ((wall.y1 - b) /
+			k < wall.x1 && (wall.y2 - b) / k < wall.x2))
 			return (0);
 	}
 	return (1);
 }
 
-// int				ifcrossing(t_float2 player, float angle, t_wall wall)
-// {
-// 	if (angle < RAD_90 || angle > RAD_270)
-// 	{
-// 		if (wall.x1 < player.x && wall.x2 < player.x)
-// 			return (0);
-// 		if ((wall.y1 - b) / k > wall.x1 && (wall.y2 - b) / k > wall.x2)
-// 			return (0);
-// 	}
-// 	else
-// 	{
-// 		if (wall.x1 > player.x && wall.x2 > player.x)
-// 			return (0);
-// 	}
-// 	if (angle < RAD_180)
-// 	{
-// 		if (wall.x1 * k + b > wall.y1 && wall.x2 * k + b > wall.y2)
-// 			return (0);
-// 	}
-// 	else
-// 	{
-// 		if (wall.x1 * k + b < wall.y1 && wall.x2 * k + b < wall.y2)
-// 			return (0);
-// 	}
-// 	// if (angle < RAD_90 || angle > RAD_270)
-// 	// {
-// 	// 	if ((wall.y1 - b) / k > wall.x1 && (wall.y2 - b) / k > wall.x2)
-// 	// 		return (0);
-// 	// }
-// 	return (!(wall.y1 - b) / k < wall.x1 && (wall.y2 - b) / k < wall.x2);
-// }
+int				crossing(t_float2 player, float angle, t_wall wall)
+{
+	float k;
+	float b;
 
-// int				crossing(t_float2 player, float angle, t_wall wall)
-// {
-// 	float k;
-// 	float b;
-
-// 	if (angle == RAD_90 || angle == RAD_270)
-// 		return ((player.x > wall.x1 && player.x < wall.x2) || (player.x > wall.x2 && player.x < wall.x1));
-// 	k = tanf(angle);
-// 	b = player.y - k * player.x;
-// 	if (!((wall.y1 - k * wall.x1 - b) * (wall.y2 - k * wall.x2 - b) < 0))
-// 		return (0);
-// 	if (angle < RAD_180)
-// 	{
-// 		if (wall.y1 < player.y && wall.y2 < player.y)
-// 			return (0);
-// 	}
-// 	else
-// 		if (wall.y1 > player.y && wall.y2 > player.y)
-// 			return (0);
-// 	return (ifcrossing(player, angle, wall));
-// }
+	k = tanf(angle);
+	b = player.y - k * player.x;
+	if (angle == RAD_90 || angle == RAD_270)
+	{
+		if ((player.x > wall.x1 && player.x < wall.x2) ||
+			(player.x > wall.x2 && player.x < wall.x1))
+			return (1);
+		return (0);
+	}
+	if (!((wall.y1 - k * wall.x1 - b) * (wall.y2 - k * wall.x2 - b) < 0))
+		return (0);
+	if (angle < RAD_180)
+	{
+		if ((wall.y1 < player.y && wall.y2 < player.y) ||
+			(wall.x1 * k + b > wall.y1 && wall.x2 * k + b > wall.y2))
+			return (0);
+	}
+	return (ifcrossing(player, angle, wall));
+}
 
 float			calc_x(t_float2 player, float angle, t_wall wall, float *py)
 {
@@ -191,9 +152,7 @@ float			calc_x(t_float2 player, float angle, t_wall wall, float *py)
 		return (x);
 	}
 	if (wall.vert)
-	{
 		x = wall.x1;
-	}
 	else
 	{
 		k2 = 1.f * (wall.y2 - wall.y1) / (wall.x2 - wall.x1);
@@ -204,7 +163,8 @@ float			calc_x(t_float2 player, float angle, t_wall wall, float *py)
 	return (x);
 }
 
-float			calc_dist(t_float2 player, float angle, t_wall wall, t_distance *v, int j)
+float			calc_dist(t_float2 player, float angle, t_wall wall,
+	t_distance *v, int j)
 {
 	float px;
 	float py;
@@ -292,32 +252,63 @@ void			calculate_distance(t_wolf *wolf, float angle, t_way *d)
 		d->wall = wolf->p->walls[j];
 }
 
+void			recalc3(t_wolf *wolf)
+{
+	if (wolf->player->rght_d->wall.squad_stage ==
+		wolf->player->left_d->wall.squad_stage &&
+		wolf->player->rght_d->wall.squad_stage == 0)
+		wolf->player->inside_step = 0;
+	else if (wolf->player->left_d->wall.squad_stage ==
+		wolf->player->down_d->wall.squad_stage &&
+		wolf->player->left_d->wall.squad_stage == 0)
+		wolf->player->inside_step = 0;
+}
+
+void			recalc2(t_wolf *wolf)
+{
+	if (wolf->player->up_d->wall.squad_stage ==
+		wolf->player->rght_d->wall.squad_stage &&
+		wolf->player->up_d->wall.squad_stage == 0)
+		wolf->player->inside_step = 0;
+	else if (wolf->player->up_d->wall.squad_stage ==
+		wolf->player->left_d->wall.squad_stage &&
+		wolf->player->up_d->wall.squad_stage == 0)
+		wolf->player->inside_step = 0;
+	else if (wolf->player->rght_d->wall.squad_stage ==
+		wolf->player->down_d->wall.squad_stage &&
+		wolf->player->rght_d->wall.squad_stage == 0)
+		wolf->player->inside_step = 0;
+	else
+		recalc3(wolf);
+}
+
 void			recalc(t_wolf *wolf)
 {
+	int r;
+	int l;
+	int u;
+	int d;
+
 	calculate_distance(wolf, RAD_0, wolf->player->rght_d);
 	calculate_distance(wolf, RAD_90, wolf->player->up_d);
 	calculate_distance(wolf, RAD_180, wolf->player->left_d);
 	calculate_distance(wolf, RAD_270, wolf->player->down_d);
-	if (wolf->player->rght_d->wall.squad_stage == wolf->player->left_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage == wolf->player->rght_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage != 0)
+	r = wolf->player->rght_d->wall.squad_stage;
+	l = wolf->player->left_d->wall.squad_stage;
+	u = wolf->player->up_d->wall.squad_stage;
+	d = wolf->player->down_d->wall.squad_stage;
+	if (r == l && u == r && r != 0)
 		wolf->player->inside_step = wolf->player->rght_d->wall.h * UP_LENGTH;
-	else if (wolf->player->rght_d->wall.squad_stage == wolf->player->left_d->wall.squad_stage && wolf->player->down_d->wall.squad_stage == wolf->player->rght_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage != 0)
+	else if (r == l && d == r && r != 0)
 		wolf->player->inside_step = wolf->player->rght_d->wall.h * UP_LENGTH;
-	else if (wolf->player->up_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage == wolf->player->up_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage != 0)
+	else if (u == d && r == u && u != 0)
 		wolf->player->inside_step = wolf->player->up_d->wall.h * UP_LENGTH;
-	else if (wolf->player->up_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->left_d->wall.squad_stage == wolf->player->up_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage != 0)
+	else if (u == d && l == u && u != 0)
 		wolf->player->inside_step = wolf->player->up_d->wall.h * UP_LENGTH;
-	else if (wolf->player->up_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage == 0)
+	else if (u == d && u == 0)
 		wolf->player->inside_step = 0;
-	else if (wolf->player->up_d->wall.squad_stage == wolf->player->rght_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage == 0)
-		wolf->player->inside_step = 0;
-	else if (wolf->player->up_d->wall.squad_stage == wolf->player->left_d->wall.squad_stage && wolf->player->up_d->wall.squad_stage == 0)
-		wolf->player->inside_step = 0;
-	else if (wolf->player->rght_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage == 0)
-		wolf->player->inside_step = 0;
-	else if (wolf->player->rght_d->wall.squad_stage == wolf->player->left_d->wall.squad_stage && wolf->player->rght_d->wall.squad_stage == 0)
-		wolf->player->inside_step = 0;
-	else if (wolf->player->left_d->wall.squad_stage == wolf->player->down_d->wall.squad_stage && wolf->player->left_d->wall.squad_stage == 0)
-		wolf->player->inside_step = 0;
+	else
+		recalc2(wolf);
 }
 
 static void		buble_sort_fly(t_distance *v)
@@ -410,7 +401,9 @@ float angle, int count_distance)
 		if (tmp != -1.0f)
 		{
 			v->number_wall[j] = i;
-			v->offsetx[j] = sqrtf(powf(v->coords[j].x - wolf->p->walls[i].x1, 2) + powf(v->coords[j].y - wolf->p->walls[i].y1, 2)) / wolf->p->walls[i].length;
+			v->offsetx[j] = sqrtf(powf(v->coords[j].x - wolf->p->walls[i].x1, 2)
+				+ powf(v->coords[j].y - wolf->p->walls[i].y1, 2))
+				/ wolf->p->walls[i].length;
 			v->dist[j] = tmp;
 			j++;
 			tmp = -1.0f;
