@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wendell <wendell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 18:31:45 by skaren            #+#    #+#             */
-/*   Updated: 2021/02/12 03:16:20 by wendell          ###   ########.fr       */
+/*   Updated: 2021/02/12 15:34:19 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,9 @@ typedef struct		s_bonus
 	SDL_Surface		*ak_image[4];
 	SDL_Surface		*shotgun_image[7];
 	SDL_Surface		*monster[30];
+	SDL_Surface		*key_red_tex;
+	SDL_Surface		*key_yellow_tex;
+	SDL_Surface		*key_blue_tex;
 	Mix_Chunk		*music_pistol;
 	Mix_Chunk		*music_ak;
 	Mix_Chunk		*music_shotgan;
@@ -238,6 +241,8 @@ typedef struct		s_helper
 {
 	int				j;
 	int				x;
+	float			angle;
+	int				prikol;
 }					t_helper;
 
 typedef struct		s_wolf
@@ -248,7 +253,7 @@ typedef struct		s_wolf
 	SDL_Surface		*surface;
 	t_bonus			*bon;
 	t_menu			*menu;
-	t_helper		helper;	
+	t_helper		helper;
 	bool			z_buff[W * H];
 }					t_wolf;
 
@@ -279,7 +284,7 @@ typedef struct		s_data_floor
 
 typedef	struct		s_data_column
 {
-	t_distance 				*dist;
+	t_distance				*dist;
 	t_floot_up				stage;
 	t_floot_up				sub_stage;
 	signed long long int	temp_y;
@@ -300,7 +305,7 @@ typedef	struct		s_data_column
 	int						count;
 	int						j;
 	int						size;
-	int 					flagg;
+	int						flagg;
 }					t_data_column;
 
 /*
@@ -326,6 +331,7 @@ SDL_Surface			*parsing_param1(t_parser *parser, char **arr, bool *b);
 void				parsing_param2(t_param2 *obj, char **arr, bool *b);
 void				init_size(t_parser *parser, char *l);
 Mix_Music			*parsing_music(t_parser *parser, char **arr, bool *b);
+
 /*
 ** check_valid.c
 */
@@ -338,6 +344,10 @@ void				wolf_loop(t_wolf *wolf);
 void				handle_event(t_wolf *wolf, SDL_Event *event);
 void				recalc(t_wolf *wolf);
 void				handle_phisics(t_wolf *wolf, t_player *p);
+void				handle_keys(t_wolf *wolf, SDL_Event *event);
+float				search_angle(t_wall w, t_wolf *wolf, int i);
+t_wall				rotate_wall(t_wall w, t_wolf *wolf, int i);
+
 /*
 ** menu.c
 */
@@ -421,7 +431,7 @@ int					add_arc(float *arc, float to_add);
 ** render_text.c
 */
 void				render_text(t_wolf *wolf, char *text, SDL_Rect location,
-					SDL_Color f_b_color[2]);
+					SDL_Color f_b_color);
 void				render_score_coin(t_wolf *wolf);
 void				render_fps(t_wolf *wolf, t_bonus *bon);
 int					get_fps_time(t_bonus *bon);
@@ -429,8 +439,7 @@ int					get_fps_time(t_bonus *bon);
 /*
 ** distance.c
 */
-t_distance			*dist_to_wall(t_wolf *wolf, float angle,
-					int count_distance);
+t_distance			*dist_to_wall(t_wolf *wolf, t_helper *h);
 t_distance			*t_distance_new(t_wolf *wolf);
 void				t_distance_clear(t_distance *dist);
 void				all_get_distance(t_wolf *wolf);
@@ -484,36 +493,46 @@ int					floorcast_up_escape(t_wolf *wolf, t_floot_up *stage,
 /*
 ** draw_column_fly.c
 */
-void			draw_column_fly(t_wolf *wolf, t_point point, int count_distance);
-void			upper_level_draw(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			upper_level_draw_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-int				upper_level_draw_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			cut_ctage(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void				draw_column_fly(t_wolf *wolf, t_point point,
+					int count_distance);
+void				upper_level_draw(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				upper_level_draw_2(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+int					upper_level_draw_1(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				cut_ctage(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
 
 /*
 ** draw_column_fly2.c
 */
-void			brute_column_fly(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			brute_column_fly_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			brute_column_fly_2_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			brute_column_fly_2_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
-void			brute_column_fly_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void				brute_column_fly(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				brute_column_fly_2(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				brute_column_fly_2_1(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				brute_column_fly_2_2(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
+void				brute_column_fly_1(t_wolf *wolf, t_point point,
+					int count_distance, t_data_column *d);
 
 /*
 ** move1.c
 */
-void			jump(t_wolf *wolf);
-void			falling(t_wolf *wolf);
-void			calc_move3(t_wolf *wolf, t_way *way, float dy);
-void			calc_move2(t_wolf *wolf, t_way *way, float dx);
-void			calc_move(t_wolf *wolf, float dy, float dx);
+void				jump(t_wolf *wolf);
+void				falling(t_wolf *wolf);
+void				calc_move3(t_wolf *wolf, t_way *way, float dy);
+void				calc_move2(t_wolf *wolf, t_way *way, float dx);
+void				calc_move(t_wolf *wolf, float dy, float dx);
 
 /*
 ** move1.c
 */
-void		falling2(t_wolf *wolf, SDL_Event *event);
-void		take_damage(t_wolf *wolf, int dmg);
-void		jump2(t_wolf *wolf, SDL_Event *event, int f);
+void				falling2(t_wolf *wolf, SDL_Event *event);
+void				take_damage(t_wolf *wolf, int dmg);
+void				jump2(t_wolf *wolf, SDL_Event *event, int f);
 
 /*
 ** draw_column.c

@@ -12,7 +12,7 @@
 
 #include "../includes/wolf3d.h"
 
-int	add_arc(float *arc, float to_add)
+int		add_arc(float *arc, float to_add)
 {
 	*arc += to_add;
 	if (*arc < 0)

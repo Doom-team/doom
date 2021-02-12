@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wendell <wendell@student.42.fr>            +#+  +:+       +#+         #
+#    By: grinko <grinko@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/15 16:58:46 by skaren            #+#    #+#              #
-#    Updated: 2021/02/11 18:29:18 by wendell          ###   ########.fr        #
+#    Updated: 2021/02/12 13:57:11 by grinko           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,10 @@ ALL_C = main.c \
 		move2.c \
 		draw_column.c \
 		draw_column2.c \
-		draw_column3.c
+		draw_column3.c \
+		handle_keys.c \
+		search_angle.c \
+		rotate_wall.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
