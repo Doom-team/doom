@@ -46,7 +46,10 @@ ALL_C = main.c \
 		draw_column_fly2.c \
 		monster_load.c \
 		move1.c \
-		move2.c
+		move2.c \
+		draw_column.c \
+		draw_column2.c \
+		draw_column3.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
