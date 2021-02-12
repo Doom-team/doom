@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 03:39:27 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 12:28:31 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,8 @@ typedef struct		s_color
 
 typedef struct		s_texinfo
 {
-	//int vector_len;
 	char			*texture_name[2];
 	char			*type_name;
-	// char			*floor_name;
-	// char			*ceiling_name;
 }					t_texinfo;
 
 typedef struct		s_nod
@@ -123,7 +120,7 @@ typedef struct		s_object
 
 typedef struct		s_cursor
 {
-	t_image			*curosr_img;// структура изобр курсора
+	t_image			*curosr_img;
 }					t_cursor;
 
 typedef struct		s_tempnod
@@ -157,8 +154,8 @@ typedef struct		s_shit
 typedef struct		s_map
 {
 	SDL_Window		*win;
-	t_image			*inter_tex[22]; // 0 - window, 1-5 - inblock & (block, texture, object), 6-8 - tools 9-11 widget panel & widgets
-	t_image			*block_tex[9]; // структура текстур раздела блоки
+	t_image			*inter_tex[22];
+	t_image			*block_tex[9];
 	t_image			*wall_tex[20];
 	t_image			*floorsky_tex[13];
 	t_image			*liquid_tex[4];
@@ -166,61 +163,55 @@ typedef struct		s_map
 	t_image			*player_tex[3];
 	t_image			*gun_tex[6];
 	t_image			*door_tex[11];
-	t_image			*curosr_img[7];// структура изобр курсора 7 элементов
-	t_image			*font; // шрифт
-	SDL_Cursor		*cursor;// крусор
+	t_image			*curosr_img[7];
+	t_image			*font;
+	SDL_Cursor		*cursor;
 	Mix_Music		*music[4];
 	TTF_Font		*fontclasic;
 	TTF_Font		*fontdoom;
-	t_nod			*nod; // все узлы на карте
-	t_removeinfo	*remove; // tmp труктура для функции удаления готовых блоков
+	t_nod			*nod;
+	t_nod			*tmpnod;
+	t_removeinfo	*remove;
 	t_object		*obj;
 	t_tempnod		*tem;
 	t_objdots		dots;
 	t_shit			*ha;
-	int				wclick; // коэф + - виджета размера
-	int				whclick; // коэф + - виджета высоты
-	int				stclick; // коэф + - виджета высоты ступенек
-	id_t			sclick; // хз че за тема
-	int				z_x; // половина окна по x
-	int				z_y; // половина окна по y
-	int				click; // клик первый раз
-	int				tmpclick; // клик для фигур
-	int				x_c; // x первого клика
-	int				y_c; // y первого клика
-	int				showactive; // флаг активности панели 1- walls 2 flor & sky 3 - liquids
+	int				wclick;
+	int				whclick;
+	int				stclick;
+	int				sclick;
+	int				z_x;
+	int				z_y;
+	int				click;
+	int				tmpclick;
+	int				x_c;
+	int				y_c;
+	int				showactive;
 	int				musicflag;
 	int				errorflag;
 	int				change_x;
 	int				change_y;
-	id_t			index_tex;
+	int				index_tex;
 	int				validflag;
 	int				index_wall;
-
-	int				floor_x; /// мб не нужно
-	int				floor_y; /// мб не нужно
-	int				tmpfloor_x; /// мб не нужно
-	int				tmpfloor_y;/// мб не нужно
 	char			*floorstr;
 	char			*ceilingstr;
 	char			*objects;
-	char			*temporary;/// мб не нужно
-
-	char 			*stairstr;
+	char			*temporary;
+	char			*stairstr;
 	char			*stairsoutput;
 	int				stirsgroup;
 	int				musicoutput;
 	int				objnum;
 	int				plus_objects;
-	// int			floor_active;
+	int				exitflag;
 }					t_map;
 
 int					init_all(t_map *map);
 void				init_all2(t_map *map);
 void				init_interface(t_map *map);
 void				init_texture(SDL_Surface *tex, unsigned char **s,
-						unsigned char *pixb, int *strb);
-
+					unsigned char *pixb, int *strb);
 void				get_inter_textures(t_map *map);
 void				get_block_textures(t_map *map);
 void				get_liquid_textures(t_map *map);
@@ -228,14 +219,11 @@ void				get_wall_textures(t_map *map);
 void				get_floorsky_textures(t_map *map);
 void				get_cursor(t_map *map);
 void				get_wall_cord(t_map *map, int x, int y);
-void				get_floor_cord(t_map *map, int x, int y);
-void				get_floor_cordi(t_map *map, int x, int y);
 void				get_enemy_textures(t_map *map);
 void				get_player_textures(t_map *map);
 void				get_gun_textures(t_map *map);
 void				get_door_textures(t_map *map);
 void				get_door(t_map *map, int x, int y);
-
 void				malloc_block_texture(t_map *map);
 void				malloc_interface(t_map *map);
 void				malloc_floorsky_texture(t_map *map);
@@ -247,7 +235,6 @@ void				malloc_enemy_texture(t_map *map);
 void				malloc_player_texture(t_map *map);
 void				malloc_gun_texture(t_map *map);
 void				malloc_door_texture(t_map *map);
-
 void				draw(t_map *map);
 void				draw_color(t_map *map, int pixel, t_color color);
 void				draw_pixel(t_map *map, int x, int y, t_color color);
@@ -281,51 +268,44 @@ void				draw_door_winp1(t_map *map);
 void				draw_door_winp2(t_map *map);
 void				draw_door_winp3(t_map *map);
 void				draw_door_light_exit(t_map *map);
-void				tmp_draw2(t_map *map, int w, int i, t_nod *nod); //
-void				tmp_draw(t_map *map, int index, t_nod *nod); //
+void				tmp_draw2(t_map *map, int w, int i, t_nod *nod);
+void				tmp_draw(t_map *map, int index, t_nod *nod);
 void				draw_standartpanel(t_map *map);
 void				draw_music(t_map *map);
 void				draw_basic_interface(t_map *map);
 void				draw_obj_block(t_map *map);
-
 void				one_n(t_map *map, t_color color);
 void				two_n(t_map *map, t_color color);
 void				zerotem(t_map *map);
 void				add_node(t_map *mp, int x, int y);
 void				wichonemusic(t_map *map);
-
 void				bigdot(t_map *map, int x, int y, t_color color);
 void				stairarr1(t_map *map, t_info *cor, int i);
 void				stairarr2(t_map *map, t_info *cor, int i);
 void				draw_prikol(t_map *map, t_info *cord);
 t_nod				*n_cr(t_info *info, int type);
-
-
 int					sq(int x1, int y1, int x2, int y2);
 int					nod_len(t_nod *nod);
 void				whichone_tool(t_map *map);
 void				kakoetogovno1(t_map *map, int i, int tmp);
 void				kakoetogovno2(t_map *map, int i, int tmp);
-
 int					events(t_map *map);
 int					mmove(int x, int y, t_map *map, SDL_Event event);
 int					ukey(int key, t_map *map);
 int					pkey(int key, t_map *map);
 int					mkey(int key, int x, int y, t_map *map);
-
 void				edit_tool(t_map *map, int index);
 void				edit_blocktexture(t_map *map, int index);
 void				edit_walltexture(t_map *map, int index);
 void				edit_liquidtexture(t_map *map, int index);
 void				edit_floortexture(t_map *map, int index);
-
 void				wall_editor(t_map *map, int x, int y);
 void				remove_tool(t_map *map, int x, int y);
-
 void				remove_blocks(t_map *map);
 void				showup_lick(t_map *map, int x, int y);
 int					clickevent(t_map *map, int x, int y, SDL_Event event);
-void				lstdelone2(t_nod **fd_lst, t_nod *fd, t_nod *file, t_nod *last);
+void				lstdelone2(t_nod **fd_lst, t_nod *fd,
+					t_nod *file, t_nod *last);
 int					interface_click(t_map *map, int x, int y);
 void				section_click(t_map *map, int x, int y);
 int					catch_click(t_map *map, int x, int y);
@@ -352,17 +332,13 @@ void				rewrite2(t_map *map, char *str, char *tmp, int inx);
 void				floorker(t_map *map, int x, int y);
 int					searchelem(char *str1, char *str2);
 void				set_door(t_map *map, int indx);
-
-
 void				add_my_node(t_map *map, t_info *info, int type);
 void				made_blocks(t_map *map, int x, int y);
-
 void				square(t_map *map, int x, int y);
 void				pentagon(t_map *map, int x, int y);
 void				hexagon(t_map *map, int x, int y);
 void				octagon(t_map *map, int x, int y);
 void				wtf(t_map *map);
-
 void				cursor(t_map *map, int index, int hot_x, int hot_y);
 void				fonts(t_map *map, char *str, int x, int y);
 void				fonts_classic(t_map *map, char *str, t_info *info,
@@ -370,21 +346,16 @@ void				fonts_classic(t_map *map, char *str, t_info *info,
 void				fonts_doom(t_map *map, char *str, t_info *info,
 						SDL_Color color);
 int					struppercase(char *str);
-
-
 void				showtexture(t_map *map);
 void				showfloorsky(t_map *map);
 void				showupcontent(t_map *map);
-
 int					some_texture_active(t_map *map);
 void				texture_block(t_map *map);
-
 void				changer(t_map *map, int x, int y);
 void				change_texture(t_map *map, int x, int y);
 void				change_text_inter(t_map *map);
 void				change_text_inter2(t_map *map);
 int					change_floor_inter(t_map *map);
-
 void				save_texture(t_map *map, int index, int num);
 void				save_obj_tmp1(t_map *map, int x, int y);
 void				save_obj_tmp2(t_map *map, int x, int y);
@@ -392,50 +363,42 @@ void				save_obj_tmp3(t_map *map, int x, int y);
 void				save_objects(t_map *map, t_info *inf, char *textstr);
 void				savestairs(t_map *map);
 void				savestairs2(t_map *map);
-
-
+void				save_texture1(t_map *map, t_nod *n);
+void				count_write(t_map *map, int fd);
+void				write_objects(t_map *map, int fd);
+void				write_floor(t_map *map, int fd);
+void				write_ceiling(t_map *map, int fd);
+char				*write_walls2(t_map *map, char *buffer, t_nod *n);
+char				*write_wall_text(t_nod *n);
 void				open_texture_win(t_map *map);
 void				open_floor_win(t_map *map);
-
 int					find_nod(t_map *map, int x, int y);
 int					find_texture_name(char *str);
 void				findfloornod(t_map *map);
 void				findceilingnod(t_map *map);
 void				find_coord(t_map *mp, int *x, int *y);
 void				find_help(t_nod *nod, t_info *inf, int *x, int *y);
-
 void				find_remove(t_map *map, int x, int y);
-
 void				flooor(t_map *map);
-
 void				writedown_floor(t_map *map);
 int					writedown_map(t_map *map);
 void				write_music(t_map *map, int fd);
-
 void				objectsblock(t_map *map);
 void				dot_forobject(t_map *map, int x, int y);
-
 void				edit_object(t_map *map, t_image **name, int n, int index);
 void				stairs_editor(t_map *map, int x, int y);
 void				stairswhile(t_map *map, int x, int y);
-
 int					xyround(t_map *map, int x, int y);
 void				doorshit(t_map *map);
 void				doorshit2(t_map *map);
-
-
 int					check_scene(t_info *info, t_map *map);
 int					valid_map(t_map *map, t_info *inf);
-
 int					range_click(t_info *info, int w, int h);
 int					lstdelone(t_nod **fd_lst, t_nod *fd);
-
 char				*count_floor(t_map *map, int fd);
 void				free_panel1(t_map *map);
 void				free_panel2(t_map *map);
-
 void				free_nodes(t_map *map);
-
 void				error_free_s(t_map *map, char *s);
 void				error(char *s);
 SDL_Surface			*load_image(char *path);

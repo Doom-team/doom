@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:36 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 03:45:33 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 11:21:18 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ int		check_scene3(t_map *map, int i)
 	{
 		map->inter_tex[21]->active = 0;
 		map->errorflag = 2;
+		events(map);
+	}
+	if (map->exitflag == 0)
+	{
+		map->inter_tex[21]->active = 0;
+		map->errorflag = 3;
 		events(map);
 	}
 	if (i == 8 || i == 12 || i == 11 || i == 10)
@@ -81,11 +87,21 @@ int		check_scene(t_info *info, t_map *map)
 	return (0);
 }
 
+void	if_if(t_map *map, t_nod *n)
+{
+	if (!n)
+	{
+		map->errorflag = 1;
+		events(map);
+	}
+}
+
 int		valid_map(t_map *map, t_info *inf)
 {
 	t_nod	*n;
 
 	n = map->nod;
+	if_if(map, n);
 	while (n)
 	{
 		if (n->x1 >= inf->x)

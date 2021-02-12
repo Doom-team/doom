@@ -18,4 +18,3 @@ f ../textures/floor/floor1.png
 s ../textures/floor/sky1.png
 m ../textures/music/m1.mp3
 p 700 400
-x 0 0

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 02:47:02 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 11:56:39 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,13 @@ void	stairs_editor(t_map *map, int x, int y)
 		map->click = 0;
 		savestairs(map);
 		if (!map->stairsoutput)
+		{
 			map->stairsoutput = ft_strdup(map->stairstr);
+			free(map->stairstr);
+			map->stairstr = NULL;
+		}
 		else
-			map->stairsoutput = add_text(map->stairsoutput, map->stairstr, 0);
-		free(map->stairstr);
+			map->stairsoutput = add_text(map->stairsoutput, map->stairstr, 2);
 		map->stairstr = 0;
 	}
 }
@@ -76,13 +79,13 @@ void	draw_prikol(t_map *map, t_info *cord)
 		(cord->y + map->ha->ny)});
 	draw_floor_line(map, &(t_info){cord->x - map->ha->nx,
 		(cord->y - map->ha->ny), (cord->w - map->ha->nx),
-		(cord->y - map->ha->ny)});
+		(cord->h - map->ha->ny)});
 	draw_floor_line(map, &(t_info){(cord->x + map->ha->nx),
 		(cord->y + map->ha->ny), (cord->w + map->ha->nx),
-		(cord->y + map->ha->ny)});
+		(cord->h + map->ha->ny)});
 	draw_floor_line(map, &(t_info){(cord->w - map->ha->nx),
 		(cord->h - map->ha->ny), (cord->w + map->ha->nx),
-		(cord->y + map->ha->ny)});
+		(cord->h + map->ha->ny)});
 }
 
 void	draw_mapstairs(t_map *map, int x, int y, int i)

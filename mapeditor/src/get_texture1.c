@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:08 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 00:43:24 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 12:14:29 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void			get_cursor(t_map *map)
 	map->curosr_img[1]->img = load_image("/textures/interface/deletic.png");
 	map->curosr_img[2]->img = load_image("/textures/interface/firstdot.png");
 	map->curosr_img[3]->img = load_image("/textures/interface/seconddot.png");
-	map->curosr_img[4]->img = load_image("/textures/doors/bluekey.png");
-	map->curosr_img[5]->img = load_image("/textures/doors/yellowkey.png");
-	map->curosr_img[6]->img = load_image("/textures/doors/redkey.png");
+	map->curosr_img[4]->img = load_image("../textures/pickup/bluekey.png");
+	map->curosr_img[5]->img = load_image("../textures/pickup/yellowkey.png");
+	map->curosr_img[6]->img = load_image("../textures/pickup/redkey.png");
 }
 
 void			get_block_textures(t_map *map)
@@ -84,16 +84,16 @@ void			get_floorsky_textures(t_map *map)
 {
 	map->floorsky_tex[0]->img =
 		load_image("/textures/interface/blackblock.png");
-	map->floorsky_tex[1]->img = load_image("/textures/floor/floor1.png");
-	map->floorsky_tex[2]->img = load_image("/textures/floor/floor2.png");
-	map->floorsky_tex[3]->img = load_image("/textures/floor/floor3.png");
-	map->floorsky_tex[4]->img = load_image("/textures/floor/floor4.png");
-	map->floorsky_tex[5]->img = load_image("/textures/floor/floor5.png");
-	map->floorsky_tex[6]->img = load_image("/textures/floor/floor6.png");
-	map->floorsky_tex[7]->img = load_image("/textures/floor/floor7.png");
-	map->floorsky_tex[8]->img = load_image("/textures/floor/floor8.png");
-	map->floorsky_tex[9]->img = load_image("/textures/floor/sky1.png");
-	map->floorsky_tex[10]->img = load_image("/textures/floor/sky2.png");
-	map->floorsky_tex[11]->img = load_image("/textures/floor/sky3.png");
-	map->floorsky_tex[12]->img = load_image("/textures/floor/sky4.png");
+	map->floorsky_tex[1]->img = load_image("../textures/floor/floor1.png");
+	map->floorsky_tex[2]->img = load_image("../textures/floor/floor2.png");
+	map->floorsky_tex[3]->img = load_image("../textures/floor/floor3.png");
+	map->floorsky_tex[4]->img = load_image("../textures/floor/floor4.png");
+	map->floorsky_tex[5]->img = load_image("../textures/floor/floor5.png");
+	map->floorsky_tex[6]->img = load_image("../textures/floor/floor6.png");
+	map->floorsky_tex[7]->img = load_image("../textures/floor/floor7.png");
+	map->floorsky_tex[8]->img = load_image("../textures/floor/floor8.png");
+	map->floorsky_tex[9]->img = load_image("../textures/floor/sky1.png");
+	map->floorsky_tex[10]->img = load_image("../textures/floor/sky2.png");
+	map->floorsky_tex[11]->img = load_image("../textures/floor/sky3.png");
+	map->floorsky_tex[12]->img = load_image("../textures/floor/sky4.png");
 }

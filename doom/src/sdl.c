@@ -281,10 +281,7 @@ void			wolf_loop(t_wolf *wolf)
 	while (wolf->sdl->run)
 	{
 		if (wolf->player->dist_obj != MAXFLOAT && wolf->p->walls[wolf->player->indx_obj].type_flag == 9)
-		{
-			wolf->player->hp = -1; // нужен скурин вина
-			screen_death(wolf, &event);
-		}
+			screen_win(wolf, &event);
 		recalc(wolf);
 		handle_event(wolf, &event);
 		recalc_rotation(wolf);

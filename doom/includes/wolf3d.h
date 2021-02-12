@@ -58,7 +58,6 @@ typedef struct		s_buff
 	int				w;
 	bool			m;
 	bool			p;
-	bool			x;
 	bool			f;
 	bool			s;
 	bool			c;
@@ -67,7 +66,6 @@ typedef struct		s_buff
 typedef struct		s_parser
 {
 	t_wall			*walls;
-	t_param2		exit;
 	t_param2		player;
 	Mix_Music		*music;
 	Mix_Chunk		*take_damage;
@@ -347,7 +345,7 @@ void				quit(t_sdl *sdl);
 */
 void				screen_start(t_wolf *wolf);
 void				screen_death(t_wolf *wolf, SDL_Event *event);
-void				screen_win(t_wolf *wolf);
+void				screen_win(t_wolf *wolf, SDL_Event *event);
 
 /*
 ** print_menu.c
@@ -469,5 +467,7 @@ void				floorcast(t_wolf *wolf, t_distance *dist,
 					t_point point, int count_distance);
 void				floorcast_up(t_wolf *wolf, t_distance *dist,
 					int x, int count_distance, t_floot_up stage, int j);
+int					floorcast_up_escape(t_wolf *wolf, t_floot_up *stage,
+					t_data_floor *d, int j);
 
 #endif

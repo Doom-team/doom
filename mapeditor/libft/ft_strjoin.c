@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 16:55:39 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/09 19:50:47 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 12:02:50 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	str = ft_strcpy(str, s1);
 	str = ft_strcat(str, s2);
-	// free(s1);
 	return (str);
 }

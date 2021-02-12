@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 06:25:08 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 08:45:23 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	error_log(t_map *map)
 			&(t_info){350, HEIGHT - 20, 0, 0}, REDFONT);
 	if (map->errorflag == 2)
 		fonts_classic(map, "set player position!",
+			&(t_info){350, HEIGHT - 20, 0, 0}, REDFONT);
+	if (map->errorflag == 3)
+		fonts_classic(map, "set exit position!",
 			&(t_info){350, HEIGHT - 20, 0, 0}, REDFONT);
 }
 

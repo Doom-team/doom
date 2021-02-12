@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 07:03:51 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 11:52:39 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,16 @@ void	zerroothero(t_map *map)
 
 void	cordinator(t_map *map, char *c, int x, int y)
 {
-	if (ft_strlen(map->objects) != 0)
-	{
-		if (map->player_tex[0]->active == 1 && searchelem(map->objects, "p "))
-		{
-			rewrite(map, searchelem(map->objects, "p ") - 1, x, y);
-			return ;
-		}
-		if (map->door_tex[9]->active == 1 && searchelem(map->objects, "x "))
-		{
-			rewrite(map, searchelem(map->objects, "x ") - 1, x, y);
-			return ;
-		}
-		map->objects = add_text(map->objects, c, 0);
-		map->objects = add_text(map->objects, ft_itoa(x), 2);
-		map->objects = add_text(map->objects, " ", 1);
-		map->objects = add_text(map->objects, ft_itoa(y), 2);
-		map->objects = add_text(map->objects, "\n", 1);
-	}
+	if (!map->objects)
+		map->objects = add_text(c, ft_itoa(x), 3);
 	else
 	{
+		free(map->objects);
 		map->objects = add_text(c, ft_itoa(x), 3);
-		map->objects = add_text(map->objects, " ", 1);
-		map->objects = add_text(map->objects, ft_itoa(y), 2);
-		map->objects = add_text(map->objects, "\n", 1);
 	}
+	map->objects = add_text(map->objects, " ", 1);
+	map->objects = add_text(map->objects, ft_itoa(y), 2);
+	map->objects = add_text(map->objects, "\n", 1);
 }
 
 void	save_objects(t_map *map, t_info *inf, char *textstr)
@@ -85,7 +70,7 @@ void	save_objects(t_map *map, t_info *inf, char *textstr)
 	map->stairstr = add_text(map->stairstr, ft_itoa(inf->h), 2);
 	map->stairstr = add_text(map->stairstr, "\n", 1);
 	map->stairsoutput = (!map->stairsoutput) ? ft_strdup(map->stairstr) :
-	add_text(map->stairsoutput, map->stairstr, 1);
+	add_text(map->stairsoutput, map->stairstr, 2);
 	wtf(map);
 }
 
@@ -122,7 +107,10 @@ void	save_obj_tmp2(t_map *map, int x, int y)
 	if (map->enemy_tex[4]->active == 1)
 		save_objects(map, &(t_info){x, y, 3, 5}, "../textures/enemy/e5.png");
 	if (map->door_tex[9]->active == 1)
-		cordinator(map, "x ", x, y);
+	{
+		map->exitflag++;
+		save_objects(map, &(t_info){x, y, 9, 0}, "../textures/enemy/e5.png");
+	}
 	if (map->door_tex[5]->active == 1 && range_click(&(t_info){x, y,
 		WIDTH / 2 - 165, 5}, 330, 150) && map->click == 1)
 	{

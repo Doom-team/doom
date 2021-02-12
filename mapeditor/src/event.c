@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 03:34:47 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/12 11:24:16 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 	if (some_texture_active(map) == 2)
 		if (map->z_x != x || map->z_y != y)
 			bigdot(map, map->z_x, map->z_y, HOTPINK);
-	map->floor_x = 0;
 	if (map->block_tex[5]->active == 1)
 		stairswhile(map, x, y);
 	if (map->inter_tex[6]->active && interface_click(map, x, y))
