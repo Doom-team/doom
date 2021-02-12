@@ -14,18 +14,30 @@
 
 static	void	monster_load_helper(t_wolf *wolf)
 {
-	wolf->bon->monster[0] = IMG_Load("../textures/enemy/beam/0.png");
-	wolf->bon->monster[1] = IMG_Load("../textures/enemy/beam/1.png");
-	wolf->bon->monster[2] = IMG_Load("../textures/enemy/beam/2.png");
-	wolf->bon->monster[3] = IMG_Load("../textures/enemy/beam/3.png");
-	wolf->bon->monster[4] = IMG_Load("../textures/enemy/beam/4.png");
-	wolf->bon->monster[5] = IMG_Load("../textures/enemy/beam/5.png");
-	wolf->bon->monster[6] = IMG_Load("../textures/enemy/abbadon/0.png");
-	wolf->bon->monster[7] = IMG_Load("../textures/enemy/abbadon/1.png");
-	wolf->bon->monster[8] = IMG_Load("../textures/enemy/abbadon/2.png");
-	wolf->bon->monster[9] = IMG_Load("../textures/enemy/abbadon/3.png");
-	wolf->bon->monster[10] = IMG_Load("../textures/enemy/abbadon/4.png");
-	wolf->bon->monster[11] = IMG_Load("../textures/enemy/abbadon/5.png");
+	if (!(wolf->bon->monster[0] = IMG_Load("../textures/enemy/beam/0.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[1] = IMG_Load("../textures/enemy/beam/1.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[2] = IMG_Load("../textures/enemy/beam/2.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[3] = IMG_Load("../textures/enemy/beam/3.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[4] = IMG_Load("../textures/enemy/beam/4.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[5] = IMG_Load("../textures/enemy/beam/5.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[6] = IMG_Load("../textures/enemy/abbadon/0.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[7] = IMG_Load("../textures/enemy/abbadon/1.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[8] = IMG_Load("../textures/enemy/abbadon/2.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[9] = IMG_Load("../textures/enemy/abbadon/3.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[10] = IMG_Load("../textures/enemy/abbadon/4.png")))
+			error(wolf, SDL_GetError());
+	if (!(wolf->bon->monster[11] = IMG_Load("../textures/enemy/abbadon/5.png")))
+			error(wolf, SDL_GetError());
 }
 
 static	void	monster_load(t_wolf *wolf)
