@@ -16,6 +16,7 @@ void			draw_column(t_wolf *wolf, t_point point, int count_distance)
 {
 	t_data_column			d;
 
+	ft_memset(&d, 0, sizeof(t_data_column));
 	d.dist = wolf->player->distance[count_distance];
 	d.j = -1;
 	brute_draw_column(wolf, point, count_distance, &d);

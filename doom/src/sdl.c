@@ -14,6 +14,7 @@
 
 static void		handle_ukeys(t_wolf *wolf, int key)
 {
+	printf("%d\n", key);
 	if (key == 119)
 		wolf->player->run_f = 0;
 	if (key == 115)

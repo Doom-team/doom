@@ -59,7 +59,9 @@ ALL_C = main.c \
 		recalc.c \
 		buble_sort.c \
 		buble_sort_fly.c \
-		calc_x.c
+		calc_x.c \
+		brute_column_fly_1_1.c \
+		floorcast_up_fly.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
@@ -78,7 +80,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 COMP_LIB = make -C $(LIBFT_DIR)
 CC = gcc
 FLAGS = -Ofast -mprefer-vector-width=512
-FLAGS = -g #-Wall -Wextra -Werror
+#FLAGS = -g -Wall -Wextra -Werror
 # FLAGS =
 #-Wall -Wextra -Werror
 

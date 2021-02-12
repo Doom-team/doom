@@ -40,6 +40,7 @@ void			floorcast_up(t_wolf *wolf, t_distance *dist, int c_dist,
 {
 	t_data_floor	d;
 
+	ft_memset(&d, 0, sizeof(t_data_floor));
 	if (floorcast_up_escape(wolf, &stage, &d, wolf->helper.j))
 		return ;
 	d.cof = cof_size_displ();

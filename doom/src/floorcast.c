@@ -67,6 +67,7 @@ int count_distance)
 	int				cy[2];
 	int				y;
 
+	ft_memset(&d, 0, sizeof(t_data_floor));
 	y = H - point.y;
 	d.cof = cof_size_displ();
 	d.temp_y = y - (wolf->player->dir_y +\

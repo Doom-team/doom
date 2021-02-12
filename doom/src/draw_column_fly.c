@@ -15,15 +15,22 @@
 void			draw_column_fly(t_wolf *wolf, t_point point, int count_distance)
 {
 	t_data_column			d;
+	t_helper				hel;
 
+	ft_memset(&d, 0, sizeof(t_data_column));
 	d.dist = wolf->player->distance[count_distance];
 	d.j = -1;
 	d.flagg = 0;
+	hel.count_distance = count_distance;
+	hel.x = point.x;
 	brute_column_fly(wolf, point, count_distance, &d);
 	cut_ctage(wolf, point, count_distance, &d);
 	while (++d.j < d.stage.count)
-		floorcast_up_fly(wolf, wolf->player->distance[count_distance],\
-		point.x, count_distance, d.sub_stage, d.j);
+	{
+		hel.j = d.j;
+		floorcast_up_fly(wolf, wolf->player->distance[count_distance],
+			d.sub_stage, hel);
+	}
 	upper_level_draw(wolf, point, count_distance, &d);
 }
 
