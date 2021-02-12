@@ -472,12 +472,9 @@ void				pseudo_3d(t_wolf *wolf);
 void				floorcast_up_fly(t_wolf *wolf, t_distance *dist, int x,
 					int count_distance, t_floot_up stage, int j);
 void				draw_sky(t_wolf *wolf, int x, int y);
-void				draw_column(t_wolf *wolf, t_point point,
-					t_distance *dist, int count_distance);
-void				brute_column_fly_1_1(t_wolf *wolf, t_point point,
-					int count_distance, t_data_column *d);
-void				upper_level_draw_3(t_wolf *wolf, t_point point,
-					int count_distance, t_data_column *d);
+void				draw_column(t_wolf *wolf, t_point point, int count_distance);
+void				brute_column_fly_1_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void				upper_level_draw_3(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
 
 /*
 ** guns_shot.c
@@ -541,5 +538,29 @@ void				calc_move(t_wolf *wolf, float dy, float dx);
 void				falling2(t_wolf *wolf, SDL_Event *event);
 void				take_damage(t_wolf *wolf, int dmg);
 void				jump2(t_wolf *wolf, SDL_Event *event, int f);
+
+/*
+** draw_column.c
+*/
+void			draw_column(t_wolf *wolf, t_point point, int count_distance);
+void			brute_draw_column(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_draw_column_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_draw_column_2_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_draw_column_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+
+/*
+** draw_column2.c
+*/
+void			brute_draw_column_1_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_draw_column_1_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_draw_column_3_1(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_draw_column_3(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_draw_column_2_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+
+/*
+** draw_column3.c
+*/
+void			brute_draw_column_3_2(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
+void			brute_draw_column_3_3(t_wolf *wolf, t_point point, int count_distance, t_data_column *d);
 
 #endif

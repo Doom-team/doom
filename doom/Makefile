@@ -47,6 +47,9 @@ ALL_C = main.c \
 		monster_load.c \
 		move1.c \
 		move2.c \
+		draw_column.c \
+		draw_column2.c \
+		draw_column3.c \
 		handle_keys.c \
 		search_angle.c \
 		rotate_wall.c \
