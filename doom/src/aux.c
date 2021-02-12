@@ -25,10 +25,10 @@ int	add_arc(float *arc, float to_add)
 void	jump2(t_wolf *wolf, SDL_Event *event, int f)
 {
 	if (f)
-		handle_event(wolf, &event);
+		handle_event(wolf, event);
 	if (!f)
 	{
-		handle_event(wolf, &event);
+		handle_event(wolf, event);
 		recalc(wolf);
 	}
 	handle_phisics(wolf, wolf->player);

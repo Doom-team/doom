@@ -20,7 +20,8 @@ ALL_C = main.c \
 		pseudo_3d.c \
 		render_text.c \
 		guns_shot.c \
-		move.c \
+		move1.c \
+		move2.c \
 		init_bonus.c \
 		set_sdl.c \
 		render_aim.c \
