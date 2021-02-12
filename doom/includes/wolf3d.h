@@ -444,6 +444,11 @@ t_distance			*t_distance_new(t_wolf *wolf);
 void				t_distance_clear(t_distance *dist);
 void				all_get_distance(t_wolf *wolf);
 void				free_dist_arr(t_wolf *wolf);
+float				calc_dist(t_float2 player, t_wall wall,
+					t_distance *v, t_helper *h);
+int					crossing(t_float2 player, float angle, t_wall wall);
+float				vector_len(float x1, float y1, float x2, float y2);
+void				calculate_distance(t_wolf *wolf, t_way *d, t_helper *h);
 
 /*
 ** render_aim.c

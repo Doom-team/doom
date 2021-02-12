@@ -49,7 +49,11 @@ ALL_C = main.c \
 		move2.c \
 		handle_keys.c \
 		search_angle.c \
-		rotate_wall.c
+		rotate_wall.c \
+		action_dist.c \
+		calc_helper.c \
+		calc_dist.c \
+		recalc.c
 
 SRCDIR = ./src
 OBJDIR = ./objs
