@@ -1,4 +1,4 @@
-w 101
+w 102
 w 749 676 685 677 ../textures/doors/bluedoor.png 5 2 2
 w 749 676 807 674 ../textures/wall/wall15.png 5 0 0
 w 807 674 815 748 ../textures/wall/wall15.png 5 0 0
@@ -42,6 +42,7 @@ w 1092 686 967 674 ../textures/wall/wall5.png 5 0 0
 w 1011 566 949 569 ../textures/wall/wall4.png 5 0 0
 w 949 569 958 629 ../textures/wall/wall4.png 5 0 0
 w 958 629 1020 626 ../textures/wall/wall4.png 5 0 0
+w 1011 566 1020 626 ../textures/doors/defdoor.png 5 2 1
 w 370 827 370 827 ../textures/wall/wall15.png 11 0 0
 w 1159 819 370 827 ../textures/wall/wall15.png 11 0 0
 w 370 827 393 153 ../textures/wall/wall15.png 11 0 0
