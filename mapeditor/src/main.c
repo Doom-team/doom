@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:18 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 01:06:16 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 15:45:17 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int		main(int ac, char **av)
 	if (!init_all(map))
 		error_free_s(map, "initialization error!");
 	draw(map);
-	SDL_UpdateWindowSurface(map->win);
+	if (SDL_UpdateWindowSurface(map->win) == -1)
+		error("SDL Error");
 	events(map);
-	free_panel1(map);
+	//free_panel1(map);
 	SDL_DestroyWindow(map->win);
 	SDL_Quit();
 	return (0);

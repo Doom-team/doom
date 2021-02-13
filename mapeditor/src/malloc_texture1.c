@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:21 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 01:06:41 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 16:03:26 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	malloc_interface(t_map *map)
 
 	i = -1;
 	while (++i < 22)
+	{
 		map->inter_tex[i] = (t_image *)malloc(sizeof(t_image));
+		if (!map->inter_tex[i])
+			error("Malloc Error");
+	}
 	get_inter_textures(map);
 	i = 0;
 	while (++i < 22)
@@ -38,7 +42,11 @@ void	malloc_cursor(t_map *map)
 
 	i = -1;
 	while (++i < 7)
+	{
 		map->curosr_img[i] = (t_image *)malloc(sizeof(t_image));
+		if (!map->curosr_img[i])
+			error("Malloc Error");
+	}
 	get_cursor(map);
 	i = 0;
 	while (++i < 7)
@@ -53,11 +61,12 @@ void	malloc_block_texture(t_map *map)
 	int i;
 
 	i = -1;
-	map->remove = malloc(sizeof(t_removeinfo*));
-	map->remove->x = malloc(sizeof(int *) * 10);
-	map->remove->y = malloc(sizeof(int *) * 10);
 	while (++i < 9)
+	{
 		map->block_tex[i] = (t_image *)malloc(sizeof(t_image));
+		if (!map->block_tex[i])
+			error("Malloc Error");
+	}
 	get_block_textures(map);
 	i = -1;
 	while (++i < 9)
@@ -74,7 +83,11 @@ void	malloc_floorsky_texture(t_map *map)
 
 	i = -1;
 	while (++i < 13)
+	{
 		map->floorsky_tex[i] = (t_image *)malloc(sizeof(t_image));
+		if (!map->floorsky_tex[i])
+			error("Malloc Error");
+	}
 	get_floorsky_textures(map);
 	i = -1;
 	while (++i < 13)
@@ -91,7 +104,11 @@ void	malloc_wall_texture(t_map *map)
 
 	i = -1;
 	while (++i < 20)
+	{
 		map->wall_tex[i] = (t_image *)malloc(sizeof(t_image));
+		if (!map->wall_tex[i])
+			error("Malloc Error");
+	}
 	get_wall_textures(map);
 	i = -1;
 	while (++i < 20)

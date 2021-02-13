@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 11:49:32 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 15:28:45 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	write_walls(t_map *map, int fd)
 	if (write(fd, map->stairsoutput, ft_strlen(map->stairsoutput))
 		!= ft_strlen(map->stairsoutput))
 		error("Write Error\n");
-	free(map->stairsoutput);
+	//free(map->stairsoutput);
 }
 
 int		writedown_map(t_map *map)

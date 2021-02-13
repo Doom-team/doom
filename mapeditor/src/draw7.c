@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 00:12:26 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 15:03:47 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	draw_music(t_map *map)
 
 void	draw_tests(t_map *map)
 {
-	fonts_doom(map, "DOES NOT WORK", &(t_info){80, 540, 0, 0}, REDFONT);
 	draw_img(map, &(t_info){35, 560, 60, 60}, map->block_tex[6]);
 	draw_img(map, &(t_info){120, 560, 60, 60}, map->block_tex[7]);
 	draw_img(map, &(t_info){200, 560, 60, 60}, map->block_tex[8]);

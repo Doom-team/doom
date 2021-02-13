@@ -6,11 +6,34 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:36:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 00:04:31 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 15:07:20 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
+
+void	find_removestair(t_map *map, int x, int y)
+{
+	t_nod *tmp;
+	t_nod *tmp2;
+	t_nod *first;
+
+	tmp = map->tmpnod;
+	first = map->tmpnod;
+	while (tmp)
+	{
+		if (((tmp->x1 == x) && (tmp->y1 == y)) ||
+		((tmp->x2 == x) && (tmp->y2 == y)))
+		{
+			tmp2 = tmp;
+			tmp = tmp->nxt;
+			if (lstdelone(&map->tmpnod, tmp2))
+				map->tmpnod = NULL;
+		}
+		else
+			tmp = tmp->nxt;
+	}
+}
 
 void	remove_blocks(t_map *map)
 {
@@ -27,7 +50,10 @@ void	remove_blocks(t_map *map)
 	else if (map->block_tex[3]->active)
 		tmp = 8;
 	while (++i < tmp)
+	{
 		find_remove(map, map->remove->x[i], map->remove->y[i]);
+		find_removestair(map, map->remove->x[i], map->remove->y[i]);
+	}
 }
 
 void	stairs_text(t_map *map, t_info *inf)

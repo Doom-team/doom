@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:16 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 01:06:02 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 15:47:48 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,23 @@ int		mkey(int key, int x, int y, t_map *map)
 		if (some_texture_active(map) == 4)
 			change_texture(map, x, y);
 	}
-	SDL_UpdateWindowSurface(map->win);
+	if (SDL_UpdateWindowSurface(map->win) == -1)
+		error("SDL Error!");
 	return (0);
 }
 
 int		pkey(int key, t_map *map)
 {
 	if (key == 27)
+	{
+		SDL_DestroyWindow(map->win);
 		SDL_Quit();
+	}
 	return (0);
-}
-
-void	i_error(void)
-{
-	printf("error");
-	exit(1);
 }
 
 void	music(Mix_Music *music)
 {
-	printf("zashel\n");
 	Mix_Volume(0, 32);
 	Mix_PlayMusic(music, -1);
 	Mix_VolumeMusic(5);
@@ -54,7 +51,6 @@ void	music(Mix_Music *music)
 
 void	wichonemusic(t_map *map)
 {
-	printf("music: %d\n", map->musicflag);
 	if (map->musicflag == 1)
 		music(map->music[0]);
 	else if (map->musicflag == 2)

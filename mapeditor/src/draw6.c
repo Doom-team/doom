@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 08:45:23 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 14:58:38 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	draw_basic_interface(t_map *map)
 {
-	SDL_FillRect(map->inter_tex[0]->img, NULL, 0);
+	if (SDL_FillRect(map->inter_tex[0]->img, NULL, 0) == -1)
+		error("SDL Error");
 	draw_grid(map);
 	draw_img(map, &(t_info){0, 0, 300, 800}, map->inter_tex[1]);
 	draw_img(map, &(t_info){10, 110, 280, 680}, map->inter_tex[2]);
