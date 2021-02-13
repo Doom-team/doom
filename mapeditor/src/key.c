@@ -32,11 +32,12 @@ int		mkey(int key, int x, int y, t_map *map)
 	return (0);
 }
 
-int		pkey(int key)
+int		pkey(int key, t_map *map)
 {
 	if (key == 27)
 	{
-		//SDL_DestroyWindow(map->win);
+		free_panel1(map);
+		SDL_DestroyWindow(map->win);
 		exit (0);
 	}
 	return (0);

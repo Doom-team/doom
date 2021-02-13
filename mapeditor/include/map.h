@@ -292,7 +292,7 @@ void				kakoetogovno2(t_map *map, int i, int tmp);
 int					events(t_map *map);
 int					mmove(int x, int y, t_map *map);
 int					ukey(int key, t_map *map);
-int					pkey(int key);
+int					pkey(int key, t_map *map);
 int					mkey(int key, int x, int y, t_map *map);
 void				edit_tool(t_map *map, int index);
 void				edit_blocktexture(t_map *map, int index);

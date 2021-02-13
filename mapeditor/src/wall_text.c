@@ -78,7 +78,6 @@ void	get_wall_cord(t_map *map, int x, int y)
 	if (map->click == 0 && interface_click(map, x, y) &&
 		range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
 	{
-		cursor(map, 2, 0, 16);
 		map->click = 1;
 		map->change_x = x;
 		map->change_y = y;
@@ -88,7 +87,6 @@ void	get_wall_cord(t_map *map, int x, int y)
 		range_click(&(t_info){x, y, WIDTH / 2 - 165, 5}, 330, 150))
 	{
 		map->click = 0;
-		cursor(map, 3, 0, 16);
 		find_coord(map, &x, &y);
 		changer(map, x, y);
 	}

@@ -17,20 +17,11 @@ void	doorshit2(t_map *map)
 	if (map->door_tex[4]->active == 1)
 		draw_img(map, &(t_info){310, 715, 20, 20}, map->door_tex[4]);
 	if (map->door_tex[5]->active == 1)
-	{
 		draw_img(map, &(t_info){310, 715, 20, 20}, map->door_tex[5]);
-		cursor(map, 4, 0, 16);
-	}
 	if (map->door_tex[6]->active == 1)
-	{
 		draw_img(map, &(t_info){310, 715, 20, 20}, map->door_tex[6]);
-		cursor(map, 5, 0, 16);
-	}
 	if (map->door_tex[7]->active == 1)
-	{
 		draw_img(map, &(t_info){310, 715, 20, 20}, map->door_tex[7]);
-		cursor(map, 6, 0, 16);
-	}
 }
 
 void	doorshit(t_map *map)

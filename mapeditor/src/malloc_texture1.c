@@ -35,26 +35,6 @@ void	malloc_interface(t_map *map)
 	map->inter_tex[6]->active = 1;
 }
 
-void	malloc_cursor(t_map *map)
-{
-	int i;
-
-	i = -1;
-	while (++i < 7)
-	{
-		map->curosr_img[i] = (t_image *)malloc(sizeof(t_image));
-		if (!map->curosr_img[i])
-			error("Malloc Error");
-	}
-	get_cursor(map);
-	i = 0;
-	while (++i < 7)
-	{
-		init_texture(map->curosr_img[i]->img, &(map->curosr_img[i]->s),
-			&(map->curosr_img[i]->pixb), &(map->curosr_img[i]->strb));
-	}
-}
-
 void	malloc_block_texture(t_map *map)
 {
 	int i;

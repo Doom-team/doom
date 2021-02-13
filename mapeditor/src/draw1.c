@@ -20,17 +20,23 @@ void	draw_img(t_map *map, t_info *info, t_image *st)
 	int	pixel2;
 
 	i = info->y;
+	if (i < 0)
+		i = 0;
 	while (i < HEIGHT && i < info->y + info->h)
 	{
 		j = info->x;
+		if (j < 0)
+			j = 0;
 		while (j < WIDTH && j < info->x + info->w)
 		{
 			pixel1 = i * map->inter_tex[0]->strb + j * map->inter_tex[0]->pixb;
-			pixel2 = (int)((double)(i - info->y) / info->h * st->img->h) *
-				st->strb + (int)((double)(j - info->x) / info->w *
-					st->img->w) * st->pixb;
-			if (j < 0)
-				continue ;
+			pixel2 = (int)((float)(i - info->y) * st->img->h / info->h) * st->strb
+			+ (int)((float)(j - info->x) * st->img->w / info->w) * st->pixb;
+			if (pixel2 < 0 || pixel1 < 0)
+			{
+				printf("%d %d\n", pixel1, pixel2);
+				return ;
+			}
 			if (st->s[pixel2 + 3])
 				funcfunc(pixel1, pixel2, map, st);
 			j++;
@@ -64,6 +70,7 @@ void	draw_point(t_map *map, int x, int y, t_color color)
 	int	pixel;
 
 	i = -1;
+	pixel = 0;
 	while (i < 1)
 	{
 		j = -1;

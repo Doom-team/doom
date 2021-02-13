@@ -75,7 +75,8 @@ void	draw_gr(t_map *map, int x, int y, t_color color)
 {
 	int pixel;
 
-	if (x < WIDTH && y < HEIGHT)
+	pixel = 0;
+	if (x < WIDTH && y < HEIGHT && x >= 0 && y >= 0)
 	{
 		pixel = (x * map->inter_tex[0]->pixb) + (y * map->inter_tex[0]->strb);
 		draw_color(map, pixel, color);

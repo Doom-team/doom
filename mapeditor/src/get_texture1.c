@@ -56,17 +56,6 @@ void			get_inter_textures(t_map *map)
 	map->inter_tex[21]->img = load_image("/textures/interface/savebtn.png");
 }
 
-void			get_cursor(t_map *map)
-{
-	map->curosr_img[0]->img = load_image("/textures/interface/editpic.png");
-	map->curosr_img[1]->img = load_image("/textures/interface/deletic.png");
-	map->curosr_img[2]->img = load_image("/textures/interface/firstdot.png");
-	map->curosr_img[3]->img = load_image("/textures/interface/seconddot.png");
-	map->curosr_img[4]->img = load_image("../textures/pickup/bluekey.png");
-	map->curosr_img[5]->img = load_image("../textures/pickup/yellowkey.png");
-	map->curosr_img[6]->img = load_image("../textures/pickup/redkey.png");
-}
-
 void			get_block_textures(t_map *map)
 {
 	map->block_tex[0]->img = load_image("/textures/texture/square.png");

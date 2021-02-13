@@ -90,7 +90,6 @@ int		init_all(t_map *map)
 void	init_interface(t_map *map)
 {
 	malloc_interface(map);
-	malloc_cursor(map);
 	malloc_block_texture(map);
 	malloc_wall_texture(map);
 	malloc_floorsky_texture(map);

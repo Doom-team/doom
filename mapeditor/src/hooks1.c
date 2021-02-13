@@ -17,7 +17,6 @@ void	dot_forobject(t_map *map, int x, int y)
 	map->objnum++;
 	map->dots.x[map->objnum] = x;
 	map->dots.y[map->objnum] = y;
-	cursor(map, 0, 0, 16);
 }
 
 void	save_objcord(t_map *map, int x, int y)

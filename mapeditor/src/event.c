@@ -27,15 +27,7 @@ int		mmove(int x, int y, t_map *map)
 	{
 		if (map->z_x != x || map->z_y != y)
 			bigdot(map, map->z_x, map->z_y, HOTPINK);
-		cursor(map, 0, 0, 16);
 	}
-	else if (map->inter_tex[8]->active)
-		(map->z_x != x || map->z_y != y) ? cursor(map, 1,
-			8, 8) : SDL_FreeCursor(map->cursor);
-	else if (map->cursor)
-		SDL_FreeCursor(map->cursor);
-	if (SDL_UpdateWindowSurface(map->win) == -1)
-		error("SDL Error!");
 	return (0);
 }
 
@@ -72,7 +64,7 @@ int		events(t_map *map)
 			if (event.type == SDL_QUIT)
 				exit (0);
 			if (event.type == SDL_KEYDOWN)
-				pkey((unsigned char)event.key.keysym.sym);
+				pkey((unsigned char)event.key.keysym.sym, map);
 			if (event.type == SDL_MOUSEMOTION)
 				mmove(event.motion.x, event.motion.y, map);
 			if (event.type == SDL_MOUSEBUTTONDOWN && clickevent(map, x, y, event))
@@ -80,6 +72,7 @@ int		events(t_map *map)
 			if (done == 1)
 			{
 				writedown_map(map);
+				free_panel1(map);
 				return (0);
 			}
 		}
