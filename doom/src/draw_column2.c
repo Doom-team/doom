@@ -13,7 +13,7 @@
 #include "../includes/wolf3d.h"
 
 void			brute_draw_column_2_2(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+t_data_column *d)
 {
 	if (d->flag == 1)
 	{
@@ -31,7 +31,7 @@ t_point point, int count_distance, t_data_column *d)
 }
 
 void			brute_draw_column_1_2(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+int count_distance, t_data_column *d)
 {
 	if (d->stage.dist[wolf->p->walls[d->dist->number_wall[d->j]].\
 	squad_stage - 1] == 0)
@@ -56,11 +56,11 @@ t_point point, int count_distance, t_data_column *d)
 }
 
 void			brute_draw_column_1_1(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+int count_distance, t_data_column *d)
 {
 	if (wolf->p->walls[d->dist->number_wall[d->j]].type_flag == 1)
 	{
-		brute_draw_column_1_2(wolf, point, count_distance, d);
+		brute_draw_column_1_2(wolf, count_distance, d);
 		if (d->stage.y2[wolf->p->walls\
 		[d->dist->number_wall[d->j]].squad_stage - 1] != 0)
 		{
@@ -80,7 +80,7 @@ t_point point, int count_distance, t_data_column *d)
 }
 
 void			brute_draw_column_3_1(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+t_point point, t_data_column *d)
 {
 	if (d->temp_y - wolf->player->dir_y >\
 	0 && d->temp_y - wolf->player->dir_y < H)
@@ -99,12 +99,12 @@ t_point point, int count_distance, t_data_column *d)
 			wolf->z_buff[point.x + (d->temp_y -\
 			wolf->player->dir_y) * W] = true;
 		}
-		brute_draw_column_3_3(wolf, point, count_distance, d);
+		brute_draw_column_3_3(wolf, point, d);
 	}
 }
 
 void			brute_draw_column_3(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+t_point point, t_data_column *d)
 {
 	while (++d->temp_y < d->size)
 	{
@@ -120,7 +120,7 @@ t_point point, int count_distance, t_data_column *d)
 		&& (wolf->z_buff[point.x + (d->temp_y\
 		- wolf->player->dir_y) * W] == true))
 			continue;
-		brute_draw_column_3_2(wolf, point, count_distance, d);
-		brute_draw_column_3_1(wolf, point, count_distance, d);
+		brute_draw_column_3_2(wolf, d);
+		brute_draw_column_3_1(wolf, point, d);
 	}
 }

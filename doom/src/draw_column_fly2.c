@@ -26,7 +26,7 @@ t_point point, int count_distance, t_data_column *d)
 		/ wolf->player->distance[count_distance]->dist[d->j]);
 		if (wolf->p->walls[d->dist->number_wall[d->j]].active != 1)
 			continue;
-		brute_column_fly_1(wolf, point, count_distance, d);
+		brute_column_fly_1(wolf, count_distance, d);
 		if (d->dist->number_wall[d->j] < 0 &&\
 		d->dist->number_wall[d->j] > wolf->p->count_walls - 1)
 			return ;
@@ -112,11 +112,11 @@ t_point point, int count_distance, t_data_column *d)
 }
 
 void			brute_column_fly_1(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+int count_distance, t_data_column *d)
 {
 	if (wolf->p->walls[d->dist->number_wall[d->j]].type_flag == 1)
 	{
-		brute_column_fly_1_1(wolf, point, count_distance, d);
+		brute_column_fly_1_1(wolf, count_distance, d);
 		if (d->stage.y2[wolf->p->walls[d->dist->number_wall[d->j]].\
 		squad_stage - 1] != 0 && d->stage.y1[wolf->p->walls\
 		[d->dist->number_wall[d->j]].squad_stage - 1] != 0)

@@ -5,7 +5,7 @@
 #                                                     +:+ +:+         +:+      #
 #    By: wendell <wendell@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/12/15 16:58:46 by clala             #+#    #+#              #
+#    Created: 2019/12/15 16:58:46 by ahusk             #+#    #+#              #
 #    Updated: 2021/02/12 02:48:20 by wendell          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -138,8 +138,7 @@ HEAD=includes/libft.h \
 OBJ=$(SRC:.c=.o)
 INCLUDES=-I./includes
 
-CC=gcc -ffast-math -O3
-# -g -Wall -Wextra -Werror 
+CC=gcc -ffast-math -O3 -Wall -Wextra -Werror 
 A = $(find . -type f | wc -l)
 X = 1
 all: $(NAME)
