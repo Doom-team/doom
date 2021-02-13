@@ -14,8 +14,8 @@
 
 t_wall			rotate_wall(t_wall w, t_wolf *wolf, int i)
 {
-	float angle;
-	int j;
+	float		angle;
+	int			j;
 
 	angle = search_angle(w, wolf, i);
 	if (angle < 0)
