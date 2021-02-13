@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:21 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/10 13:12:50 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 16:04:31 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ void	malloc_liquid_texture(t_map *map)
 
 	i = -1;
 	while (++i < 4)
+	{
 		map->liquid_tex[i] = (t_image *)malloc(sizeof(t_image));
+		if (!map->liquid_tex[i])
+			error("Malloc Error");
+	}
 	get_liquid_textures(map);
 	i = -1;
 	while (++i < 4)
@@ -35,7 +39,11 @@ void	malloc_enemy_texture(t_map *map)
 
 	i = -1;
 	while (++i < 5)
+	{
 		map->enemy_tex[i] = (t_image *)malloc(sizeof(t_image));
+		if (!map->enemy_tex[i])
+			error("Malloc Error");
+	}
 	get_enemy_textures(map);
 	i = -1;
 	while (++i < 5)
@@ -52,7 +60,11 @@ void	malloc_player_texture(t_map *map)
 
 	i = -1;
 	while (++i < 3)
+	{
 		map->player_tex[i] = (t_image *)malloc(sizeof(t_image));
+		if (!map->player_tex[i])
+			error("Malloc Error");
+	}
 	get_player_textures(map);
 	i = -1;
 	while (++i < 3)
@@ -69,7 +81,11 @@ void	malloc_gun_texture(t_map *map)
 
 	i = -1;
 	while (++i < 6)
+	{
 		map->gun_tex[i] = (t_image *)malloc(sizeof(t_image));
+		if (!map->gun_tex[i])
+			error("Malloc Error");
+	}
 	get_gun_textures(map);
 	i = -1;
 	while (++i < 6)
@@ -86,7 +102,11 @@ void	malloc_door_texture(t_map *map)
 
 	i = -1;
 	while (++i < 11)
+	{
 		map->door_tex[i] = (t_image *)malloc(sizeof(t_image));
+		if (!map->door_tex[i])
+			error("Malloc Error");
+	}
 	get_door_textures(map);
 	i = -1;
 	while (++i < 11)

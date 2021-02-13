@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 08:43:24 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 14:54:29 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void	draw(t_map *map)
 		made_blocks(map, map->x_c, map->y_c);
 	}
 	draw_nodes(map);
-	SDL_UpdateWindowSurface(map->win);
+	if (SDL_UpdateWindowSurface(map->win) == -1)
+		error("SDL Error!");
 }

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:13 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 11:24:44 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 16:02:35 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ void	init_texture(SDL_Surface *tex, unsigned char **s,
 	*s = (unsigned char*)(tex->pixels);
 	*pixb = (tex->format->BytesPerPixel);
 	*strb = (tex->pitch);
+}
+
+void	errors_init(t_map *map)
+{
+	map->remove = malloc(sizeof(t_removeinfo*));
+	map->remove->x = malloc(sizeof(int *));
+	map->remove->y = malloc(sizeof(int *));
+	if (!map->music[0] || !map->music[1] || !map->music[2] || !map->music[3] ||
+		!map->fontclasic || !map->fontdoom || !map->remove || !map->remove->x ||
+		!map->remove->y)
+		error("Init Error!");
 }
 
 void	init_all2(t_map *map)
@@ -45,13 +56,14 @@ void	init_all2(t_map *map)
 	map->music[3] = Mix_LoadMUS("../textures/music/m4.mp3");
 	map->fontclasic = TTF_OpenFont("/textures/fonts/classic.ttf", 32);
 	map->fontdoom = TTF_OpenFont("/textures/fonts/doom.ttf", 32);
+	errors_init(map);
 }
 
 int		init_all(t_map *map)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	TTF_Init();
-	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+	if (TTF_Init() == -1 || !IMG_Init(IMG_INIT_JPG))
+		error("SLD Error");
 	if (!(map->win = SDL_CreateWindow("Mapeditor", 200, 200,
 		WIDTH, HEIGHT, SDL_WINDOW_SHOWN)))
 		error("Window Error!");

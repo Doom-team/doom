@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 11:24:16 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 15:42:07 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 			8, 8) : SDL_FreeCursor(map->cursor);
 	else
 		SDL_FreeCursor(map->cursor);
-	SDL_UpdateWindowSurface(map->win);
+	if (SDL_UpdateWindowSurface(map->win) == -1)
+		error("SDL Error!");
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:30 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 05:59:11 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 14:45:15 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	texture_block(t_map *map)
 	draw_showuppanel(map, 260, 205, 1);
 	draw_floor_textures(map);
 	draw_sky_textures(map);
-	draw_liquid_textures(map);
+	//draw_liquid_textures(map);
 	draw_small_panel_tex(map);
 	open_texture_win(map);
 	open_floor_win(map);

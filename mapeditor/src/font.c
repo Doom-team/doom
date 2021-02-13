@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:05 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 00:35:57 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 14:57:17 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ SDL_Surface		*load_font(t_map *map, char *str, TTF_Font *font,
 		error((char *)SDL_GetError());
 	}
 	tmp1 = SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_BGRA32, 0);
+	if (!tmp1)
+		error("SDL Error");
 	SDL_FreeSurface(tmp);
 	tmp = NULL;
 	return (tmp1);
@@ -52,6 +54,8 @@ void			fonts_classic(t_map *map, char *str, t_info *info,
 	strlen = ft_strlen(str);
 	map->font->img = load_font(map, str, map->fontclasic, color);
 	tmp = map->font->img;
+	if (!map->font->img)
+		error("SDL font Error!");
 	init_texture(map->font->img, &(map->font->s),
 		&(map->font->pixb), &(map->font->strb));
 	SDL_FreeSurface(tmp);
@@ -68,6 +72,8 @@ void			fonts_doom(t_map *map, char *str, t_info *info, SDL_Color color)
 
 	strlen = ft_strlen(str);
 	map->font->img = load_font(map, str, map->fontdoom, color);
+	if (!map->font->img)
+		error("SDL font Error!");
 	tmp = map->font->img;
 	init_texture(map->font->img, &(map->font->s), &(map->font->pixb),
 		&(map->font->strb));
