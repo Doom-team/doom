@@ -32,7 +32,7 @@ int		mkey(int key, int x, int y, t_map *map)
 	return (0);
 }
 
-int		pkey(int key, t_map *map)
+int		pkey(int key)
 {
 	if (key == 27)
 	{

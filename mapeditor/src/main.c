@@ -12,11 +12,9 @@
 
 #include "../include/map.h"
 
-int		main(int ac, char **av)
+int		main(void)
 {
 	t_map			*map;
-	unsigned int	t;
-	unsigned int	t1;
 
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		return (0);

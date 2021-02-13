@@ -37,7 +37,7 @@
 # define HOTPINK (t_color){255, 105, 180}
 
 # define REDFONT (SDL_Color){255, 0, 0}
-# define WHITEFONT (SDL_Color){255, 255, 255}
+# define WHITEFONT (SDL_Color){255, 255, 255, 0}
 # define SABF (SDL_Color){244, 164, 96}
 # define BLACKFONT (SDL_Color){0, 0, 0}
 # define ERM "Malloc Error"
@@ -290,9 +290,9 @@ void				whichone_tool(t_map *map);
 void				kakoetogovno1(t_map *map, int i, int tmp);
 void				kakoetogovno2(t_map *map, int i, int tmp);
 int					events(t_map *map);
-int					mmove(int x, int y, t_map *map, SDL_Event event);
+int					mmove(int x, int y, t_map *map);
 int					ukey(int key, t_map *map);
-int					pkey(int key, t_map *map);
+int					pkey(int key);
 int					mkey(int key, int x, int y, t_map *map);
 void				edit_tool(t_map *map, int index);
 void				edit_blocktexture(t_map *map, int index);

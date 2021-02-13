@@ -12,7 +12,7 @@
 
 #include "../include/map.h"
 
-int		mmove(int x, int y, t_map *map, SDL_Event event)
+int		mmove(int x, int y, t_map *map)
 {
 	map->z_x = x;
 	map->z_y = y;
@@ -59,7 +59,7 @@ int		events(t_map *map)
 {
 	int			x;
 	int			y;
-	SDL_Event	*event;
+	SDL_Event	event;
 	int			done;
 
 	x = 0;
@@ -67,17 +67,17 @@ int		events(t_map *map)
 	done = 0;
 	while (!done)
 	{
-		if (SDL_PollEvent(event) && !done)
+		if (SDL_PollEvent(&event) && !done)
 		{
-			if (event->type == SDL_QUIT)
+			if (event.type == SDL_QUIT)
 				exit (0);
-			if (event->type == SDL_KEYDOWN)
-				pkey((unsigned char)event->key.keysym.sym, map);
-			// if (event->type == SDL_MOUSEBUTTONDOWN)
+			if (event.type == SDL_KEYDOWN)
+				pkey((unsigned char)event.key.keysym.sym);
+			// if (event.type == SDL_MOUSEBUTTONDOWN)
 			// 	done = clickevent(map, x, y, *event);
-			if (event->type == SDL_MOUSEMOTION)
-				mmove(event->motion.x, event->motion.y, map, *event);
-			if (event->type == SDL_MOUSEBUTTONDOWN && clickevent(map, x, y, *event))
+			if (event.type == SDL_MOUSEMOTION)
+				mmove(event.motion.x, event.motion.y, map);
+			if (event.type == SDL_MOUSEBUTTONDOWN && clickevent(map, x, y, event))
 				done = valid_map(map, &(t_info){-WIDTH, -HEIGHT, WIDTH, HEIGHT});
 			if (done == 1)
 			{
