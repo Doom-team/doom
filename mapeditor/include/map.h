@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 12:28:31 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:27:13 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@
 # define BLUE (t_color){0, 0, 255}
 # define HOTPINK (t_color){255, 105, 180}
 
-# define REDFONT (SDL_Color){255, 0, 0}
+# define REDFONT (SDL_Color){255, 0, 0, 0}
 # define WHITEFONT (SDL_Color){255, 255, 255, 0}
-# define SABF (SDL_Color){244, 164, 96}
-# define BLACKFONT (SDL_Color){0, 0, 0}
+# define SABF (SDL_Color){244, 164, 96, 0}
+# define BLACKFONT (SDL_Color){0, 0, 0, 0}
 # define ERM "Malloc Error"
 
 # define WIDTH 1424
@@ -255,7 +255,7 @@ void				draw_hlider(t_map *map);
 void				draw_stairs(t_map *map);
 void				draw_tests(t_map *map);
 void				draw_music(t_map *map);
-void				draw_showuppanel(t_map *map, int x, int y, int inx);
+void				draw_showuppanel(t_map *map, int x, int y);
 void				draw_small_panel_tex(t_map *map);
 int					draw_changer_texture(t_map *map);
 void				draw_floor_line(t_map *map, t_info *cor);
@@ -304,7 +304,7 @@ void				remove_tool(t_map *map, int x, int y);
 void				remove_blocks(t_map *map);
 void				showup_lick(t_map *map, int x, int y);
 int					clickevent(t_map *map, int x, int y, SDL_Event event);
-void				lstdelone2(t_nod **fd_lst, t_nod *fd,
+void				lstdelone2(t_nod **fd_lst,
 					t_nod *file, t_nod *last);
 int					interface_click(t_map *map, int x, int y);
 void				section_click(t_map *map, int x, int y);
@@ -329,7 +329,7 @@ void				zerroother(t_map *map);
 void				zerroothero(t_map *map);
 void				rewrite(t_map *map, int inx, int x, int y);
 void				rewrite2(t_map *map, char *str, char *tmp, int inx);
-void				floorker(t_map *map, int x, int y);
+void				floorker(t_map *map);
 int					searchelem(char *str1, char *str2);
 void				set_door(t_map *map, int indx);
 void				add_my_node(t_map *map, t_info *info, int type);
@@ -368,7 +368,8 @@ void				count_write(t_map *map, int fd);
 void				write_objects(t_map *map, int fd);
 void				write_floor(t_map *map, int fd);
 void				write_ceiling(t_map *map, int fd);
-char				*write_walls2(t_map *map, char *buffer, t_nod *n);
+char				*write_walls2(char *buffer, t_nod *n);
+void				funcfunc(int pix1, int pix2, t_map *map, t_image *st);
 char				*write_wall_text(t_nod *n);
 void				open_texture_win(t_map *map);
 void				open_floor_win(t_map *map);
@@ -395,11 +396,11 @@ int					check_scene(t_info *info, t_map *map);
 int					valid_map(t_map *map, t_info *inf);
 int					range_click(t_info *info, int w, int h);
 int					lstdelone(t_nod **fd_lst, t_nod *fd);
-char				*count_floor(t_map *map, int fd);
+char				*count_floor(t_map *map);
 void				free_panel1(t_map *map);
 void				free_panel2(t_map *map);
 void				free_nodes(t_map *map);
-void				error_free_s(t_map *map, char *s);
+void				error_free_s(char *s);
 void				error(char *s);
 SDL_Surface			*load_image(char *path);
 char				*add_text(char *s1, char *s2, int f);

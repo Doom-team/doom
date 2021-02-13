@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:27:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 01:10:45 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:14:39 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	add_node(t_map *map, int x, int y)
 	t_nod *n;
 	t_nod *cur;
 
+	cur = NULL;
 	n = n_cr(&(t_info){map->x_c, map->y_c, x, y}, 0);
 	n->index = nod_len(map->nod);
 	n->wallh = map->whclick;

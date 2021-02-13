@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:36:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 15:07:20 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:21:13 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	remove_blocks(t_map *map)
 	int	tmp;
 
 	i = -1;
+	tmp = 0;
 	if (map->block_tex[0]->active)
 		tmp = 4;
 	else if (map->block_tex[1]->active)

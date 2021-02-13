@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 19:07:56 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:28:17 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ int		events(t_map *map)
 				exit (0);
 			if (event.type == SDL_KEYDOWN)
 				pkey((unsigned char)event.key.keysym.sym);
-			// if (event.type == SDL_MOUSEBUTTONDOWN)
-			// 	done = clickevent(map, x, y, *event);
 			if (event.type == SDL_MOUSEMOTION)
 				mmove(event.motion.x, event.motion.y, map);
 			if (event.type == SDL_MOUSEBUTTONDOWN && clickevent(map, x, y, event))

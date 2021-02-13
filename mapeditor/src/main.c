@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:18 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 18:57:43 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:20:07 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(void)
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		return (0);
 	if (!init_all(map))
-		error_free_s(map, "initialization error!");
+		error("Initialization error!");
 	draw(map);
 	if (SDL_UpdateWindowSurface(map->win) == -1)
 		error("SDL Error");

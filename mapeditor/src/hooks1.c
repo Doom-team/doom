@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 03:43:08 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:21:21 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		catch_click(t_map *map, int x, int y)
 	if (map->inter_tex[4]->active == 1)
 	{
 		terxtures_click(map, x, y);
-		floorker(map, x, y);
+		floorker(map);
 	}
 	if (map->inter_tex[5]->active == 1 && !map->inter_tex[4]->active
 		&& !map->inter_tex[3]->active)

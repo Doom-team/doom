@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 10:15:05 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:16:15 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ void	rewrite(t_map *map, int inx, int x, int y)
 		while (map->objects[inx] && map->objects[inx] != '\n')
 			inx++;
 		inx++;
-		if (map->player_tex[0]->active == 1)
-			str = ft_strjoin("p ", ft_itoa(x));
+		str = ft_strjoin("p ", ft_itoa(x));
 		str = ft_strjoin(ft_strjoin(str, " "), ft_itoa(y));
 		rewrite2(map, str, tmp, inx);
 	}

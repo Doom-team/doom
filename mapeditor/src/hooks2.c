@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gordey <gordey@student.42.fr>              +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/07 17:32:27 by gordey           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:22:28 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int		interface_click(t_map *map, int x, int y)
 {
+	int i;
+
+	i = map->click;
 	if ((x > 0 && x < 300) && y > 0 && y < 800)
 		return (0);
 	return (1);

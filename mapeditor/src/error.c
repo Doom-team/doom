@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 00:31:17 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 00:31:44 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:19:30 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	error(char *s)
 	exit(EXIT_FAILURE);
 }
 
-void	error_free_s(t_map *map, char *s)
+void	error_free_s(char *s)
 {
 	ft_putstr(C_RED);
 	ft_putstr(s);

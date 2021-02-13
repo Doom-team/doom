@@ -6,13 +6,13 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:36 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 18:49:36 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:09:15 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
 
-int		check_scene2(t_info *str, t_info *info, t_map *map, int i)
+int		check_scene2(t_info *str, t_info *info, int i)
 {
 	if (str->x == info->x)
 		i++;
@@ -77,7 +77,7 @@ int		check_scene(t_info *info, t_map *map)
 			while (tmp)
 			{
 				i = check_scene2(&(t_info){tmp->x1, tmp->y1, tmp->x2,
-					tmp->y2}, info, map, i);
+					tmp->y2}, info, i);
 				tmp = tmp->nxt;
 			}
 			return (check_scene3(map, i));

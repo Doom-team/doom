@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:45 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 15:03:47 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:26:59 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,11 @@ void	draw_slider(t_map *map)
 		bigdot(map, 115 + (map->wclick), 153, RED);
 		fonts_classic(map, "radius", &(t_info){122, 132, 0, 0}, WHITEFONT);
 	}
+}
+
+void	funcfunc(int pix1, int pix2, t_map *map, t_image *st)
+{
+	map->inter_tex[0]->s[pix1] = st->s[pix2];
+	map->inter_tex[0]->s[++pix1] = st->s[++pix2];
+	map->inter_tex[0]->s[++pix1] = st->s[++pix2];
 }

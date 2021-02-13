@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:28 by grinko            #+#    #+#             */
-/*   Updated: 2020/12/22 13:39:29 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:12:18 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	showupcontent(t_map *map)
 	}
 }
 
-void	draw_showuppanel(t_map *map, int x, int y, int inx)
+void	draw_showuppanel(t_map *map, int x, int y)
 {
 	if (map->inter_tex[13]->active == 1)
 	{

@@ -6,13 +6,13 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 19:11:12 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:20:57 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/map.h"
 
-char	*count_floor(t_map *map, int fd)
+char	*count_floor(t_map *map)
 {
 	char *buffer;
 
@@ -82,7 +82,7 @@ void	write_walls(t_map *map, int fd)
 		{
 			buffer = n->texture->type_name;
 			buffer = add_text(buffer, write_wall_xy(n), 3);
-			buffer = write_walls2(map, buffer, n);
+			buffer = write_walls2(buffer, n);
 			maxlen = ft_strlen(buffer);
 			if (write(fd, buffer, maxlen) != maxlen)
 				error("Write Error\n");
@@ -90,7 +90,7 @@ void	write_walls(t_map *map, int fd)
 		n = n->nxt;
 	}
 	if (write(fd, map->stairsoutput, ft_strlen(map->stairsoutput))
-		!= ft_strlen(map->stairsoutput))
+		!= (int)ft_strlen(map->stairsoutput))
 		error("Write Error\n");
 	//free(map->stairsoutput);
 }

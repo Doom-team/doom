@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:33 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 03:01:09 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:19:12 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int		lstdelone(t_nod **fd_lst, t_nod *fd)
 	{
 		if (file == fd)
 		{
-			lstdelone2(fd_lst, fd, file, last);
+			lstdelone2(fd_lst, file, last);
 			if (flag)
 				return (1);
 			return (0);

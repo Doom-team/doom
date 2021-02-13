@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:05 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 14:57:17 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:22:50 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int				struppercase(char *str)
 	return (0);
 }
 
-SDL_Surface		*load_font(t_map *map, char *str, TTF_Font *font,
+SDL_Surface		*load_font(char *str, TTF_Font *font,
 	SDL_Color color)
 {
 	SDL_Surface		*tmp;
@@ -52,7 +52,7 @@ void			fonts_classic(t_map *map, char *str, t_info *info,
 	SDL_Surface		*tmp;
 
 	strlen = ft_strlen(str);
-	map->font->img = load_font(map, str, map->fontclasic, color);
+	map->font->img = load_font(str, map->fontclasic, color);
 	tmp = map->font->img;
 	if (!map->font->img)
 		error("SDL font Error!");
@@ -71,7 +71,7 @@ void			fonts_doom(t_map *map, char *str, t_info *info, SDL_Color color)
 	SDL_Surface		*tmp;
 
 	strlen = ft_strlen(str);
-	map->font->img = load_font(map, str, map->fontdoom, color);
+	map->font->img = load_font(str, map->fontdoom, color);
 	if (!map->font->img)
 		error("SDL font Error!");
 	tmp = map->font->img;

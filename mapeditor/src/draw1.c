@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 18:47:39 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:26:28 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ void	draw_img(t_map *map, t_info *info, t_image *st)
 			if (j < 0)
 				continue ;
 			if (st->s[pixel2 + 3])
-			{
-				map->inter_tex[0]->s[pixel1] = st->s[pixel2];
-				map->inter_tex[0]->s[++pixel1] = st->s[++pixel2];
-				map->inter_tex[0]->s[++pixel1] = st->s[++pixel2];
-			}
+				funcfunc(pixel1, pixel2, map, st);
 			j++;
 		}
 		i++;

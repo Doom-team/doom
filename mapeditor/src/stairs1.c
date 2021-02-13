@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 17:31:10 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:18:40 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	draw_mapstairs(t_map *map, int x, int y, int i)
 {
 	int		x1;
 	int		y1;
-	float	tmp;
 	float	len;
 
 	x1 = map->x_c;

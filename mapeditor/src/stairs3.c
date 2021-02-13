@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 18:28:28 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 20:17:56 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	remove_tool(t_map *map, int x, int y)
 		find_remove(map, x1, y1);
 }
 
-void	lstdelone2(t_nod **fd_lst, t_nod *fd, t_nod *file, t_nod *last)
+void	lstdelone2(t_nod **fd_lst, t_nod *file, t_nod *last)
 {
 	if (last)
 		last->nxt = file->nxt;
@@ -88,7 +88,7 @@ void	save_texture1(t_map *map, t_nod *n)
 	}
 }
 
-char	*write_walls2(t_map *map, char *buffer, t_nod *n)
+char	*write_walls2(char *buffer, t_nod *n)
 {
 	if (n->type == 2)
 		buffer = add_text(buffer, n->texture->texture_name[0], 1);
