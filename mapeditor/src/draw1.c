@@ -30,13 +30,9 @@ void	draw_img(t_map *map, t_info *info, t_image *st)
 		while (j < WIDTH && j < info->x + info->w)
 		{
 			pixel1 = i * map->inter_tex[0]->strb + j * map->inter_tex[0]->pixb;
-			pixel2 = (int)((float)(i - info->y) * st->img->h / info->h) * st->strb
+			pixel2 = (int)((float)(i - info->y) * st->img->h /
+				info->h) * st->strb
 			+ (int)((float)(j - info->x) * st->img->w / info->w) * st->pixb;
-			if (pixel2 < 0 || pixel1 < 0)
-			{
-				printf("%d %d\n", pixel1, pixel2);
-				return ;
-			}
 			if (st->s[pixel2 + 3])
 				funcfunc(pixel1, pixel2, map, st);
 			j++;

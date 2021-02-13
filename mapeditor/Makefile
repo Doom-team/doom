@@ -1,4 +1,4 @@
-ALL_C =	main.c draw1.c draw2.c hooks1.c interface_init.c nodes1.c event.c key.c tools.c cursor.c blocks.c font.c \
+ALL_C =	main.c draw1.c draw2.c hooks1.c interface_init.c nodes1.c event.c key.c tools.c blocks.c font.c \
 		textureblock.c malloc_texture1.c get_texture1.c draw3.c validation.c writemap1.c showtexture.c floor_text1.c \
 		draw4.c wall_text.c objects_block1.c draw5.c stairs1.c hooks2.c hooks3.c hooks4.c hooks5.c floor_text2.c \
 		hooks6.c malloc_texture2.c free.c error.c blocks2.c draw6.c draw7.c get_texture2.c get_texture3.c hooks7.c \

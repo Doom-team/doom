@@ -12,29 +12,6 @@
 
 #include "../include/map.h"
 
-void	find_removestair(t_map *map, int x, int y)
-{
-	t_nod *tmp;
-	t_nod *tmp2;
-	t_nod *first;
-
-	tmp = map->tmpnod;
-	first = map->tmpnod;
-	while (tmp)
-	{
-		if (((tmp->x1 == x) && (tmp->y1 == y)) ||
-		((tmp->x2 == x) && (tmp->y2 == y)))
-		{
-			tmp2 = tmp;
-			tmp = tmp->nxt;
-			if (lstdelone(&map->tmpnod, tmp2))
-				map->tmpnod = NULL;
-		}
-		else
-			tmp = tmp->nxt;
-	}
-}
-
 void	remove_blocks(t_map *map)
 {
 	int	i;

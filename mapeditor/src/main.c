@@ -24,9 +24,6 @@ int		main(void)
 	if (SDL_UpdateWindowSurface(map->win) == -1)
 		error("SDL Error");
 	events(map);
-	printf("end\n");
-	exit(0);
-	//free_panel1(map);
 	SDL_DestroyWindow(map->win);
 	SDL_Quit();
 	return (0);

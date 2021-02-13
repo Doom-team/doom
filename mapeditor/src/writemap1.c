@@ -92,7 +92,6 @@ void	write_walls(t_map *map, int fd)
 	if (write(fd, map->stairsoutput, ft_strlen(map->stairsoutput))
 		!= (int)ft_strlen(map->stairsoutput))
 		error("Write Error\n");
-	//free(map->stairsoutput);
 }
 
 int		writedown_map(t_map *map)

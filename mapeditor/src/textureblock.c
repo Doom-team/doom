@@ -98,7 +98,6 @@ void	texture_block(t_map *map)
 	draw_showuppanel(map, 260, 205);
 	draw_floor_textures(map);
 	draw_sky_textures(map);
-	//draw_liquid_textures(map);
 	draw_small_panel_tex(map);
 	open_texture_win(map);
 	open_floor_win(map);

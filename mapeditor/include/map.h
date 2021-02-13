@@ -246,6 +246,7 @@ void				draw_node(t_map *map, t_nod *n);
 void				draw_gr(t_map *map, int x, int y, t_color color);
 void				draw_line(t_map *map, t_info *info, t_color color);
 void				draw_slider(t_map *map);
+void				find_removestair(t_map *map, int x, int y);
 void				draw_block_textures(t_map *map);
 void				draw_wall_textures(t_map *map);
 void				draw_floor_textures(t_map *map);

@@ -38,7 +38,7 @@ int		pkey(int key, t_map *map)
 	{
 		free_panel1(map);
 		SDL_DestroyWindow(map->win);
-		exit (0);
+		exit(0);
 	}
 	return (0);
 }

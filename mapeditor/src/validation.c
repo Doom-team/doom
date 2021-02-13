@@ -87,23 +87,11 @@ int		check_scene(t_info *info, t_map *map)
 	return (0);
 }
 
-int	if_if(t_map *map, t_nod *n)
-{
-	if (!n)
-	{
-		map->errorflag = 1;
-		return (0);
-	}
-	return (1);
-}
-
 int		valid_map(t_map *map, t_info *inf)
 {
 	t_nod	*n;
 
 	n = map->nod;
-	if (!if_if(map, n))
-		return (0);
 	while (n)
 	{
 		if (n->x1 >= inf->x)

@@ -63,7 +63,6 @@ void	save_texture1(t_map *map, t_nod *n)
 	n->type = 2;
 	if (map->door_tex[0]->active == 1)
 	{
-		// printf("here\n");
 		n->grnum = 1;
 		n->texture->texture_name[0] =
 			" ../textures/doors/defdoor.png";

@@ -12,7 +12,7 @@
 
 #include "../include/map.h"
 
-int		mmove(int x, int y, t_map *map)
+int				mmove(int x, int y, t_map *map)
 {
 	map->z_x = x;
 	map->z_y = y;
@@ -31,7 +31,7 @@ int		mmove(int x, int y, t_map *map)
 	return (0);
 }
 
-int		clickevent(t_map *map, int x, int y, SDL_Event event)
+int				clickevent(t_map *map, int x, int y, SDL_Event event)
 {
 	if (map->musicflag > 0)
 	{
@@ -47,28 +47,36 @@ int		clickevent(t_map *map, int x, int y, SDL_Event event)
 	return (0);
 }
 
-int		events(t_map *map)
+static void		helper_events(t_map *map, int *done, SDL_Event *event)
 {
 	int			x;
 	int			y;
-	SDL_Event	event;
-	int			done;
 
 	x = 0;
 	y = 0;
+	if (event->type == SDL_KEYDOWN)
+		pkey((unsigned char)event->key.keysym.sym, map);
+	if (event->type == SDL_MOUSEMOTION)
+		mmove(event->motion.x, event->motion.y, map);
+	if (event->type == SDL_MOUSEBUTTONDOWN &&
+	clickevent(map, x, y, *event) && map->nod)
+		*done = valid_map(map, &(t_info){-WIDTH,
+			-HEIGHT, WIDTH, HEIGHT});
+}
+
+int				events(t_map *map)
+{
+	SDL_Event	event;
+	int			done;
+
 	done = 0;
 	while (!done)
 	{
 		if (SDL_PollEvent(&event) && !done)
 		{
 			if (event.type == SDL_QUIT)
-				exit (0);
-			if (event.type == SDL_KEYDOWN)
-				pkey((unsigned char)event.key.keysym.sym, map);
-			if (event.type == SDL_MOUSEMOTION)
-				mmove(event.motion.x, event.motion.y, map);
-			if (event.type == SDL_MOUSEBUTTONDOWN && clickevent(map, x, y, event))
-				done = valid_map(map, &(t_info){-WIDTH, -HEIGHT, WIDTH, HEIGHT});
+				exit(0);
+			helper_events(map, &done, &event);
 			if (done == 1)
 			{
 				writedown_map(map);
