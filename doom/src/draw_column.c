@@ -20,7 +20,7 @@ void			draw_column(t_pthrdata *data, t_point point, int count_distance)
 	d.dist = data->wolf->player->distance[count_distance];
 	d.j = -1;
 	brute_draw_column(data->wolf, point, count_distance, &d);
-	cut_ctage(data->wolf, point, count_distance, &d);
+	cut_ctage(&d);
 	while (++d.j < d.stage.count)
 	{
 		data->wolf->helper[data->number].j = d.j;
@@ -31,8 +31,8 @@ void			draw_column(t_pthrdata *data, t_point point, int count_distance)
 	if (d.dist->number_wall[d.j] < 0 &&\
 	d.dist->number_wall[d.j] > data->wolf->p->count_walls - 1)
 		return ;
-	brute_draw_column_1(data->wolf, point, count_distance, &d);
-	brute_draw_column_2(data->wolf, point, count_distance, &d);
+	brute_draw_column_1(data->wolf, count_distance, &d);
+	brute_draw_column_2(data->wolf, point, &d);
 }
 
 void			brute_draw_column(t_wolf *wolf,\
@@ -49,7 +49,7 @@ t_point point, int count_distance, t_data_column *d)
 		wolf->player->distance[count_distance]->dist[d->j]);
 		if (wolf->p->walls[d->dist->number_wall[d->j]].active != 1)
 			continue;
-		brute_draw_column_1_1(wolf, point, count_distance, d);
+		brute_draw_column_1_1(wolf, count_distance, d);
 		if (d->dist->number_wall[d->j] < 0 &&\
 		d->dist->number_wall[d->j] > wolf->p->count_walls - 1)
 			return ;
@@ -59,12 +59,12 @@ t_point point, int count_distance, t_data_column *d)
 		/ 5.0f);
 		d->flag = 1;
 		d->temp_y--;
-		brute_draw_column_3(wolf, point, count_distance, d);
+		brute_draw_column_3(wolf, point, d);
 	}
 }
 
 void			brute_draw_column_1(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+int count_distance, t_data_column *d)
 {
 	d->j = 0;
 	d->temp_y = ceilf((wolf->player->dist_to_canvas)\
@@ -82,9 +82,9 @@ t_point point, int count_distance, t_data_column *d)
 }
 
 void			brute_draw_column_2_1(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+t_point point, t_data_column *d)
 {
-	brute_draw_column_2_2(wolf, point, count_distance, d);
+	brute_draw_column_2_2(wolf, d);
 	if ((d->temp_y - wolf->player->dir_y > 0 &&\
 	d->temp_y - wolf->player->dir_y < H))
 	{
@@ -102,7 +102,7 @@ t_point point, int count_distance, t_data_column *d)
 }
 
 void			brute_draw_column_2(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+t_point point, t_data_column *d)
 {
 	while (++d->temp_y < d->size)
 	{
@@ -118,6 +118,6 @@ t_point point, int count_distance, t_data_column *d)
 		if (d->temp_y - wolf->player->dir_y < 0 ||\
 		d->temp_y - wolf->player->dir_y > H)
 			continue;
-		brute_draw_column_2_1(wolf, point, count_distance, d);
+		brute_draw_column_2_1(wolf, point, d);
 	}
 }

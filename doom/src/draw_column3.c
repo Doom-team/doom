@@ -13,7 +13,7 @@
 #include "../includes/wolf3d.h"
 
 void			brute_draw_column_3_2(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+t_data_column *d)
 {
 	if (d->flag == 1)
 	{
@@ -31,7 +31,7 @@ t_point point, int count_distance, t_data_column *d)
 }
 
 void			brute_draw_column_3_3(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+t_point point, t_data_column *d)
 {
 	if (point.x == W / 2 && H / 2 < d->size && H / 2 > d->begin_y)
 	{

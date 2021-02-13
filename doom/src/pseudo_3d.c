@@ -13,7 +13,7 @@
 #include "../includes/wolf3d.h"
 
 void			upper_level_draw_3(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+t_data_column *d)
 {
 	if (d->flag == 1)
 	{

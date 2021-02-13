@@ -25,7 +25,7 @@ void			draw_column_fly(t_wolf *wolf, t_point point, int count_distance)
 	hel.count_distance = count_distance;
 	hel.x = point.x;
 	brute_column_fly(wolf, point, count_distance, &d);
-	cut_ctage(wolf, point, count_distance, &d);
+	cut_ctage(&d);
 	while (++d.j < d.stage.count)
 	{
 		hel.j = d.j;
@@ -40,7 +40,7 @@ t_point point, int count_distance, t_data_column *d)
 {
 	if (d->stage.count % 2 == 0)
 	{
-		if (upper_level_draw_1(wolf, point, count_distance, d))
+		if (upper_level_draw_1(wolf, count_distance, d))
 			return ;
 		while (++d->temp_y < d->size)
 		{
@@ -68,7 +68,7 @@ t_point point, int count_distance, t_data_column *d)
 void			upper_level_draw_2(t_wolf *wolf,\
 t_point point, int count_distance, t_data_column *d)
 {
-	upper_level_draw_3(wolf, point, count_distance, d);
+	upper_level_draw_3(wolf, d);
 	if (d->temp_y - (wolf->player->dir_y + fly_correction_from_dist(wolf, d->j,\
 	count_distance)) > 0 && d->temp_y - (wolf->player->dir_y +\
 	fly_correction_from_dist(wolf, d->j, count_distance)) < H)
@@ -87,7 +87,7 @@ t_point point, int count_distance, t_data_column *d)
 }
 
 int				upper_level_draw_1(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+int count_distance, t_data_column *d)
 {
 	d->j = d->dist->count - 1;
 	if (d->j == -1)
@@ -110,8 +110,7 @@ t_point point, int count_distance, t_data_column *d)
 	return (0);
 }
 
-void			cut_ctage(t_wolf *wolf,\
-t_point point, int count_distance, t_data_column *d)
+void			cut_ctage(t_data_column *d)
 {
 	int	i;
 

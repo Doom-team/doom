@@ -18,7 +18,7 @@ static void		init_player_help(t_player *p)
 	p->num_ammo = 10;
 	p->speed = 0.11f;
 	p->fov = RAD_60;
-	p->dir = RAD_270;
+	p->dir = RAD_90;
 	p->dir_y = 0;
 	p->fly = 0;
 }

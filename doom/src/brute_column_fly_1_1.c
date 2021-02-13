@@ -26,7 +26,7 @@ static void		brute_column_fly_1_1_help(t_data_column *d,
 			fly_correction_from_dist(wolf, d->j, count_distance));
 }
 
-void			brute_column_fly_1_1(t_wolf *wolf, t_point point,
+void			brute_column_fly_1_1(t_wolf *wolf,
 				int count_distance, t_data_column *d)
 {
 	if (d->stage.dist[wolf->p->walls[d->dist->number_wall[d->j]].squad_stage
