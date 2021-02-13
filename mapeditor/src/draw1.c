@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:37:42 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 14:54:29 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 18:47:39 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	draw_img(t_map *map, t_info *info, t_image *st)
 			pixel2 = (int)((double)(i - info->y) / info->h * st->img->h) *
 				st->strb + (int)((double)(j - info->x) / info->w *
 					st->img->w) * st->pixb;
+			if (j < 0)
+				continue ;
 			if (st->s[pixel2 + 3])
 			{
 				map->inter_tex[0]->s[pixel1] = st->s[pixel2];
@@ -52,7 +54,7 @@ void	draw_pixel(t_map *map, int x, int y, t_color color)
 {
 	int pixel;
 
-	if (x < WIDTH && y < HEIGHT)
+	if (x < WIDTH && y < HEIGHT && x >= 0 && y >= 0)
 	{
 		pixel = (x * map->inter_tex[0]->pixb) + (y * map->inter_tex[0]->strb);
 		draw_color(map, pixel, color);

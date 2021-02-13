@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:16 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 15:47:48 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 17:50:14 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int		pkey(int key, t_map *map)
 {
 	if (key == 27)
 	{
-		SDL_DestroyWindow(map->win);
-		SDL_Quit();
+		//SDL_DestroyWindow(map->win);
+		exit (0);
 	}
 	return (0);
 }

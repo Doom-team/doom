@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 15:42:07 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 19:07:56 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 	if (some_texture_active(map) == 2)
 		if (map->z_x != x || map->z_y != y)
 			bigdot(map, map->z_x, map->z_y, HOTPINK);
-	if (map->block_tex[5]->active == 1)
+	if (map->block_tex[5]->active == 1 && interface_click(map, x, y))
 		stairswhile(map, x, y);
 	if (map->inter_tex[6]->active && interface_click(map, x, y))
 	{
@@ -32,7 +32,7 @@ int		mmove(int x, int y, t_map *map, SDL_Event event)
 	else if (map->inter_tex[8]->active)
 		(map->z_x != x || map->z_y != y) ? cursor(map, 1,
 			8, 8) : SDL_FreeCursor(map->cursor);
-	else
+	else if (map->cursor)
 		SDL_FreeCursor(map->cursor);
 	if (SDL_UpdateWindowSurface(map->win) == -1)
 		error("SDL Error!");
@@ -59,25 +59,32 @@ int		events(t_map *map)
 {
 	int			x;
 	int			y;
-	SDL_Event	event;
+	SDL_Event	*event;
 	int			done;
 
 	x = 0;
 	y = 0;
 	done = 0;
-	while ((!done) && SDL_WaitEvent(&event))
+	while (!done)
 	{
-		if (event.type == SDL_QUIT)
-			return (0);
-		if (event.type == SDL_KEYDOWN)
-			pkey((unsigned char)event.key.keysym.sym, map);
-		if (event.type == SDL_MOUSEBUTTONDOWN)
-			done = clickevent(map, x, y, event);
-		if (event.type == SDL_MOUSEMOTION)
-			mmove(event.motion.x, event.motion.y, map, event);
-		if (done == 1)
-			if (valid_map(map, &(t_info){-WIDTH, -HEIGHT, WIDTH, HEIGHT}))
-				return (writedown_map(map));
+		if (SDL_PollEvent(event) && !done)
+		{
+			if (event->type == SDL_QUIT)
+				exit (0);
+			if (event->type == SDL_KEYDOWN)
+				pkey((unsigned char)event->key.keysym.sym, map);
+			// if (event->type == SDL_MOUSEBUTTONDOWN)
+			// 	done = clickevent(map, x, y, *event);
+			if (event->type == SDL_MOUSEMOTION)
+				mmove(event->motion.x, event->motion.y, map, *event);
+			if (event->type == SDL_MOUSEBUTTONDOWN && clickevent(map, x, y, *event))
+				done = valid_map(map, &(t_info){-WIDTH, -HEIGHT, WIDTH, HEIGHT});
+			if (done == 1)
+			{
+				writedown_map(map);
+				return (0);
+			}
+		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:18 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 15:45:17 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 18:57:43 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int		main(int ac, char **av)
 	if (SDL_UpdateWindowSurface(map->win) == -1)
 		error("SDL Error");
 	events(map);
+	printf("end\n");
+	exit(0);
 	//free_panel1(map);
 	SDL_DestroyWindow(map->win);
 	SDL_Quit();

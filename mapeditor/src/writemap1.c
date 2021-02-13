@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 15:28:45 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 19:11:12 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ int		writedown_map(t_map *map)
 	if ((fd = open("../textures/map.txt", O_WRONLY | O_CREAT
 		| O_TRUNC, S_IWRITE | S_IREAD)) == -1)
 		error("Cannot open file.\n");
-	ft_strlen(NULL);
 	count_write(map, fd);
 	write_walls(map, fd);
 	write_floor(map, fd);
