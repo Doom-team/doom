@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:38:12 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 20:27:13 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 22:36:01 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 
 # define APPLEGREY (t_color){33, 33, 33}
 # define GREY (t_color){74, 74, 74}
@@ -283,7 +282,6 @@ void				wichonemusic(t_map *map);
 void				bigdot(t_map *map, int x, int y, t_color color);
 void				stairarr1(t_map *map, t_info *cor, int i);
 void				stairarr2(t_map *map, t_info *cor, int i);
-void				draw_prikol(t_map *map, t_info *cord);
 t_nod				*n_cr(t_info *info, int type);
 int					sq(int x1, int y1, int x2, int y2);
 int					nod_len(t_nod *nod);

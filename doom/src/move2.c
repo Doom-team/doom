@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 13:18:43 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 13:18:50 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 22:15:50 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void		rotate(t_wolf *wolf, SDL_Event *event)
 
 void		take_damage(t_wolf *wolf, int dmg)
 {
-	printf("dmg %d\n", dmg);
 	wolf->player->hp -= dmg;
 	Mix_PlayChannel(1, wolf->p->take_damage, 0);
 }

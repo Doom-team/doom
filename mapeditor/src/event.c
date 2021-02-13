@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:00 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 20:28:17 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 22:29:25 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int				events(t_map *map)
 			if (done == 1)
 			{
 				writedown_map(map);
-				free_panel1(map);
 				return (0);
 			}
 		}

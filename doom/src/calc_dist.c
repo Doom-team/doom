@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_dist.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahusk <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:03:44 by ahusk             #+#    #+#             */
-/*   Updated: 2021/02/12 16:03:45 by ahusk            ###   ########.fr       */
+/*   Updated: 2021/02/13 22:09:40 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ float			calc_dist(t_float2 player, t_wall wall,
 	v->coords[h->j].x = px;
 	v->coords[h->j].y = py;
 	px = vector_len(player.x, player.y, px, py);
-	if (px < 0.001)
+	if (px < 0.00001)
 		return (-1.);
 	return (px);
 }

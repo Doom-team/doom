@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:51:15 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 20:18:40 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 22:35:45 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,6 @@ void	stairs_editor(t_map *map, int x, int y)
 	}
 }
 
-void	draw_prikol(t_map *map, t_info *cord)
-{
-	draw_floor_line(map, &(t_info){(cord->x - map->ha->nx),
-		(cord->y - map->ha->ny), (cord->x + map->ha->nx),
-		(cord->y + map->ha->ny)});
-	draw_floor_line(map, &(t_info){cord->x - map->ha->nx,
-		(cord->y - map->ha->ny), (cord->w - map->ha->nx),
-		(cord->h - map->ha->ny)});
-	draw_floor_line(map, &(t_info){(cord->x + map->ha->nx),
-		(cord->y + map->ha->ny), (cord->w + map->ha->nx),
-		(cord->h + map->ha->ny)});
-	draw_floor_line(map, &(t_info){(cord->w - map->ha->nx),
-		(cord->h - map->ha->ny), (cord->w + map->ha->nx),
-		(cord->h + map->ha->ny)});
-}
-
 void	draw_mapstairs(t_map *map, int x, int y, int i)
 {
 	int		x1;
@@ -105,7 +89,6 @@ void	draw_mapstairs(t_map *map, int x, int y, int i)
 	len = sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1));
 	x = x1 + (x - x1) * 20 * i / len;
 	y = y1 + (y - y1) * 20 * i / len;
-	draw_prikol(map, &(t_info){x1, y1, x, y});
 	if (i == 1)
 		stairarr1(map, &(t_info){x1, y1, x, y}, i);
 	else

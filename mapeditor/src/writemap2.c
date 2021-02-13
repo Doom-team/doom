@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:41 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/13 20:14:15 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 22:16:09 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	write_floor(t_map *map, int fd)
 		buffer = malloc(sizeof(char *) * maxlen);
 		buffer = map->floorstr;
 		if (write(fd, buffer, maxlen) != maxlen)
-			printf("error\n");
+			error("error\n");
 		free(buffer);
 	}
 	else

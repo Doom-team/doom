@@ -6,7 +6,7 @@
 /*   By: grinko <grinko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:11 by grinko            #+#    #+#             */
-/*   Updated: 2021/02/12 17:48:57 by grinko           ###   ########.fr       */
+/*   Updated: 2021/02/13 22:05:04 by grinko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ void	save_obj_tmp1(t_map *map, int x, int y)
 			"../textures/guns/pistol/img.png");
 	if (map->gun_tex[1]->active == 1)
 		save_objects(map, &(t_info){x, y, 6, 2},
-			"../textures/guns/shotgun/img.png");
+			"../textures/guns/ak/img.png");
 	if (map->gun_tex[2]->active == 1)
 		save_objects(map, &(t_info){x, y, 6, 3},
-			"../textures/guns/ak/img.png");
+			"../textures/guns/shotgun/img.png");
 	save_obj_tmp2(map, x, y);
 }
 
